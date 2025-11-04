@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint . --ext .js,.ts,.vue",
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "vitest run"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.10.0",
