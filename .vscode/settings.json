@@ -4,6 +4,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "explorer.confirmDragAndDrop": false,
+  "files.eol": "\n",
 
   "prettier.semi": false,
   "prettier.singleQuote": true,
