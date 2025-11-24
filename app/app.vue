@@ -2,7 +2,9 @@
 
 <template>
   <div>
-    <h1>Nuxt Project</h1>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
     <NuxtRouteAnnouncer />
   </div>
 </template>
