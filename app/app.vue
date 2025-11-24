@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <h1>Nuxt Project</h1>
+    <NuxtPage />
     <NuxtRouteAnnouncer />
   </div>
 </template>
