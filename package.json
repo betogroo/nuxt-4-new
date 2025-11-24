@@ -12,7 +12,8 @@
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
     "format": "prettier --write .",
     "test": "vitest run",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ncu": "ncu -i --format group"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
