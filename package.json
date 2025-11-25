@@ -40,6 +40,7 @@
     "lint-staged": "^16.2.7",
     "playwright-core": "^1.56.1",
     "prettier": "^3.6.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "vuetify-nuxt-module": "^0.18.8"
   }
 }
