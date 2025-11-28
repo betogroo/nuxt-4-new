@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  const appBarItems = [
+  import type { IconButton } from '~/types'
+  import { IconButtonSchemaList, z } from '~/schemas'
+  const appBarItems: IconButton[] = [
     {
       name: 'Home',
       to: '/',
@@ -11,6 +13,14 @@
       icon: 'mdi-information',
     },
   ]
+
+  try {
+    IconButtonSchemaList.parse(appBarItems)
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.log(error)
+    }
+  }
 </script>
 
 <template>
