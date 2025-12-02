@@ -22,4 +22,15 @@
     "prefix": "v3-template",
     "body": ["<template>", "\t<div></div>", "</template>"],
   },
+  "Vue 3 Composable Base": {
+    "scope": "javascript,typescript",
+    "prefix": "v3-composable",
+    "body": [
+      "const ${TM_FILENAME_BASE} = () => {",
+      "\treturn {  }",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE}",
+    ],
+  },
 }
