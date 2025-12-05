@@ -1,4 +1,5 @@
 import { PageMetaSchema } from '~/schemas'
+import type { MenuArea } from '~/types'
 
 const useNavigation = () => {
   const router = useRouter()
@@ -20,7 +21,12 @@ const useNavigation = () => {
       })
   })
 
-  return { allRoutes }
+  const getMenuByArea = (area: MenuArea) => {
+    console.log(area)
+    return allRoutes.value.filter((route) => route?.menu?.areas.includes(area))
+  }
+
+  return { allRoutes, getMenuByArea }
 }
 
 export default useNavigation
