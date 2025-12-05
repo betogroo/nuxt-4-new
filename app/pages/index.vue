@@ -1,8 +1,15 @@
 <script setup lang="ts">
   definePageMeta({
-    title: 'Home Page',
+    menu: {
+      title: 'Home Page',
+      areas: ['navbar'],
+      hidden: true,
+    },
   })
 </script>
+!
 <template>
-  <div><h1>Home Page</h1></div>
+  <div>
+    <h1>Home Page</h1>
+  </div>
 </template>

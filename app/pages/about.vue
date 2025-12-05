@@ -1,6 +1,10 @@
 <script setup lang="ts">
   definePageMeta({
-    title: 'Sobre',
+    menu: {
+      title: 'Sobre',
+      hidden: false,
+      areas: ['navbar'],
+    },
   })
 </script>
 <template>
