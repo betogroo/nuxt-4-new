@@ -22,7 +22,6 @@ const useNavigation = () => {
   })
 
   const getMenuByArea = (area: MenuArea) => {
-    console.log(area)
     return allRoutes.value
       .filter((route) => route?.menu?.areas.includes(area) && !route.menu.hidden)
       .sort((a, b) => {

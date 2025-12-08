@@ -5,7 +5,7 @@
       areas: ['navbar'],
       hidden: false,
       icon: 'mdi-home',
-      order: 0,
+      order: MENU_ORDER.NAVBAR.INDEX,
     },
   })
 </script>
