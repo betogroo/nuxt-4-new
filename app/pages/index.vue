@@ -3,8 +3,9 @@
     menu: {
       title: 'Home Page',
       areas: ['navbar'],
-      hidden: true,
+      hidden: false,
       icon: 'mdi-home',
+      order: 0,
     },
   })
 </script>

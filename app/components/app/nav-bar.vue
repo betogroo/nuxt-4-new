@@ -10,11 +10,10 @@
       <v-btn
         v-for="item in navbarItems"
         :key="item?.path"
+        :icon="item?.menu?.icon"
         :ripple="false"
         :to="item?.path"
         variant="plain"
-        >{{ item?.menu?.title }}</v-btn
-      >
-    </div></v-app-bar
-  >
+      /></div
+  ></v-app-bar>
 </template>

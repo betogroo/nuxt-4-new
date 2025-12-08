@@ -5,6 +5,7 @@
       hidden: false,
       areas: ['navbar'],
       icon: 'mdi-information-outline',
+      order: 999,
     },
   })
 </script>
