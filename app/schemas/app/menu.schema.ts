@@ -8,4 +8,5 @@ export const MenuSchema = z.object({
   order: z.number().optional(),
   group: z.string().optional(),
   hidden: z.boolean().default(true),
+  icon: z.string().optional(),
 })
