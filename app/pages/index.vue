@@ -4,6 +4,7 @@
       title: 'Home Page',
       areas: ['navbar'],
       hidden: true,
+      icon: 'mdi-home',
     },
   })
 </script>
