@@ -16,17 +16,19 @@ const useNavigation = () => {
         return {
           name: route.name,
           path: route.path,
-          ...parsed.data,
+          menu: parsed.data.menu,
         }
       })
+      .filter((route): route is NonNullable<typeof route> => route !== null)
   })
 
   const getMenuByArea = (area: MenuArea) => {
     return allRoutes.value
       .filter((route) => route?.menu?.areas.includes(area) && !route.menu.hidden)
       .sort((a, b) => {
-        const orderA = a?.menu?.order ?? 999
-        const orderB = b?.menu?.order ?? 999
+        const orderA = a.menu?.priority?.[area] ?? 999
+        const orderB = b.menu?.priority?.[area] ?? 999
+
         return orderA - orderB
       })
   }
