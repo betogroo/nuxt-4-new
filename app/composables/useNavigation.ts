@@ -27,8 +27,8 @@ const useNavigation = () => {
       .filter((route) => route?.menu?.areas.includes(area) && !route.menu.hidden)
       .slice()
       .sort((a, b) => {
-        const keyA = a.menu?.priority?.[area]
-        const keyB = b.menu?.priority?.[area]
+        const keyA = a.menu?.priority
+        const keyB = b.menu?.priority
 
         const orderA = keyA ? MENU_ORDER[area].indexOf(keyA) : 999
         const orderB = keyB ? MENU_ORDER[area].indexOf(keyB) : 999

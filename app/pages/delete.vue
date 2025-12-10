@@ -5,10 +5,7 @@
       hidden: false,
       areas: ['drawer', 'navbar'],
       icon: 'mdi-delete',
-      priority: {
-        navbar: 'delete',
-        drawer: 'delete',
-      },
+      priority: 'delete',
     },
   })
 </script>

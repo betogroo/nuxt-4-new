@@ -5,10 +5,7 @@
       hidden: false,
       areas: ['navbar', 'drawer'],
       icon: 'mdi-information-outline',
-      priority: {
-        navbar: 'about',
-        drawer: 'about',
-      },
+      priority: 'about',
     },
   })
 </script>

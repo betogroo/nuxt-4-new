@@ -5,10 +5,7 @@
       areas: ['navbar', 'drawer'],
       hidden: false,
       icon: 'mdi-home',
-      priority: {
-        navbar: 'index',
-        drawer: 'index',
-      },
+      priority: 'index',
     },
   })
   const { getMenuByArea } = useNavigation()

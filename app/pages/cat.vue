@@ -5,10 +5,7 @@
       hidden: false,
       areas: ['drawer', 'navbar'],
       icon: 'mdi-cat',
-      priority: {
-        navbar: 'cat',
-        drawer: 'cat',
-      },
+      priority: 'cat',
     },
   })
 </script>
