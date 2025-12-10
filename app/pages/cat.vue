@@ -6,7 +6,8 @@
       areas: ['drawer', 'navbar'],
       icon: 'mdi-cat',
       priority: {
-        drawer: MENU_ORDER.DRAWER.CAT,
+        navbar: 'cat',
+        drawer: 'cat',
       },
     },
   })

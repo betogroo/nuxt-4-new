@@ -6,8 +6,8 @@
       areas: ['drawer', 'navbar'],
       icon: 'mdi-delete',
       priority: {
-        drawer: MENU_ORDER.DRAWER.DELETE,
-        navbar: MENU_ORDER.DRAWER.DELETE,
+        navbar: 'delete',
+        drawer: 'delete',
       },
     },
   })

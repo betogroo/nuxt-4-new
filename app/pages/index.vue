@@ -6,8 +6,8 @@
       hidden: false,
       icon: 'mdi-home',
       priority: {
-        drawer: MENU_ORDER.DRAWER.INDEX,
-        navbar: MENU_ORDER.NAVBAR.INDEX,
+        navbar: 'index',
+        drawer: 'index',
       },
     },
   })
