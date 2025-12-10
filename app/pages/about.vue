@@ -5,10 +5,10 @@
       hidden: false,
       areas: ['navbar', 'drawer'],
       icon: 'mdi-information-outline',
-    },
-    priority: {
-      drawer: MENU_ORDER.DRAWER.ABOUT,
-      navbar: MENU_ORDER.NAVBAR.ABOUT,
+      priority: {
+        drawer: MENU_ORDER.DRAWER.ABOUT,
+        navbar: MENU_ORDER.NAVBAR.ABOUT,
+      },
     },
   })
 </script>

@@ -18,6 +18,15 @@
 <template>
   <div>
     <h1>Home Page</h1>
-    <pre>{{ JSON.stringify(drawerItems, null, 2) }}</pre>
+    <div class="d-flex ga- mr-3">
+      <v-btn
+        v-for="item in drawerItems"
+        :key="item?.path"
+        :icon="item?.menu?.icon"
+        :ripple="false"
+        :to="item?.path"
+        variant="plain"
+      />
+    </div>
   </div>
 </template>

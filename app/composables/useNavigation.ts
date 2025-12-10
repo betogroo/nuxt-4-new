@@ -25,9 +25,10 @@ const useNavigation = () => {
   const getMenuByArea = (area: MenuArea) => {
     return allRoutes.value
       .filter((route) => route?.menu?.areas.includes(area) && !route.menu.hidden)
+      .slice()
       .sort((a, b) => {
-        const orderA = a.menu?.priority?.[area] ?? 999
-        const orderB = b.menu?.priority?.[area] ?? 999
+        const orderA = Number(a.menu?.priority?.[area] ?? 999)
+        const orderB = Number(b.menu?.priority?.[area] ?? 999)
 
         return orderA - orderB
       })
