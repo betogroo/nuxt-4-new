@@ -1,11 +1,11 @@
 <script setup lang="ts">
   definePageMeta({
     menu: {
-      title: 'Sobre',
+      title: 'Delete',
       hidden: false,
-      areas: ['navbar', 'drawer'],
-      icon: 'mdi-information-outline',
-      priority: 'about',
+      areas: ['drawer', 'navbar'],
+      icon: 'mdi-delete',
+      priority: 'delete',
     },
   })
 </script>
