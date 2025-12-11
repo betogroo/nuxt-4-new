@@ -10,21 +10,6 @@
   })
   const { getMenuByArea } = useNavigation()
   const drawerItems = getMenuByArea('drawer')
-
-  const { $pwaInstall } = useNuxtApp()
-
-  const showButton = ref(false)
-
-  onMounted(() => {
-    window.addEventListener('pwa-install-available', () => {
-      showButton.value = true
-    })
-  })
-
-  const install = async () => {
-    const result = await $pwaInstall()
-    console.log('Resultado da instalação:', result)
-  }
 </script>
 !
 <template>
@@ -40,6 +25,5 @@
         variant="plain"
       />
     </div>
-    <v-btn @click="install">Instalar</v-btn>
   </div>
 </template>
