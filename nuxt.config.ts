@@ -67,7 +67,7 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      navigateFallback: '/', // fallback offline
+      navigateFallback: '/offline.html', // fallback offline
       globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
     },
     devOptions: {
