@@ -69,6 +69,12 @@ export default defineNuxtConfig({
     workbox: {
       navigateFallback: '/offline.html', // fallback offline
       globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+      runtimeCaching: [
+        {
+          urlPattern: ({ request }) => request.mode === 'navigate',
+          handler: 'NetworkOnly',
+        },
+      ],
     },
     devOptions: {
       enabled: true,
