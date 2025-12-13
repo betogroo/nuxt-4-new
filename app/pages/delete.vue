@@ -10,5 +10,5 @@
   })
 </script>
 <template>
-  <div><h1>About</h1></div>
+  <div><h1>Delete</h1></div>
 </template>

@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/eslint', '@nuxt/test-utils', 'vuetify-nuxt-module', '@vite-pwa/nuxt'],
   pwa: {
+    devOptions: {
+      enabled: false,
+    },
     registerType: 'autoUpdate',
     manifest: {
       name: 'Nuxt App',
@@ -75,10 +78,7 @@ export default defineNuxtConfig({
           handler: 'NetworkOnly',
         },
       ],
-    },
-    devOptions: {
-      enabled: true,
-      type: 'module',
+      additionalManifestEntries: [{ url: '/offline.html', revision: null }],
     },
   },
 })
