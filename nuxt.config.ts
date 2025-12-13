@@ -5,7 +5,11 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/test-utils', 'vuetify-nuxt-module', '@vite-pwa/nuxt'],
   pwa: {
     devOptions: {
-      enabled: false,
+      enabled: true,
+      type: 'module',
+      navigateFallback: '/',
+      suppressWarnings: true,
+      navigateFallbackAllowlist: [/^\/$/],
     },
     registerType: 'autoUpdate',
     manifest: {
@@ -70,7 +74,7 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      navigateFallback: '/offline.html', // fallback offline
+      navigateFallback: '/', // fallback offline
       globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
       runtimeCaching: [
         {
