@@ -1,5 +1,6 @@
 <script setup lang="ts">
   definePageMeta({
+    layout: 'default',
     menu: {
       title: 'Sobre',
       hidden: false,
