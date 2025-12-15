@@ -1,6 +1,8 @@
 <script setup lang="ts">
-  const { getMenuByArea } = useNavigation()
+  const { getMenuByArea, allRoutes } = useNavigation()
   const navbarItems = getMenuByArea('navbar')
+
+  console.log(navbarItems, allRoutes.value)
 </script>
 
 <template>
