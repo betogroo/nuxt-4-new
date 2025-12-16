@@ -4,8 +4,8 @@ import type { MenuArea } from '~/types'
 const useNavigation = () => {
   const router = useRouter()
 
-  const allRoutes = computed(() => {
-    return router
+  const allRoutes = computed(() =>
+    router
       .getRoutes()
       .filter((route) => route.meta.menu && route.meta.menu.title)
       .map((route) => {
@@ -19,12 +19,12 @@ const useNavigation = () => {
           menu: parsed.data.menu,
         }
       })
-      .filter((route): route is NonNullable<typeof route> => route !== null)
-  })
+      .filter((route): route is NonNullable<typeof route> => route !== null),
+  )
 
-  const getMenuByArea = (area: MenuArea) => {
-    return allRoutes.value
-      .filter((route) => route?.menu?.areas.includes(area) && !route.menu.hidden)
+  const getMenuByArea = (area: MenuArea) =>
+    allRoutes.value
+      .filter((route) => route.menu && route.menu.areas?.includes(area) && !route.menu.hidden)
       .slice()
       .sort((a, b) => {
         const keyA = a.menu?.priority
@@ -35,7 +35,6 @@ const useNavigation = () => {
 
         return orderA - orderB
       })
-  }
 
   return { allRoutes, getMenuByArea }
 }
