@@ -1,0 +1,16 @@
+{
+  "Define Page Meta": {
+    "scope": "javascript, typescript",
+    "prefix": "n3-page-meta",
+    "description": "Default Page Meta",
+    "body": [
+      "definePageMeta({",
+      "layout: 'default',",
+      "\t\tmenu: {",
+      "\t\ttitle: '$1',",
+      "\t\thidden: false,",
+      "\t},",
+      "})",
+    ],
+  },
+}
