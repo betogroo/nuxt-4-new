@@ -33,4 +33,16 @@
       "export default ${TM_FILENAME_BASE}",
     ],
   },
+
+  "Vue 3 Define Props": {
+    "scope": "javascript,typescript",
+    "prefix": "v3-sfc-props",
+    "body": [
+      "interface Props {",
+      "${1:prop}: ${2:type}",
+      "}",
+      "const props = defineProps<Props>()",
+      "",
+    ],
+  },
 }
