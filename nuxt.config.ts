@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vee-validate/nuxt',
   ],
+  veeValidate: {
+    autoImports: true,
+    typedSchemaPackage: 'zod',
+  },
   pwa: {
     devOptions: {
       enabled: true,

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { useForm, useField } from 'vee-validate'
-  import { toTypedSchema } from '@vee-validate/zod'
   import { LoginSchema } from '~/schemas'
   import type { Login } from '~/types'
 
