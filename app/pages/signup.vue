@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { SignupSchema } from '~/schemas'
-  import type { Signup } from '~/types'
 
   definePageMeta({
     layout: 'no-nav',
@@ -10,18 +9,10 @@
     },
   })
 
-  const { values, handleSubmit, meta } = useForm<Signup>({
-    validationSchema: toTypedSchema(SignupSchema),
-    initialValues: {
-      email: '',
-      password: '',
-      passwordConfirm: '',
-    },
-  })
-
-  const color = computed(() => {
-    if (!meta.value.dirty) return ''
-    return !meta.value.valid ? 'error' : 'success'
+  const { values, handleSubmit, meta, color } = useAuth(SignupSchema, {
+    email: '',
+    password: '',
+    passwordConfirm: '',
   })
 
   const onSubmit = handleSubmit(async () => {

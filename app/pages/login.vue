@@ -1,6 +1,6 @@
 <script setup lang="ts">
+  import useAuthForm from '~/composables/useAuth'
   import { LoginSchema } from '~/schemas'
-  import type { Login } from '~/types'
 
   definePageMeta({
     layout: 'no-nav',
@@ -10,17 +10,9 @@
     },
   })
 
-  const { values, handleSubmit, meta } = useForm<Login>({
-    validationSchema: toTypedSchema(LoginSchema),
-    initialValues: {
-      email: '',
-      password: '',
-    },
-  })
-
-  const color = computed(() => {
-    if (!meta.value.dirty) return ''
-    return !meta.value.valid ? 'error' : 'success'
+  const { values, handleSubmit, meta, color } = useAuthForm(LoginSchema, {
+    email: '',
+    password: '',
   })
 
   const onSubmit = handleSubmit(async () => {
