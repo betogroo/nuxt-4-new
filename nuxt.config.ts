@@ -2,7 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/test-utils', 'vuetify-nuxt-module', '@vite-pwa/nuxt'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/test-utils',
+    'vuetify-nuxt-module',
+    '@vite-pwa/nuxt',
+    '@vee-validate/nuxt',
+  ],
+  veeValidate: {
+    autoImports: true,
+    typedSchemaPackage: 'zod',
+  },
   pwa: {
     devOptions: {
       enabled: true,

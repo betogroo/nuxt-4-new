@@ -16,7 +16,7 @@ export const PrioritySchema = z.union([
 
 export const MenuSchema = z.object({
   title: z.string().min(1),
-  areas: z.array(MenuAreaSchema),
+  areas: z.array(MenuAreaSchema).optional(),
   group: z.string().optional(),
   priority: PrioritySchema.optional(),
   hidden: z.boolean().default(true),

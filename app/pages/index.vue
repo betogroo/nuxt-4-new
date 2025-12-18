@@ -1,5 +1,6 @@
 <script setup lang="ts">
   definePageMeta({
+    layout: 'default',
     menu: {
       title: 'Home Page',
       areas: ['navbar', 'drawer'],
@@ -8,22 +9,10 @@
       priority: 'index',
     },
   })
-  const { getMenuByArea } = useNavigation()
-  const drawerItems = getMenuByArea('drawer')
 </script>
 !
 <template>
   <div>
     <h1>Home Page</h1>
-    <div class="d-flex ga- mr-3">
-      <v-btn
-        v-for="item in drawerItems"
-        :key="item?.path"
-        :icon="item?.menu?.icon"
-        :ripple="false"
-        :to="item?.path"
-        variant="plain"
-      />
-    </div>
   </div>
 </template>

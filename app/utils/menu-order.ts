@@ -1,5 +1,5 @@
 export const MENU_ORDER = {
-  navbar: ['index', 'delete', 'cat', 'about'],
-  drawer: ['index', 'about', 'cat', 'delete'],
+  navbar: ['index', 'about', 'contact'],
+  drawer: ['index', 'about'],
   footer: ['index'],
 } as const
