@@ -9,7 +9,7 @@
     },
   })
 
-  const { values, handleSubmit, meta, color } = useAuth(SignupSchema, {
+  const { values, handleSubmit, meta, color } = useZodForm(SignupSchema, {
     email: '',
     password: '',
     passwordConfirm: '',

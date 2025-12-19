@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import useAuthForm from '~/composables/useAuth'
   import { LoginSchema } from '~/schemas'
 
   definePageMeta({
@@ -10,7 +9,7 @@
     },
   })
 
-  const { values, handleSubmit, meta, color } = useAuthForm(LoginSchema, {
+  const { values, handleSubmit, meta, color } = useZodForm(LoginSchema, {
     email: '',
     password: '',
   })

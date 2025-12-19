@@ -1,7 +1,7 @@
 import type { ZodType } from 'zod'
 import type { FormOptions } from 'vee-validate/'
 
-const useAuthForm = <T extends Record<string, unknown>>(
+const useZodForm = <T extends Record<string, unknown>>(
   schema: ZodType<T>,
   initialValues: FormOptions<T>['initialValues'],
 ) => {
@@ -17,4 +17,4 @@ const useAuthForm = <T extends Record<string, unknown>>(
   return { values, handleSubmit, meta, color }
 }
 
-export default useAuthForm
+export default useZodForm
