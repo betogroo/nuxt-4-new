@@ -8,7 +8,18 @@ export default defineNuxtConfig({
     'vuetify-nuxt-module',
     '@vite-pwa/nuxt',
     '@vee-validate/nuxt',
+    '@nuxtjs/supabase',
   ],
+  supabase: {
+    redirectOptions: {
+      include: ['/contact'],
+      callback: '/confirm',
+      login: '/login',
+      saveRedirectToCookie: true,
+    },
+
+    redirect: false,
+  },
   veeValidate: {
     autoImports: true,
     typedSchemaPackage: 'zod',
