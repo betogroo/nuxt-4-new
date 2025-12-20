@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   ],
   supabase: {
     redirectOptions: {
-      include: ['/contact'],
+      include: ['/contact', 'about'],
       callback: '/confirm',
       login: '/login',
       saveRedirectToCookie: true,
