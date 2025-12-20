@@ -1,5 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  vite: {
+    resolve: {
+      alias: {
+        cookie: 'cookie-es',
+      },
+    },
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [
@@ -9,10 +16,10 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vee-validate/nuxt',
     '@nuxtjs/supabase',
-  ],
+  ].filter(Boolean),
   supabase: {
     redirectOptions: {
-      include: ['/contact', 'about'],
+      include: ['/contact', '/about'],
       callback: '/confirm',
       login: '/login',
       saveRedirectToCookie: true,
