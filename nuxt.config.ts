@@ -18,7 +18,7 @@ export default defineNuxtConfig({
       saveRedirectToCookie: true,
     },
 
-    redirect: false,
+    redirect: true,
   },
   veeValidate: {
     autoImports: true,
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   },
   pwa: {
     devOptions: {
-      enabled: true,
+      enabled: false,
       type: 'module',
       navigateFallback: '/',
       suppressWarnings: true,
