@@ -16,10 +16,11 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@vee-validate/nuxt',
     '@nuxtjs/supabase',
-  ].filter(Boolean),
+    '@pinia/nuxt',
+  ],
   supabase: {
     redirectOptions: {
-      include: ['/contact', '/about'],
+      include: ['/contact'],
       callback: '/confirm',
       login: '/login',
       saveRedirectToCookie: true,
