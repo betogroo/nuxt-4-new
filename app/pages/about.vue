@@ -9,7 +9,11 @@
       priority: 'about',
     },
   })
+
+  const testStore = useTestStore()
 </script>
 <template>
-  <div><h1>About</h1></div>
+  <div>
+    <h1>{{ testStore.upperTitle }} - About</h1>
+  </div>
 </template>
