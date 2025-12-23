@@ -27,8 +27,8 @@
   <div>
     <ui-base-title>Eleições</ui-base-title>
     <div>
-      <ui-form-btn-action @click="addElection">Nova Eleição</ui-form-btn-action>
-      <ui-form-btn-action color="red" @click="electionsStore.$reset">Reset</ui-form-btn-action>
+      <ui-btn @click="addElection">Nova Eleição</ui-btn>
+      <ui-btn color="red" variant="outlined" @click="electionsStore.$reset">Reset</ui-btn>
     </div>
     <div>
       <div v-if="!elections.length">Ainda não tem eleições cadastradas</div>
@@ -43,7 +43,7 @@
           width="400"
         >
           <div class="text-right">
-            <ui-form-btn-action color="green" variant="text">Editar</ui-form-btn-action>
+            <ui-btn color="green" variant="text">Editar</ui-btn>
           </div>
         </ui-base-card>
       </div>

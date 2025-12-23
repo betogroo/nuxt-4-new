@@ -5,5 +5,6 @@ export * from './app/menu.schema'
 export * from './app/page-meta.schema'
 
 export * from './ui/textfield'
+export * from './ui/btn'
 
 export * from './auth/login.schema'

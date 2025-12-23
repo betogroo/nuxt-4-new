@@ -27,7 +27,7 @@
         <ui-form-stack>
           <ui-form-text-field label="Email" name="email" type="email" />
           <ui-form-text-field-password label="Senha" name="password" />
-          <ui-form-btn-submit :color="color" :disabled="!meta.valid">Login</ui-form-btn-submit>
+          <ui-btn :color="color" :disabled="!meta.valid" type="submit">Login</ui-btn>
         </ui-form-stack>
       </ui-base-form>
       <ui-card-footer>
