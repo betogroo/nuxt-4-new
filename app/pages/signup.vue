@@ -28,9 +28,9 @@
       <ui-base-title>Signup</ui-base-title>
       <ui-base-form @submit="onSubmit">
         <ui-form-stack>
-          <ui-form-text-field label="Email" name="email" type="email" />
-          <ui-form-text-field-password label="Senha" name="password" />
-          <ui-form-text-field-password label="Confirme a senha" name="passwordConfirm" />
+          <ui-text-field label="Email" name="email" type="email" />
+          <ui-text-field label="Senha" name="password" type="password" />
+          <ui-text-field label="Confirme a senha" name="passwordConfirm" type="password" />
           <ui-btn :color="color" :disabled="!meta.valid" type="submit">Signup</ui-btn>
         </ui-form-stack>
       </ui-base-form>

@@ -25,8 +25,8 @@
       <ui-base-title>Login</ui-base-title>
       <ui-base-form @submit="onSubmit">
         <ui-form-stack>
-          <ui-form-text-field label="Email" name="email" type="email" />
-          <ui-form-text-field-password label="Senha" name="password" />
+          <ui-text-field label="Email" name="email" type="email" />
+          <ui-text-field label="Senha" name="password" type="password" />
           <ui-btn :color="color" :disabled="!meta.valid" type="submit">Login</ui-btn>
         </ui-form-stack>
       </ui-base-form>
