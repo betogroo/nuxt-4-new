@@ -21,7 +21,7 @@
 
 <template>
   <app-public-container>
-    <ui-card-auth>
+    <ui-card width="350">
       <ui-base-title>Login</ui-base-title>
       <ui-form @submit="onSubmit">
         <ui-form-stack>
@@ -30,9 +30,10 @@
           <ui-btn :color="color" :disabled="!meta.valid" type="submit">Login</ui-btn>
         </ui-form-stack>
       </ui-form>
+
       <ui-card-footer>
         Clique <nuxt-link to="/signup">aqui</nuxt-link> para se cadastrar
       </ui-card-footer>
-    </ui-card-auth>
+    </ui-card>
   </app-public-container>
 </template>

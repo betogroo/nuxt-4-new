@@ -32,21 +32,19 @@
     </div>
     <div>
       <div v-if="!elections.length">Ainda não tem eleições cadastradas</div>
-      <div v-else class="d-flex flex-wrap justify-space-around">
-        <ui-base-card
+      <ui-card-grid v-else>
+        <ui-card
           v-for="item in elections"
           :key="item.id"
-          class="ma-2 pa-2"
-          height="150"
           :subtitle="item.votingDate"
           :title="item.name"
-          width="400"
+          width="350"
         >
-          <div class="text-right">
-            <ui-btn color="green" variant="text">Editar</ui-btn>
-          </div>
-        </ui-base-card>
-      </div>
+          <template #actions>
+            <ui-btn color="green" variant="outlined">Editar</ui-btn>
+          </template>
+        </ui-card>
+      </ui-card-grid>
     </div>
   </div>
 </template>

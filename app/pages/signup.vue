@@ -24,7 +24,7 @@
 
 <template>
   <app-public-container>
-    <ui-card-auth>
+    <ui-card width="350">
       <ui-base-title>Signup</ui-base-title>
       <ui-form @submit="onSubmit">
         <ui-form-stack>
@@ -37,6 +37,6 @@
       <ui-card-footer>
         Clique <nuxt-link to="/login">aqui</nuxt-link> acessar o sistema
       </ui-card-footer>
-    </ui-card-auth>
+    </ui-card>
   </app-public-container>
 </template>
