@@ -23,13 +23,13 @@
   <app-public-container>
     <ui-card-auth>
       <ui-base-title>Login</ui-base-title>
-      <ui-base-form @submit="onSubmit">
+      <ui-form @submit="onSubmit">
         <ui-form-stack>
           <ui-text-field label="Email" name="email" type="email" />
           <ui-text-field label="Senha" name="password" type="password" />
           <ui-btn :color="color" :disabled="!meta.valid" type="submit">Login</ui-btn>
         </ui-form-stack>
-      </ui-base-form>
+      </ui-form>
       <ui-card-footer>
         Clique <nuxt-link to="/signup">aqui</nuxt-link> para se cadastrar
       </ui-card-footer>
