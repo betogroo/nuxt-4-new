@@ -31,9 +31,9 @@
         </ui-form-stack>
       </ui-form>
 
-      <ui-card-footer>
+      <template #actions>
         Clique <nuxt-link to="/signup">aqui</nuxt-link> para se cadastrar
-      </ui-card-footer>
+      </template>
     </ui-card>
   </app-public-container>
 </template>

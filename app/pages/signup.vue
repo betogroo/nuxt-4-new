@@ -34,9 +34,9 @@
           <ui-btn :color="color" :disabled="!meta.valid" type="submit">Signup</ui-btn>
         </ui-form-stack>
       </ui-form>
-      <ui-card-footer>
+      <template #actions>
         Clique <nuxt-link to="/login">aqui</nuxt-link> acessar o sistema
-      </ui-card-footer>
+      </template>
     </ui-card>
   </app-public-container>
 </template>
