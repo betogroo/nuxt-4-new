@@ -22,7 +22,7 @@
 <template>
   <app-public-container>
     <ui-card width="350">
-      <ui-base-title>Login</ui-base-title>
+      <ui-heading :level="3">Login</ui-heading>
       <ui-form :is-valid="!meta.valid" @reset="handleReset" @submit="onSubmit">
         <div>
           <ui-text-field label="Email" name="email" type="email" />

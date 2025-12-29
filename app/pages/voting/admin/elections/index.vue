@@ -25,7 +25,7 @@
 
 <template>
   <div>
-    <ui-base-title>Eleições</ui-base-title>
+    <ui-heading :level="3">Eleições</ui-heading>
     <div>
       <ui-btn @click="addElection">Nova Eleição</ui-btn>
       <ui-btn color="red" variant="outlined" @click="electionsStore.$reset">Reset</ui-btn>
