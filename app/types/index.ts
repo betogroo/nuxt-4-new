@@ -3,6 +3,7 @@ export * from './app/menu'
 
 export * from './ui/btn'
 export * from './ui/card'
+export * from './ui/heading'
 export * from './ui/textfield'
 
 export * from './auth/login'
