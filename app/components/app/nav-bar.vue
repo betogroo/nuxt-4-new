@@ -6,14 +6,13 @@
 <template>
   <v-app-bar color="primary" density="compact">
     <v-app-bar-title>Nuxt App</v-app-bar-title>
-    <div class="d-flex ga- mr-3">
-      <v-btn
+    <div class="d-flex mr-3">
+      <ui-btn-icon
         v-for="item in navbarItems"
         :key="item?.path"
+        :aria-label="item.menu?.title"
         :icon="item?.menu?.icon"
-        :ripple="false"
         :to="item?.path"
-        variant="plain"
       /></div
   ></v-app-bar>
 </template>
