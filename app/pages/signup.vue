@@ -9,7 +9,7 @@
     },
   })
 
-  const { values, handleSubmit, meta, color } = useZodForm(SignupSchema, {
+  const { values, handleSubmit, meta, handleReset } = useZodForm(SignupSchema, {
     email: '',
     password: '',
     passwordConfirm: '',
@@ -26,13 +26,10 @@
   <app-public-container>
     <ui-card width="350">
       <ui-base-title>Signup</ui-base-title>
-      <ui-form @submit="onSubmit">
-        <ui-form-stack>
-          <ui-text-field label="Email" name="email" type="email" />
-          <ui-text-field label="Senha" name="password" type="password" />
-          <ui-text-field label="Confirme a senha" name="passwordConfirm" type="password" />
-          <ui-btn :color="color" :disabled="!meta.valid" type="submit">Signup</ui-btn>
-        </ui-form-stack>
+      <ui-form :is-valid="!meta.valid" @reset="handleReset" @submit="onSubmit">
+        <ui-text-field label="Email" name="email" type="email" />
+        <ui-text-field label="Senha" name="password" type="password" />
+        <ui-text-field label="Confirme a senha" name="passwordConfirm" type="password" />
       </ui-form>
       <template #actions>
         Clique <nuxt-link to="/login">aqui</nuxt-link> acessar o sistema

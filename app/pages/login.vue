@@ -9,7 +9,7 @@
     },
   })
 
-  const { values, handleSubmit, meta, color } = useZodForm(LoginSchema, {
+  const { values, handleSubmit, meta, handleReset } = useZodForm(LoginSchema, {
     email: '',
     password: '',
   })
@@ -23,12 +23,11 @@
   <app-public-container>
     <ui-card width="350">
       <ui-base-title>Login</ui-base-title>
-      <ui-form @submit="onSubmit">
-        <ui-form-stack>
+      <ui-form :is-valid="!meta.valid" @reset="handleReset" @submit="onSubmit">
+        <div>
           <ui-text-field label="Email" name="email" type="email" />
           <ui-text-field label="Senha" name="password" type="password" />
-          <ui-btn :color="color" :disabled="!meta.valid" type="submit">Login</ui-btn>
-        </ui-form-stack>
+        </div>
       </ui-form>
 
       <template #actions>
