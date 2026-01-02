@@ -22,16 +22,12 @@
   } = defineProps<Props>()
 
   const { value, errorMessage } = useField<string>(name)
+  const { showPassword, iconPassword, togglePassword } = usePasswordToggle()
 
-  const showPassword = ref(false)
   const isPassword = computed(() => type === 'password')
   const actualType = computed((): 'text' | 'password' =>
     isPassword.value && !showPassword.value ? 'password' : 'text',
   )
-  const passwordIcon = computed(() => (showPassword.value ? ICONS['eye'] : ICONS['eye-off']))
-  const togglePassword = () => {
-    if (isPassword.value) showPassword.value = !showPassword.value
-  }
 </script>
 }
 
@@ -39,7 +35,7 @@
   <v-text-field
     v-model="value"
     v-bind="$attrs"
-    :append-inner-icon="type === 'password' ? passwordIcon : undefined"
+    :append-inner-icon="isPassword ? ICONS[iconPassword] : undefined"
     :clearable="clearable"
     :density="density"
     :disabled="disabled"
