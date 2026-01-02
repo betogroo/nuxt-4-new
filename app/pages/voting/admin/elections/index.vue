@@ -4,6 +4,9 @@
     menu: {
       title: 'Admin - Elections',
       hidden: false,
+      areas: ['navbar'],
+      priority: 'elections',
+      icon: 'election',
     },
   })
 
@@ -27,8 +30,10 @@
   <div>
     <ui-heading :level="3">Eleições</ui-heading>
     <div>
-      <ui-btn @click="addElection">Nova Eleição</ui-btn>
-      <ui-btn color="red" variant="outlined" @click="electionsStore.$reset">Reset</ui-btn>
+      <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
+      <ui-btn color="red" icon="reset" variant="outlined" @click="electionsStore.$reset"
+        >Reset</ui-btn
+      >
     </div>
     <div>
       <div v-if="!elections.length">Ainda não tem eleições cadastradas</div>

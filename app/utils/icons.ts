@@ -8,4 +8,7 @@ export const ICONS = {
   contact: 'mdi-account-box',
   eye: 'mdi-eye',
   'eye-off': 'mdi-eye-off',
+  election: 'mdi-vote-outline',
+  reset: 'mdi-restore',
+  plus: 'mdi-plus',
 } as const
