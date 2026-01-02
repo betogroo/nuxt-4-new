@@ -1,16 +1,16 @@
 <script setup lang="ts">
   import type { RouteLocationAsPathGeneric, RouteLocationAsRelativeGeneric } from 'vue-router'
-  import type { BtnIconVariant } from '~/types'
+  import type { BtnIconVariant, Icon } from '~/types'
 
   interface Props {
-    icon?: string
+    icon?: Icon
     variant?: BtnIconVariant
     to: RouteLocationAsPathGeneric | RouteLocationAsRelativeGeneric | string
     ariaLabel?: string
   }
-  const { variant = 'plain', icon = 'mdi-home', ariaLabel = 'Link' } = defineProps<Props>()
+  const { variant = 'plain', icon = 'home', ariaLabel = 'Link' } = defineProps<Props>()
 </script>
 
 <template>
-  <v-btn :aria-label="ariaLabel" :icon="icon" :ripple="false" :to="to" :variant="variant" />
+  <v-btn :aria-label="ariaLabel" :icon="ICONS[icon]" :ripple="false" :to="to" :variant="variant" />
 </template>

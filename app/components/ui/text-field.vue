@@ -28,7 +28,7 @@
   const actualType = computed((): 'text' | 'password' =>
     isPassword.value && !showPassword.value ? 'password' : 'text',
   )
-  const passwordIcon = computed(() => (showPassword.value ? 'mdi-eye' : 'mdi-eye-off'))
+  const passwordIcon = computed(() => (showPassword.value ? ICONS['eye'] : ICONS['eye-off']))
   const togglePassword = () => {
     if (isPassword.value) showPassword.value = !showPassword.value
   }

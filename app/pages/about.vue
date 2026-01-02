@@ -5,7 +5,7 @@
       title: 'Sobre',
       hidden: false,
       areas: ['navbar', 'drawer'],
-      icon: 'mdi-information-outline',
+      icon: 'about',
       priority: 'about',
     },
   })

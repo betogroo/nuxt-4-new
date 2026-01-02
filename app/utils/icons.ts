@@ -6,4 +6,6 @@ export const ICONS = {
   logout: 'mdi-logout',
   about: 'mdi-information-outline',
   contact: 'mdi-account-box',
+  eye: 'mdi-eye',
+  'eye-off': 'mdi-eye-off',
 } as const

@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import { z, IconSchema } from '~/schemas'
 
 export const MenuAreaSchema = z.enum(Object.keys(MENU_ORDER) as [keyof typeof MENU_ORDER])
 
@@ -20,5 +20,5 @@ export const MenuSchema = z.object({
   group: z.string().optional(),
   priority: PrioritySchema.optional(),
   hidden: z.boolean().default(true),
-  icon: z.string().optional(),
+  icon: IconSchema.optional(),
 })

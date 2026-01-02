@@ -5,7 +5,7 @@
       title: 'Home Page',
       areas: ['navbar', 'drawer'],
       hidden: false,
-      icon: 'mdi-home',
+      icon: 'home',
       priority: 'index',
     },
   })
