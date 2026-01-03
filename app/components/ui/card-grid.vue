@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="text-right mt-3">
+  <div class="d-flex flex-wrap justify-space-around my-2 ga-2">
     <slot />
   </div>
 </template>

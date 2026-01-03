@@ -5,7 +5,7 @@
       title: 'Contato',
       hidden: false,
       areas: ['navbar'],
-      icon: 'mdi-account-box',
+      icon: 'contact',
       priority: 'contact',
     },
   })

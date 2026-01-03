@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { LoginSchema } from '~/schemas'
-  import type { Login } from '~/types'
 
   definePageMeta({
     layout: 'no-nav',
@@ -10,17 +9,9 @@
     },
   })
 
-  const { values, handleSubmit, meta } = useForm<Login>({
-    validationSchema: toTypedSchema(LoginSchema),
-    initialValues: {
-      email: '',
-      password: '',
-    },
-  })
-
-  const color = computed(() => {
-    if (!meta.value.dirty) return ''
-    return !meta.value.valid ? 'error' : 'success'
+  const { values, handleSubmit, meta, handleReset } = useZodForm(LoginSchema, {
+    email: '',
+    password: '',
   })
 
   const onSubmit = handleSubmit(async () => {
@@ -30,18 +21,18 @@
 
 <template>
   <app-public-container>
-    <ui-card-auth>
-      <ui-base-title>Login</ui-base-title>
-      <ui-base-form @submit="onSubmit">
-        <ui-form-stack>
-          <ui-form-text-field label="Email" name="email" type="email" />
-          <ui-form-text-field-password label="Senha" name="password" />
-          <ui-form-btn-submit :color="color" :disabled="!meta.valid">Login</ui-form-btn-submit>
-        </ui-form-stack>
-      </ui-base-form>
-      <ui-card-footer>
+    <ui-card width="350">
+      <ui-heading :level="3">Login</ui-heading>
+      <ui-form :is-valid="!meta.valid" @reset="handleReset" @submit="onSubmit">
+        <div>
+          <ui-text-field label="Email" name="email" type="email" />
+          <ui-text-field label="Senha" name="password" type="password" />
+        </div>
+      </ui-form>
+
+      <template #actions>
         Clique <nuxt-link to="/signup">aqui</nuxt-link> para se cadastrar
-      </ui-card-footer>
-    </ui-card-auth>
+      </template>
+    </ui-card>
   </app-public-container>
 </template>

@@ -2,7 +2,7 @@
   <v-app>
     <app-nav-bar />
     <v-main>
-      <v-container>
+      <v-container max-width="1280">
         <slot />
       </v-container>
     </v-main>
