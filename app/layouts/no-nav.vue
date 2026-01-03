@@ -3,7 +3,9 @@
 <template>
   <v-app>
     <v-main>
-      <slot />
+      <v-container fluid>
+        <slot />
+      </v-container>
     </v-main>
   </v-app>
 </template>
