@@ -11,4 +11,5 @@ export const ICONS = {
   election: 'mdi-vote-outline',
   reset: 'mdi-restore',
   plus: 'mdi-plus',
+  update: 'mdi-update',
 } as const
