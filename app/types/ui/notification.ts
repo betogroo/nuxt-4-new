@@ -1,3 +1,3 @@
-import type { NotificationThemeSchema, z } from '~/schemas'
+import type { NotificationTypeSchema, z } from '~/schemas'
 
-export type NotificationTheme = z.infer<typeof NotificationThemeSchema>
+export type NotificationType = z.infer<typeof NotificationTypeSchema>

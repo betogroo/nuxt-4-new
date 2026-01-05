@@ -1,10 +1,10 @@
 <script setup lang="ts">
   const notificationStore = useNotificationStore()
-  const { isOpen, text, theme } = storeToRefs(notificationStore)
+  const { isOpen, text, type } = storeToRefs(notificationStore)
 </script>
 
 <template>
-  <v-snackbar v-model="isOpen" :color="theme" :timeout="2000">
+  <v-snackbar v-model="isOpen" :color="type" :timeout="2000">
     {{ text }}
 
     <template #actions>

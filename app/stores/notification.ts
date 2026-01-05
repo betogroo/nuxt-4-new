@@ -1,18 +1,19 @@
-import type { NotificationTheme } from '~/types'
+import type { NotificationType } from '~/types'
 
 export const useNotificationStore = defineStore('notification', () => {
   const isOpen = ref(false)
   const text = ref<string>('')
-  const theme = ref<NotificationTheme>()
+  const type = ref<NotificationType>('info')
 
   const close = () => {
     isOpen.value = false
     resetText()
+    resetType()
   }
 
-  const open = (text: string, theme: NotificationTheme) => {
+  const open = (text: string, type: NotificationType) => {
     setText(text)
-    setTheme(theme)
+    setType(type)
     isOpen.value = true
   }
 
@@ -21,13 +22,15 @@ export const useNotificationStore = defineStore('notification', () => {
   }
   const resetText = () => (text.value = '')
 
-  const setTheme = (newTheme: NotificationTheme) => (theme.value = newTheme)
+  const setType = (newType: NotificationType) => (type.value = newType)
+  const resetType = () => (type.value = 'info')
 
   watch(isOpen, (value) => {
     if (!value) {
       resetText()
+      resetType()
     }
   })
 
-  return { isOpen, text, close, open, setText, theme }
+  return { isOpen, text, close, open, setText, type }
 })
