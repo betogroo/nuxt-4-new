@@ -8,7 +8,7 @@
     {{ text }}
 
     <template #actions>
-      <v-btn color="pink" variant="text" @click="notificationStore.close"> Close </v-btn>
+      <ui-btn variant="text" @click="notificationStore.close">Fechar</ui-btn>
     </template>
   </v-snackbar>
 </template>
