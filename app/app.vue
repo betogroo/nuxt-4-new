@@ -9,5 +9,6 @@
   <NuxtLayout>
     <NuxtPage />
     <NuxtRouteAnnouncer />
+    <UiNotification />
   </NuxtLayout>
 </template>
