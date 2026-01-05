@@ -1,9 +1,10 @@
-import type { NotificationType } from '~/types'
+import type { NotificationOptions, NotificationType } from '~/types'
 
 const useNotification = () => {
   const notificationStore = useNotificationStore()
 
-  const notify = (text: string, type: NotificationType) => notificationStore.open(text, type)
+  const notify = (text: string, type: NotificationType, options?: NotificationOptions) =>
+    notificationStore.open(text, type, options?.timeout)
   return { notify }
 }
 

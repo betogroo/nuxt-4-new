@@ -4,17 +4,17 @@ export const useNotificationStore = defineStore('notification', () => {
   const isOpen = ref(false)
   const text = ref<string>('')
   const type = ref<NotificationType>('info')
+  const timeout = ref(2000)
 
   const close = () => {
     isOpen.value = false
-    resetText()
-    resetType()
   }
 
-  const open = (text: string, type: NotificationType) => {
-    setText(text)
-    setType(type)
+  const open = (newText: string, newType: NotificationType, newTimeout?: number) => {
+    setText(newText)
+    setType(newType)
     isOpen.value = true
+    timeout.value = newTimeout ?? 2000
   }
 
   const setText = (newText: string) => {
@@ -29,8 +29,9 @@ export const useNotificationStore = defineStore('notification', () => {
     if (!value) {
       resetText()
       resetType()
+      timeout.value = 2000
     }
   })
 
-  return { isOpen, text, close, open, setText, type }
+  return { isOpen, text, timeout, close, open, setText, type }
 })
