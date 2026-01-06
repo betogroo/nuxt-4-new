@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     '@nuxtjs/supabase',
     '@pinia/nuxt',
+    '@nuxt/content',
   ],
   supabase: {
     redirectOptions: {
