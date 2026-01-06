@@ -12,4 +12,5 @@ export const ICONS = {
   reset: 'mdi-restore',
   plus: 'mdi-plus',
   update: 'mdi-update',
+  menu: 'mdi-dots-vertical',
 } as const
