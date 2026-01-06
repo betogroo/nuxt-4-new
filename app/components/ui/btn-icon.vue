@@ -8,7 +8,12 @@
     to?: RouteLocationAsPathGeneric | RouteLocationAsRelativeGeneric | string
     ariaLabel?: string
   }
-  const { variant = 'plain', icon = 'home', ariaLabel = 'Link', to = '/' } = defineProps<Props>()
+  const {
+    variant = 'plain',
+    icon = 'home',
+    ariaLabel = 'Link',
+    to = undefined,
+  } = defineProps<Props>()
 
   const $emit = defineEmits<{
     (e: 'click', event: MouseEvent): void
