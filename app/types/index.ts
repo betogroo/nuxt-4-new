@@ -1,4 +1,5 @@
 export * from './app/menu'
+export * from './app/content'
 
 export * from './ui/btn'
 export * from './ui/btn-icon'
