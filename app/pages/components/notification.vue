@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  const { data: notification } = await useAsyncData(() =>
+    queryCollection('notification').path('/ui').all(),
+  )
   definePageMeta({
     layout: 'default',
     menu: {
@@ -8,11 +11,13 @@
       priority: 'notifications',
     },
   })
+
+  console.log(notification.value)
 </script>
 
 <template>
   <div>
-    <ui-heading>Notification</ui-heading>
+    <ContentRenderer v-for="value in notification" :key="value.id" :value="value.body" />
     <ui-link-back />
   </div>
 </template>
