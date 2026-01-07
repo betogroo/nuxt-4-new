@@ -1,6 +1,6 @@
 <script setup lang="ts">
   const { data: notification } = await useAsyncData(() =>
-    queryCollection('notification').path('/ui').all(),
+    queryCollection('ui').path('/ui/notification').first(),
   )
   definePageMeta({
     layout: 'default',
@@ -17,7 +17,7 @@
 
 <template>
   <div>
-    <ContentRenderer v-for="value in notification" :key="value.id" :value="value.body" />
+    <ContentRenderer v-if="notification" :value="notification" />
     <ui-link-back />
   </div>
 </template>

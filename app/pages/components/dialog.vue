@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  const { data: dialog } = await useAsyncData(() =>
+    queryCollection('ui').path('/ui/dialog').first(),
+  )
   definePageMeta({
     layout: 'default',
     menu: {
@@ -8,11 +11,14 @@
       priority: 'dialog',
     },
   })
+
+  console.log(dialog.value)
 </script>
 
 <template>
   <div>
-    <ui-heading>Dialog</ui-heading>
+    <ContentRenderer v-if="dialog" :value="dialog" />
+
     <ui-link-back />
   </div>
 </template>
