@@ -18,6 +18,7 @@
   }
 
   const { notify } = useNotification()
+  const { openDialog, isOpen } = useDialog()
 </script>
 
 <template>
@@ -26,8 +27,8 @@
       <article class="md-content">
         <ContentRenderer :value="ui" />
       </article>
-      <div v-if="route.params.slug === 'notification'">
-        <ui-card-grid>
+      <ui-card-grid>
+        <div v-if="route.params.slug === 'notification'">
           <ui-btn color="error" @click="notify('Erro ao realizar a ação', 'error')">Erro</ui-btn>
           <ui-btn color="success" @click="notify('Ação concluída com êxito', 'success')"
             >Sucesso</ui-btn
@@ -43,8 +44,15 @@
             @click="notify('O sistema já está operante', 'warning', { timeout: 5000 })"
             >Informação (5000ms)</ui-btn
           >
-        </ui-card-grid>
-      </div>
+        </div>
+        <div v-if="route.params.slug === 'dialog'">
+          <ui-btn @click="openDialog"> Abrir diálogo </ui-btn>
+
+          <ui-dialog v-model="isOpen" title="Confirmação" title-icon="update">
+            Tem certeza que deseja realizar esta ação?
+          </ui-dialog>
+        </div>
+      </ui-card-grid>
       <ui-link-back />
     </ClientOnly>
   </div>
