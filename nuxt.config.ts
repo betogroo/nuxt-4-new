@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/content',
   ],
+  css: ['~/assets/css/markdown.css'],
   supabase: {
     redirectOptions: {
       include: ['/contact'],
