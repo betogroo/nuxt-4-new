@@ -24,9 +24,6 @@
       <article class="md-content">
         <ContentRenderer :value="ui" />
       </article>
-      <ui-card-grid>
-        <demo-dialog v-if="route.params.slug === 'dialog'" />
-      </ui-card-grid>
       <ui-link-back />
     </ClientOnly>
   </div>

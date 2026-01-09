@@ -1,5 +1,6 @@
 ---
 slug: dialog
+updated: 2026-01-09
 ---
 
 # UiDialog
@@ -10,7 +11,7 @@ Ele deve ser utilizado para confirmações, alertas ou qualquer interação que 
 
 ---
 
-## Conceito
+### Como funciona?
 
 O controle de abertura e fechamento do diálogo **não é feito diretamente no componente**, mas sim através do composable `useDialog`.
 
@@ -21,10 +22,33 @@ Isso garante:
 - Facilidade de reutilização
 - Padronização de comportamento
 
-> ⚠️ Nunca controle o diálogo diretamente via props locais.  
-> Sempre utilize o composable.
+**`Nunca controle o diálogo diretamente via props locais, sempre chame o composable.`**
 
 ---
+
+### Exemplo
+
+::ui-demo-block
+#demo
+::demo-dialog
+::
+#code
+
+```vue
+<script setup lang="ts">
+  const { openDialog, isOpen } = useDialog()
+</script>
+
+<template>
+  <ui-btn @click="openDialog"> Abrir diálogo </ui-btn>
+
+  <ui-dialog v-model="isOpen" title="Confirmação" title-icon="update">
+    Tem certeza que deseja realizar esta ação?
+  </ui-dialog>
+</template>
+```
+
+::
 
 ## Uso básico
 
@@ -109,24 +133,4 @@ Boas práticas
 - Feedback não bloqueante
 - Informações passivas
 
-### Exemplo Completo
-
-```
-<script setup lang="ts">
-const { openDialog, isOpen } = useDialog()
-</script>
-
-<template>
-  <ui-btn @click="openDialog">
-    Abrir diálogo
-  </ui-btn>
-
-  <ui-dialog
-    v-model="isOpen"
-    title="Confirmação"
-    title-icon="update"
-  >
-    Tem certeza que deseja realizar esta ação?
-  </ui-dialog>
-</template>
-```
+---
