@@ -1,21 +1,26 @@
 ---
 slug: notification
+updated: 2026-01-09
 ---
 
 # UiNotification
 
-> Componente global responsável por exibir mensagens temporárias de feedback ao usuário, como sucesso, erro, aviso ou informação.
+Componente global responsável por exibir mensagens temporárias de feedback ao usuário, como sucesso, erro, aviso ou informação.
 
 - Não depende diretamente do Vuetify no uso
 - Centraliza notificações da aplicação
 - Pode ser acionado de qualquer lugar (pages, components, stores, composables)
 
+---
+
 ### Como funciona?
 
-> O UiNotification é um componente `global` que escuta um estado centralizado (store) e exibe notificações sempre que esse estado é acionado.
-> O desenvolvedor interage apenas através de um composable (useNotification), sem acessar o componente diretamente.
+O **UiNotification** é um componente `global` que escuta um estado centralizado (store) e exibe notificações sempre que esse estado é acionado.
+O desenvolvedor interage apenas através de um composable (useNotification), sem acessar o componente diretamente.
 
 **`Nunca chame o componente, sempre chame o composable.`**
+
+---
 
 ### Exemplos
 
@@ -49,7 +54,7 @@ slug: notification
 
 ### Setup
 
-> Apenas adicione o componente no App.vue, para que seja sempre global. Não é necessária nenhuma importação, nem adicionar propriedades.
+Apenas adicione o componente no App.vue, para que seja sempre global. Não é necessária nenhuma importação, nem adicionar propriedades.
 
 ```vue
 <!-- App.vue -->
@@ -102,3 +107,5 @@ notify('Sessão expirada', 'warning', {
 | Opção   | Tipo   | Padrão | Descrição                                                  |
 | ------- | ------ | ------ | ---------------------------------------------------------- |
 | timeout | number | 2000ms | Tempo em milissegundos que a notificação permanece visível |
+
+---
