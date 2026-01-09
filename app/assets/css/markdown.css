@@ -23,12 +23,10 @@
 
 .md-content h1 {
   font-size: 2rem;
-  border-bottom: 2px solid #ddd;
   padding-bottom: 0.3em;
 }
 .md-content h2 {
   font-size: 1.75rem;
-  border-bottom: 1px solid #eee;
   padding-bottom: 0.2em;
 }
 .md-content h3 {
