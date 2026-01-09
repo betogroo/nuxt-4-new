@@ -13,4 +13,6 @@ export const ICONS = {
   plus: 'mdi-plus',
   update: 'mdi-update',
   menu: 'mdi-dots-vertical',
+  code: 'mdi-xml',
+  'arrow-hide': 'mdi-menu-up',
 } as const
