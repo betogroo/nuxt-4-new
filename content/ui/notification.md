@@ -28,7 +28,6 @@ slug: notification
 ```vue
 <script setup lang="ts">
   const { notify } = useNotification()
-  notify('Salvo com sucesso', 'success')
 </script>
 <template>
   <ui-card-grid>
