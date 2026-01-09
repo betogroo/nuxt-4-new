@@ -17,11 +17,42 @@ slug: notification
 
 **`Nunca chame o componente, sempre chame o composable.`**
 
+### Exemplos
+
+::ui-demo-block
+#demo
+::demo-notification
+::
+#code
+
+```vue
+<script setup lang="ts">
+  const { notify } = useNotification()
+  notify('Salvo com sucesso', 'success')
+</script>
+<template>
+  <ui-card-grid>
+    <ui-btn color="error" @click="notify('Erro ao realizar a ação', 'error')">Erro</ui-btn>
+    <ui-btn color="success" @click="notify('Ação concluída com êxito', 'success')">Sucesso</ui-btn>
+    <ui-btn color="warning" @click="notify('Cuidado ao continuar', 'warning')">Atenção</ui-btn>
+    <ui-btn color="info" @click="notify('O sistema já está operante', 'info')">Informação</ui-btn>
+    <ui-btn
+      color="warning"
+      @click="notify('O sistema já está operante', 'warning', { timeout: 5000 })"
+    >
+      Informação (5000ms)
+    </ui-btn>
+  </ui-card-grid>
+</template>
+```
+
+::
+
 ### Setup
 
 > Apenas adicione o componente no App.vue, para que seja sempre global. Não é necessária nenhuma importação, nem adicionar propriedades.
 
-```
+```vue
 <!-- App.vue -->
 <template>
   <NuxtLayout>
@@ -46,15 +77,13 @@ notify(
 
 > Para utilizar, basta utilizar o composable `useNotification`:
 
-```
-
+```ts
 const { notify } = useNotification()
 notify('Salvo com sucesso', 'success')
-
 ```
 
 - Primeiro argumento (obrigatório): A mensagem que a notificação apresentará
-- Segundo argumento (obrigatório): O tipo de noticação, conforme tabela a seguir:
+- Segundo argumento (obrigatório): O tipo de notificação, conforme tabela a seguir:
 
 | Tipo      | Quando usar                    |
 | --------- | ------------------------------ |
@@ -65,31 +94,12 @@ notify('Salvo com sucesso', 'success')
 
 ### Opções Adicionais
 
-```
-
+```ts
 notify('Sessão expirada', 'warning', {
-timeout: 5000,
+  timeout: 5000,
 })
-
 ```
 
 | Opção   | Tipo   | Padrão | Descrição                                                  |
 | ------- | ------ | ------ | ---------------------------------------------------------- |
 | timeout | number | 2000ms | Tempo em milissegundos que a notificação permanece visível |
-
-### Exemplo de uso
-
-```
-
-<ui-card-grid>
-    <ui-btn color="error" @click="notify('Erro ao realizar a ação', 'error')">Erro</ui-btn>
-    <ui-btn color="success" @click="notify('Ação concluída com êxito', 'success')">Sucesso</ui-btn>
-    <ui-btn color="warning" @click="notify('Cuidado ao continuar', 'warning')">Atenção</ui-btn>
-    <ui-btn color="info" @click="notify('O sistema já está operante', 'info')">Informação</ui-btn>
-    <ui-btn
-        color="warning"
-        @click="notify('O sistema já está operante', 'warning', { timeout: 5000 })">
-        Informação (5000ms)
-    </ui-btn>
-</ui-card-grid>
-```

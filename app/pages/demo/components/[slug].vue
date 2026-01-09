@@ -26,7 +26,6 @@
       </article>
       <ui-card-grid>
         <demo-dialog v-if="route.params.slug === 'dialog'" />
-        <demo-notification v-if="route.params.slug === 'notification'" />
       </ui-card-grid>
       <ui-link-back />
     </ClientOnly>
