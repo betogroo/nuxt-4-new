@@ -6,13 +6,13 @@
 <template>
   <ClientOnly>
     <ui-card variant="outlined">
-      <h5 class="text-right">
-        Ver código <ui-btn-icon :icon="isVisible ? 'arrow-hide' : 'code'" @click="toggleCode" />
-      </h5>
-      <slot name="demo" />
+      <ui-demo-block-toolbar>
+        <ui-btn-icon :icon="isVisible ? 'arrow-hide' : 'code'" @click="toggleCode" />
+      </ui-demo-block-toolbar>
       <ui-card v-if="isVisible" variant="text">
         <slot name="code" />
       </ui-card>
+      <slot name="demo" />
     </ui-card>
   </ClientOnly>
 </template>
