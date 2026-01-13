@@ -16,7 +16,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "prepare": "husky",
-    "ncu": "ncu -i --format group"
+    "ncu": "ncu -i --format group",
+    "gen-types": "npx supabase gen types typescript --project-id flcgfmmbnepvlulxccxx --schema public > supabase/types/database.ts"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
