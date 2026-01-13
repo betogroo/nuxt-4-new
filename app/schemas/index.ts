@@ -13,3 +13,5 @@ export * from './auth/login.schema'
 
 export * from './app/menu.schema'
 export * from './app/page-meta.schema'
+
+export * from './voting/election.schema'
