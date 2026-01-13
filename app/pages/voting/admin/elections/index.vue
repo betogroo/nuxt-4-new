@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { ElectionInsertSchema } from '~/schemas'
   definePageMeta({
     layout: 'default',
     menu: {
@@ -11,11 +12,23 @@
   })
 
   const { elections, fetchAll } = useElection()
-  const electionsStore = useElectionsStore()
+  const { isOpen, openDialog } = useDialog()
+
+  const { values, handleSubmit, meta, handleReset } = useZodForm(ElectionInsertSchema, {
+    name: '',
+  })
 
   const addElection = () => {
-    console.log('Vai add')
+    openDialog()
   }
+
+  const onSubmit = handleSubmit(async () => {
+    console.log('Vai Salvar', values)
+  })
+  const onReset = () => {
+    handleReset()
+  }
+
   await fetchAll()
 </script>
 
@@ -24,9 +37,6 @@
     <ui-heading :level="3">Eleições</ui-heading>
     <div>
       <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
-      <ui-btn color="red" icon="reset" variant="outlined" @click="electionsStore.$reset"
-        >Reset</ui-btn
-      >
     </div>
     <div>
       <div v-if="!elections">Ainda não tem eleições cadastradas</div>
@@ -37,6 +47,11 @@
           </template>
         </ui-card>
       </ui-card-grid>
+      <ui-dialog v-model="isOpen">
+        <ui-form :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
+          <ui-text-field name="name" />
+        </ui-form>
+      </ui-dialog>
     </div>
   </div>
 </template>
