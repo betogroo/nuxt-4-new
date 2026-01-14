@@ -1,4 +1,5 @@
 import type { Database, Election } from '~/types'
+import { ElectionRowsSchema } from '~/schemas'
 const useElection = () => {
   const supabase = useSupabaseClient<Database>()
 
@@ -8,7 +9,8 @@ const useElection = () => {
     try {
       const { data: election, error } = await supabase.from('election').select('*')
       if (error) throw error
-      elections.value = election
+      elections.value = ElectionRowsSchema.parse(election)
+      console.log(elections.value)
     } catch (err) {
       console.log(err)
     }

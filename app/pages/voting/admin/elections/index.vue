@@ -41,7 +41,13 @@
     <div>
       <div v-if="!elections">Ainda não tem eleições cadastradas</div>
       <ui-card-grid v-else>
-        <ui-card v-for="item in elections" :key="item.id" :title="item.name" width="350">
+        <ui-card
+          v-for="item in elections"
+          :key="item.id"
+          :subtitle="item.date"
+          :title="item.name"
+          width="350"
+        >
           <template #actions>
             <ui-btn color="green" variant="outlined">Editar</ui-btn>
           </template>
