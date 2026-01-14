@@ -5,7 +5,9 @@ export const ElectionSchema: z.ZodType<Election> = z.object({
   id: z.string().uuid(),
   name: z.string().min(1, 'Campo obrigatório'),
   created_at: z.string(),
+  date: z.string(),
 })
+export const ElectionRowsSchema = z.array(ElectionSchema)
 export const ElectionInsertSchema: z.ZodType<ElectionInsert> = z.object({
   name: z.string().min(3, 'O nome deve conter pelo menos 3 caracteres'),
 })
