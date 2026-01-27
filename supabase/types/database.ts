@@ -17,7 +17,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          date?: string
+          date: string
           id?: string
           name: string
         }
