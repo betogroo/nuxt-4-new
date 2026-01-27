@@ -11,8 +11,9 @@
     },
   })
 
-  const { elections, fetchAll } = useElection()
+  const { elections, isLoading, create, fetchAll } = useElection()
   const { isOpen, openDialog } = useDialog()
+  const { notify } = useNotification()
   const { dateBr } = useDateHelper()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(ElectionInsertSchema, {
@@ -24,7 +25,15 @@
   }
 
   const onSubmit = handleSubmit(async () => {
-    console.log('Vai Salvar', values)
+    try {
+      await create(values)
+      notify('Cadastrado com sucesso', 'success')
+    } catch (error) {
+      const err = error as Error
+      notify(err.message, 'error')
+    } finally {
+      isOpen.value = false
+    }
   })
   const onReset = () => {
     handleReset()
@@ -55,7 +64,12 @@
         </ui-card>
       </ui-card-grid>
       <ui-dialog v-model="isOpen">
-        <ui-form :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
+        <ui-form
+          :is-loading="isLoading"
+          :is-valid="!meta.valid"
+          @reset="onReset"
+          @submit="onSubmit"
+        >
           <ui-text-field name="name" type="text" />
           <ui-text-field name="date" type="date" />
         </ui-form>
