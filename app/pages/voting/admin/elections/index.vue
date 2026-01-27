@@ -13,6 +13,7 @@
 
   const { elections, fetchAll } = useElection()
   const { isOpen, openDialog } = useDialog()
+  const { dateBr } = useDateHelper()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(ElectionInsertSchema, {
     name: '',
@@ -44,7 +45,7 @@
         <ui-card
           v-for="item in elections"
           :key="item.id"
-          :subtitle="item.date"
+          :subtitle="dateBr(item.date)"
           :title="item.name"
           width="350"
         >
