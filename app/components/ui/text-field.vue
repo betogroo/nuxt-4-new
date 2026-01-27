@@ -25,9 +25,15 @@
   const { showPassword, iconPassword, togglePassword } = usePasswordToggle()
 
   const isPassword = computed(() => type === 'password')
-  const actualType = computed((): 'text' | 'password' =>
-    isPassword.value && !showPassword.value ? 'password' : 'text',
-  )
+  const isDate = computed(() => type === 'date')
+  /* const actualType = computed(
+    (): TextFieldType => (isPassword.value && !showPassword.value ? 'password' : 'text'),
+  ) */
+  const actualType = computed((): TextFieldType => {
+    if (isPassword.value && !showPassword.value) return 'password'
+    if (isDate.value) return 'date'
+    return 'text'
+  })
 </script>
 }
 

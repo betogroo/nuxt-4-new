@@ -55,7 +55,8 @@
       </ui-card-grid>
       <ui-dialog v-model="isOpen">
         <ui-form :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
-          <ui-text-field name="name" />
+          <ui-text-field name="name" type="text" />
+          <ui-text-field name="date" type="date" />
         </ui-form>
       </ui-dialog>
     </div>
