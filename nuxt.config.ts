@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     },
 
     redirect: true,
+    types: '~/types/supabase/database.types.ts',
   },
   veeValidate: {
     autoImports: true,

@@ -1,7 +1,7 @@
-import type { Database, Election, ElectionInsert } from '~/types'
+import type { Election, ElectionInsert } from '~/types'
 import { ElectionRowsSchema } from '~/schemas'
 const useElection = () => {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient()
 
   const isCreating = ref(false)
   const isFetching = ref(false)
