@@ -27,13 +27,12 @@
   const onSubmit = handleSubmit(async () => {
     try {
       await create(values)
-      await fetchAll()
+      isOpen.value = false
       notify('Cadastrado com sucesso', 'success')
+      fetchAll()
     } catch (error) {
       const err = error as Error
       notify(err.message, 'error')
-    } finally {
-      isOpen.value = false
     }
   })
   const onReset = () => {

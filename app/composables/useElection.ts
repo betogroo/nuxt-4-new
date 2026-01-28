@@ -10,7 +10,7 @@ const useElection = () => {
 
   const fetchAll = async () => {
     isFetching.value = true
-    await delay(5000)
+    await delay(1000)
     try {
       const { data: election, error: fetchError } = await supabase.from('election').select('*')
       if (fetchError) throw fetchError
@@ -22,7 +22,7 @@ const useElection = () => {
 
   const create = async (values: ElectionInsert) => {
     isCreating.value = true
-    await delay(5000)
+    await delay(1000)
     try {
       const { error: dbError } = await supabase.from('election').insert(values)
       if (dbError) throw dbError
