@@ -3,32 +3,35 @@ import { ElectionRowsSchema } from '~/schemas'
 const useElection = () => {
   const supabase = useSupabaseClient<Database>()
 
-  const isLoading = ref(false)
+  const isCreating = ref(false)
+  const isFetching = ref(false)
 
   const elections = ref<Election[]>()
 
   const fetchAll = async () => {
+    isFetching.value = true
+    await delay(5000)
     try {
-      const { data: election, error } = await supabase.from('election').select('*')
-      if (error) throw error
+      const { data: election, error: fetchError } = await supabase.from('election').select('*')
+      if (fetchError) throw fetchError
       elections.value = ElectionRowsSchema.parse(election)
-    } catch (err) {
-      console.log(err)
+    } finally {
+      isFetching.value = false
     }
   }
 
   const create = async (values: ElectionInsert) => {
-    isLoading.value = true
+    isCreating.value = true
     await delay(5000)
     try {
       const { error: dbError } = await supabase.from('election').insert(values)
       if (dbError) throw dbError
     } finally {
-      isLoading.value = false
+      isCreating.value = false
     }
   }
 
-  return { elections, isLoading, create, fetchAll }
+  return { elections, isCreating, isFetching, create, fetchAll }
 }
 
 export default useElection

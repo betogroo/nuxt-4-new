@@ -11,7 +11,7 @@
     },
   })
 
-  const { elections, isLoading, create, fetchAll } = useElection()
+  const { elections, isCreating, isFetching, create, fetchAll } = useElection()
   const { isOpen, openDialog } = useDialog()
   const { notify } = useNotification()
   const { dateBr } = useDateHelper()
@@ -27,6 +27,7 @@
   const onSubmit = handleSubmit(async () => {
     try {
       await create(values)
+      await fetchAll()
       notify('Cadastrado com sucesso', 'success')
     } catch (error) {
       const err = error as Error
@@ -39,7 +40,9 @@
     handleReset()
   }
 
-  await fetchAll()
+  onMounted(() => {
+    fetchAll()
+  })
 </script>
 
 <template>
@@ -49,7 +52,8 @@
       <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
     </div>
     <div>
-      <div v-if="!elections">Ainda não tem eleições cadastradas</div>
+      <div v-if="isFetching">Carregando</div>
+      <div v-else-if="!elections?.length">Ainda não tem eleições cadastradas</div>
       <ui-card-grid v-else>
         <ui-card
           v-for="item in elections"
@@ -65,7 +69,7 @@
       </ui-card-grid>
       <ui-dialog v-model="isOpen">
         <ui-form
-          :is-loading="isLoading"
+          :is-loading="isCreating"
           :is-valid="!meta.valid"
           @reset="onReset"
           @submit="onSubmit"
