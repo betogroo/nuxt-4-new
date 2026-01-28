@@ -10,7 +10,9 @@ const useElection = () => {
 
   const fetchAll = async () => {
     isFetching.value = true
-    await delay(1000)
+    if (import.meta.dev) {
+      await delay(1000)
+    }
     try {
       const { data: election, error: fetchError } = await supabase.from('election').select('*')
       if (fetchError) throw fetchError
@@ -20,12 +22,20 @@ const useElection = () => {
     }
   }
 
-  const create = async (values: ElectionInsert) => {
+  const create = async (values: ElectionInsert): Promise<Election> => {
     isCreating.value = true
-    await delay(1000)
+    if (import.meta.dev) {
+      await delay(1000)
+    }
     try {
-      const { error: dbError } = await supabase.from('election').insert(values)
+      const { data: newData, error: dbError } = await supabase
+        .from('election')
+        .insert(values)
+        .select()
+        .single()
       if (dbError) throw dbError
+      elections.value?.unshift(newData)
+      return newData
     } finally {
       isCreating.value = false
     }

@@ -26,10 +26,9 @@
 
   const onSubmit = handleSubmit(async () => {
     try {
-      await create(values)
+      const newData = await create(values)
       isOpen.value = false
-      notify('Cadastrado com sucesso', 'success')
-      fetchAll()
+      notify(`${newData.name} inserido com sucesso`, 'success')
     } catch (error) {
       const err = error as Error
       notify(err.message, 'error')
