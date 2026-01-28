@@ -14,7 +14,6 @@
   const { elections, isCreating, isFetching, create, fetchAll } = useElection()
   const { isOpen, openDialog } = useDialog()
   const { notify } = useNotification()
-  const { dateBr } = useDateHelper()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(ElectionInsertSchema, {
     name: '',
@@ -53,17 +52,11 @@
       <div v-if="isFetching">Carregando</div>
       <div v-else-if="!elections?.length">Ainda não tem eleições cadastradas</div>
       <ui-card-grid v-else>
-        <ui-card
-          v-for="item in elections"
-          :key="item.id"
-          :subtitle="dateBr(item.date)"
-          :title="item.name"
-          width="350"
-        >
-          <template #actions>
-            <ui-btn color="green" variant="outlined">Editar</ui-btn>
-          </template>
-        </ui-card>
+        <voting-election-card
+          v-for="election in elections"
+          :key="election.id"
+          :election="election"
+        />
       </ui-card-grid>
       <ui-dialog v-model="isOpen">
         <ui-form
