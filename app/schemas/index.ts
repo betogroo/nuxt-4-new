@@ -7,6 +7,7 @@ export * from './ui/dialog'
 export * from './ui/heading'
 export * from './ui/icons'
 export * from './ui/notification'
+export * from './ui/skeleton-loader.schema'
 export * from './ui/textfield'
 
 export * from './auth/login.schema'

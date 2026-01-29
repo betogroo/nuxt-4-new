@@ -49,7 +49,9 @@
       <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
     </div>
     <div>
-      <div v-if="isFetching">Carregando</div>
+      <ui-card-grid v-if="isFetching"
+        ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
+      /></ui-card-grid>
       <div v-else-if="!elections?.length">Ainda não tem eleições cadastradas</div>
       <ui-card-grid v-else>
         <voting-election-card
