@@ -1,5 +1,5 @@
 import type { Election, ElectionInsert } from '~/types'
-import { ElectionRowsSchema } from '~/schemas'
+import { ElectionRowsSchema, ElectionSchema } from '~/schemas'
 const useElection = () => {
   const supabase = useSupabaseClient()
 
@@ -14,12 +14,21 @@ const useElection = () => {
       await delay(1000)
     }
     try {
-      const { data: election, error: fetchError } = await supabase.from('election').select('*')
+      const { data, error: fetchError } = await supabase.from('election').select('*')
       if (fetchError) throw fetchError
-      elections.value = ElectionRowsSchema.parse(election)
+      elections.value = ElectionRowsSchema.parse(data)
     } finally {
       isFetching.value = false
     }
+  }
+
+  const get = async (id: string) => {
+    if (import.meta.dev) {
+      await delay(5000)
+    }
+    const { data, error } = await supabase.from('election').select('*').eq('id', id).single()
+    if (error) throw error
+    return ElectionSchema.parse(data)
   }
 
   const create = async (values: ElectionInsert): Promise<Election> => {
@@ -41,7 +50,7 @@ const useElection = () => {
     }
   }
 
-  return { elections, isCreating, isFetching, create, fetchAll }
+  return { elections, isCreating, isFetching, create, fetchAll, get }
 }
 
 export default useElection
