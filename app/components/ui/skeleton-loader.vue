@@ -12,8 +12,7 @@
 <template>
   <v-skeleton-loader
     v-for="n in count"
-    :key="`skeleton-loader-${n}`"
-    loading
+    :key="`skeleton-loader-${type}-${n}`"
     :type="type"
     width="350"
   />
