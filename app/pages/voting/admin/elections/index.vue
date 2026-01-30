@@ -43,8 +43,7 @@
 </script>
 
 <template>
-  <div>
-    <ui-heading :level="3">Eleições</ui-heading>
+  <ui-page show-back title="Eleições">
     <div>
       <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
     </div>
@@ -72,5 +71,5 @@
         </ui-form>
       </ui-dialog>
     </div>
-  </div>
+  </ui-page>
 </template>

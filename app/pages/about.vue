@@ -13,7 +13,11 @@
   const testStore = useTestStore()
 </script>
 <template>
-  <div>
-    <h1>{{ testStore.upperTitle }} - About</h1>
-  </div>
+  <ui-page>
+    <template #title>
+      <ui-link-back />
+      <ui-heading :level="3"> {{ testStore.upperTitle }} - About </ui-heading>
+    </template>
+  </ui-page>
+  <div />
 </template>

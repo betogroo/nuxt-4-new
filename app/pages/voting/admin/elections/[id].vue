@@ -21,13 +21,11 @@
 </script>
 
 <template>
-  <div>
-    <ui-card-grid v-if="pending"
-      ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
-    /></ui-card-grid>
+  <ui-page show-back title="Eleição">
+    <ui-card-grid v-if="pending">Carregando...</ui-card-grid>
     <div v-else-if="error">Da um refresh <ui-btn @click="refresh()">Refresh</ui-btn></div>
     <ui-card-grid v-else>
-      {{ election }}
+      <div>{{ election }}</div>
     </ui-card-grid>
-  </div>
+  </ui-page>
 </template>

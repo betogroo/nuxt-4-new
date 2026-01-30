@@ -24,7 +24,7 @@ const useElection = () => {
 
   const get = async (id: string) => {
     if (import.meta.dev) {
-      await delay(5000)
+      await delay(500)
     }
     const { data, error } = await supabase.from('election').select('*').eq('id', id).single()
     if (error) throw error
