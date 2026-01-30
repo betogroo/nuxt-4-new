@@ -1,4 +1,12 @@
 <script setup lang="ts">
+  definePageMeta({
+    layout: 'default',
+    showBack: true,
+    menu: {
+      title: 'Election',
+      hidden: false,
+    },
+  })
   const route = useRoute()
   const { get } = useElection()
 
