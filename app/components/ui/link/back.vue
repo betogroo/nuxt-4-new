@@ -6,14 +6,14 @@
 
   const router = useRouter()
   const goBack = () => {
-    if (window.history.length > 1) {
+    if (router.options.history.state.back) {
       router.back()
     } else {
-      router.push(fallback ?? '/')
+      navigateTo(fallback)
     }
   }
 </script>
 
 <template>
-  <ui-btn variant="text" @click="goBack">Voltar</ui-btn>
+  <ui-btn :prepend-icon="ICONS['back']" variant="text" @click="goBack">Voltar</ui-btn>
 </template>
