@@ -15,4 +15,5 @@ export const ICONS = {
   menu: 'mdi-dots-vertical',
   code: 'mdi-xml',
   'arrow-hide': 'mdi-menu-up',
+  back: 'mdi-arrow-left',
 } as const
