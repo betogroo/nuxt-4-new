@@ -8,6 +8,7 @@
     },
   })
   const route = useRoute()
+
   const { get } = useElection()
 
   const id = computed(() => route.params.id as string)
@@ -29,7 +30,8 @@
 </script>
 
 <template>
-  <ui-page show-back title="Eleição">
+  <ui-page show-back show-breadcrumb title="Eleição">
+    <template #breadcrumb> aqui vai o breadcrumb </template>
     <ui-card-grid v-if="pending">Carregando...</ui-card-grid>
     <div v-else-if="error">Da um refresh <ui-btn @click="refresh()">Refresh</ui-btn></div>
     <ui-card-grid v-else>
