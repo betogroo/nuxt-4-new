@@ -1,4 +1,4 @@
-import { z, MenuSchema } from '~/schemas'
+import { z, MenuSchema, BreadcrumbItemSchema } from '~/schemas'
 
 export const PageMetaSchema = z.object({
   showInNavBar: z.boolean().optional(),
@@ -6,4 +6,5 @@ export const PageMetaSchema = z.object({
   requiresAuth: z.boolean().optional(),
   order: z.number().optional(),
   menu: MenuSchema.optional(),
+  breadcrumb: z.array(BreadcrumbItemSchema).optional(),
 })

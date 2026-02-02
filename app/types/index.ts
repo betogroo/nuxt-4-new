@@ -1,3 +1,4 @@
+export * from './app/breadcrumb'
 export * from './app/menu'
 export * from './app/content'
 
