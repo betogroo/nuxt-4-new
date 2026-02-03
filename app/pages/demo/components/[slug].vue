@@ -5,6 +5,7 @@
   )
   definePageMeta({
     layout: 'default',
+    showBack: true,
     menu: {
       title: 'Ui Notifications',
       hidden: false,
@@ -21,10 +22,12 @@
 <template>
   <div v-if="ui">
     <ClientOnly>
-      <article class="md-content">
-        <ContentRenderer :value="ui" />
-      </article>
-      <ui-link-back />
+      <ui-page>
+        <article class="md-content">
+          <ContentRenderer :value="ui" />
+        </article>
+        <ui-link-back />
+      </ui-page>
     </ClientOnly>
   </div>
 </template>
