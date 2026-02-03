@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <ui-card-grip>
+  <ui-card-grid>
     <ui-heading v-for="level in levels" :key="level" :level="level">Level {{ level }}</ui-heading>
-  </ui-card-grip>
+  </ui-card-grid>
 </template>
