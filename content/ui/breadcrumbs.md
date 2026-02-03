@@ -29,10 +29,12 @@ Esse padrão evita heurísticas baseadas em rota (`useRoute.path`) e mantém con
 #code
 
 ```vue
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const breadcrumbs = [{ title: 'Componentes', href: '/demo/components' }, { title: 'Breadcrumbs' }]
+</script>
 
 <template>
-  <ui-breadcrumbs :breadcrumbs="breadcrumb" />
+  <div><ui-breadcrumbs :breadcrumbs="breadcrumbs" /></div>
 </template>
 ```
 
