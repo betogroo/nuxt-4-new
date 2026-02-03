@@ -1,4 +1,5 @@
-export const dateBr = (date: string) => {
-  const [year, mouth, day] = date.split('-')
+export const dateBr = (value: string) => {
+  const [datePart = ''] = value.split('T')
+  const [year, mouth, day] = datePart.split('-')
   return `${day}/${mouth}/${year}`
 }

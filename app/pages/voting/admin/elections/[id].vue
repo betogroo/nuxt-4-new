@@ -35,12 +35,13 @@
 </script>
 
 <template>
-  <ui-page show-back show-breadcrumb title="Eleição">
+  <ui-page show-breadcrumb :title="election?.name">
     <template #breadcrumb> <ui-breadcrumbs :breadcrumbs="breadcrumb" /> </template>
     <ui-card-grid v-if="pending">Carregando...</ui-card-grid>
     <div v-else-if="error">Da um refresh <ui-btn @click="refresh()">Refresh</ui-btn></div>
     <ui-card-grid v-else>
-      <div>{{ election }}</div>
+      <div>Data do cadastro: {{ dateBr(election!.created_at) }}</div>
+      <div>Data do Da Eleição: {{ dateBr(election!.date) }}</div>
     </ui-card-grid>
   </ui-page>
 </template>
