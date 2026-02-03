@@ -3,9 +3,9 @@ slug: breadcrumbs
 updated: 2026-02-03
 ---
 
-# useBreadcrumbs
+# UiBreadcrumbs
 
-Composable responsável por gerar breadcrumbs de forma **manual, tipada e reativa**, com suporte a **título dinâmico** via `MaybeRef`, integrando-se ao `definePageMeta` do Nuxt.
+Componente responsável por gerar breadcrumbs de forma **manual, tipada e reativa**, com suporte a **título dinâmico** via `MaybeRef`, integrando-se ao `definePageMeta` do Nuxt.
 
 ---
 
@@ -19,6 +19,24 @@ O `useBreadcrumbs` combina:
 Esse padrão evita heurísticas baseadas em rota (`useRoute.path`) e mantém controle total sobre títulos, URLs e hierarquia.
 
 ---
+
+### Exemplo
+
+::ui-demo-block
+#demo
+::demo-breadcrumbs
+::
+#code
+
+```vue
+<script setup lang="ts"></script>
+
+<template>
+  <ui-breadcrumbs :breadcrumbs="breadcrumb" />
+</template>
+```
+
+::
 
 ## Assinatura
 
