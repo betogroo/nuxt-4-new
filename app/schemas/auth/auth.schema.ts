@@ -1,5 +1,7 @@
 import { z } from '~/schemas'
 
+export const AuthActionSchema = z.enum(['login', 'signup'])
+
 export const CredentialsSchema = z.object({
   email: z.string().email('Email inválido'),
   password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),

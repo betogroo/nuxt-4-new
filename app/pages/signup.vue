@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { AppError } from '~/error/AppError'
   import { SignupFormSchema } from '~/schemas'
 
   definePageMeta({
@@ -8,7 +9,8 @@
       hidden: true,
     },
   })
-  const { signup } = useAuth()
+  const { authenticate } = useAuth()
+  const { notify } = useNotification()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(SignupFormSchema, {
     email: '',
@@ -17,9 +19,17 @@
   })
 
   const onSubmit = handleSubmit(async () => {
-    const { passwordConfirm, ...payload } = values
-
-    signup(payload)
+    try {
+      const { passwordConfirm, ...payload } = values
+      await authenticate('signup', payload)
+      notify('Cadastro realizado com sucesso', 'success', { timeout: 2000 })
+    } catch (error) {
+      if (error instanceof AppError) {
+        notify(error.message, 'error')
+        return
+      }
+      notify('Erro inesperado. Tente mais tarde', 'error', { timeout: 2000 })
+    }
   })
 </script>
 

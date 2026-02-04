@@ -8,7 +8,7 @@
       hidden: true,
     },
   })
-  const { login } = useAuth()
+  const { authenticate } = useAuth()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(CredentialsSchema, {
     email: '',
@@ -16,7 +16,7 @@
   })
 
   const onSubmit = handleSubmit(async () => {
-    login(values)
+    await authenticate('login', values)
   })
 </script>
 

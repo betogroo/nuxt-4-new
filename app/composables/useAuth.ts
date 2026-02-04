@@ -1,16 +1,28 @@
 import { CredentialsSchema } from '~/schemas'
+import type { AuthAction } from '~/types'
+import { AppError } from '~/error/AppError'
 
 const useAuth = () => {
-  const signup = async (input: unknown) => {
-    const credentials = CredentialsSchema.parse(input)
+  const supabase = useSupabaseClient()
+  const authenticate = async (action: AuthAction, input: unknown) => {
+    const result = CredentialsSchema.safeParse(input)
 
-    console.log('Vai cadastrar: ', credentials)
+    if (!result.success) {
+      throw new AppError('Credenciais inválidas; Verifique os dados informados', result.error)
+    }
+    const credentials = result.data
+
+    const response =
+      action === 'signup'
+        ? await supabase.auth.signUp(credentials)
+        : await supabase.auth.signInWithPassword(credentials)
+
+    if (response.error) {
+      throw new AppError(response.error.message, response.error)
+    }
   }
-  const login = async (input: unknown) => {
-    const credentials = CredentialsSchema.parse(input)
-    console.log('Vai logar: ', credentials)
-  }
-  return { signup, login }
+
+  return { authenticate }
 }
 
 export default useAuth
