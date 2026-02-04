@@ -8,6 +8,7 @@
       hidden: true,
     },
   })
+  const { signup } = useAuth()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(SignupSchema, {
     email: '',
@@ -18,7 +19,7 @@
   const onSubmit = handleSubmit(async () => {
     const { passwordConfirm, ...payload } = values
 
-    console.log('SIGNUP: ', payload)
+    signup(payload)
   })
 </script>
 
