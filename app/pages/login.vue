@@ -1,14 +1,19 @@
 <script setup lang="ts">
+  import { AppError } from '~/error/AppError'
   import { CredentialsSchema } from '~/schemas'
+  const route = useRoute()
+  const router = useRouter()
 
   definePageMeta({
     layout: 'no-nav',
+    middleware: 'guest',
     menu: {
       title: 'Login',
       hidden: true,
     },
   })
   const { authenticate } = useAuth()
+  const { notify } = useNotification()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(CredentialsSchema, {
     email: '',
@@ -16,7 +21,18 @@
   })
 
   const onSubmit = handleSubmit(async () => {
-    await authenticate('login', values)
+    try {
+      await authenticate('login', values)
+      const redirectTo = (route.query.redirectTo as string) || '/contact'
+      notify('Logado com sucesso. REDIRECIONANDO', 'success', { timeout: 2000 })
+      await router.push(redirectTo)
+    } catch (error) {
+      if (error instanceof AppError) {
+        notify(error.message, 'error')
+        return
+      }
+      notify('Erro inesperado. Tente mais tarde', 'error', { timeout: 2000 })
+    }
   })
 </script>
 

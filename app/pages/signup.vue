@@ -1,9 +1,11 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
   import { SignupFormSchema } from '~/schemas'
+  const router = useRouter()
 
   definePageMeta({
     layout: 'no-nav',
+    middleware: 'guest',
     menu: {
       title: 'Signup',
       hidden: true,
@@ -23,6 +25,7 @@
       const { passwordConfirm, ...payload } = values
       await authenticate('signup', payload)
       notify('Cadastro realizado com sucesso', 'success', { timeout: 2000 })
+      await router.push('/contact')
     } catch (error) {
       if (error instanceof AppError) {
         notify(error.message, 'error')

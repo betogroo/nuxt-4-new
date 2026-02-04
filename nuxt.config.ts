@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/markdown.css'],
   supabase: {
     redirectOptions: {
-      include: ['/contact'],
+      exclude: ['/about', '/signup'],
       callback: '/confirm',
       login: '/login',
       saveRedirectToCookie: true,

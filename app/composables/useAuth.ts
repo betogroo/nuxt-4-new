@@ -22,7 +22,9 @@ const useAuth = () => {
     }
   }
 
-  return { authenticate }
+  const signout = async () => await supabase.auth.signOut()
+
+  return { authenticate, signout }
 }
 
 export default useAuth

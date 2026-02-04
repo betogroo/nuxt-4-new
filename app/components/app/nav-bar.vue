@@ -1,7 +1,27 @@
 <script setup lang="ts">
+  import { AppError } from '~/error/AppError'
+
   const route = useRoute()
+  const router = useRouter()
   const { getMenuByArea } = useNavigation()
+  const { signout } = useAuth()
+  const { notify } = useNotification()
+  const user = useSupabaseUser()
   const navbarItems = getMenuByArea('navbar')
+
+  const logout = async () => {
+    try {
+      await signout()
+      notify('Desconectado com sucesso com sucesso. REDIRECIONANDO', 'success', { timeout: 2000 })
+      await router.push('/login')
+    } catch (error) {
+      if (error instanceof AppError) {
+        notify(error.message, 'error')
+        return
+      }
+      notify('Erro inesperado. Tente mais tarde', 'error', { timeout: 2000 })
+    }
+  }
 </script>
 
 <template>
@@ -18,6 +38,7 @@
         :aria-label="item.menu?.title"
         :icon="item?.menu?.icon"
         :to="item?.path"
-      /></div
+      />
+      <ui-btn-icon v-if="user" icon="logout" @click="logout" /></div
   ></v-app-bar>
 </template>

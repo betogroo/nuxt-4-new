@@ -1,6 +1,7 @@
 <script setup lang="ts">
   definePageMeta({
     layout: 'default',
+    middleware: 'auth',
     menu: {
       title: 'Contato',
       hidden: false,

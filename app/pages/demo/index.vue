@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  definePageMeta({
+    layout: 'default',
+    middleware: 'auth',
+    menu: {
+      title: 'Demonstração',
+      hidden: false,
+    },
+  })
+</script>
 
 <template>
   <ui-heading>Demonstração</ui-heading>

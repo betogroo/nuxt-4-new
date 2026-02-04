@@ -5,6 +5,7 @@
   )
   definePageMeta({
     layout: 'default',
+    middleware: 'auth',
     showBack: true,
     menu: {
       title: 'Ui Notifications',
