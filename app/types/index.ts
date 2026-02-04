@@ -11,7 +11,7 @@ export * from './ui/icons'
 export * from './ui/notification'
 export * from './ui/textfield'
 
-export * from './auth/login'
+export * from './auth/auth'
 
 export * from './app/supabase'
 
