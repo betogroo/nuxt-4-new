@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { SignupSchema } from '~/schemas'
+  import { SignupFormSchema } from '~/schemas'
 
   definePageMeta({
     layout: 'no-nav',
@@ -10,7 +10,7 @@
   })
   const { signup } = useAuth()
 
-  const { values, handleSubmit, meta, handleReset } = useZodForm(SignupSchema, {
+  const { values, handleSubmit, meta, handleReset } = useZodForm(SignupFormSchema, {
     email: '',
     password: '',
     passwordConfirm: '',

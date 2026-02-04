@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { LoginSchema } from '~/schemas'
+  import { CredentialsSchema } from '~/schemas'
 
   definePageMeta({
     layout: 'no-nav',
@@ -10,7 +10,7 @@
   })
   const { login } = useAuth()
 
-  const { values, handleSubmit, meta, handleReset } = useZodForm(LoginSchema, {
+  const { values, handleSubmit, meta, handleReset } = useZodForm(CredentialsSchema, {
     email: '',
     password: '',
   })
