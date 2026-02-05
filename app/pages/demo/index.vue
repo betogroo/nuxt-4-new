@@ -1,7 +1,7 @@
 <script setup lang="ts">
   definePageMeta({
     layout: 'default',
-    middleware: 'auth',
+
     menu: {
       title: 'Demonstração',
       hidden: false,

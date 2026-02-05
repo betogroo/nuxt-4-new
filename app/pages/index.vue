@@ -1,7 +1,6 @@
 <script setup lang="ts">
   definePageMeta({
     layout: 'default',
-    middleware: 'auth',
     menu: {
       title: 'Home Page',
       areas: ['navbar', 'drawer'],

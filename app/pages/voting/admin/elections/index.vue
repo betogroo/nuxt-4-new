@@ -2,7 +2,6 @@
   import { ElectionInsertSchema } from '~/schemas'
   definePageMeta({
     layout: 'default',
-    middleware: 'auth',
     menu: {
       title: 'Admin - Elections',
       hidden: false,

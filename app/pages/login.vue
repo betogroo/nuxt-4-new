@@ -1,12 +1,11 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
   import { CredentialsSchema } from '~/schemas'
-  const route = useRoute()
-  const router = useRouter()
-
+  const user = useSupabaseUser()
+  const redirectInfo = useSupabaseCookieRedirect()
   definePageMeta({
     layout: 'no-nav',
-    middleware: 'guest',
+    //middleware: 'guest',
     menu: {
       title: 'Login',
       hidden: true,
@@ -23,9 +22,7 @@
   const onSubmit = handleSubmit(async () => {
     try {
       await authenticate('login', values)
-      const redirectTo = (route.query.redirectTo as string) || '/contact'
       notify('Logado com sucesso. REDIRECIONANDO', 'success', { timeout: 2000 })
-      await router.push(redirectTo)
     } catch (error) {
       if (error instanceof AppError) {
         notify(error.message, 'error')
@@ -34,6 +31,18 @@
       notify('Erro inesperado. Tente mais tarde', 'error', { timeout: 2000 })
     }
   })
+  watch(
+    user,
+    () => {
+      if (user.value) {
+        // Get the saved path and clear it from the cookie
+        const path = redirectInfo.pluck()
+        // Redirect to the saved path, or fallback to home
+        return navigateTo(path || '/')
+      }
+    },
+    { immediate: true },
+  )
 </script>
 
 <template>
