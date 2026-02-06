@@ -13,7 +13,10 @@
   <ui-heading>Demonstração</ui-heading>
   <ul>
     <li>
-      <nuxt-link to="./demo/components">Componentes</nuxt-link>
+      <nuxt-link to="./app">App</nuxt-link>
+    </li>
+    <li>
+      <nuxt-link to="./components">Componentes</nuxt-link>
     </li>
   </ul>
 </template>
