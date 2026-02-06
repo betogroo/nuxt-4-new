@@ -2,7 +2,6 @@
   import { AppError } from '~/error/AppError'
 
   const route = useRoute()
-  const router = useRouter()
   const { getMenuByArea } = useNavigation()
   const { signout } = useAuth()
   const { notify } = useNotification()
@@ -13,7 +12,7 @@
     try {
       await signout()
       notify('Desconectado com sucesso com sucesso. REDIRECIONANDO', 'success', { timeout: 2000 })
-      await router.push('/login')
+      navigateTo('/login')
     } catch (error) {
       if (error instanceof AppError) {
         notify(error.message, 'error')

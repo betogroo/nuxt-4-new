@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
   import { SignupFormSchema } from '~/schemas'
-  const user = useSupabaseUser()
-  const redirectInfo = useSupabaseCookieRedirect()
+  useGuestRedirect()
 
   definePageMeta({
     layout: 'no-nav',
@@ -33,19 +32,6 @@
       notify('Erro inesperado. Tente mais tarde', 'error', { timeout: 2000 })
     }
   })
-
-  watch(
-    user,
-    () => {
-      if (user.value) {
-        // Get the saved path and clear it from the cookie
-        const path = redirectInfo.pluck()
-        // Redirect to the saved path, or fallback to home
-        return navigateTo(path || '/')
-      }
-    },
-    { immediate: true },
-  )
 </script>
 
 <template>

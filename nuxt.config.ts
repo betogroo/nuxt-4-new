@@ -27,7 +27,6 @@ export default defineNuxtConfig({
       login: '/login',
       saveRedirectToCookie: true,
     },
-
     redirect: true,
     types: '~/types/supabase/database.types.ts',
   },

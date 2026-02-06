@@ -14,5 +14,6 @@ export * from './ui/textfield'
 export * from './auth/auth'
 
 export * from './app/supabase'
+export * from './app/vue-router'
 
 export * from './voting/election'
