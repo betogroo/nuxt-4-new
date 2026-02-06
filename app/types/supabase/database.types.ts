@@ -8,6 +8,73 @@ export type Database = {
   }
   public: {
     Tables: {
+      demand: {
+        Row: {
+          created_at: string
+          description: string
+          electronic_process_number: string | null
+          id: string
+          internal_process_number: number
+          object_types_id: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          electronic_process_number?: string | null
+          id?: string
+          internal_process_number: number
+          object_types_id?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          electronic_process_number?: string | null
+          id?: string
+          internal_process_number?: number
+          object_types_id?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_object_types_id_fkey'
+            columns: ['object_types_id']
+            isOneToOne: false
+            referencedRelation: 'object_types'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      demand_events: {
+        Row: {
+          created_at: string
+          demands_id: string
+          description: string | null
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          demands_id: string
+          description?: string | null
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          demands_id?: string
+          description?: string | null
+          id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_events_demands_id_fkey'
+            columns: ['demands_id']
+            isOneToOne: false
+            referencedRelation: 'demand'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       election: {
         Row: {
           created_at: string
@@ -26,6 +93,27 @@ export type Database = {
           date?: string
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      object_types: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+          ptres: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+          ptres: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+          ptres?: number
         }
         Relationships: []
       }
