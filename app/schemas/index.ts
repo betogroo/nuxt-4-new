@@ -17,3 +17,4 @@ export * from './app/menu.schema'
 export * from './app/page-meta.schema'
 
 export * from './voting/election.schema'
+export * from './uge/demands.schema'
