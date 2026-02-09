@@ -1,0 +1,8 @@
+{
+  "supabase-client": {
+    "scope": "typescript, javascript",
+    "description": "create supabase composable",
+    "body": "const supabase = useSupabaseClient()",
+    "prefix": "supabase-composable",
+  },
+}
