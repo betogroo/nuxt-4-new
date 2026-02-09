@@ -45,4 +45,9 @@
       "",
     ],
   },
+  "Vue Ref": {
+    "scope": "typescript, javascript",
+    "prefix": "v3-ref",
+    "body": ["const $1 = ref($2)"],
+  },
 }
