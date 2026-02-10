@@ -37,8 +37,9 @@
     <ui-alert v-else-if="errorMessage" :title="errorMessage" type="error" />
     <div v-else-if="!demands?.length">Ainda não tem demandas cadastradas</div>
     <v-list v-else>
-      <v-list-item v-for="{ description, dispute_date, id } in demands" :key="id"
-        >{{ description }} {{ dispute_date ? dateBr(dispute_date) : '' }}</v-list-item
+      <v-list-item v-for="demand in demands" :key="demand.id"
+        >{{ demand.description }} {{ demand.dispute_date ? dateBr(demand.dispute_date) : '' }}
+        {{ demand.object_types?.name }}</v-list-item
       >
     </v-list>
   </ui-page>
