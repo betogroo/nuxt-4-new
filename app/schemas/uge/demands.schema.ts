@@ -6,6 +6,7 @@ export const DemandSchema: z.ZodType<Demand> = z.object({
   created_at: z.string().datetime({ offset: true }),
   updated_at: z.string().datetime({ offset: true }),
   description: z.string(),
+  dispute_date: z.string().date().nullable(),
   internal_process_number: z.number(),
   object_types_id: z.number(),
   electronic_process_number: z.string(),

@@ -12,6 +12,7 @@ export type Database = {
         Row: {
           created_at: string
           description: string
+          dispute_date: string | null
           electronic_process_number: string | null
           id: string
           internal_process_number: number
@@ -21,6 +22,7 @@ export type Database = {
         Insert: {
           created_at?: string
           description: string
+          dispute_date?: string | null
           electronic_process_number?: string | null
           id?: string
           internal_process_number: number
@@ -30,6 +32,7 @@ export type Database = {
         Update: {
           created_at?: string
           description?: string
+          dispute_date?: string | null
           electronic_process_number?: string | null
           id?: string
           internal_process_number?: number

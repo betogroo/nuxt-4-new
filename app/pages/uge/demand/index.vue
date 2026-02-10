@@ -15,6 +15,7 @@
   const errorMessage = ref<string | null>(null)
 
   const { demands, isFetching, fetchAll } = useDemand()
+
   onMounted(async () => {
     try {
       await fetchAll()
@@ -36,7 +37,9 @@
     <ui-alert v-else-if="errorMessage" :title="errorMessage" type="error" />
     <div v-else-if="!demands?.length">Ainda não tem demandas cadastradas</div>
     <v-list v-else>
-      <v-list-item v-for="demand in demands" :key="demand.id">{{ demand.description }}</v-list-item>
+      <v-list-item v-for="{ description, dispute_date, id } in demands" :key="id"
+        >{{ description }} {{ dispute_date ? dateBr(dispute_date) : '' }}</v-list-item
+      >
     </v-list>
   </ui-page>
 </template>
