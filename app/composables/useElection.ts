@@ -1,5 +1,6 @@
 import type { Election, ElectionInsert } from '~/types'
 import { ElectionRowsSchema, ElectionSchema } from '~/schemas'
+import { AppError } from '~/error/AppError'
 const useElection = () => {
   const supabase = useSupabaseClient()
 
@@ -14,9 +15,14 @@ const useElection = () => {
       await delay(1000)
     }
     try {
-      const { data, error: fetchError } = await supabase.from('election').select('*')
-      if (fetchError) throw fetchError
-      elections.value = ElectionRowsSchema.parse(data)
+      await useAssertSession()
+      const { data, error } = await supabase.from('election').select('*')
+      if (error) throw new AppError('Erro ao buscar as eleições', error)
+      const parsed = ElectionRowsSchema.safeParse(data)
+      if (!parsed.success) {
+        throw new AppError('Erro ao validar dados de eleição', parsed.error)
+      }
+      elections.value = parsed.data
     } finally {
       isFetching.value = false
     }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { AppError } from '~/error/AppError'
   import { ElectionInsertSchema } from '~/schemas'
   definePageMeta({
     layout: 'default',
@@ -22,6 +23,7 @@
   const addElection = () => {
     openDialog()
   }
+  const errorMessage = ref<string | null>(null)
 
   const onSubmit = handleSubmit(async () => {
     try {
@@ -37,8 +39,16 @@
     handleReset()
   }
 
-  onMounted(() => {
-    fetchAll()
+  onMounted(async () => {
+    try {
+      await fetchAll()
+    } catch (error) {
+      if (error instanceof AppError) {
+        errorMessage.value = error.message
+      } else {
+        errorMessage.value = 'Erro inesperado ao carregar eleições'
+      }
+    }
   })
 </script>
 
@@ -51,6 +61,7 @@
       <ui-card-grid v-if="isFetching"
         ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
       /></ui-card-grid>
+      <ui-alert v-else-if="errorMessage" :title="errorMessage" type="error" />
       <div v-else-if="!elections?.length">Ainda não tem eleições cadastradas</div>
       <ui-card-grid v-else>
         <voting-election-card
