@@ -1,7 +1,6 @@
 import { z } from '~/schemas'
-import type { Demand } from '~/types'
 
-export const DemandSchema: z.ZodType<Demand> = z.object({
+export const DemandSchema = z.object({
   id: z.string().uuid(),
   created_at: z.string().datetime({ offset: true }),
   updated_at: z.string().datetime({ offset: true }),
