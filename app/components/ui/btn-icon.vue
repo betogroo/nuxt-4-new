@@ -7,12 +7,14 @@
     variant?: BtnIconVariant
     to?: RouteLocationAsPathGeneric | RouteLocationAsRelativeGeneric | string
     ariaLabel?: string
+    compact?: boolean
   }
   const {
     variant = 'plain',
     icon = 'home',
     ariaLabel = 'Link',
     to = undefined,
+    compact = false,
   } = defineProps<Props>()
 
   const $emit = defineEmits<{
@@ -25,6 +27,7 @@
 <template>
   <v-btn
     :aria-label="ariaLabel"
+    :density="compact ? 'compact' : undefined"
     :icon="ICONS[icon]"
     :ripple="false"
     :to="to"
