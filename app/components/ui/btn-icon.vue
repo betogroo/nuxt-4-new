@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { RouteLocationAsPathGeneric, RouteLocationAsRelativeGeneric } from 'vue-router'
-  import type { BtnIconVariant, Icon } from '~/types'
+  import type { BtnIconSize, BtnIconVariant, Icon } from '~/types'
 
   interface Props {
     icon?: Icon
@@ -8,6 +8,7 @@
     to?: RouteLocationAsPathGeneric | RouteLocationAsRelativeGeneric | string
     ariaLabel?: string
     compact?: boolean
+    size?: BtnIconSize
   }
   const {
     variant = 'plain',
@@ -15,6 +16,7 @@
     ariaLabel = 'Link',
     to = undefined,
     compact = false,
+    size = 'default',
   } = defineProps<Props>()
 
   const $emit = defineEmits<{
@@ -27,9 +29,10 @@
 <template>
   <v-btn
     :aria-label="ariaLabel"
-    :density="compact ? 'compact' : undefined"
+    :density="compact ? 'compact' : 'default'"
     :icon="ICONS[icon]"
     :ripple="false"
+    :size="size"
     :to="to"
     :variant="variant"
     @click="onClick"
