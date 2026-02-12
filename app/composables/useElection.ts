@@ -9,23 +9,20 @@ const useElection = () => {
 
   const elections = ref<Election[]>()
 
-  const fetchAll = async () => {
-    isFetching.value = true
+  const fetchAll = async (): Promise<Election[]> => {
     if (import.meta.dev) {
       await delay(1000)
     }
-    try {
-      await useAssertSession()
-      const { data, error } = await supabase.from('election').select('*')
-      if (error) throw new AppError('Erro ao buscar as eleições', error)
-      const parsed = ElectionRowsSchema.safeParse(data)
-      if (!parsed.success) {
-        throw new AppError('Erro ao validar dados de eleição', parsed.error)
-      }
-      elections.value = parsed.data
-    } finally {
-      isFetching.value = false
+    await useAssertSession()
+    const { data, error } = await supabase.from('election').select('*')
+
+    if (error) throw new AppError('Erro ao buscar as eleições', error)
+    const parsed = ElectionRowsSchema.safeParse(data)
+    if (!parsed.success) {
+      throw new AppError('Erro ao validar dados de eleição', parsed.error)
     }
+
+    return parsed.data
   }
 
   const get = async (id: string) => {

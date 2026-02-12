@@ -17,7 +17,6 @@
 
   const {
     data: demands,
-
     error,
     status,
   } = useAsyncData('demands', async () => {
@@ -33,7 +32,6 @@
       })
     }
   })
-
   const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
 </script>
 

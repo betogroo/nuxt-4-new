@@ -12,7 +12,7 @@
     },
   })
 
-  const { elections, isCreating, isFetching, create, fetchAll } = useElection()
+  const { isCreating, create, fetchAll } = useElection()
   const { isOpen, openDialog } = useDialog()
   const { notify } = useNotification()
 
@@ -23,7 +23,6 @@
   const addElection = () => {
     openDialog()
   }
-  const errorMessage = ref<string | null>(null)
 
   const onSubmit = handleSubmit(async () => {
     try {
@@ -35,21 +34,27 @@
       notify(err.message, 'error')
     }
   })
+
+  const {
+    data: elections,
+    error,
+    status,
+  } = useAsyncData('elections', async () => {
+    try {
+      return await fetchAll()
+    } catch (error) {
+      if (error instanceof AppError) {
+        throw createError({ statusCode: 400, statusMessage: error.message })
+      }
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Erro inesperado ao carregar as eleições',
+      })
+    }
+  })
   const onReset = () => {
     handleReset()
   }
-
-  onMounted(async () => {
-    try {
-      await fetchAll()
-    } catch (error) {
-      if (error instanceof AppError) {
-        errorMessage.value = error.message
-      } else {
-        errorMessage.value = 'Erro inesperado ao carregar eleições'
-      }
-    }
-  })
 </script>
 
 <template>
@@ -58,11 +63,13 @@
       <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
     </div>
     <div>
-      <ui-card-grid v-if="isFetching"
+      <ui-card-grid v-if="status === 'pending'"
         ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
       /></ui-card-grid>
-      <ui-alert v-else-if="errorMessage" :title="errorMessage" type="error" />
-      <div v-else-if="!elections?.length">Ainda não tem eleições cadastradas</div>
+      <ui-alert v-else-if="error" :title="error.statusMessage" type="error" />
+      <div v-else-if="!elections?.length">
+        <ui-alert title="Ainda não há eleições cadastradas" type="warning" />
+      </div>
       <ui-card-grid v-else>
         <voting-election-card
           v-for="election in elections"
