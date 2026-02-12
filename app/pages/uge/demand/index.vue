@@ -13,19 +13,25 @@
     },
   })
 
-  const errorMessage = ref<string | null>(null)
+  const { fetchAll } = useDemand()
 
-  const { demands, isFetching, fetchAll } = useDemand()
-
-  onMounted(async () => {
+  const {
+    data: demands,
+    pending,
+    error,
+    status,
+    //refresh,
+  } = useAsyncData('demands', async () => {
     try {
-      await fetchAll()
+      return await fetchAll()
     } catch (error) {
       if (error instanceof AppError) {
-        errorMessage.value = error.message
-      } else {
-        errorMessage.value = 'Erro inesperado ao carregar demandas'
+        throw createError({ statusCode: 400, statusMessage: error.message })
       }
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Erro inesperado ao carregar as demandas',
+      })
     }
   })
 
@@ -34,9 +40,15 @@
 
 <template>
   <ui-page>
-    <ui-alert v-if="errorMessage" :title="errorMessage" type="error" />
+    <ui-alert v-if="error" :title="error.statusMessage" type="error" />
 
-    <ui-list v-else :is-loading="isFetching" :items="demands" lines="two">
+    <ui-list
+      v-else
+      :has-fetched="status === 'success' || status === 'error'"
+      :is-loading="pending"
+      :items="demands || []"
+      lines="two"
+    >
       <ui-list-item v-for="demand in demands" :key="demand.id">
         <template #title> {{ demand.description }}</template>
         <template #subtitle> {{ demand.object_types?.name }}</template>

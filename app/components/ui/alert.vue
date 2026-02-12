@@ -2,7 +2,7 @@
   import type { NotificationType } from '~/types'
 
   interface Props {
-    title: string
+    title: string | undefined
     type: NotificationType
   }
   defineProps<Props>()
