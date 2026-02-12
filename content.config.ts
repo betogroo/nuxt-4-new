@@ -10,5 +10,9 @@ export default defineContentConfig({
       type: 'page',
       source: 'app/**/*.md',
     }),
+    docs: defineCollection({
+      type: 'page',
+      source: 'docs/**/*.md',
+    }),
   },
 })

@@ -17,4 +17,5 @@ export const ICONS = {
   'arrow-hide': 'mdi-menu-up',
   back: 'mdi-arrow-left',
   currency: 'mdi-currency-usd',
+  doc: 'mdi-file-document',
 } as const

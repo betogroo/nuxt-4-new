@@ -8,7 +8,6 @@ const useDemand = () => {
     if (import.meta.dev) {
       await delay(1000) // 1 segundo só em dev
     }
-    await useAssertSession()
     const { data, error } = await supabase.from('demand').select(`
         *,
         object_types (*)

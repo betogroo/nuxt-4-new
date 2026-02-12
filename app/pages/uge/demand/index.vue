@@ -19,19 +19,23 @@
     data: demands,
     error,
     status,
-  } = useAsyncData('demands', async () => {
-    try {
-      return await fetchAll()
-    } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, statusMessage: error.message })
+  } = await useAsyncData(
+    'demands',
+    async () => {
+      try {
+        return await fetchAll()
+      } catch (error) {
+        if (error instanceof AppError) {
+          throw createError({ statusCode: 400, statusMessage: error.message })
+        }
+        throw createError({
+          statusCode: 500,
+          statusMessage: 'Erro inesperado ao carregar as demandas',
+        })
       }
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Erro inesperado ao carregar as demandas',
-      })
-    }
-  })
+    },
+    { lazy: true },
+  )
   const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
 </script>
 

@@ -18,5 +18,8 @@
     <li>
       <nuxt-link to="./components">Componentes</nuxt-link>
     </li>
+    <li>
+      <nuxt-link to="./docs">Docs</nuxt-link>
+    </li>
   </ul>
 </template>

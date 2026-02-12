@@ -18,7 +18,7 @@
 
 <template>
   <div>
-    <ui-heading :level="3">Componentes</ui-heading>
+    <ui-heading :level="3">ui</ui-heading>
     <ul>
       <li v-for="item in ui" :key="item.id">
         <nuxt-link :to="`./components/${item.meta.slug}`">{{ item.title }}</nuxt-link>

@@ -1,3 +1,8 @@
+---
+slug: style-guine
+updated: 2026-02-12
+---
+
 # 🧭 MINI STYLE GUIDE – Vue / Nuxt / UI desacoplada
 
 > Objetivo:
