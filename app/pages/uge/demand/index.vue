@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
+  import type { Icon } from '~/types'
 
   definePageMeta({
     layout: 'default',
@@ -27,20 +28,23 @@
       }
     }
   })
+
+  const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
 </script>
 
 <template>
   <ui-page>
-    <ui-card-grid v-if="isFetching"
-      ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
-    /></ui-card-grid>
-    <ui-alert v-else-if="errorMessage" :title="errorMessage" type="error" />
-    <div v-else-if="!demands?.length">Ainda não tem demandas cadastradas</div>
-    <v-list v-else>
-      <v-list-item v-for="demand in demands" :key="demand.id"
-        >{{ demand.description }} {{ demand.dispute_date ? dateBr(demand.dispute_date) : '' }}
-        {{ demand.object_types?.name }}</v-list-item
-      >
-    </v-list>
+    <ui-alert v-if="errorMessage" :title="errorMessage" type="error" />
+
+    <ui-list v-else :is-loading="isFetching" :items="demands" lines="two">
+      <ui-list-item v-for="demand in demands" :key="demand.id">
+        <template #title> {{ demand.description }}</template>
+        <template #subtitle> {{ demand.object_types?.name }}</template>
+        <template #prepend> <ui-btn-icon icon="eye" /></template>
+        <template #actions
+          ><ui-btn-icon v-for="icon in iconList" :key="icon" compact :icon="icon" size="small" />
+        </template>
+      </ui-list-item>
+    </ui-list>
   </ui-page>
 </template>
