@@ -17,10 +17,9 @@
 
   const {
     data: demands,
-    pending,
+
     error,
     status,
-    //refresh,
   } = useAsyncData('demands', async () => {
     try {
       return await fetchAll()
@@ -42,13 +41,7 @@
   <ui-page>
     <ui-alert v-if="error" :title="error.statusMessage" type="error" />
 
-    <ui-list
-      v-else
-      :has-fetched="status === 'success' || status === 'error'"
-      :is-loading="pending"
-      :items="demands || []"
-      lines="two"
-    >
+    <ui-list v-else :items="demands || []" lines="two" :status="status">
       <ui-list-item v-for="demand in demands" :key="demand.id">
         <template #title> {{ demand.description }}</template>
         <template #subtitle> {{ demand.object_types?.name }}</template>

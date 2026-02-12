@@ -1,7 +1,6 @@
 <script setup lang="ts">
   interface Props<T> {
-    isLoading: boolean
-    hasFetched: boolean
+    status: 'idle' | 'pending' | 'success' | 'error'
     items?: T[]
   }
   defineProps<Props<unknown>>()
@@ -9,13 +8,13 @@
 
 <template>
   <v-list v-bind="$attrs">
-    <template v-if="isLoading">
+    <template v-if="status === 'pending'">
       <ui-skeleton-loader :count="4" type="list-item-two-line" />
     </template>
-    <div v-else-if="hasFetched && !items?.length">
+    <div v-else-if="status === 'success' && !items?.length">
       <ui-alert title="Não há dados cadastrados" type="warning" />
     </div>
-    <template v-else>
+    <template v-else-if="status === 'success'">
       <slot />
     </template>
   </v-list>
