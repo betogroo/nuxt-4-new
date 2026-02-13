@@ -1,8 +1,10 @@
-import type { DemandWithObjectType } from '~/types'
-import { DemandWithObjectTypeRowsSchema } from '~/schemas'
+import type { Demand, DemandInsert, DemandWithObjectType } from '~/types'
+import { DemandSchema, DemandWithObjectTypeRowsSchema } from '~/schemas'
 import { AppError } from '~/error/AppError'
 const useDemand = () => {
   const supabase = useSupabaseClient()
+
+  const isCreating = ref(false)
 
   const fetchAll = async (): Promise<DemandWithObjectType[]> => {
     if (import.meta.dev) {
@@ -21,7 +23,26 @@ const useDemand = () => {
     }
     return parsed.data
   }
-  return { fetchAll }
+
+  const create = async (values: DemandInsert): Promise<Demand> => {
+    isCreating.value = true
+    if (import.meta.dev) {
+      await delay(DELAY)
+    }
+
+    try {
+      const { data: newData, error: dbError } = await supabase
+        .from('demand')
+        .insert(values)
+        .select()
+        .single()
+      if (dbError) throw dbError
+      return DemandSchema.parse(newData)
+    } finally {
+      isCreating.value = false
+    }
+  }
+  return { fetchAll, create, isCreating }
 }
 
 export default useDemand
