@@ -11,9 +11,9 @@ const useElection = () => {
 
   const fetchAll = async (): Promise<Election[]> => {
     if (import.meta.dev) {
-      await delay(1000)
+      await delay(DELAY)
     }
-    await useAssertSession()
+
     const { data, error } = await supabase.from('election').select('*')
 
     if (error) throw new AppError('Erro ao buscar as eleições', error)

@@ -6,7 +6,7 @@ const useDemand = () => {
 
   const fetchAll = async (): Promise<DemandWithObjectType[]> => {
     if (import.meta.dev) {
-      await delay(1000) // 1 segundo só em dev
+      await delay(DELAY)
     }
     const { data, error } = await supabase.from('demand').select(`
         *,
