@@ -1,25 +1,35 @@
 import { z } from '~/schemas'
 
-export const DemandSchema = z.object({
+export const DemandBaseSchema = z.object({
+  description: z.string().min(1),
+  dispute_date: z.string().date().nullable(),
+  internal_process_number: z.number().min(1),
+  object_types_id: z.number().min(1),
+  electronic_process_number: z.string().min(1).nullable(),
+})
+
+export const DemandSchema = DemandBaseSchema.extend({
   id: z.string().uuid(),
   created_at: z.string().datetime({ offset: true }),
   updated_at: z.string().datetime({ offset: true }),
-  description: z.string().min(1, 'Campo obrigatório'),
-  dispute_date: z.string().date().nullable(),
-  internal_process_number: z.number(),
-  object_types_id: z.number(),
-  electronic_process_number: z.string().nullable(),
 })
-
 export const DemandRowsSchema = z.array(DemandSchema)
 
-export const DemandInsertSchema = DemandSchema.omit({
-  id: true,
-  created_at: true,
-  updated_at: true,
+export const DemandInsertSchema = DemandBaseSchema
+
+export const DemandFormSchema = DemandBaseSchema.extend({
+  dispute_date: DemandBaseSchema.shape.dispute_date.optional(),
+  electronic_process_number: DemandBaseSchema.shape.electronic_process_number.optional(),
 })
 
-export const DemandFormSchema = DemandInsertSchema.extend({
-  dispute_date: z.string().date().nullable().optional(),
-  electronic_process_number: z.string().nullable().optional(),
-})
+export const DemandInsertFromFormSchema = DemandFormSchema.transform((data) => ({
+  ...data,
+  dispute_date: data.dispute_date ?? null,
+  electronic_process_number: data.electronic_process_number ?? null,
+})).pipe(DemandInsertSchema)
+
+//versão curta
+/* export const DemandFormSchema = DemandBaseSchema.partial({
+  dispute_date: true,
+  electronic_process_number: true,
+}) */
