@@ -3,13 +3,16 @@ import { z } from '~/schemas'
 export const DemandBaseSchema = z.object({
   description: z.string().min(1),
   dispute_date: z.string().date().nullable(),
-  internal_process_number: z.number().min(1),
+  // year: z.number().int(),
+  // internal_process_number: z.number().positive(),
   object_types_id: z.number().min(1),
   electronic_process_number: z.string().min(1).nullable(),
 })
 
 export const DemandSchema = DemandBaseSchema.extend({
   id: z.string().uuid(),
+  year: z.number().int(),
+  internal_process_number: z.number().positive(),
   created_at: z.string().datetime({ offset: true }),
   updated_at: z.string().datetime({ offset: true }),
 })

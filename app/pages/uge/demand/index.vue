@@ -33,6 +33,7 @@
     }
   })
   const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
+  const formatted = computed(() => JSON.stringify(demands.value, null, 2))
 </script>
 
 <template>
@@ -42,12 +43,16 @@
     <ui-list v-else :items="demands || []" lines="two" :status="status">
       <ui-list-item v-for="demand in demands" :key="demand.id">
         <template #title> {{ demand.description }}</template>
-        <template #subtitle> {{ demand.object_types?.name }}</template>
+        <template #subtitle>
+          Processo número
+          {{ format.demandNumber(demand.internal_process_number, demand.year) }}</template
+        >
         <template #prepend> <ui-btn-icon icon="eye" /></template>
         <template #actions
           ><ui-btn-icon v-for="icon in iconList" :key="icon" compact :icon="icon" size="small" />
         </template>
       </ui-list-item>
     </ui-list>
+    <pre>{{ formatted }}</pre>
   </ui-page>
 </template>

@@ -32,7 +32,6 @@
   <ui-page title="Nova Demanda">
     <ui-form :is-loading="isCreating" :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
       <ui-text-field label="Nome" name="description" type="text" />
-      <ui-text-field label="Processo Interno" name="internal_process_number" type="number" />
       <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
       <ui-text-field label="Tipo da Dispensa" name="object_types_id" type="number" />

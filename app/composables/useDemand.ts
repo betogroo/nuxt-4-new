@@ -33,7 +33,7 @@ const useDemand = () => {
     try {
       const { data: newData, error: dbError } = await supabase
         .from('demand')
-        .insert(values)
+        .insert(values as never)
         .select()
         .single()
       if (dbError) throw dbError

@@ -18,6 +18,7 @@ export type Database = {
           internal_process_number: number
           object_types_id: number | null
           updated_at: string
+          year: number
         }
         Insert: {
           created_at?: string
@@ -28,6 +29,7 @@ export type Database = {
           internal_process_number: number
           object_types_id?: number | null
           updated_at?: string
+          year: number
         }
         Update: {
           created_at?: string
@@ -38,6 +40,7 @@ export type Database = {
           internal_process_number?: number
           object_types_id?: number | null
           updated_at?: string
+          year?: number
         }
         Relationships: [
           {
@@ -77,6 +80,21 @@ export type Database = {
             referencedColumns: ['id']
           },
         ]
+      }
+      demand_sequences: {
+        Row: {
+          current_number: number
+          year: number
+        }
+        Insert: {
+          current_number: number
+          year?: number
+        }
+        Update: {
+          current_number?: number
+          year?: number
+        }
+        Relationships: []
       }
       election: {
         Row: {
