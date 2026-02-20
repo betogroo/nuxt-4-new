@@ -18,4 +18,5 @@ export const ICONS = {
   back: 'mdi-arrow-left',
   currency: 'mdi-currency-usd',
   doc: 'mdi-file-document',
+  db: 'mdi-database',
 } as const
