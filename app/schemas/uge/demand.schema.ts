@@ -5,7 +5,7 @@ export const DemandBaseSchema = z.object({
   dispute_date: z.string().date().nullable(),
   // year: z.number().int(),
   // internal_process_number: z.number().positive(),
-  object_types_id: z.number().min(1),
+  object_types_id: z.number().positive(),
   electronic_process_number: z.string().min(1).nullable(),
 })
 
@@ -21,6 +21,8 @@ export const DemandRowsSchema = z.array(DemandSchema)
 export const DemandInsertSchema = DemandBaseSchema
 
 export const DemandFormSchema = DemandBaseSchema.extend({
+  description: z.string().min(1, REQUIRED_FIELD),
+  object_types_id: z.number({ required_error: REQUIRED_SELECT_FIELD }).positive(),
   dispute_date: DemandBaseSchema.shape.dispute_date.optional(),
   electronic_process_number: DemandBaseSchema.shape.electronic_process_number.optional(),
 })
