@@ -48,7 +48,13 @@
       <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
 
-      <ui-select :items="items" name="object_types_id" />
+      <ui-select
+        item-subtitle="ptres"
+        item-title="name"
+        :items="items"
+        label="Tipo de Processo"
+        name="object_types_id"
+      />
     </ui-form>
   </ui-page>
 </template>
