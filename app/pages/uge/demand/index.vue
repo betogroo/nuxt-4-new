@@ -38,6 +38,9 @@
 
 <template>
   <ui-page>
+    <template #header_action
+      ><ui-btn color="primary" icon="plus" to="./demand/new">Novo Processo</ui-btn>
+    </template>
     <ui-alert v-if="error" :title="error.statusMessage" type="error" />
 
     <ui-list v-else :items="demands || []" lines="two" :status="status">
