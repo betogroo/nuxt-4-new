@@ -29,7 +29,7 @@
 </script>
 
 <template>
-  <ui-page title="Nova Demanda">
+  <ui-page show-back title="Nova Demanda">
     <ui-form :is-loading="isCreating" :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
       <ui-text-field label="Nome" name="description" type="text" />
       <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
