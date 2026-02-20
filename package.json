@@ -16,7 +16,8 @@
     "format": "prettier --write .",
     "test": "vitest run",
     "prepare": "husky",
-    "ncu": "ncu -i --format group"
+    "ncu": "ncu -i --format group",
+    "gen-types": "npx supabase gen types typescript --project-id flcgfmmbnepvlulxccxx --schema public > app/types/supabase/database.types.ts"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
@@ -29,6 +30,7 @@
     "@pinia/nuxt": "^0.11.3",
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/zod": "^4.15.1",
+    "better-sqlite3": "^12.5.0",
     "cookie-es": "^2.0.0",
     "eslint": "^9.39.2",
     "nuxt": "^4.2.2",
@@ -39,6 +41,7 @@
   },
   "devDependencies": {
     "@cspell/dict-pt-br": "^2.4.2",
+    "@nuxt/content": "^3.10.0",
     "@nuxt/test-utils": "^3.21.0",
     "@nuxtjs/supabase": "^2.0.3",
     "@vite-pwa/nuxt": "^1.1.0",

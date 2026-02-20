@@ -1,21 +1,35 @@
 <script setup lang="ts">
-  import { LoginSchema } from '~/schemas'
+  import { AppError } from '~/error/AppError'
+  import { CredentialsSchema } from '~/schemas'
+  useGuestRedirect()
 
   definePageMeta({
     layout: 'no-nav',
+    //middleware: 'guest',
     menu: {
       title: 'Login',
       hidden: true,
     },
   })
+  const { authenticate } = useAuth()
+  const { notify } = useNotification()
 
-  const { values, handleSubmit, meta, handleReset } = useZodForm(LoginSchema, {
+  const { values, handleSubmit, meta, handleReset } = useZodForm(CredentialsSchema, {
     email: '',
     password: '',
   })
 
   const onSubmit = handleSubmit(async () => {
-    console.log('LOGIN: ', values)
+    try {
+      await authenticate('login', values)
+      notify('Logado com sucesso. REDIRECIONANDO', 'success', { timeout: 2000 })
+    } catch (error) {
+      if (error instanceof AppError) {
+        notify(error.message, 'error')
+        return
+      }
+      notify('Erro inesperado. Tente mais tarde', 'error', { timeout: 2000 })
+    }
   })
 </script>
 

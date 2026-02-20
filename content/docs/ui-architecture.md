@@ -1,3 +1,8 @@
+---
+slug: ui-architecture
+updated: 2026-02-12
+---
+
 # Arquitetura de UI Desacoplada no Nuxt 4
 
 Este documento resume e organiza as decisões, conceitos e padrões definidos ao longo da conversa para construir uma interface **desacoplada do Vuetify**, sustentável e pronta para evolução ou troca de framework.
@@ -7,6 +12,7 @@ Este documento resume e organiza as decisões, conceitos e padrões definidos ao
 ## 🎯 Objetivo
 
 Criar uma arquitetura de UI que:
+
 - Não dependa diretamente do Vuetify nas páginas
 - Permita troca futura de framework de UI
 - Centralize padrões visuais e de UX
@@ -29,41 +35,49 @@ Isolar o framework de UI (Vuetify) em componentes internos, expondo uma API pró
 A UI foi organizada em camadas bem definidas:
 
 #### 🔹 Base
+
 - Encapsula Vuetify
 - API mínima
 - Sem regras de negócio
 - Sem decisões de UX
 
 Exemplos:
+
 - Button base
 - TextField base
 - Form base
 - Card base
 
 #### 🔹 Form
+
 - Define padrões de formulários
 - Centraliza UX (density, variant, submit, layout)
 - Especializa componentes base
 
 Exemplos:
+
 - FormTextField
 - FormTextFieldPassword
 - FormBtnSubmit
 - FormStack
 
 #### 🔹 Card (Composição Semântica)
+
 - Componentes visuais com significado
 - Evitam classes repetidas nas páginas
 
 Exemplos:
+
 - AuthCard
 - CardFooter
 
 #### 🔹 App
+
 - Componentes específicos da aplicação
 - Não reutilizáveis em outros projetos
 
 Exemplos:
+
 - NavBar
 - PublicContainer
 
@@ -101,6 +115,7 @@ components/
 ### Base Button
 
 Responsável apenas por:
+
 - Encapsular `v-btn`
 - Aceitar `type`, `loading`, `disabled`
 - Emitir `click`
@@ -163,6 +178,7 @@ A página não conhece `v-form`.
 > Nem toda classe utilitária deve ser desacoplada.
 
 Desacoplar apenas quando:
+
 - Há repetição
 - Há significado semântico
 - É parte do layout recorrente
@@ -171,11 +187,11 @@ Desacoplar apenas quando:
 
 ### Exemplos de Abstração Correta
 
-| Antes | Depois |
-|------|-------|
-| `class="d-flex flex-column ga-3"` | `<UiFormStack>` |
-| `class="text-right mt-3"` | `<UiCardFooter>` |
-| Card com largura fixa | `<UiAuthCard>` |
+| Antes                             | Depois           |
+| --------------------------------- | ---------------- |
+| `class="d-flex flex-column ga-3"` | `<UiFormStack>`  |
+| `class="text-right mt-3"`         | `<UiCardFooter>` |
+| Card com largura fixa             | `<UiAuthCard>`   |
 
 ---
 
@@ -234,6 +250,7 @@ Desacoplar apenas quando:
 ## 🏁 Conclusão
 
 Esta arquitetura:
+
 - Evita acoplamento com Vuetify
 - Facilita manutenção
 - Permite evolução gradual
@@ -244,4 +261,3 @@ Não é overengineering — é **design de API de UI**.
 ---
 
 📌 **Recomendação**: manter este arquivo versionado no repositório (`/docs/ui-architecture.md`) para referência futura ou material de curso.
-

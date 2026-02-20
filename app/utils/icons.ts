@@ -11,4 +11,12 @@ export const ICONS = {
   election: 'mdi-vote-outline',
   reset: 'mdi-restore',
   plus: 'mdi-plus',
+  update: 'mdi-update',
+  menu: 'mdi-dots-vertical',
+  code: 'mdi-xml',
+  'arrow-hide': 'mdi-menu-up',
+  back: 'mdi-arrow-left',
+  currency: 'mdi-currency-usd',
+  doc: 'mdi-file-document',
+  db: 'mdi-database',
 } as const

@@ -1,0 +1,23 @@
+{
+  "Zod Import Types": {
+    "scope": "javascript,typescript",
+    "prefix": "zod-import-types",
+    "body": ["import { z } from '~/schemas'", "import type { $1 } from '~/types'"],
+    "description": "Import z and types from create schemas",
+  },
+  "Schema based on type": {
+    "scope": "javascript,typescript",
+    "prefix": "zod-schema-based-types",
+    "body": ["export const $1Schema: z.ZodType<$1> = z.object({", "$2", "})"],
+    "description": "Create schema based on types",
+  },
+  "Import schemas and types": {
+    "scope": "javascript,typescript",
+    "prefix": "zod-import-schemas-and-types",
+    "body": [
+      "import type { $1 } from '~/types'",
+      "import { $1RowsSchema, $1Schema } from '~/schemas'",
+    ],
+    "description": "Import Zod schemas and types",
+  },
+}

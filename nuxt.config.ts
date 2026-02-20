@@ -17,16 +17,18 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     '@nuxtjs/supabase',
     '@pinia/nuxt',
+    '@nuxt/content',
   ],
+  css: ['~/assets/css/markdown.css'],
   supabase: {
     redirectOptions: {
-      include: ['/contact'],
+      exclude: ['/about', '/signup'],
       callback: '/confirm',
       login: '/login',
       saveRedirectToCookie: true,
     },
-
     redirect: true,
+    types: '~/types/supabase/database.types.ts',
   },
   veeValidate: {
     autoImports: true,

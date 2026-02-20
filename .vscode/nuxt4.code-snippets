@@ -13,4 +13,19 @@
       "})",
     ],
   },
+
+  "Use Async Data": {
+    "scope": "typescript, javascript",
+    "prefix": "n3-async-data",
+    "description": "useAsyncData() scaffold",
+    "body": [
+      "const {data: $1, error, status} = useAsyncData('$1', async () => {",
+      "\ttry {",
+      "\t\t$2",
+      "\t} catch (error) {",
+      "\t\t$3",
+      "\t}",
+      "})",
+    ],
+  },
 }

@@ -5,7 +5,8 @@
     text: string
     to?: string
   }
-  const { to = '/' } = defineProps<Props>()
+  defineProps<Props>()
+  const handleClearError = () => clearError({ redirect: '/' })
 </script>
 
 <template>
@@ -21,7 +22,7 @@
     <template #text>
       <div class="text-body-1 text-justify">
         {{ text }}
-        Clique <nuxt-link :to="to">aqui</nuxt-link>
+        Clique <ui-btn variant="text" @click="handleClearError()">aqui</ui-btn>
         para retornar a página inicial
       </div>
     </template>

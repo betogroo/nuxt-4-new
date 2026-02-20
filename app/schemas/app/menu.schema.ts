@@ -12,6 +12,7 @@ export const PrioritySchema = z.union([
   z.enum(MENU_ORDER.navbar),
   z.enum(MENU_ORDER.drawer),
   z.enum(MENU_ORDER.footer),
+  z.enum(MENU_ORDER.components),
 ])
 
 export const MenuSchema = z.object({
