@@ -59,9 +59,9 @@
 
 <template>
   <ui-page show-back title="Eleições">
-    <div>
-      <ui-btn icon="plus" @click="addElection">Nova Eleição</ui-btn>
-    </div>
+    <template #header_action>
+      <ui-btn color="primary" icon="plus" @click="addElection">Nova Eleição</ui-btn>
+    </template>
     <div>
       <ui-card-grid v-if="status === 'pending'"
         ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
