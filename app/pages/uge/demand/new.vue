@@ -26,6 +26,19 @@
   const onReset = () => {
     handleReset()
   }
+
+  const items = [
+    {
+      id: 1,
+      name: 'Material de Consumo',
+      ptres: '180205',
+    },
+    {
+      id: 2,
+      name: 'Material Permanente',
+      ptres: '180211',
+    },
+  ]
 </script>
 
 <template>
@@ -34,7 +47,8 @@
       <ui-text-field label="Nome" name="description" type="text" />
       <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
-      <ui-text-field label="Tipo da Dispensa" name="object_types_id" type="number" />
+
+      <ui-select :items="items" name="object_types_id" />
     </ui-form>
   </ui-page>
 </template>
