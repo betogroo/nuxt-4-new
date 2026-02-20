@@ -6,7 +6,7 @@
       title: 'Banco de Dados',
       hidden: false,
       icon: 'db',
-      areas: ['navbar'],
+      areas: ['content'],
     },
   })
 
@@ -17,12 +17,11 @@
 </script>
 
 <template>
-  <div>
-    <ui-heading :level="3">DB</ui-heading>
+  <ui-page show-back title="APP">
     <ul>
       <li v-for="item in db" :key="item.id">
         <nuxt-link :to="`./db/${item.meta.slug}`">{{ item.title }}</nuxt-link>
       </li>
     </ul>
-  </div>
+  </ui-page>
 </template>

@@ -6,7 +6,7 @@
       title: 'App',
       hidden: false,
       icon: 'settings',
-      areas: ['navbar'],
+      areas: ['content'],
     },
   })
 
@@ -17,12 +17,11 @@
 </script>
 
 <template>
-  <div>
-    <ui-heading :level="3">APP</ui-heading>
+  <ui-page show-back title="APP">
     <ul>
       <li v-for="item in app" :key="item.id">
         <nuxt-link :to="`./app/${item.meta.slug}`">{{ item.title }}</nuxt-link>
       </li>
     </ul>
-  </div>
+  </ui-page>
 </template>

@@ -6,7 +6,7 @@
       title: 'Docs',
       hidden: false,
       icon: 'doc',
-      areas: ['navbar'],
+      areas: ['content'],
     },
   })
 
@@ -17,12 +17,11 @@
 </script>
 
 <template>
-  <div>
-    <ui-heading :level="3">Docs</ui-heading>
+  <ui-page show-back title="DocumentosP">
     <ul>
       <li v-for="item in docs" :key="item.id">
         <nuxt-link :to="`./docs/${item.meta.slug}`">{{ item.title }}</nuxt-link>
       </li>
     </ul>
-  </div>
+  </ui-page>
 </template>

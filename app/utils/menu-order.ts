@@ -3,4 +3,5 @@ export const MENU_ORDER = {
   drawer: ['index', 'about'],
   footer: ['index'],
   components: ['dialog', 'notifications'],
+  content: ['app', 'components', 'db', 'docs'],
 } as const
