@@ -1,5 +1,8 @@
 export * as z from 'zod'
 
+// RULES
+export * from './rules/date.rules'
+
 export * from './ui/btn'
 export * from './ui/btn-icon'
 export * from './ui/card'

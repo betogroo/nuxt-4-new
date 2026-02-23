@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import { z, futureDate } from '~/schemas'
 
 export const DemandBaseSchema = z.object({
   description: z.string().min(1),
@@ -21,16 +21,7 @@ export const DemandInsertSchema = DemandBaseSchema
 export const DemandFormSchema = DemandBaseSchema.extend({
   description: z.string({ required_error: REQUIRED_FIELD }).min(1, REQUIRED_FIELD),
   object_types_id: z.number({ required_error: REQUIRED_SELECT_FIELD }).positive(),
-  dispute_date: z
-    .string()
-    .date('Data Inválida')
-    .refine((value) => {
-      const date = new Date(value + 'T00:00:00')
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
-      return date >= today
-    }, 'A data não pode ser no passado')
-    .optional(),
+  dispute_date: futureDate.optional(),
   electronic_process_number: DemandBaseSchema.shape.electronic_process_number.optional(),
 })
 
