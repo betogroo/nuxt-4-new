@@ -1,27 +1,36 @@
 import { z } from '~/schemas'
-import { nameRule, futureDate, nameField } from '~/schemas/rules'
+import {
+  nameRule,
+  futureDate,
+  nameField,
+  dateRule,
+  positiveNumber,
+  datetimeRule,
+  numberSelectOption,
+  uuidRule,
+} from '~/schemas/rules'
 
 export const DemandBaseSchema = z.object({
   description: nameRule,
-  dispute_date: z.string().date().nullable(),
-  object_types_id: z.number().positive(),
-  electronic_process_number: z.string().min(1).nullable(),
+  dispute_date: dateRule.nullable(),
+  object_types_id: positiveNumber,
+  electronic_process_number: z.string().nullable(),
 })
 
 export const DemandSchema = DemandBaseSchema.extend({
-  id: z.string().uuid(),
-  year: z.number().int(),
-  internal_process_number: z.number().positive(),
-  created_at: z.string().datetime({ offset: true }),
-  updated_at: z.string().datetime({ offset: true }),
+  id: uuidRule,
+  year: positiveNumber,
+  internal_process_number: positiveNumber,
+  created_at: datetimeRule,
+  updated_at: datetimeRule,
 })
 export const DemandRowsSchema = z.array(DemandSchema)
 
 export const DemandInsertSchema = DemandBaseSchema
 
 export const DemandFormSchema = DemandBaseSchema.extend({
-  description: nameField(2),
-  object_types_id: z.number({ required_error: REQUIRED_SELECT_FIELD }).positive(),
+  description: nameField(6),
+  object_types_id: numberSelectOption,
   dispute_date: futureDate.optional(),
   electronic_process_number: DemandBaseSchema.shape.electronic_process_number.optional(),
 })

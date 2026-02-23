@@ -1,5 +1,8 @@
 import { z } from '~/schemas'
 
+export const dateRule = z.string().date()
+export const datetimeRule = z.string().datetime({ offset: true })
+
 export const futureDate = z
   .string({ required_error: REQUIRED_FIELD })
   .date(INVALID_DATE)
