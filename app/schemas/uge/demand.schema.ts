@@ -1,7 +1,8 @@
-import { z, futureDate } from '~/schemas'
+import { z } from '~/schemas'
+import { nameRule, futureDate, nameField } from '~/schemas/rules'
 
 export const DemandBaseSchema = z.object({
-  description: z.string().min(1),
+  description: nameRule,
   dispute_date: z.string().date().nullable(),
   object_types_id: z.number().positive(),
   electronic_process_number: z.string().min(1).nullable(),
@@ -19,7 +20,7 @@ export const DemandRowsSchema = z.array(DemandSchema)
 export const DemandInsertSchema = DemandBaseSchema
 
 export const DemandFormSchema = DemandBaseSchema.extend({
-  description: z.string({ required_error: REQUIRED_FIELD }).min(1, REQUIRED_FIELD),
+  description: nameField(2),
   object_types_id: z.number({ required_error: REQUIRED_SELECT_FIELD }).positive(),
   dispute_date: futureDate.optional(),
   electronic_process_number: DemandBaseSchema.shape.electronic_process_number.optional(),
