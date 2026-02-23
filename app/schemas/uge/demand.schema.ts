@@ -3,8 +3,6 @@ import { z } from '~/schemas'
 export const DemandBaseSchema = z.object({
   description: z.string().min(1),
   dispute_date: z.string().date().nullable(),
-  // year: z.number().int(),
-  // internal_process_number: z.number().positive(),
   object_types_id: z.number().positive(),
   electronic_process_number: z.string().min(1).nullable(),
 })
@@ -21,9 +19,18 @@ export const DemandRowsSchema = z.array(DemandSchema)
 export const DemandInsertSchema = DemandBaseSchema
 
 export const DemandFormSchema = DemandBaseSchema.extend({
-  description: z.string().min(1, REQUIRED_FIELD),
+  description: z.string({ required_error: REQUIRED_FIELD }).min(1, REQUIRED_FIELD),
   object_types_id: z.number({ required_error: REQUIRED_SELECT_FIELD }).positive(),
-  dispute_date: DemandBaseSchema.shape.dispute_date.optional(),
+  dispute_date: z
+    .string()
+    .date('Data Inválida')
+    .refine((value) => {
+      const date = new Date(value + 'T00:00:00')
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      return date >= today
+    }, 'A data não pode ser no passado')
+    .optional(),
   electronic_process_number: DemandBaseSchema.shape.electronic_process_number.optional(),
 })
 
