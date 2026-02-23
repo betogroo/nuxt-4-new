@@ -1,9 +1,15 @@
 import { z } from '~/schemas'
-import type { ObjectType } from '~/types'
+import { nameRule, positiveNumber } from '~/schemas/rules'
 
-export const ObjectTypeSchema: z.ZodType<ObjectType> = z.object({
-  id: z.number(),
-  created_at: z.string().datetime({ offset: true }),
-  name: z.string(),
-  ptres: z.number(),
+export const ObjectTypeBaseSchema = z.object({
+  name: nameRule,
+  ptres: positiveNumber,
 })
+
+export const ObjectTypeSchema = ObjectTypeBaseSchema.extend({
+  id: positiveNumber,
+})
+
+export const ObjectTypeRowsSchema = z.array(ObjectTypeSchema)
+
+export const ObjectTypeInsertSchema = ObjectTypeBaseSchema

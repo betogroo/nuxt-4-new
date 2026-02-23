@@ -1,5 +1,3 @@
-import type { Tables, Inserts, Updates } from '~/types'
+import type { ObjectTypeSchema, z } from '~/schemas'
 
-export type ObjectType = Tables<'object_types'>
-export type ObjectTypeInsert = Inserts<'object_types'>
-export type ObjectTypeUpdate = Updates<'object_types'>
+export type ObjectType = z.infer<typeof ObjectTypeSchema>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { DemandFormSchema, DemandInsertSchema } from '~/schemas'
-  import type { DemandForm } from '~/types'
+  import type { DemandForm, ObjectType } from '~/types'
 
   const { create, isCreating } = useDemand()
 
@@ -27,16 +27,16 @@
     handleReset()
   }
 
-  const items = [
+  const items: ObjectType[] = [
     {
       id: 1,
       name: 'Material de Consumo',
-      ptres: '180205',
+      ptres: 180205,
     },
     {
       id: 2,
       name: 'Material Permanente',
-      ptres: '180211',
+      ptres: 180211,
     },
   ]
 </script>
