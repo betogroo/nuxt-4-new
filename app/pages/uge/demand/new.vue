@@ -1,11 +1,31 @@
 <script setup lang="ts">
+  import { AppError } from '~/error/AppError'
   import { DemandFormSchema, DemandInsertSchema } from '~/schemas'
-  import type { DemandForm, ObjectType } from '~/types'
+  import type { DemandForm } from '~/types'
 
   const { create, isCreating } = useDemand()
+  const { fetchAll } = useDemandObjectType()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<DemandForm>(DemandFormSchema, {
     description: '',
+  })
+
+  const {
+    data: objectTypes,
+    error,
+    status,
+  } = useAsyncData('objectTypes', async () => {
+    try {
+      return await fetchAll()
+    } catch (error) {
+      if (error instanceof AppError) {
+        throw createError({ statusCode: 400, statusMessage: error.message })
+      }
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Erro inesperado ao carregar as demandas',
+      })
+    }
   })
 
   const onSubmit = handleSubmit(async () => {
@@ -26,19 +46,6 @@
   const onReset = () => {
     handleReset()
   }
-
-  const items: ObjectType[] = [
-    {
-      id: 1,
-      name: 'Material de Consumo',
-      ptres: 180205,
-    },
-    {
-      id: 2,
-      name: 'Material Permanente',
-      ptres: 180211,
-    },
-  ]
 </script>
 
 <template>
@@ -49,12 +56,16 @@
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
 
       <ui-select
+        :disabled="status === 'pending'"
         item-subtitle="ptres"
         item-title="name"
-        :items="items"
-        label="Tipo de Processo"
+        :items="objectTypes || []"
+        label="Selecione uma categoria"
+        :loading="status === 'pending'"
         name="object_types_id"
       />
     </ui-form>
+    <ui-alert v-if="error" :title="error.statusMessage" type="error" />
+    {{ status }}
   </ui-page>
 </template>
