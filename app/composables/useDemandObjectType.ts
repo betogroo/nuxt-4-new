@@ -1,9 +1,8 @@
 import { ObjectTypeRowsSchema } from '~/schemas'
 import { AppError } from '~/error/AppError'
 
-const supabase = useSupabaseClient()
-
 const useDemandObjectType = () => {
+  const supabase = useSupabaseClient()
   const fetchAll = async () => {
     if (import.meta.dev) {
       await delay(DELAY)

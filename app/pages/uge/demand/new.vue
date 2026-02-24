@@ -14,19 +14,31 @@
     data: objectTypes,
     error,
     status,
-  } = useAsyncData('objectTypes', async () => {
-    try {
-      return await fetchAll()
-    } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, statusMessage: error.message })
+    execute,
+  } = useAsyncData(
+    'objectTypes',
+    async () => {
+      try {
+        return await fetchAll()
+      } catch (error) {
+        if (error instanceof AppError) {
+          throw createError({ statusCode: 400, statusMessage: error.message })
+        }
+        throw createError({
+          statusCode: 500,
+          statusMessage: 'Erro inesperado ao carregar as demandas',
+        })
       }
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Erro inesperado ao carregar as demandas',
-      })
-    }
-  })
+    },
+    { immediate: false },
+  )
+
+  const onSelectOpen = (isOpen: boolean) => {
+    if (!isOpen) return
+    if (status.value !== 'idle') return
+
+    execute()
+  }
 
   const onSubmit = handleSubmit(async () => {
     try {
@@ -63,6 +75,7 @@
         label="Selecione uma categoria"
         :loading="status === 'pending'"
         name="object_types_id"
+        @focus="onSelectOpen"
       />
     </ui-form>
     <ui-alert v-if="error" :title="error.statusMessage" type="error" />
