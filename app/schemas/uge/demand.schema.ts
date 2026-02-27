@@ -19,6 +19,7 @@ export const DemandBaseSchema = z.object({
 
 export const DemandSchema = DemandBaseSchema.extend({
   id: uuidRule,
+  owner_id: uuidRule,
   year: positiveNumber,
   internal_process_number: positiveNumber,
   created_at: datetimeRule,

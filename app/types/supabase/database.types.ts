@@ -17,6 +17,7 @@ export type Database = {
           id: string
           internal_process_number: number
           object_types_id: number | null
+          owner_id: string
           updated_at: string
           year: number
         }
@@ -28,6 +29,7 @@ export type Database = {
           id?: string
           internal_process_number: number
           object_types_id?: number | null
+          owner_id?: string
           updated_at?: string
           year: number
         }
@@ -39,6 +41,7 @@ export type Database = {
           id?: string
           internal_process_number?: number
           object_types_id?: number | null
+          owner_id?: string
           updated_at?: string
           year?: number
         }
@@ -48,6 +51,13 @@ export type Database = {
             columns: ['object_types_id']
             isOneToOne: false
             referencedRelation: 'object_types'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_owner_id_fkey'
+            columns: ['owner_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
         ]
@@ -144,21 +154,21 @@ export type Database = {
           created_at: string
           id: string
           name: string | null
-          role: string | null
+          role: string
         }
         Insert: {
           avatar_url?: string | null
           created_at?: string
           id: string
           name?: string | null
-          role?: string | null
+          role?: string
         }
         Update: {
           avatar_url?: string | null
           created_at?: string
           id?: string
           name?: string | null
-          role?: string | null
+          role?: string
         }
         Relationships: [
           {
@@ -185,7 +195,7 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

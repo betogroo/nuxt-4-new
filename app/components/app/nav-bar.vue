@@ -27,7 +27,7 @@
   <v-app-bar color="primary" density="compact">
     <v-app-bar-title class="d-flex align-center">
       <ui-link-back v-if="route.meta.showBack" icon />
-      <span>Nuxt App </span>
+      <span>Nuxt App = {{ user?.email }} </span>
     </v-app-bar-title>
 
     <div class="d-flex mr-3">
