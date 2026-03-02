@@ -11,6 +11,7 @@ export * from './ui/skeleton-loader.schema'
 export * from './ui/textfield'
 
 export * from './auth/auth.schema'
+export * from './profile/profile.schema'
 
 export * from './app/breadcrumb.schema'
 export * from './app/menu.schema'
