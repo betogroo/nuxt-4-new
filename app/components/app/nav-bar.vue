@@ -6,6 +6,7 @@
   const { signout } = useAuth()
   const { notify } = useNotification()
   const user = useSupabaseUser()
+  const { data: currentUser, pending } = useCurrentUser()
   const navbarItems = getMenuByArea('navbar')
 
   const logout = async () => {
@@ -27,10 +28,10 @@
   <v-app-bar color="primary" density="compact">
     <v-app-bar-title class="d-flex align-center">
       <ui-link-back v-if="route.meta.showBack" icon />
-      <span>Nuxt App = {{ user?.email }} </span>
+      <span>Nuxt App = {{ currentUser?.profile?.name || user?.email }} </span>
     </v-app-bar-title>
 
-    <div class="d-flex mr-3">
+    <div v-if="!pending" class="d-flex mr-3">
       <ui-btn-icon
         v-for="item in navbarItems"
         :key="item?.path"
@@ -38,6 +39,7 @@
         :icon="item?.menu?.icon"
         :to="item?.path"
       />
-      <ui-btn-icon v-if="user" icon="logout" @click="logout" /></div
+
+      <ui-btn-icon v-if="currentUser" icon="logout" @click="logout" /></div
   ></v-app-bar>
 </template>
