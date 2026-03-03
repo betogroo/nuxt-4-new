@@ -1,12 +1,12 @@
-import type { Demand, DemandInsert, DemandWithObjectType } from '~/types'
-import { DemandSchema, DemandWithObjectTypeRowsSchema } from '~/schemas'
+import type { Demand, DemandInsert, DemandRead } from '~/types'
+import { DemandSchema, DemandReadRowsSchema } from '~/schemas'
 import { AppError } from '~/error/AppError'
 const useDemand = () => {
   const supabase = useSupabaseClient()
 
   const isCreating = ref(false)
 
-  const fetchAll = async (): Promise<DemandWithObjectType[]> => {
+  const fetchAll = async (): Promise<DemandRead[]> => {
     if (import.meta.dev) {
       await delay(DELAY)
     }
@@ -17,7 +17,7 @@ const useDemand = () => {
 
     if (error) throw new AppError('Erro ao buscar as demandas', error)
 
-    const parsed = DemandWithObjectTypeRowsSchema.safeParse(data)
+    const parsed = DemandReadRowsSchema.safeParse(data)
     if (!parsed.success) {
       throw new AppError('Erro ao validar dados de demanda', parsed.error)
     }
