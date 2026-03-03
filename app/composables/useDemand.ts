@@ -18,7 +18,6 @@ const useDemand = () => {
     if (error) throw new AppError('Erro ao buscar as demandas', error)
 
     const parsed = DemandReadRowsSchema.safeParse(data)
-    console.log(parsed.error)
     if (!parsed.success) {
       throw new AppError('Erro ao validar dados de demanda', parsed.error)
     }
@@ -43,7 +42,16 @@ const useDemand = () => {
       isCreating.value = false
     }
   }
-  return { fetchAll, create, isCreating }
+
+  const get = async (id: string) => {
+    if (import.meta.dev) {
+      await delay(500)
+    }
+    const { data, error } = await supabase.from('demand').select('*').eq('id', id).single()
+    if (error) throw error
+    return DemandSchema.parse(data)
+  }
+  return { fetchAll, create, isCreating, get }
 }
 
 export default useDemand

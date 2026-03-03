@@ -51,7 +51,7 @@
           {{ format.demandNumber(demand.internal_process_number, demand.year) }} Criado por
           {{ demand.owner?.name || demand.owner?.id }}</template
         >
-        <template #prepend> <ui-btn-icon icon="eye" /></template>
+        <template #prepend> <ui-btn-icon icon="eye" :to="`./demand/${demand.id}`" /></template>
         <template #actions
           ><ui-btn-icon v-for="icon in iconList" :key="icon" compact :icon="icon" size="small" />
         </template>
