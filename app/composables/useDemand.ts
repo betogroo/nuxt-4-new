@@ -12,12 +12,13 @@ const useDemand = () => {
     }
     const { data, error } = await supabase.from('demand').select(`
         *,
-        object_types (*)
+        object_types (*), owner: profiles (*)
         `)
 
     if (error) throw new AppError('Erro ao buscar as demandas', error)
 
     const parsed = DemandReadRowsSchema.safeParse(data)
+    console.log(parsed.error)
     if (!parsed.success) {
       throw new AppError('Erro ao validar dados de demanda', parsed.error)
     }
