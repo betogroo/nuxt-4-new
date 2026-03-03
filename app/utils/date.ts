@@ -1,5 +1,9 @@
-export const dateBr = (value: string) => {
-  const [datePart = ''] = value.split('T')
-  const [year, mouth, day] = datePart.split('-')
-  return `${day}/${mouth}/${year}`
+export const dateBr = (value: string | null) => {
+  if (!value) return 'Data não cadastrada'
+
+  const date = new Date(value)
+
+  if (isNaN(date.getTime())) return 'Data inválida'
+
+  return date.toLocaleDateString('pt-BR')
 }
