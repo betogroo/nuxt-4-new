@@ -15,6 +15,7 @@ export const DemandSchema = DemandBaseSchema.extend({
   internal_process_number: positiveNumber,
   created_at: datetimeRule,
   updated_at: datetimeRule,
+  status: z.string(),
 })
 export const DemandRowsSchema = z.array(DemandSchema)
 

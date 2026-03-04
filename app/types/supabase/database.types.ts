@@ -18,6 +18,7 @@ export type Database = {
           internal_process_number: number
           object_types_id: number | null
           owner_id: string
+          status: string | null
           updated_at: string
           year: number
         }
@@ -30,6 +31,7 @@ export type Database = {
           internal_process_number: number
           object_types_id?: number | null
           owner_id?: string
+          status?: string | null
           updated_at?: string
           year: number
         }
@@ -42,6 +44,7 @@ export type Database = {
           internal_process_number?: number
           object_types_id?: number | null
           owner_id?: string
+          status?: string | null
           updated_at?: string
           year?: number
         }
@@ -195,7 +198,9 @@ export type Database = {
       }
     }
     Functions: {
-      is_admin: { Args: never; Returns: boolean }
+      can_read_demand: { Args: { demand_owner: string }; Returns: boolean }
+      can_read_profile: { Args: { profile_id: string }; Returns: boolean }
+      is_admin: { Args: never; Returns: boolean } | { Args: { user_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
