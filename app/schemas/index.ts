@@ -23,6 +23,8 @@ export * from './voting/election/election.update.schema'
 
 export * from './uge/object-type/object-type.base.schema'
 
+export * from './uge/product/product.base.schema'
+
 export * from './uge/demand/demand.base.schema'
 export * from './uge/demand/demand.read.schema'
 export * from './uge/demand/demand.insert.schema'

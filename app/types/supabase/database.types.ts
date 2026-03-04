@@ -151,6 +151,48 @@ export type Database = {
         }
         Relationships: []
       }
+      products: {
+        Row: {
+          active: boolean | null
+          cat_mat: number
+          created_at: string
+          description: string
+          id: string
+          name: string
+          nat_bec: number | null
+          nat_gov: number | null
+          pdm: number | null
+          specifications: Json | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          cat_mat: number
+          created_at?: string
+          description: string
+          id?: string
+          name: string
+          nat_bec?: number | null
+          nat_gov?: number | null
+          pdm?: number | null
+          specifications?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          cat_mat?: number
+          created_at?: string
+          description?: string
+          id?: string
+          name?: string
+          nat_bec?: number | null
+          nat_gov?: number | null
+          pdm?: number | null
+          specifications?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
