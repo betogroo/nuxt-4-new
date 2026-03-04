@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import type { Profile } from '~/types'
+  import { ProductRowsSchema } from '~/schemas'
+  import type { Product } from '~/types'
 
   definePageMeta({
     layout: 'default',
@@ -20,10 +21,10 @@
   watch(title, (v) => (tempTitle.value = v))
 
   const supabase = useSupabaseClient()
-  const profiles = ref<Profile[] | null>([])
+  const products = ref<Product[] | null>([])
   try {
-    const { data } = await supabase.from('profiles').select('*')
-    if (data) profiles.value = data
+    const { data } = await supabase.from('products').select('*')
+    if (data) products.value = ProductRowsSchema.parse(data)
   } catch (error) {
     console.log(error)
   }
@@ -35,7 +36,7 @@
     <ui-btn @click="testStore.setTitle(tempTitle)">Alterar</ui-btn>
     <ui-btn color="red" variant="outlined" @click="testStore.$reset">Reset</ui-btn>
     <pre>
-      {{ profiles }}
+      {{ products }}
     </pre>
   </ui-page>
 </template>
