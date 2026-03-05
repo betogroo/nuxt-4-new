@@ -1,5 +1,5 @@
 export const MENU_ORDER = {
-  navbar: ['index', 'demand', 'elections', 'about', 'contact'],
+  navbar: ['index', 'demand', 'products', 'elections', 'about', 'contact'],
   drawer: ['index', 'about'],
   footer: ['index'],
   components: ['dialog', 'notifications'],

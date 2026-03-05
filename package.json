@@ -17,7 +17,7 @@
     "test": "vitest run",
     "prepare": "husky",
     "ncu": "ncu -i --format group",
-    "gen-types": "npx supabase gen types typescript --project-id flcgfmmbnepvlulxccxx --schema public > app/types/supabase/database.types.ts"
+    "gen-types": "supabase gen types typescript --linked --schema public > app/types/supabase/database.types.ts"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

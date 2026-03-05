@@ -12,10 +12,13 @@ export * from './ui/notification'
 export * from './ui/textfield'
 
 export * from './auth/auth'
+export * from './profile/profile'
 
 export * from './app/supabase'
 export * from './app/vue-router'
 
 export * from './voting/election'
+
 export * from './uge/demand'
+export * from './uge/product'
 export * from './uge/object-type'

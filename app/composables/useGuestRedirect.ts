@@ -7,7 +7,7 @@ const useGuestRedirect = (options?: { fallback?: RouteLocationRaw }) => {
     user,
     () => {
       if (!user.value) return
-      const path = redirectInfo.pluck() || options?.fallback || '/'
+      const path = redirectInfo.pluck() || options?.fallback || '/profile'
       if (route.path !== path) {
         navigateTo(path)
       }

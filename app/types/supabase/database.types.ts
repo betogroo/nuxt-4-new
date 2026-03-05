@@ -17,6 +17,8 @@ export type Database = {
           id: string
           internal_process_number: number
           object_types_id: number | null
+          owner_id: string
+          status: string | null
           updated_at: string
           year: number
         }
@@ -28,6 +30,8 @@ export type Database = {
           id?: string
           internal_process_number: number
           object_types_id?: number | null
+          owner_id?: string
+          status?: string | null
           updated_at?: string
           year: number
         }
@@ -39,6 +43,8 @@ export type Database = {
           id?: string
           internal_process_number?: number
           object_types_id?: number | null
+          owner_id?: string
+          status?: string | null
           updated_at?: string
           year?: number
         }
@@ -48,6 +54,13 @@ export type Database = {
             columns: ['object_types_id']
             isOneToOne: false
             referencedRelation: 'object_types'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_owner_id_fkey'
+            columns: ['owner_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
         ]
@@ -138,12 +151,98 @@ export type Database = {
         }
         Relationships: []
       }
+      products: {
+        Row: {
+          active: boolean | null
+          cat_mat: number
+          created_at: string
+          description: string
+          id: string
+          name: string
+          nat_bec: number | null
+          nat_gov: number | null
+          pdm: number | null
+          specifications: Json | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          cat_mat: number
+          created_at?: string
+          description: string
+          id?: string
+          name: string
+          nat_bec?: number | null
+          nat_gov?: number | null
+          pdm?: number | null
+          specifications?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          cat_mat?: number
+          created_at?: string
+          description?: string
+          id?: string
+          name?: string
+          nat_bec?: number | null
+          nat_gov?: number | null
+          pdm?: number | null
+          specifications?: Json | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          name: string | null
+          role: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          name?: string | null
+          role?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          name?: string | null
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'profiles_id_fkey'
+            columns: ['id']
+            isOneToOne: true
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      users: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          id: string | null
+          name: string | null
+          role: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      can_read_demand: { Args: { demand_owner: string }; Returns: boolean }
+      can_read_profile: { Args: { profile_id: string }; Returns: boolean }
+      is_admin: { Args: never; Returns: boolean } | { Args: { user_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

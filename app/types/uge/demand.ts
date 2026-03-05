@@ -3,14 +3,14 @@ import type {
   DemandSchema,
   z,
   DemandRowsSchema,
-  DemandWithObjectTypeSchema,
+  DemandReadSchema,
   DemandInsertSchema,
   DemandFormSchema,
 } from '~/schemas'
 
 export type Demand = z.infer<typeof DemandSchema>
 export type DemandRows = z.infer<typeof DemandRowsSchema>
-export type DemandWithObjectType = z.infer<typeof DemandWithObjectTypeSchema>
+export type DemandRead = z.infer<typeof DemandReadSchema>
 
 export type DemandInsert = z.infer<typeof DemandInsertSchema>
 export type DemandForm = z.infer<typeof DemandFormSchema>

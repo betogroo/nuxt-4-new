@@ -17,7 +17,7 @@
 
   watch(title, (v) => (tempTitle.value = v))
 </script>
-!
+
 <template>
   <ui-page :title="`${upperTitle} - Home page`">
     <ui-text-field v-model="tempTitle" label="Teste" name="test" />

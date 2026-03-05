@@ -19,4 +19,5 @@ export const ICONS = {
   currency: 'mdi-currency-usd',
   doc: 'mdi-file-document',
   db: 'mdi-database',
+  product: 'mdi-car',
 } as const
