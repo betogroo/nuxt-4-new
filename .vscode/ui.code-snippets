@@ -1,0 +1,25 @@
+{
+  "SFC Ui Page": {
+    "description": "UI Scaffold Page",
+    "prefix": "sfc-ui-page",
+    "scope": "vue, html",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "\tdefinePageMeta({",
+      "\t\tlayout: 'default',",
+      "\t\tmenu: {",
+      "\t\t\ttitle: '$1',",
+      "\t\t\thidden: false,",
+      "\t\t\ticon: '$2',",
+      "\t\t\tareas: ['navbar'],",
+      "\t\t\tpriority: '$3',",
+      "\t\t},",
+      "\t})",
+      "</script>",
+      "\n",
+      "<template>",
+      "\t<ui-page title=\"$1\">...</ui-page>",
+      "</template>",
+    ],
+  },
+}
