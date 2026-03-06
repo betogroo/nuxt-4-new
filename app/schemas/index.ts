@@ -23,6 +23,9 @@ export * from './voting/election/election.update.schema'
 
 export * from './uge/object-type/object-type.base.schema'
 
+export * from './uge/unity/unity.base.schema'
+export * from './uge/unity/unity.read.schema'
+
 export * from './uge/product/product.base.schema'
 export * from './uge/product/product.read.schema'
 
