@@ -23,6 +23,13 @@
     const { data } = await supabase.from('unity').select('*')
     return data
   })
+  const { data: objectTypes, status: statusObjectTypes } = useAsyncData(
+    'object_types',
+    async () => {
+      const { data } = await supabase.from('object_types').select('*')
+      return data
+    },
+  )
   const { data: productClass, status: productClassStatus } = useAsyncData(
     'product_class',
     async () => {
@@ -39,6 +46,12 @@
     <ui-btn color="red" variant="outlined" @click="testStore.$reset">Reset</ui-btn>
     <ui-select item-subtitle="name_bec" item-title="name" :items="units || []" name="units" />
     <ui-select
+      item-subtitle="ptres"
+      item-title="name"
+      :items="objectTypes || []"
+      name="objectTypes"
+    />
+    <ui-select
       item-subtitle="code"
       item-title="name"
       item-value="code"
@@ -47,5 +60,6 @@
     />
     <div>{{ status }}</div>
     <div>{{ productClassStatus }}</div>
+    <div>{{ statusObjectTypes }}</div>
   </ui-page>
 </template>
