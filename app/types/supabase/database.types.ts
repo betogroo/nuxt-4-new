@@ -151,6 +151,30 @@ export type Database = {
         }
         Relationships: []
       }
+      product_class: {
+        Row: {
+          code: number
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          code: number
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          code?: number
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       product_specifications: {
         Row: {
           created_at: string
