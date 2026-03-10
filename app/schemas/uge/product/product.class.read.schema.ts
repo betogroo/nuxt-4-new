@@ -1,3 +1,3 @@
-import { ProductSchema } from '~/schemas'
+import { ProductClassSchema } from '~/schemas'
 
-export const ProductClassReadSchema = ProductSchema
+export const ProductClassReadSchema = ProductClassSchema
