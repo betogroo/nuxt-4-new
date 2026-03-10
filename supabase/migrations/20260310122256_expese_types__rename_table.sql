@@ -1,0 +1,1 @@
+alter table expense_type rename to expense_types;

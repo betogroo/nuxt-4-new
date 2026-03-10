@@ -130,6 +130,30 @@ export type Database = {
         }
         Relationships: []
       }
+      expense_types: {
+        Row: {
+          created_at: string
+          expense_number: number
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          expense_number: number
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          expense_number?: number
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       object_types: {
         Row: {
           created_at: string
@@ -207,6 +231,7 @@ export type Database = {
           nat_bec: number | null
           nat_gov: number | null
           pdm: number | null
+          product_class_id: string | null
           specifications: Json | null
           updated_at: string
         }
@@ -220,6 +245,7 @@ export type Database = {
           nat_bec?: number | null
           nat_gov?: number | null
           pdm?: number | null
+          product_class_id?: string | null
           specifications?: Json | null
           updated_at?: string
         }
@@ -233,10 +259,19 @@ export type Database = {
           nat_bec?: number | null
           nat_gov?: number | null
           pdm?: number | null
+          product_class_id?: string | null
           specifications?: Json | null
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'product_product_class_id_fkey'
+            columns: ['product_class_id']
+            isOneToOne: false
+            referencedRelation: 'product_class'
+            referencedColumns: ['id']
+          },
+        ]
       }
       profiles: {
         Row: {

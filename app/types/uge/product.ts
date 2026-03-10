@@ -6,8 +6,8 @@ import type {
   z,
   ProductSpecificationRowsSchema,
   ProductClassReadSchema,
+  ProductClassRowsSchema,
 } from '~/schemas'
-import type { ProductClassRowsSchema } from '~/schemas/uge/product/product.class.readschema'
 
 export type Product = z.infer<typeof ProductSchema>
 export type ProductRows = z.infer<typeof ProductRowsSchema>

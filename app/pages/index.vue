@@ -37,6 +37,13 @@
       return data
     },
   )
+  const { data: expenseTypes, status: expenseTypesStatus } = useAsyncData(
+    'expense_types',
+    async () => {
+      const { data } = await supabase.from('expense_types').select('*')
+      return data
+    },
+  )
 </script>
 
 <template>
@@ -58,8 +65,16 @@
       :items="productClass || []"
       name="productClass"
     />
+    <ui-select
+      item-subtitle="expense_number"
+      item-title="name"
+      item-value="id"
+      :items="expenseTypes || []"
+      name="expenseTypes"
+    />
     <div>{{ status }}</div>
     <div>{{ productClassStatus }}</div>
     <div>{{ statusObjectTypes }}</div>
+    <div>{{ expenseTypesStatus }}</div>
   </ui-page>
 </template>
