@@ -32,11 +32,11 @@ export * from './uge/unity/unity.read.schema'
 export * from './uge/product/product.specification.base.schema'
 export * from './uge/product/product.specification.read.schema'
 
-export * from './uge/product/product.base.schema'
-export * from './uge/product/product.read.schema'
-
 export * from './uge/expense-type/expense.type.base.schema'
 export * from './uge/expense-type/expense.type.read.schema'
+
+export * from './uge/product/product.base.schema'
+export * from './uge/product/product.read.schema'
 
 export * from './uge/demand/demand.base.schema'
 export * from './uge/demand/demand.read.schema'
