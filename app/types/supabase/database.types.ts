@@ -226,6 +226,7 @@ export type Database = {
           cat_mat: number
           created_at: string
           description: string
+          expense_type_id: string
           id: string
           name: string
           nat_bec: number | null
@@ -240,6 +241,7 @@ export type Database = {
           cat_mat: number
           created_at?: string
           description: string
+          expense_type_id: string
           id?: string
           name: string
           nat_bec?: number | null
@@ -254,6 +256,7 @@ export type Database = {
           cat_mat?: number
           created_at?: string
           description?: string
+          expense_type_id?: string
           id?: string
           name?: string
           nat_bec?: number | null
@@ -269,6 +272,13 @@ export type Database = {
             columns: ['product_class_id']
             isOneToOne: false
             referencedRelation: 'product_class'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'products_expense_types_id_fkey'
+            columns: ['expense_type_id']
+            isOneToOne: false
+            referencedRelation: 'expense_types'
             referencedColumns: ['id']
           },
         ]

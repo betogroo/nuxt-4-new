@@ -9,7 +9,10 @@ const useProduct = () => {
     if (import.meta.dev) {
       await delay(DELAY)
     }
-    const { data, error } = await supabase.from('products').select(`*`)
+    const { data, error } = await supabase.from('products').select(`
+      *,
+      product_class (*)
+      `)
 
     if (error) throw new AppError('Erro ao buscar produtos', error)
 
