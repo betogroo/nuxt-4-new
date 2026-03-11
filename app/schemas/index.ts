@@ -12,6 +12,7 @@ export * from './ui/textfield'
 
 export * from './auth/auth.schema'
 export * from './profile/profile.base.schema'
+export * from './profile/profile.read.schema'
 
 export * from './app/breadcrumb.schema'
 export * from './app/menu.schema'

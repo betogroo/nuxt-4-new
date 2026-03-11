@@ -1,8 +1,8 @@
-import { z, DemandSchema, ObjectTypeSchema, ProfileSchema } from '~/schemas'
+import { z, DemandSchema, ObjectTypeSchema, ProfileReadSchema } from '~/schemas'
 
 export const DemandReadSchema = DemandSchema.extend({
   object_types: ObjectTypeSchema.nullable(),
-  owner: ProfileSchema.nullable(),
+  owner: ProfileReadSchema.nullable(),
 })
 
 export const DemandReadRowsSchema = z.array(DemandReadSchema)
