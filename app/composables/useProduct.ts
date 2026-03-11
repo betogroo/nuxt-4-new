@@ -11,8 +11,8 @@ const useProduct = () => {
     }
     const { data, error } = await supabase.from('products').select(`
       *,
-      product_class (*),
-      expense_types (*)
+      product_class (id, name, code),
+      expense_types (id, expense_number, name)
       `)
 
     if (error) throw new AppError('Erro ao buscar produtos', error)

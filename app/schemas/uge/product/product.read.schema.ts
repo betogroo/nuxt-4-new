@@ -1,8 +1,8 @@
-import { z, ProductSchema, ProductClassSchema, ExpenseTypeSchema } from '~/schemas'
+import { z, ProductSchema, ProductClassReadSchema, ExpenseTypeReadSchema } from '~/schemas'
 
 export const ProductReadSchema = ProductSchema.extend({
-  product_class: ProductClassSchema,
-  expense_types: ExpenseTypeSchema,
+  product_class: ProductClassReadSchema,
+  expense_types: ExpenseTypeReadSchema,
 })
 
 export const ProductReadRowsSchema = z.array(ProductReadSchema)
