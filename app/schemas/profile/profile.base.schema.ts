@@ -12,4 +12,5 @@ const ProfileBaseSchema = z.object({
 export const ProfileSchema = ProfileBaseSchema.extend({
   id: uuidRule,
   created_at: datetimeRule,
+  updated_at: datetimeRule,
 })
