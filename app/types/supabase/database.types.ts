@@ -94,6 +94,67 @@ export type Database = {
           },
         ]
       }
+      demand_items: {
+        Row: {
+          created_at: string
+          demand_id: string
+          estimated_price: number | null
+          id: string
+          offered_price: number | null
+          position: number
+          product_id: string
+          quantity: number | null
+          unity_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          demand_id: string
+          estimated_price?: number | null
+          id?: string
+          offered_price?: number | null
+          position: number
+          product_id: string
+          quantity?: number | null
+          unity_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          demand_id?: string
+          estimated_price?: number | null
+          id?: string
+          offered_price?: number | null
+          position?: number
+          product_id?: string
+          quantity?: number | null
+          unity_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_items_demand_id_fkey'
+            columns: ['demand_id']
+            isOneToOne: false
+            referencedRelation: 'demand'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
+            referencedRelation: 'products'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_unity_id_fkey'
+            columns: ['unity_id']
+            isOneToOne: false
+            referencedRelation: 'unity'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       demand_sequences: {
         Row: {
           current_number: number
@@ -223,6 +284,7 @@ export type Database = {
       products: {
         Row: {
           active: boolean | null
+          cat_bec: number
           cat_mat: number
           created_at: string
           description: string
@@ -238,6 +300,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean | null
+          cat_bec: number
           cat_mat: number
           created_at?: string
           description: string
@@ -253,6 +316,7 @@ export type Database = {
         }
         Update: {
           active?: boolean | null
+          cat_bec?: number
           cat_mat?: number
           created_at?: string
           description?: string
