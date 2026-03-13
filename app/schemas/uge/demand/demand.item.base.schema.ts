@@ -10,6 +10,7 @@ export const DemandItemBaseSchema = z.object({
   estimated_price: positiveNumber.nullable(),
   offered_price: positiveNumber.nullable(),
   position: positiveNumber,
+  status: z.string(),
 })
 
 export const DemandItemSchema = DemandItemBaseSchema.extend({

@@ -104,6 +104,7 @@ export type Database = {
           position: number
           product_id: string
           quantity: number | null
+          status: string
           unity_id: string
           updated_at: string
         }
@@ -116,6 +117,7 @@ export type Database = {
           position: number
           product_id: string
           quantity?: number | null
+          status?: string
           unity_id: string
           updated_at?: string
         }
@@ -128,6 +130,7 @@ export type Database = {
           position?: number
           product_id?: string
           quantity?: number | null
+          status?: string
           unity_id?: string
           updated_at?: string
         }
