@@ -1,362 +1,15 @@
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: '14.1'
-  }
   public: {
     Tables: {
-      demand: {
-        Row: {
-          created_at: string
-          description: string
-          dispute_date: string | null
-          electronic_process_number: string | null
-          id: string
-          internal_process_number: number
-          object_types_id: number | null
-          owner_id: string
-          status: string | null
-          updated_at: string
-          year: number
-        }
-        Insert: {
-          created_at?: string
-          description: string
-          dispute_date?: string | null
-          electronic_process_number?: string | null
-          id?: string
-          internal_process_number: number
-          object_types_id?: number | null
-          owner_id?: string
-          status?: string | null
-          updated_at?: string
-          year: number
-        }
-        Update: {
-          created_at?: string
-          description?: string
-          dispute_date?: string | null
-          electronic_process_number?: string | null
-          id?: string
-          internal_process_number?: number
-          object_types_id?: number | null
-          owner_id?: string
-          status?: string | null
-          updated_at?: string
-          year?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'demand_object_types_id_fkey'
-            columns: ['object_types_id']
-            isOneToOne: false
-            referencedRelation: 'object_types'
-            referencedColumns: ['id']
-          },
-          {
-            foreignKeyName: 'demand_owner_id_fkey'
-            columns: ['owner_id']
-            isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
-        ]
-      }
-      demand_events: {
-        Row: {
-          created_at: string
-          demands_id: string
-          description: string | null
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          demands_id: string
-          description?: string | null
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          demands_id?: string
-          description?: string | null
-          id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'demand_events_demands_id_fkey'
-            columns: ['demands_id']
-            isOneToOne: false
-            referencedRelation: 'demand'
-            referencedColumns: ['id']
-          },
-        ]
-      }
-      demand_items: {
-        Row: {
-          created_at: string
-          demand_id: string
-          estimated_price: number | null
-          id: string
-          offered_price: number | null
-          position: number
-          product_id: string
-          quantity: number | null
-          status: string
-          unity_id: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          demand_id: string
-          estimated_price?: number | null
-          id?: string
-          offered_price?: number | null
-          position: number
-          product_id: string
-          quantity?: number | null
-          status?: string
-          unity_id: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          demand_id?: string
-          estimated_price?: number | null
-          id?: string
-          offered_price?: number | null
-          position?: number
-          product_id?: string
-          quantity?: number | null
-          status?: string
-          unity_id?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'demand_items_demand_id_fkey'
-            columns: ['demand_id']
-            isOneToOne: false
-            referencedRelation: 'demand'
-            referencedColumns: ['id']
-          },
-          {
-            foreignKeyName: 'demand_items_product_id_fkey'
-            columns: ['product_id']
-            isOneToOne: false
-            referencedRelation: 'products'
-            referencedColumns: ['id']
-          },
-          {
-            foreignKeyName: 'demand_items_unity_id_fkey'
-            columns: ['unity_id']
-            isOneToOne: false
-            referencedRelation: 'unity'
-            referencedColumns: ['id']
-          },
-        ]
-      }
-      demand_sequences: {
-        Row: {
-          current_number: number
-          year: number
-        }
-        Insert: {
-          current_number: number
-          year?: number
-        }
-        Update: {
-          current_number?: number
-          year?: number
-        }
-        Relationships: []
-      }
-      election: {
-        Row: {
-          created_at: string
-          date: string
-          id: string
-          name: string
-        }
-        Insert: {
-          created_at?: string
-          date: string
-          id?: string
-          name: string
-        }
-        Update: {
-          created_at?: string
-          date?: string
-          id?: string
-          name?: string
-        }
-        Relationships: []
-      }
-      expense_types: {
-        Row: {
-          created_at: string
-          expense_number: number
-          id: string
-          name: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          expense_number: number
-          id?: string
-          name: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          expense_number?: number
-          id?: string
-          name?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      object_types: {
-        Row: {
-          created_at: string
-          id: number
-          name: string
-          ptres: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          name: string
-          ptres: number
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          name?: string
-          ptres?: number
-        }
-        Relationships: []
-      }
-      product_class: {
-        Row: {
-          code: number
-          created_at: string
-          id: string
-          name: string
-          updated_at: string
-        }
-        Insert: {
-          code: number
-          created_at?: string
-          id?: string
-          name: string
-          updated_at?: string
-        }
-        Update: {
-          code?: number
-          created_at?: string
-          id?: string
-          name?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      product_specifications: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      products: {
-        Row: {
-          active: boolean | null
-          cat_bec: number
-          cat_mat: number
-          created_at: string
-          description: string
-          expense_type_id: string
-          id: string
-          name: string
-          nat_bec: number | null
-          nat_gov: number | null
-          pdm: number | null
-          product_class_id: string | null
-          specifications: Json | null
-          updated_at: string
-        }
-        Insert: {
-          active?: boolean | null
-          cat_bec: number
-          cat_mat: number
-          created_at?: string
-          description: string
-          expense_type_id: string
-          id?: string
-          name: string
-          nat_bec?: number | null
-          nat_gov?: number | null
-          pdm?: number | null
-          product_class_id?: string | null
-          specifications?: Json | null
-          updated_at?: string
-        }
-        Update: {
-          active?: boolean | null
-          cat_bec?: number
-          cat_mat?: number
-          created_at?: string
-          description?: string
-          expense_type_id?: string
-          id?: string
-          name?: string
-          nat_bec?: number | null
-          nat_gov?: number | null
-          pdm?: number | null
-          product_class_id?: string | null
-          specifications?: Json | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'product_product_class_id_fkey'
-            columns: ['product_class_id']
-            isOneToOne: false
-            referencedRelation: 'product_class'
-            referencedColumns: ['id']
-          },
-          {
-            foreignKeyName: 'products_expense_types_id_fkey'
-            columns: ['expense_type_id']
-            isOneToOne: false
-            referencedRelation: 'expense_types'
-            referencedColumns: ['id']
-          },
-        ]
-      }
       profiles: {
         Row: {
           avatar_url: string | null
           created_at: string
           id: string
           name: string | null
-          role: string
+          role: Database['public']['Enums']['user_role']
           updated_at: string
         }
         Insert: {
@@ -364,7 +17,7 @@ export type Database = {
           created_at?: string
           id: string
           name?: string | null
-          role?: string
+          role?: Database['public']['Enums']['user_role']
           updated_at?: string
         }
         Update: {
@@ -372,64 +25,21 @@ export type Database = {
           created_at?: string
           id?: string
           name?: string | null
-          role?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: 'profiles_id_fkey'
-            columns: ['id']
-            isOneToOne: true
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
-        ]
-      }
-      unity: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-          name_bec: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-          name_bec: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-          name_bec?: string
+          role?: Database['public']['Enums']['user_role']
           updated_at?: string
         }
         Relationships: []
       }
     }
     Views: {
-      users: {
-        Row: {
-          avatar_url: string | null
-          created_at: string | null
-          email: string | null
-          id: string | null
-          name: string | null
-          role: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
-      can_read_demand: { Args: { demand_owner: string }; Returns: boolean }
-      can_read_profile: { Args: { profile_id: string }; Returns: boolean }
-      is_admin: { Args: never; Returns: boolean } | { Args: { user_id: string }; Returns: boolean }
+      can_read_own_profile: { Args: { profile_id: string }; Returns: boolean }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      user_role: 'user' | 'admin'
     }
     CompositeTypes: {
       [_ in never]: never
@@ -554,6 +164,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_role: ['user', 'admin'],
+    },
   },
 } as const
