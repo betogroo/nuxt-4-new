@@ -22,11 +22,11 @@
         return await fetchAll()
       } catch (error) {
         if (error instanceof AppError) {
-          throw createError({ statusCode: 400, statusMessage: error.message })
+          throw createError({ statusCode: 400, message: error.message })
         }
         throw createError({
           statusCode: 500,
-          statusMessage: 'Erro inesperado ao carregar as demandas',
+          message: 'Erro inesperado ao carregar as demandas',
         })
       }
     },
@@ -78,7 +78,7 @@
         @focus="onSelectOpen"
       />
     </ui-form>
-    <ui-alert v-if="error" :title="error.statusMessage" type="error" />
+    <ui-alert v-if="error" :title="error.message" type="error" />
     {{ status }}
   </ui-page>
 </template>

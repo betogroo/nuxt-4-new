@@ -23,11 +23,11 @@
       return await fetchAll()
     } catch (error) {
       if (error instanceof AppError) {
-        throw createError({ statusCode: 400, statusMessage: error.message })
+        throw createError({ statusCode: 400, message: error.message })
       }
       throw createError({
         statusCode: 500,
-        statusMessage: 'Erro inesperado ao carregar os produtos',
+        message: 'Erro inesperado ao carregar os produtos',
       })
     }
   })
@@ -35,7 +35,7 @@
 
 <template>
   <ui-page title="Produtos">
-    <ui-alert v-if="error" :title="error.statusMessage" type="error" />
+    <ui-alert v-if="error" :title="error.message" type="error" />
     <ui-list v-else :items="products || []" lines="two" :status="status">
       <ui-list-item v-for="product in products" :key="product.id">
         <template #title> {{ product.name }}</template>

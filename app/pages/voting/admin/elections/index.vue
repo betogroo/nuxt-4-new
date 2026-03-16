@@ -44,11 +44,11 @@
       return await fetchAll()
     } catch (error) {
       if (error instanceof AppError) {
-        throw createError({ statusCode: 400, statusMessage: error.message })
+        throw createError({ statusCode: 400, message: error.message })
       }
       throw createError({
         statusCode: 500,
-        statusMessage: 'Erro inesperado ao carregar as eleições',
+        message: 'Erro inesperado ao carregar as eleições',
       })
     }
   })
@@ -66,7 +66,7 @@
       <ui-card-grid v-if="status === 'pending'"
         ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
       /></ui-card-grid>
-      <ui-alert v-else-if="error" :title="error.statusMessage" type="error" />
+      <ui-alert v-else-if="error" :title="error.message" type="error" />
       <div v-else-if="!elections?.length">
         <ui-alert title="Ainda não há eleições cadastradas" type="warning" />
       </div>
