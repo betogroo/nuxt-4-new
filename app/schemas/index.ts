@@ -27,8 +27,8 @@ export * from './uge/object-type/object-type.base.schema'
 export * from './uge/product/product.class.base.schema'
 export * from './uge/product/product.class.read.schema'
 
-export * from './uge/unity/unity.base.schema'
-export * from './uge/unity/unity.read.schema'
+export * from './uge/packaging-type/packaging-type.base.schema'
+export * from './uge/packaging-type/packaging-type.read.schema'
 
 export * from './uge/product/product.specification.base.schema'
 export * from './uge/product/product.specification.read.schema'
