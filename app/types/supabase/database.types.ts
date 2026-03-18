@@ -3,6 +3,30 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      expense_types: {
+        Row: {
+          created_at: string
+          expense_number: number
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          expense_number: number
+          id?: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          expense_number?: number
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       object_types: {
         Row: {
           created_at: string | null
@@ -47,6 +71,30 @@ export type Database = {
           id?: string
           name?: string
           name_bec?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      product_class: {
+        Row: {
+          code: number
+          created_at: string | null
+          id: string
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          code: number
+          created_at?: string | null
+          id?: string
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          code?: number
+          created_at?: string | null
+          id?: string
+          name?: string
           updated_at?: string | null
         }
         Relationships: []

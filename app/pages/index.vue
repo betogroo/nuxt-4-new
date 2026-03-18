@@ -73,8 +73,8 @@
       name="productClass"
     />
     <ui-select
-      item-subtitle="expense_number"
-      item-title="name"
+      item-subtitle="name"
+      item-title="expense_number"
       item-value="id"
       :items="expenseTypes || []"
       name="expenseTypes"
