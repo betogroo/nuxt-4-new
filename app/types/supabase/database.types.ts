@@ -99,6 +99,72 @@ export type Database = {
         }
         Relationships: []
       }
+      products: {
+        Row: {
+          active: boolean | null
+          cat_bec: number
+          cat_mat: number
+          created_at: string
+          description: string
+          expense_type_id: string | null
+          id: string
+          name: string
+          nat_bec: number | null
+          nat_gov: number | null
+          pdm: number | null
+          product_class_id: string | null
+          specifications: Json | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          cat_bec: number
+          cat_mat: number
+          created_at?: string
+          description: string
+          expense_type_id?: string | null
+          id?: string
+          name: string
+          nat_bec?: number | null
+          nat_gov?: number | null
+          pdm?: number | null
+          product_class_id?: string | null
+          specifications?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          cat_bec?: number
+          cat_mat?: number
+          created_at?: string
+          description?: string
+          expense_type_id?: string | null
+          id?: string
+          name?: string
+          nat_bec?: number | null
+          nat_gov?: number | null
+          pdm?: number | null
+          product_class_id?: string | null
+          specifications?: Json | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'products_expense_type_id_fkey'
+            columns: ['expense_type_id']
+            isOneToOne: false
+            referencedRelation: 'expense_types'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'products_product_class_id_fkey'
+            columns: ['product_class_id']
+            isOneToOne: false
+            referencedRelation: 'product_class'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null

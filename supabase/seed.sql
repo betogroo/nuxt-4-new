@@ -825,3 +825,70 @@ VALUES
         '44905220',
         'INFORMÁTICA'
     );
+
+INSERT INTO
+    "public"."products" (
+        "id",
+        "created_at",
+        "updated_at",
+        "name",
+        "description",
+        "cat_mat",
+        "nat_gov",
+        "nat_bec",
+        "pdm",
+        "active",
+        "specifications",
+        "product_class_id",
+        "expense_type_id",
+        "cat_bec"
+    )
+VALUES
+    (
+        '14b7e9c0-543e-4423-a7ba-174ffde0db43',
+        '2026-03-05 12:31:08.713243+00',
+        '2026-03-12 12:04:39.232664+00',
+        'Caneta Marca Texto',
+        'Caneta para marcar texto, na cor amarela',
+        '477113',
+        null,
+        '33903041',
+        '18075',
+        'true',
+        '{"Cor":"Fluorescente Amarela","Tipo":"Base Água","Material":"Plástico","Tipo Ponta":"Chanfrada","Características":"Secagem Rápida"}',
+        '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
+        'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
+        '5531462'
+    ),
+    (
+        '1539d5b9-2184-4f17-a6a0-7a8a7abc67a5',
+        '2026-03-10 17:27:58.165718+00',
+        '2026-03-12 12:04:27.732837+00',
+        'Fita Larga',
+        'Fita para vedação de caixas.',
+        '445375',
+        '33903016',
+        '33903041',
+        '18071',
+        'true',
+        '{"cor":"transparente"}',
+        '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
+        'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
+        '5702674'
+    ),
+    (
+        '23e86f48-b981-47b4-8210-62f05e509f2b',
+        '2026-03-04 18:36:19.973995+00',
+        '2026-03-12 12:04:08.46611+00',
+        'Caneta Azul',
+        'Caneta esferográfica, com tinta na cor azul.',
+        '317868',
+        null,
+        '33903041',
+        '99',
+        'true',
+        '{"material":"Poliestireno","cor_tinta":"Azul","tipo_escrita":"Média","material_ponta":"Latão com esfera de tungstênio","caracteristicas":"Corpo sextavado e orifício lateral"}',
+        '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
+        'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
+        '4855108'
+    );
