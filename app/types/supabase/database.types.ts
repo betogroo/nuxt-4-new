@@ -3,6 +3,70 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      demand_items: {
+        Row: {
+          created_at: string
+          demand_id: string
+          estimated_price: number | null
+          id: string
+          item_order: number
+          offered_price: number | null
+          packaging_type_id: string
+          product_id: string
+          quantity: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          demand_id: string
+          estimated_price?: number | null
+          id?: string
+          item_order: number
+          offered_price?: number | null
+          packaging_type_id: string
+          product_id: string
+          quantity: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          demand_id?: string
+          estimated_price?: number | null
+          id?: string
+          item_order?: number
+          offered_price?: number | null
+          packaging_type_id?: string
+          product_id?: string
+          quantity?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_items_demand_id_fkey'
+            columns: ['demand_id']
+            isOneToOne: false
+            referencedRelation: 'demands'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_packaging_type_id_fkey'
+            columns: ['packaging_type_id']
+            isOneToOne: false
+            referencedRelation: 'packaging_types'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
+            referencedRelation: 'products'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       demand_sequences: {
         Row: {
           current_number: number
