@@ -3,6 +3,78 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      demand_sequences: {
+        Row: {
+          current_number: number
+          year: number
+        }
+        Insert: {
+          current_number: number
+          year: number
+        }
+        Update: {
+          current_number?: number
+          year?: number
+        }
+        Relationships: []
+      }
+      demands: {
+        Row: {
+          created_at: string
+          description: string
+          dispute_date: string | null
+          electronic_process_number: string | null
+          id: string
+          internal_process_number: number
+          object_types_id: number | null
+          owner_id: string
+          status: string | null
+          updated_at: string
+          year: number
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          dispute_date?: string | null
+          electronic_process_number?: string | null
+          id?: string
+          internal_process_number: number
+          object_types_id?: number | null
+          owner_id?: string
+          status?: string | null
+          updated_at?: string
+          year: number
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          dispute_date?: string | null
+          electronic_process_number?: string | null
+          id?: string
+          internal_process_number?: number
+          object_types_id?: number | null
+          owner_id?: string
+          status?: string | null
+          updated_at?: string
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demands_object_types_id_fkey'
+            columns: ['object_types_id']
+            isOneToOne: false
+            referencedRelation: 'object_types'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demands_owner_id_fkey'
+            columns: ['owner_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       expense_types: {
         Row: {
           created_at: string
@@ -197,6 +269,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_read_demand: { Args: { owner_id: string }; Returns: boolean }
       can_read_own_profile: { Args: { profile_id: string }; Returns: boolean }
       is_admin: { Args: never; Returns: boolean }
     }

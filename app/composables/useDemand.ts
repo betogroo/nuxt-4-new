@@ -10,7 +10,7 @@ const useDemand = () => {
     if (import.meta.dev) {
       await delay(DELAY)
     }
-    const { data, error } = await supabase.from('demand').select(`
+    const { data, error } = await supabase.from('demands').select(`
         *,
         object_types (*), owner: profiles (*)
         `)
@@ -32,7 +32,7 @@ const useDemand = () => {
 
     try {
       const { data: newData, error: dbError } = await supabase
-        .from('demand')
+        .from('demands')
         .insert(values as never)
         .select()
         .single()
@@ -47,7 +47,7 @@ const useDemand = () => {
     if (import.meta.dev) {
       await delay(500)
     }
-    const { data, error } = await supabase.from('demand').select('*').eq('id', id).single()
+    const { data, error } = await supabase.from('demands').select('*').eq('id', id).single()
     if (error) throw error
     return DemandSchema.parse(data)
   }

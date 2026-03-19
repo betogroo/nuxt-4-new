@@ -887,7 +887,7 @@ VALUES
         '33903041',
         '99',
         'true',
-        '{"material":"Poliestireno","cor_tinta":"Azul","tipo_escrita":"Média","material_ponta":"Latão com esfera de tungstênio","caracteristicas":"Corpo sextavado e orifício lateral"}',
+        '{"material":"Poliestireno","cor_tinta":"Azul","tipo_escrita":"Média","material_ponta":"Latão com esfera de tungstênio","características":"Corpo sextavado e orifício lateral"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
         '4855108'
