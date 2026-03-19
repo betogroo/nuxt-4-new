@@ -13,6 +13,7 @@
   "prettier.tabWidth": 2,
   "prettier.bracketSameLine": false,
   "prettier.endOfLine": "lf",
+  "Prettier-SQL.newlineBeforeSemicolon": true,
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
