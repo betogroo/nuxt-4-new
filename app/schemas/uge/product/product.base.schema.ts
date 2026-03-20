@@ -9,7 +9,7 @@ export const ProductBaseSchema = z.object({
   specifications: SpecificationsSchema.nullable(),
   cat_mat: positiveNumber,
   nat_gov: positiveNumber.nullable(),
-  nat_bec: positiveNumber.nullable(),
+
   pdm: positiveNumber.nullable(),
 })
 
