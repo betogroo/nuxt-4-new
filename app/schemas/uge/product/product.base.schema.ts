@@ -6,10 +6,10 @@ export const SpecificationsSchema = z.record(z.string(), z.string())
 export const ProductBaseSchema = z.object({
   name: nameRule,
   description: z.string(),
-  specifications: SpecificationsSchema.nullable(),
   cat_mat: positiveNumber,
+  cat_bec: positiveNumber,
+  specifications: SpecificationsSchema.nullable(),
   nat_gov: positiveNumber.nullable(),
-
   pdm: positiveNumber.nullable(),
 })
 

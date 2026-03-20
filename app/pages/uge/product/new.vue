@@ -1,7 +1,7 @@
 <script setup lang="ts">
   //import { AppError } from '~/error/AppError'
-  import { ProductFormSchema, ProductInsertSchema } from '~/schemas'
-  import type { ProductForm } from '~/types'
+  import { ProductFormSchema, ProductInsertSchema, ProductSchema } from '~/schemas'
+  import type { Product, ProductForm, ProductInsert } from '~/types'
 
   const supabase = useSupabaseClient()
 
@@ -48,6 +48,7 @@
       })
       //const newData = await create(parsed)
       console.log(parsed)
+      await create(parsed)
     } catch (error) {
       const err = error as Error
       console.log(err)
@@ -61,6 +62,33 @@
       return data
     },
   )
+  const { data: expenseTypes, status: expenseTypesStatus } = useAsyncData(
+    'expense_types',
+    async () => {
+      const { data } = await supabase.from('expense_types').select('*')
+      return data
+    },
+  )
+
+  const isCreating = ref(false)
+  const create = async (values: ProductInsert): Promise<Product> => {
+    isCreating.value = true
+    if (import.meta.dev) {
+      await delay(DELAY)
+    }
+
+    try {
+      const { data: newData, error: dbError } = await supabase
+        .from('products')
+        .insert(values as never)
+        .select()
+        .single()
+      if (dbError) throw dbError
+      return ProductSchema.parse(newData)
+    } finally {
+      isCreating.value = false
+    }
+  }
 
   const onReset = () => {
     handleReset()
@@ -73,6 +101,7 @@
       <ui-text-field label="Nome" name="name" type="text" />
       <ui-text-field label="Descrição" name="description" type="text" />
       <ui-text-field label="CAT MAT" name="cat_mat" type="number" />
+      <ui-text-field label="CAT BEC" name="cat_bec" type="number" />
 
       <ui-select
         :disabled="productClassStatus === 'pending'"
@@ -81,6 +110,14 @@
         item-value="id"
         :items="productClass || []"
         name="product_class_id"
+      />
+      <ui-select
+        :disabled="expenseTypesStatus === 'pending'"
+        item-subtitle="name"
+        item-title="expense_number"
+        item-value="id"
+        :items="expenseTypes || []"
+        name="expense_type_id"
       />
     </ui-form>
   </ui-page>

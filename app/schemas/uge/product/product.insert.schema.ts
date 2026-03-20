@@ -11,7 +11,7 @@ export const ProductFormSchema = ProductBaseSchema.extend({
   name: nameField(6),
   description: nameField(6),
   product_class_id: uuidSelectOption,
-  //expense_type_id: uuidSelectOption,
+  expense_type_id: uuidSelectOption,
   specifications: SpecificationsSchema.optional(),
   cat_mat: positiveNumber,
   nat_gov: positiveNumber.optional(),
