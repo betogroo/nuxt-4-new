@@ -7,6 +7,7 @@ import type {
   ProductSpecificationRowsSchema,
   ProductClassReadSchema,
   ProductClassRowsSchema,
+  ProductFormSchema,
 } from '~/schemas'
 
 export type Product = z.infer<typeof ProductSchema>
@@ -18,5 +19,7 @@ export type ProductSpecificationRows = z.infer<typeof ProductSpecificationRowsSc
 
 export type ProductClassRead = z.infer<typeof ProductClassReadSchema>
 export type ProductClassRows = z.infer<typeof ProductClassRowsSchema>
+
+export type ProductForm = z.infer<typeof ProductFormSchema>
 
 // quando tiver relações, criar Read
