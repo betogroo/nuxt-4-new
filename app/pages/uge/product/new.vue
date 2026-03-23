@@ -1,23 +1,25 @@
 <script setup lang="ts">
   //import { AppError } from '~/error/AppError'
+  import { AppError } from '~/error/AppError'
   import { ProductFormSchema, ProductInsertSchema } from '~/schemas'
   import type { ProductForm } from '~/types'
 
   const supabase = useSupabaseClient()
 
   const { create, isCreating } = useProduct()
+  const { fetchAll } = useProductClass()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
     description: '',
   })
 
-  /* const {
-    data: objectTypes,
+  const {
+    data: productClasses,
     error,
-    status,
+    status: productClassesStatus,
     execute,
   } = useAsyncData(
-    'objectTypes',
+    'product_classes',
     async () => {
       try {
         return await fetchAll()
@@ -32,14 +34,14 @@
       }
     },
     { immediate: false },
-  ) */
+  )
 
-  /* const onSelectOpen = (isOpen: boolean) => {
+  const onSelectOpen = (isOpen: boolean) => {
     if (!isOpen) return
-    if (status.value !== 'idle') return
+    if (productClassesStatus.value !== 'idle') return
 
     execute()
-  } */
+  }
 
   const onSubmit = handleSubmit(async () => {
     try {
@@ -55,13 +57,6 @@
     }
   })
 
-  const { data: productClass, status: productClassStatus } = useAsyncData(
-    'product_class',
-    async () => {
-      const { data } = await supabase.from('product_class').select('*')
-      return data
-    },
-  )
   const { data: expenseTypes, status: expenseTypesStatus } = useAsyncData(
     'expense_types',
     async () => {
@@ -84,12 +79,13 @@
       <ui-text-field label="CAT BEC" name="cat_bec" type="number" />
 
       <ui-select
-        :disabled="productClassStatus === 'pending'"
         item-subtitle="code"
         item-title="name"
         item-value="id"
-        :items="productClass || []"
+        :items="productClasses || []"
+        :loading="productClassesStatus === 'pending'"
         name="product_class_id"
+        @focus="onSelectOpen"
       />
       <ui-select
         :disabled="expenseTypesStatus === 'pending'"
@@ -100,5 +96,6 @@
         name="expense_type_id"
       />
     </ui-form>
+    <ui-alert v-if="error" :title="error.message" type="error" />
   </ui-page>
 </template>

@@ -68,7 +68,6 @@
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
 
       <ui-select
-        :disabled="status === 'pending'"
         item-subtitle="ptres"
         item-title="name"
         :items="objectTypes || []"
