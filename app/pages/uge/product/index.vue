@@ -35,6 +35,9 @@
 
 <template>
   <ui-page title="Produtos">
+    <template #header_action
+      ><ui-btn color="primary" icon="plus" to="./product/new">Novo Produto</ui-btn>
+    </template>
     <ui-alert v-if="error" :title="error.message" type="error" />
     <ui-list v-else :items="products || []" lines="two" :status="status">
       <ui-list-item v-for="product in products" :key="product.id">

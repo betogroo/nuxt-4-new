@@ -1,11 +1,11 @@
 <script setup lang="ts">
   //import { AppError } from '~/error/AppError'
-  import { ProductFormSchema, ProductInsertSchema, ProductSchema } from '~/schemas'
-  import type { Product, ProductForm, ProductInsert } from '~/types'
+  import { ProductFormSchema, ProductInsertSchema } from '~/schemas'
+  import type { ProductForm } from '~/types'
 
   const supabase = useSupabaseClient()
 
-  // const { create, isCreating } = useProduct()
+  const { create, isCreating } = useProduct()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
     description: '',
@@ -70,34 +70,14 @@
     },
   )
 
-  const isCreating = ref(false)
-  const create = async (values: ProductInsert): Promise<Product> => {
-    isCreating.value = true
-    if (import.meta.dev) {
-      await delay(DELAY)
-    }
-
-    try {
-      const { data: newData, error: dbError } = await supabase
-        .from('products')
-        .insert(values as never)
-        .select()
-        .single()
-      if (dbError) throw dbError
-      return ProductSchema.parse(newData)
-    } finally {
-      isCreating.value = false
-    }
-  }
-
   const onReset = () => {
     handleReset()
   }
 </script>
 
 <template>
-  <ui-page show-back title="Nova Demanda">
-    <ui-form :is-loading="false" :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
+  <ui-page show-back title="Nova Produto">
+    <ui-form :is-loading="isCreating" :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
       <ui-text-field label="Nome" name="name" type="text" />
       <ui-text-field label="Descrição" name="description" type="text" />
       <ui-text-field label="CAT MAT" name="cat_mat" type="number" />

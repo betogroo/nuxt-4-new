@@ -5,6 +5,8 @@ export const ProductInsertSchema = ProductBaseSchema.extend({
   specifications: SpecificationsSchema.optional(),
   nat_gov: positiveNumber.optional(),
   pdm: positiveNumber.optional(),
+  product_class_id: uuidSelectOption,
+  expense_type_id: uuidSelectOption,
 })
 
 export const ProductFormSchema = ProductBaseSchema.extend({
