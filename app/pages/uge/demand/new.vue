@@ -49,9 +49,9 @@
         item-subtitle="ptres"
         item-title="name"
         :items="objectTypes || []"
-        label="Selecione uma categoria"
-        :loading="objectTypesStatus === 'pending'"
         name="object_types_id"
+        placeholder="Escolha a natureza"
+        :status="objectTypesStatus"
         @focus="onObjectTypesSelectOpen"
       />
     </ui-form>

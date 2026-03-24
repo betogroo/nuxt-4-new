@@ -66,8 +66,9 @@
         item-title="name"
         item-value="id"
         :items="productClasses || []"
-        :loading="productClassesStatus === 'pending'"
         name="product_class_id"
+        placeholder="Escolha a classe"
+        :status="productClassesStatus"
         @focus="onProductClassesSelectOpen"
       />
       <ui-select
@@ -75,8 +76,9 @@
         item-title="expense_number"
         item-value="id"
         :items="expenseTypes || []"
-        :loading="expenseTypesStatus === 'pending'"
         name="expense_type_id"
+        placeholder="Escolha o Tipo"
+        :status="expenseTypesStatus"
         @focus="onExpenseTypesSelectOpen"
       />
     </ui-form>
