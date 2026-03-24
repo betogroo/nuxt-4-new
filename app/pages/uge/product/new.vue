@@ -1,47 +1,38 @@
 <script setup lang="ts">
   //import { AppError } from '~/error/AppError'
-  import { AppError } from '~/error/AppError'
-  import { ProductFormSchema, ProductInsertSchema } from '~/schemas'
+
+  import {
+    ExpenseTypeRowsSchema,
+    ProductClassRowsSchema,
+    ProductFormSchema,
+    ProductInsertSchema,
+  } from '~/schemas'
   import type { ProductForm } from '~/types'
 
-  const supabase = useSupabaseClient()
-
   const { create, isCreating } = useProduct()
-  const { fetchAll } = useProductClass()
+  const { fetchAll: fetchProductClass } = useFetchTable({
+    table: 'product_class',
+    schema: ProductClassRowsSchema,
+  })
+  const { fetchAll: fetchExpenseTypes } = useFetchTable({
+    table: 'expense_types',
+    schema: ExpenseTypeRowsSchema,
+  })
+
+  const {
+    items: productClasses,
+    status: productClassesStatus,
+    onOpen: onProductClassesSelectOpen,
+  } = useLazySelect('productClasses', fetchProductClass)
+  const {
+    items: expenseTypes,
+    status: expenseTypesStatus,
+    onOpen: onExpenseTypesSelectOpen,
+  } = useLazySelect('expenseTypes', fetchExpenseTypes)
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
     description: '',
   })
-
-  const {
-    data: productClasses,
-    error,
-    status: productClassesStatus,
-    execute,
-  } = useAsyncData(
-    'product_classes',
-    async () => {
-      try {
-        return await fetchAll()
-      } catch (error) {
-        if (error instanceof AppError) {
-          throw createError({ statusCode: 400, message: error.message })
-        }
-        throw createError({
-          statusCode: 500,
-          message: 'Erro inesperado ao carregar as demandas',
-        })
-      }
-    },
-    { immediate: false },
-  )
-
-  const onSelectOpen = (isOpen: boolean) => {
-    if (!isOpen) return
-    if (productClassesStatus.value !== 'idle') return
-
-    execute()
-  }
 
   const onSubmit = handleSubmit(async () => {
     try {
@@ -56,14 +47,6 @@
       console.log(err)
     }
   })
-
-  const { data: expenseTypes, status: expenseTypesStatus } = useAsyncData(
-    'expense_types',
-    async () => {
-      const { data } = await supabase.from('expense_types').select('*')
-      return data
-    },
-  )
 
   const onReset = () => {
     handleReset()
@@ -85,17 +68,17 @@
         :items="productClasses || []"
         :loading="productClassesStatus === 'pending'"
         name="product_class_id"
-        @focus="onSelectOpen"
+        @focus="onProductClassesSelectOpen"
       />
       <ui-select
-        :disabled="expenseTypesStatus === 'pending'"
         item-subtitle="name"
         item-title="expense_number"
         item-value="id"
         :items="expenseTypes || []"
+        :loading="expenseTypesStatus === 'pending'"
         name="expense_type_id"
+        @focus="onExpenseTypesSelectOpen"
       />
     </ui-form>
-    <ui-alert v-if="error" :title="error.message" type="error" />
   </ui-page>
 </template>

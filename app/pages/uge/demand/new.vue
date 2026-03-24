@@ -1,44 +1,22 @@
 <script setup lang="ts">
-  import { AppError } from '~/error/AppError'
-  import { DemandFormSchema, DemandInsertSchema } from '~/schemas'
+  import { DemandFormSchema, DemandInsertSchema, ObjectTypeRowsSchema } from '~/schemas'
   import type { DemandForm } from '~/types'
 
   const { create, isCreating } = useDemand()
-  const { fetchAll } = useDemandObjectType()
+
+  const { fetchAll: fetchObjectTypes } = useFetchTable({
+    table: 'object_types',
+    schema: ObjectTypeRowsSchema,
+  })
+  const {
+    items: objectTypes,
+    status: objectTypesStatus,
+    onOpen: onObjectTypesSelectOpen,
+  } = useLazySelect('objectTypes', fetchObjectTypes)
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<DemandForm>(DemandFormSchema, {
     description: '',
   })
-
-  const {
-    data: objectTypes,
-    error,
-    status,
-    execute,
-  } = useAsyncData(
-    'objectTypes',
-    async () => {
-      try {
-        return await fetchAll()
-      } catch (error) {
-        if (error instanceof AppError) {
-          throw createError({ statusCode: 400, message: error.message })
-        }
-        throw createError({
-          statusCode: 500,
-          message: 'Erro inesperado ao carregar as demandas',
-        })
-      }
-    },
-    { immediate: false },
-  )
-
-  const onSelectOpen = (isOpen: boolean) => {
-    if (!isOpen) return
-    if (status.value !== 'idle') return
-
-    execute()
-  }
 
   const onSubmit = handleSubmit(async () => {
     try {
@@ -72,12 +50,10 @@
         item-title="name"
         :items="objectTypes || []"
         label="Selecione uma categoria"
-        :loading="status === 'pending'"
+        :loading="objectTypesStatus === 'pending'"
         name="object_types_id"
-        @focus="onSelectOpen"
+        @focus="onObjectTypesSelectOpen"
       />
     </ui-form>
-    <ui-alert v-if="error" :title="error.message" type="error" />
-    {{ status }}
   </ui-page>
 </template>
