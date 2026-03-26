@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-  import type { TextFieldDensity, TextFieldVariant } from '~/types'
+  import type { TextFieldDensity, TextFieldVariant, SelectMode } from '~/types'
+  import { VSelect, VAutocomplete } from 'vuetify/components'
 
   interface Props {
     items?: T[]
@@ -9,6 +10,7 @@
     itemSubtitle?: keyof T
     variant?: TextFieldVariant
     density?: TextFieldDensity
+    mode?: SelectMode
     placeholder?: string
     status?: 'idle' | 'pending' | 'success' | 'error'
   }
@@ -19,6 +21,7 @@
     itemValue = 'id',
     variant = 'outlined',
     density = 'compact',
+    mode = 'select',
     itemSubtitle = '',
     placeholder = 'Escolha uma opção',
     status = 'idle',
@@ -42,11 +45,13 @@
 </script>
 
 <template>
-  <v-select
+  <component
+    :is="mode === 'select' ? VSelect : VAutocomplete"
     v-bind="$attrs"
     v-model="value"
     :density="density"
     :error-messages="errorMessage"
+    :filter-keys="['title', 'raw.subtitle']"
     item-props
     item-title="title"
     item-value="value"
