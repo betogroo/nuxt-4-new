@@ -11,6 +11,7 @@ const useDemand = () => {
     *,
         object_types (*), owner: profiles (*)
     `,
+    orderBy: [{ column: 'internal_process_number' }],
   })
 
   const { create, isCreating } = useTableCreate<Demand, DemandInsert>({

@@ -13,10 +13,12 @@
   const { fetchAll: fetchProductClass } = useTableFetch<ProductClass[]>({
     table: 'product_class',
     schema: ProductClassRowsSchema,
+    orderBy: [{ column: 'code' }],
   })
   const { fetchAll: fetchExpenseTypes } = useTableFetch<ExpenseType[]>({
     table: 'expense_types',
     schema: ExpenseTypeRowsSchema,
+    orderBy: [{ column: 'expense_number' }],
   })
 
   const {
