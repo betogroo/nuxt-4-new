@@ -1,20 +1,20 @@
 <script setup lang="ts">
-  //import { AppError } from '~/error/AppError'
-
   import {
     ExpenseTypeRowsSchema,
     ProductClassRowsSchema,
     ProductFormSchema,
     ProductInsertSchema,
   } from '~/schemas'
-  import type { ProductForm } from '~/types'
+  import type { ExpenseType, ProductClass, ProductForm } from '~/types'
 
   const { create, isCreating } = useProduct()
-  const { fetchAll: fetchProductClass } = useFetchTable({
+
+  // criar composable
+  const { fetchAll: fetchProductClass } = useTableFetch<ProductClass[]>({
     table: 'product_class',
     schema: ProductClassRowsSchema,
   })
-  const { fetchAll: fetchExpenseTypes } = useFetchTable({
+  const { fetchAll: fetchExpenseTypes } = useTableFetch<ExpenseType[]>({
     table: 'expense_types',
     schema: ExpenseTypeRowsSchema,
   })

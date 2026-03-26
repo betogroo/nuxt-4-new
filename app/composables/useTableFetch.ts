@@ -2,13 +2,13 @@ import { AppError } from '~/error/AppError'
 import type { ZodSchema } from 'zod'
 import type { TableName } from '~/types'
 
-type UseFetchTableOptions<T> = {
+type UseTableFetchOptions<T> = {
   table: TableName
   schema: ZodSchema<T>
   select?: string
 }
 
-export function useFetchTable<T>({ table, schema, select = '*' }: UseFetchTableOptions<T>) {
+const useTableFetch = <T>({ table, schema, select = '*' }: UseTableFetchOptions<T>) => {
   const supabase = useSupabaseClient()
 
   const fetchAll = async (): Promise<T> => {
@@ -35,3 +35,4 @@ export function useFetchTable<T>({ table, schema, select = '*' }: UseFetchTableO
     fetchAll,
   }
 }
+export default useTableFetch

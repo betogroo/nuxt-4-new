@@ -13,13 +13,13 @@ import { AppError } from '~/error/AppError'
 import type { ZodSchema } from 'zod'
 import type { TableName } from '~/types'
 
-type UseFetchTableOptions<T> = {
+type UseTableFetchOptions<T> = {
   table: TableName
   schema: ZodSchema<T>
   select?: string
 }
 
-const useFetchTable = <T>({ table, schema, select = '*' }: UseFetchTableOptions<T>) => {
+const useTableFetch = <T>({ table, schema, select = '*' }: UseTableFetchOptions<T>) => {
   const supabase = useSupabaseClient()
 
   const fetchAll = async (): Promise<T> => {
@@ -47,7 +47,7 @@ const useFetchTable = <T>({ table, schema, select = '*' }: UseFetchTableOptions<
   }
 }
 
-export default useFetchTable
+export default useTableFetch
 ```
 
 ---
@@ -86,7 +86,7 @@ Aqui:
 O composable começa assim:
 
 ```ts
-const useFetchTable = <T>({ table, schema, select = '*' }: UseFetchTableOptions<T>)
+const useTableFetch = <T>({ table, schema, select = '*' }: UseTableFetchOptions<T>)
 ```
 
 Isso significa:
@@ -128,7 +128,7 @@ Então:
 ## Nas opções
 
 ```ts
-type UseFetchTableOptions<T> = {
+type UseTableFetchOptions<T> = {
   table: TableName
   schema: ZodSchema<T>
   select?: string
@@ -162,7 +162,7 @@ Isso significa:
 Exemplo de uso:
 
 ```ts
-const { fetchAll } = useFetchTable<Product[]>({
+const { fetchAll } = useTableFetch<Product[]>({
   table: 'product',
   schema: ProductRowsSchema,
 })
@@ -206,7 +206,7 @@ Então:
 Uso:
 
 ```ts
-const { fetchAll } = useFetchTable<Product[]>({
+const { fetchAll } = useTableFetch<Product[]>({
   table: 'product',
   schema: ProductRowsSchema,
 })
@@ -263,7 +263,7 @@ Exemplos:
 
 Seu composable funciona assim:
 
-    useFetchTable<T>()
+    useTableFetch<T>()
 
 Ele funciona para **qualquer tabela**.
 
@@ -288,13 +288,13 @@ E o schema:
 # 10. Versão refinada do composable
 
 ```ts
-type UseFetchTableOptions<T> = {
+type UseTableFetchOptions<T> = {
   table: TableName
   schema: ZodSchema<T[]>
   select?: string
 }
 
-const useFetchTable = <T>({ table, schema, select = '*' }: UseFetchTableOptions<T>) => {
+const useTableFetch = <T>({ table, schema, select = '*' }: UseTableFetchOptions<T>) => {
   const supabase = useSupabaseClient()
 
   const fetchAll = async (): Promise<T[]> => {
@@ -322,7 +322,7 @@ const useFetchTable = <T>({ table, schema, select = '*' }: UseFetchTableOptions<
 # 11. Como usar no projeto
 
 ```ts
-const { fetchAll } = useFetchTable<Product>({
+const { fetchAll } = useTableFetch<Product>({
   table: 'product',
   schema: ProductRowsSchema,
 })

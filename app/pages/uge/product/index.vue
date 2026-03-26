@@ -12,7 +12,8 @@
     },
   })
 
-  const { fetchAll } = useProduct()
+  //const { fetchAll } = useProduct()
+  const { fetchAll: fetchAllProducts } = useProduct()
 
   const {
     data: products,
@@ -20,7 +21,7 @@
     status,
   } = useAsyncData('products', async () => {
     try {
-      return await fetchAll()
+      return await fetchAllProducts()
     } catch (error) {
       if (error instanceof AppError) {
         throw createError({ statusCode: 400, message: error.message })
