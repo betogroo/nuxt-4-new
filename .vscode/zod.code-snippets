@@ -20,4 +20,10 @@
     ],
     "description": "Import Zod schemas and types",
   },
+  "Import Z": {
+    "scope": "javascript,typescript",
+    "prefix": "zod-z",
+    "body": "import { z } from '~/schemas'",
+    "description": "Basic Zod import",
+  },
 }
