@@ -1,32 +1,10 @@
 <script setup lang="ts">
-  import { ExpenseTypeRowsSchema, ProductFormSchema, ProductInsertSchema } from '~/schemas'
-  import type { ExpenseType, ProductForm } from '~/types'
+  import { ProductFormSchema, ProductInsertSchema } from '~/schemas'
+  import type { ProductForm } from '~/types'
 
   const { create, isCreating } = useProduct()
-  const { select } = useProductClass()
-
-  // criar composable
-  /* const { fetchAll: fetchProductClass } = useTableFetch<ProductClass[]>({
-    table: 'product_class',
-    schema: ProductClassRowsSchema,
-    orderBy: [{ column: 'code' }],
-  }) */
-  const { fetchAll: fetchExpenseTypes } = useTableFetch<ExpenseType[]>({
-    table: 'expense_types',
-    schema: ExpenseTypeRowsSchema,
-    orderBy: [{ column: 'expense_number' }],
-  })
-
-  /*  const {
-    items: productClasses,
-    status: productClassesStatus,
-    onOpen: onProductClassesSelectOpen,
-  } = useLazySelect('productClasses', fetchProductClass) */
-  const {
-    items: expenseTypes,
-    status: expenseTypesStatus,
-    onOpen: onExpenseTypesSelectOpen,
-  } = useLazySelect('expenseTypes', fetchExpenseTypes)
+  const { select: productClassSelect } = useProductClass()
+  const { select: expenseTypeSelect } = useExpenseType()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
     description: '',
@@ -63,23 +41,23 @@
         item-subtitle="code"
         item-title="name"
         item-value="id"
-        :items="select.items.value || []"
+        :items="productClassSelect.items.value || []"
         mode="autocomplete"
         name="product_class_id"
         placeholder="Escolha a classe"
-        :status="select.status.value"
-        @focus="select.onOpen"
+        :status="productClassSelect.status.value"
+        @focus="productClassSelect.onOpen"
       />
       <ui-select
         item-subtitle="name"
         item-title="expense_number"
         item-value="id"
-        :items="expenseTypes || []"
+        :items="expenseTypeSelect.items.value || []"
         mode="autocomplete"
         name="expense_type_id"
         placeholder="Escolha o Tipo"
-        :status="expenseTypesStatus"
-        @focus="onExpenseTypesSelectOpen"
+        :status="expenseTypeSelect.status.value"
+        @focus="expenseTypeSelect.onOpen"
       />
     </ui-form>
   </ui-page>
