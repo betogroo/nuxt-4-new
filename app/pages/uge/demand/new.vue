@@ -4,12 +4,7 @@
 
   const { create, isCreating } = useDemand()
 
-  const { fetchAll: fetchObjectTypes } = useObjectType()
-  const {
-    items: objectTypes,
-    status: objectTypesStatus,
-    onOpen: onObjectTypesSelectOpen,
-  } = useLazySelect('objectTypes', fetchObjectTypes)
+  const { select: objectTypeSelect } = useObjectType()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<DemandForm>(DemandFormSchema, {
     description: '',
@@ -45,11 +40,11 @@
       <ui-select
         item-subtitle="ptres"
         item-title="name"
-        :items="objectTypes || []"
+        :items="objectTypeSelect.items.value || []"
         name="object_types_id"
         placeholder="Escolha a natureza"
-        :status="objectTypesStatus"
-        @focus="onObjectTypesSelectOpen"
+        :status="objectTypeSelect.status.value"
+        @focus="objectTypeSelect.onOpen"
       />
     </ui-form>
   </ui-page>

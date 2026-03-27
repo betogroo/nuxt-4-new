@@ -6,7 +6,9 @@ const useObjectType = () => {
     table: 'object_types',
     schema: ObjectTypeRowsSchema,
   })
-  return { fetchAll }
+
+  const select = useLazySelect('objectTypes', fetchAll)
+  return { fetchAll, select }
 }
 
 export default useObjectType
