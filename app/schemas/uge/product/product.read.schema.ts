@@ -6,3 +6,11 @@ export const ProductReadSchema = ProductSchema.extend({
 })
 
 export const ProductReadRowsSchema = z.array(ProductReadSchema)
+
+export const ProductReadSelectSchema = z.array(
+  ProductSchema.pick({
+    id: true,
+    description: true,
+    specifications: true,
+  }),
+)

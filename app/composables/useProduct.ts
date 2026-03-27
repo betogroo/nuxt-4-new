@@ -1,5 +1,10 @@
-import { ProductInsertSchema, ProductReadRowsSchema, ProductSchema } from '~/schemas'
-import type { Product, ProductInsert, ProductRead, TableName } from '~/types'
+import {
+  ProductInsertSchema,
+  ProductReadRowsSchema,
+  ProductReadSelectSchema,
+  ProductSchema,
+} from '~/schemas'
+import type { ProductReadSelect, Product, ProductInsert, ProductRead, TableName } from '~/types'
 
 const TABLE: TableName = 'products'
 
@@ -14,13 +19,21 @@ const useProduct = () => {
     `,
   })
 
+  const { fetchAll: fetchSelect } = useTableFetch<ProductReadSelect>({
+    table: 'products',
+    schema: ProductReadSelectSchema,
+    select: '(id, description, specifications)',
+  })
+
   const { create, isCreating } = useTableCreate<Product, ProductInsert>({
     table: TABLE,
     insertSchema: ProductInsertSchema,
     readSchema: ProductSchema,
   })
 
-  return { fetchAll, create, isCreating }
+  const select = useLazySelect('products', fetchSelect)
+
+  return { fetchAll, create, isCreating, select }
 }
 
 export default useProduct
