@@ -17,33 +17,10 @@
 
   watch(title, (v) => (tempTitle.value = v))
 
-  const supabase = useSupabaseClient()
-
-  const { data: packagingTypes, status } = useAsyncData('packaging_types', async () => {
-    const { data } = await supabase.from('packaging_types').select('*')
-    return data
-  })
-  const { data: objectTypes, status: statusObjectTypes } = useAsyncData(
-    'object_types',
-    async () => {
-      const { data } = await supabase.from('object_types').select('*')
-      return data
-    },
-  )
-  const { data: productClass, status: productClassStatus } = useAsyncData(
-    'product_class',
-    async () => {
-      const { data } = await supabase.from('product_class').select('*')
-      return data
-    },
-  )
-  const { data: expenseTypes, status: expenseTypesStatus } = useAsyncData(
-    'expense_types',
-    async () => {
-      const { data } = await supabase.from('expense_types').select('*')
-      return data
-    },
-  )
+  const { select: packagingTypeSelect } = usePackagingType()
+  const { select: objectTypeSelect } = useObjectType()
+  const { select: productClassSelect } = useProductClass()
+  const { select: expenseTypeSelect } = useExpenseType()
 </script>
 
 <template>
@@ -54,34 +31,41 @@
     <ui-select
       item-subtitle="name_bec"
       item-title="name"
-      :items="packagingTypes || []"
+      :items="packagingTypeSelect.items.value || []"
+      mode="autocomplete"
       name="units"
       placeholder="Unidade"
+      :status="packagingTypeSelect.status.value"
+      @focus="packagingTypeSelect.onOpen"
     />
     <ui-select
       item-subtitle="ptres"
       item-title="name"
-      :items="objectTypes || []"
+      :items="objectTypeSelect.items.value || []"
       name="objectTypes"
       placeholder="PTRES"
+      :status="objectTypeSelect.status.value"
+      @focus="objectTypeSelect.onOpen"
     />
     <ui-select
       item-subtitle="code"
       item-title="name"
       item-value="code"
-      :items="productClass || []"
+      :items="productClassSelect.items.value || []"
+      mode="autocomplete"
       name="productClass"
+      :status="productClassSelect.status.value"
+      @focus="productClassSelect.onOpen"
     />
     <ui-select
       item-subtitle="name"
       item-title="expense_number"
       item-value="id"
-      :items="expenseTypes || []"
+      :items="expenseTypeSelect.items.value || []"
+      mode="autocomplete"
       name="expenseTypes"
+      :status="expenseTypeSelect.status.value"
+      @focus="expenseTypeSelect.onOpen"
     />
-    <div>{{ status }}</div>
-    <div>{{ productClassStatus }}</div>
-    <div>{{ statusObjectTypes }}</div>
-    <div>{{ expenseTypesStatus }}</div>
   </ui-page>
 </template>
