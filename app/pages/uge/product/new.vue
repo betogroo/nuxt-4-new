@@ -1,31 +1,27 @@
 <script setup lang="ts">
-  import {
-    ExpenseTypeRowsSchema,
-    ProductClassRowsSchema,
-    ProductFormSchema,
-    ProductInsertSchema,
-  } from '~/schemas'
-  import type { ExpenseType, ProductClass, ProductForm } from '~/types'
+  import { ExpenseTypeRowsSchema, ProductFormSchema, ProductInsertSchema } from '~/schemas'
+  import type { ExpenseType, ProductForm } from '~/types'
 
   const { create, isCreating } = useProduct()
+  const { select } = useProductClass()
 
   // criar composable
-  const { fetchAll: fetchProductClass } = useTableFetch<ProductClass[]>({
+  /* const { fetchAll: fetchProductClass } = useTableFetch<ProductClass[]>({
     table: 'product_class',
     schema: ProductClassRowsSchema,
     orderBy: [{ column: 'code' }],
-  })
+  }) */
   const { fetchAll: fetchExpenseTypes } = useTableFetch<ExpenseType[]>({
     table: 'expense_types',
     schema: ExpenseTypeRowsSchema,
     orderBy: [{ column: 'expense_number' }],
   })
 
-  const {
+  /*  const {
     items: productClasses,
     status: productClassesStatus,
     onOpen: onProductClassesSelectOpen,
-  } = useLazySelect('productClasses', fetchProductClass)
+  } = useLazySelect('productClasses', fetchProductClass) */
   const {
     items: expenseTypes,
     status: expenseTypesStatus,
@@ -67,12 +63,12 @@
         item-subtitle="code"
         item-title="name"
         item-value="id"
-        :items="productClasses || []"
+        :items="select.items.value || []"
         mode="autocomplete"
         name="product_class_id"
         placeholder="Escolha a classe"
-        :status="productClassesStatus"
-        @focus="onProductClassesSelectOpen"
+        :status="select.status.value"
+        @focus="select.onOpen"
       />
       <ui-select
         item-subtitle="name"
