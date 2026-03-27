@@ -1,13 +1,10 @@
 <script setup lang="ts">
-  import { DemandFormSchema, DemandInsertSchema, ObjectTypeRowsSchema } from '~/schemas'
-  import type { DemandForm, ObjectType } from '~/types'
+  import { DemandFormSchema, DemandInsertSchema } from '~/schemas'
+  import type { DemandForm } from '~/types'
 
   const { create, isCreating } = useDemand()
 
-  const { fetchAll: fetchObjectTypes } = useTableFetch<ObjectType[]>({
-    table: 'object_types',
-    schema: ObjectTypeRowsSchema,
-  })
+  const { fetchAll: fetchObjectTypes } = useObjectType()
   const {
     items: objectTypes,
     status: objectTypesStatus,
