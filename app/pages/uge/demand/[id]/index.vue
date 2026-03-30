@@ -53,7 +53,7 @@
 <template>
   <ui-page :title="demand?.description">
     <template #header_action>
-      <ui-btn color="primary" icon="plus" :to="`./${id}/product/new`">Novo Processo</ui-btn>
+      <ui-btn color="primary" icon="plus" :to="`./${id}/product/new`">Adicionar Produto</ui-btn>
     </template>
     <ui-card-grid v-if="pending">Carregando...</ui-card-grid>
     <div v-else-if="error">Da um refresh <ui-btn @click="refresh()">Refresh</ui-btn></div>

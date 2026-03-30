@@ -5,6 +5,8 @@
   const route = useRoute()
   const id = computed(() => route.params.id as string)
   const { select: productSelect } = useProduct()
+  const { select: packagingTypeSelect } = usePackagingType()
+  const { create } = useDemandItem()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<DemandItemForm>(
     DemandItemFormSchema,
@@ -16,8 +18,11 @@
       const parsed = DemandItemInsertSchema.parse({
         ...values,
         demand_id: id.value,
+        //dispute_date: values.dispute_date ?? null,
+        //electronic_process_number: values.electronic_process_number ?? null,
       })
-      console.log(parsed)
+      const newData = await create(parsed)
+      console.log(newData)
     } catch (error) {
       const err = error as Error
       console.log(err)
@@ -42,6 +47,17 @@
         :status="productSelect.status.value"
         @focus="productSelect.onOpen"
       />
+      <ui-select
+        item-subtitle="name_bec"
+        item-title="name"
+        item-value="id"
+        :items="packagingTypeSelect.items.value"
+        mode="autocomplete"
+        name="packaging_type_id"
+        :status="packagingTypeSelect.status.value"
+        @focus="packagingTypeSelect.onOpen"
+      />
+      <ui-text-field name="quantity" type="number" />
     </ui-form>
   </ui-page>
 </template>
