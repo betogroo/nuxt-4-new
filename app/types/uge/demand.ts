@@ -9,6 +9,7 @@ import type {
   DemandItemSchema,
   DemandItemReadSchema,
   DemandItemFormSchema,
+  DemandItemInsertSchema,
 } from '~/schemas'
 
 export type Demand = z.infer<typeof DemandSchema>
@@ -22,3 +23,4 @@ export type DemandUpdate = Updates<'demands'>
 export type DemandItem = z.infer<typeof DemandItemSchema>
 export type DemandItemRead = z.infer<typeof DemandItemReadSchema>
 export type DemandItemForm = z.infer<typeof DemandItemFormSchema>
+export type DemandItemInsert = z.infer<typeof DemandItemInsertSchema>
