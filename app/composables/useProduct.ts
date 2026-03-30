@@ -25,6 +25,8 @@ const useProduct = () => {
     select: '(id, description, specifications)',
   })
 
+  const { get } = useTableGet<Product>({ table: TABLE, schema: ProductSchema })
+
   const { create, isCreating } = useTableCreate<Product, ProductInsert>({
     table: TABLE,
     insertSchema: ProductInsertSchema,
@@ -33,7 +35,7 @@ const useProduct = () => {
 
   const select = useLazySelect('products_select', fetchSelect)
 
-  return { fetchAll, create, isCreating, select }
+  return { fetchAll, create, isCreating, select, get }
 }
 
 export default useProduct

@@ -9,8 +9,13 @@
 
   const { params } = useRoute()
   const id = computed(() => params.id as string)
+  const { get } = useProduct()
+  const { data: product } = useAsyncData(`product-${id.value}`, () => get(id.value))
+  const formatted = computed(() => JSON.stringify(product.value, null, 2))
 </script>
 
 <template>
-  <ui-page title="Produto">{{ id }}</ui-page>
+  <ui-page :title="product?.name">
+    <pre>{{ formatted }}</pre>
+  </ui-page>
 </template>
