@@ -1,0 +1,1 @@
+alter table demand_items add constraint demand_items_product_packaging_fkey foreign key (product_id, packaging_type_id) references product_packaging_types (product_id, packaging_type_id);
