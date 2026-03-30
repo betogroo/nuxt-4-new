@@ -31,7 +31,7 @@ const useProduct = () => {
     readSchema: ProductSchema,
   })
 
-  const select = useLazySelect('products', fetchSelect)
+  const select = useLazySelect('products_select', fetchSelect)
 
   return { fetchAll, create, isCreating, select }
 }
