@@ -1,4 +1,4 @@
-import { ProductInsertSchema } from '~/schemas'
+import { ProductInsertSchema } from '~/schemas/uge/dto'
 import { nameField, positiveNumber, uuidSelectOption } from '~/schemas/rules'
 
 export const ProductFormSchema = ProductInsertSchema.extend({

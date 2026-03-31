@@ -1,4 +1,4 @@
-import { ProductSchema, SpecificationsSchema } from '~/schemas'
+import { ProductSchema, SpecificationsSchema } from '~/schemas/uge/entities/'
 import { positiveNumber } from '~/schemas/rules'
 
 export const ProductInsertSchema = ProductSchema.omit({

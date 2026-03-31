@@ -1,10 +1,10 @@
+import { ProductSchema } from '~/schemas/uge/entities'
 import {
   z,
-  ProductSchema,
   ProductClassReadSchema,
   ExpenseTypeReadSchema,
   ProductPackagingTypeReadRowsSchema,
-} from '~/schemas'
+} from '~/schemas/'
 
 export const ProductReadSchema = ProductSchema.extend({
   product_class: ProductClassReadSchema,
