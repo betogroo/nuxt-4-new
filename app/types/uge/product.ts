@@ -1,6 +1,6 @@
 import type {
-  ProductSchema,
-  ProductRowsSchema,
+  //ProductSchema,
+  //ProductRowsSchema,
   ProductReadSchema,
   ProductReadSelectSchema,
   ProductSpecificationReadSchema,
@@ -14,8 +14,9 @@ import type {
   ProductPackagingTypeSchema,
 } from '~/schemas'
 
-export type Product = z.infer<typeof ProductSchema>
-export type ProductRows = z.infer<typeof ProductRowsSchema>
+import type { ProductSchema } from '~/schemas/uge/entities'
+
+//export type ProductRows = z.infer<typeof ProductRowsSchema>
 export type ProductRead = z.infer<typeof ProductReadSchema>
 export type ProductReadSelect = z.infer<typeof ProductReadSelectSchema>
 
@@ -30,5 +31,8 @@ export type ProductForm = z.infer<typeof ProductFormSchema>
 export type ProductInsert = z.infer<typeof ProductInsertSchema>
 
 export type ProductPackagingType = z.infer<typeof ProductPackagingTypeSchema>
+
+// a partir daqui novos
+export type Product = z.infer<typeof ProductSchema>
 
 // quando tiver relações, criar Read
