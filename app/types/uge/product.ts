@@ -11,6 +11,7 @@ import type {
   ProductFormSchema,
   ProductInsertSchema,
   ProductClassSchema,
+  ProductPackagingTypeSchema,
 } from '~/schemas'
 
 export type Product = z.infer<typeof ProductSchema>
@@ -27,5 +28,7 @@ export type ProductClassRows = z.infer<typeof ProductClassRowsSchema>
 
 export type ProductForm = z.infer<typeof ProductFormSchema>
 export type ProductInsert = z.infer<typeof ProductInsertSchema>
+
+export type ProductPackagingType = z.infer<typeof ProductPackagingTypeSchema>
 
 // quando tiver relações, criar Read
