@@ -1,9 +1,6 @@
-import {
-  ProductInsertSchema,
-  ProductReadRowsSchema,
-  ProductReadSelectSchema,
-  ProductSchema,
-} from '~/schemas'
+import { z } from '~/schemas'
+import { ProductSchema } from '~/schemas/uge/entities'
+import { ProductInsertSchema, ProductReadSchema, ProductReadSelectSchema } from '~/schemas/uge/dto'
 import type { ProductReadSelect, Product, ProductInsert, ProductRead, TableName } from '~/types'
 
 const TABLE: TableName = 'products'
@@ -11,7 +8,7 @@ const TABLE: TableName = 'products'
 const useProduct = () => {
   const { fetchAll } = useTableFetch<ProductRead[]>({
     table: 'products',
-    schema: ProductReadRowsSchema,
+    schema: z.array(ProductReadSchema),
     select: `
      *,
       product_class (id, name, code),

@@ -12,8 +12,6 @@ export const ProductReadSchema = ProductSchema.extend({
   product_packaging_types: ProductPackagingTypeReadRowsSchema,
 })
 
-export const ProductReadRowsSchema = z.array(ProductReadSchema)
-
 export const ProductReadSelectSchema = z.array(
   ProductSchema.pick({
     id: true,
