@@ -6,11 +6,8 @@ import type {
   ProductSpecificationReadSchema,
   z,
   ProductSpecificationRowsSchema,
-  ProductClassReadSchema,
-  ProductClassRowsSchema,
   //ProductFormSchema,
   //ProductInsertSchema,
-  ProductClassSchema,
   ProductPackagingTypeSchema,
 } from '~/schemas'
 import type {
@@ -26,9 +23,9 @@ import type {
 export type ProductSpecificationRead = z.infer<typeof ProductSpecificationReadSchema>
 export type ProductSpecificationRows = z.infer<typeof ProductSpecificationRowsSchema>
 
-export type ProductClassRead = z.infer<typeof ProductClassReadSchema>
+/* export type ProductClassRead = z.infer<typeof ProductClassReadSchema>
 export type ProductClass = z.infer<typeof ProductClassSchema>
-export type ProductClassRows = z.infer<typeof ProductClassRowsSchema>
+export type ProductClassRows = z.infer<typeof ProductClassRowsSchema> */
 
 export type ProductPackagingType = z.infer<typeof ProductPackagingTypeSchema>
 

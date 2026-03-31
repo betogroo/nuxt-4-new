@@ -1,2 +1,4 @@
+export * from './product-class.insert.dto'
+export * from './product-class.read.dto'
 export * from './product.insert.dto'
 export * from './product.read.dto'
