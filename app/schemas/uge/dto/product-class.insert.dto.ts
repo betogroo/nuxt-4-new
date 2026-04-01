@@ -1,4 +1,4 @@
-import { ProductClassSchema } from '~/schemas/uge/entities/product-class.schema'
+import { ProductClassSchema } from '~/schemas/uge/entities'
 
 export const ProductClassInsertSchema = ProductClassSchema.omit({
   id: true,

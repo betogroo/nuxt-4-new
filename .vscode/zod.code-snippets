@@ -26,4 +26,19 @@
     "body": "import { z } from '~/schemas'",
     "description": "Basic Zod import",
   },
+  "BaseSchema": {
+    "scope": "javascript, typescript",
+    "prefix": "zod-basic-schema",
+    "description": "Basic Scaffold for Zod Schemas",
+    "body": [
+      "import { z } from 'zod'",
+      "import { BaseEntitySchema } from '~/schemas/uge/entities'",
+      "import { nameRule } from '~/schemas/rules'",
+      "\nexport const $1Schema = BaseEntitySchema.extend({",
+      "  name: nameRule,",
+      "  active: z.boolean(),",
+      "}).strict()",
+      "",
+    ],
+  },
 }

@@ -1,4 +1,5 @@
-import { PackagingTypeSchema, z } from '~/schemas'
+import { z } from '~/schemas'
+import { PackagingTypeSchema } from '~/schemas/uge/entities'
 import { datetimeRule, uuidRule } from '~/schemas/rules'
 
 export const ProductPackagingTypeBaseSchema = z.object({
