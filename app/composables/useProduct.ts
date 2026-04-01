@@ -13,14 +13,14 @@ const useProduct = () => {
      *,
       product_class (id, name, code),
       expense_types (id, expense_number, name),
-      product_packaging_types (*, packaging_types (*))
+      product_packaging_types (id, product_id, packaging_type_id)
     `,
   })
 
   const { fetchAll: fetchSelect } = useTableFetch<ProductReadSelect>({
     table: 'products',
     schema: ProductReadSelectSchema,
-    select: '(id, description, specifications)',
+    select: 'id, description, specifications',
   })
 
   const { create, isCreating } = useTableCreate<Product, ProductInsert>({
