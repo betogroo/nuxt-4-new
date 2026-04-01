@@ -1,4 +1,4 @@
-import { ProductSchema, SpecificationsSchema } from '~/schemas/uge/entities/'
+import { ProductSchema, ProductSpecificationSchema } from '~/schemas/uge/entities/'
 import { positiveNumber } from '~/schemas/rules'
 
 export const ProductInsertSchema = ProductSchema.omit({
@@ -7,7 +7,7 @@ export const ProductInsertSchema = ProductSchema.omit({
   updated_at: true,
   active: true,
 }).extend({
-  specifications: SpecificationsSchema.optional(),
+  specifications: ProductSpecificationSchema.optional(),
   nat_gov: positiveNumber.optional(),
   pdm: positiveNumber.optional(),
 })

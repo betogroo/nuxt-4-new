@@ -1,8 +1,6 @@
 import { z } from 'zod'
-import { BaseEntitySchema } from '~/schemas/uge/entities'
+import { BaseEntitySchema, ProductSpecificationSchema } from '~/schemas/uge/entities'
 import { nameRule, positiveNumber, uuidRule } from '~/schemas/rules'
-
-export const SpecificationsSchema = z.record(z.string(), z.string())
 
 export const ProductSchema = BaseEntitySchema.extend({
   product_class_id: uuidRule,
@@ -15,7 +13,7 @@ export const ProductSchema = BaseEntitySchema.extend({
 
   nat_gov: positiveNumber.nullable(),
   pdm: positiveNumber.nullable(),
-  specifications: SpecificationsSchema.nullable(),
+  specifications: ProductSpecificationSchema.nullable(),
 
   active: z.boolean(),
 }).strict()

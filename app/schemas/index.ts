@@ -31,11 +31,11 @@ export * from './uge/product/product.class.read.schema' */
 /* export * from './uge/packaging-type/packaging-type.base.schema'
 export * from './uge/packaging-type/packaging-type.read.schema' */
 
-export * from './uge/product/product.packaging.type.base.schema'
+/* export * from './uge/product/product.packaging.type.base.schema'
 export * from './uge/product/product.packaging.type.read.schema'
 
 export * from './uge/product/product.specification.base.schema'
-export * from './uge/product/product.specification.read.schema'
+export * from './uge/product/product.specification.read.schema' */
 
 /* export * from './uge/expense-type/expense.type.base.schema'
 export * from './uge/expense-type/expense.type.read.schema'

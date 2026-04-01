@@ -1,3 +1,4 @@
+export * from './product-packaging-type.insert.dto'
 export * from './packaging-type.insert.dto'
 export * from './packaging-type.read.dto'
 export * from './expense-type.read.dto'
