@@ -1,0 +1,7 @@
+import { ExpenseTypeSchema } from '~/schemas/uge/entities'
+
+export const ExpenseTypeInsertSchema = ExpenseTypeSchema.omit({
+  id: true,
+  created_at: true,
+  updated_at: true,
+})
