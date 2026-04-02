@@ -1,4 +1,4 @@
-import { ProfileSchema } from '~/schemas'
+import { ProfileSchema } from '../entities/profile.schema'
 
 export const ProfileReadSchema = ProfileSchema.omit({
   created_at: true,

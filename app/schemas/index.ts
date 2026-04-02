@@ -12,8 +12,8 @@ export * from './ui/skeleton-loader.schema'
 export * from './ui/textfield'
 
 export * from './auth/auth.schema'
-export * from './profile/profile.base.schema'
-export * from './profile/profile.read.schema'
+/* export * from './profile/profile.base.schema'
+export * from './profile/profile.read.schema' */
 
 export * from './app/breadcrumb.schema'
 export * from './app/menu.schema'
@@ -23,7 +23,7 @@ export * from './voting/election/election.base.schema'
 export * from './voting/election/election.insert.schema'
 export * from './voting/election/election.update.schema'
 
-export * from './uge/object-type/object-type.base.schema'
+//export * from './uge/object-type/object-type.base.schema'
 
 /* export * from './uge/product/product.class.base.schema'
 export * from './uge/product/product.class.read.schema' */

@@ -18,7 +18,7 @@ export const useCurrentUser = () => {
       // 🔥 busca profile ligado ao auth.users.id
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
-        .select('*')
+        .select('id, name, avatar_url, role')
         .eq('id', user.id)
         .maybeSingle()
 

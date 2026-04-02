@@ -1,10 +1,10 @@
-import { ObjectTypeRowsSchema } from '~/schemas'
+import { ObjectTypeReadSchema, z } from '~/schemas'
 import type { ObjectType } from '~/types'
 
 const useObjectType = () => {
   const { fetchAll } = useTableFetch<ObjectType[]>({
     table: 'object_types',
-    schema: ObjectTypeRowsSchema,
+    schema: z.array(ObjectTypeReadSchema),
   })
 
   const select = useLazySelect('objectTypes', fetchAll)

@@ -7,6 +7,9 @@ export * from './packaging-type.read.dto'
 export * from './expense-type.insert.dto'
 export * from './expense-type.read.dto'
 
+export * from './object-type.insert.dto'
+export * from './object-type.read.dto'
+
 export * from './product-class.insert.dto'
 export * from './product-class.read.dto'
 
