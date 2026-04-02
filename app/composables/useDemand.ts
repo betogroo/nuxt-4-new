@@ -1,12 +1,14 @@
+import { z } from '~/schemas'
 import type { DemandRead, DemandInsert, Demand, TableName } from '~/types'
-import { DemandInsertSchema, DemandReadRowsSchema, DemandSchema } from '~/schemas'
+import { DemandInsertSchema, DemandReadSchema, DemandSchema } from '~/schemas/uge'
+
 const TABLE: TableName = 'demands'
 const useDemand = () => {
   //const supabase = useSupabaseClient()
 
   const { fetchAll } = useTableFetch<DemandRead[]>({
     table: TABLE,
-    schema: DemandReadRowsSchema,
+    schema: z.array(DemandReadSchema),
     select: `
     *,
         object_types (*), owner: profiles (*)

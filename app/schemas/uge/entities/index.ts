@@ -7,3 +7,4 @@ export * from './product-class.schema'
 export * from './product.schema'
 
 export * from './demand-item.schema'
+export * from './demand.schema'
