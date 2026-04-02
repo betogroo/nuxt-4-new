@@ -47,8 +47,8 @@ export * from './uge/product/product.insert.schema' */
 export * from './uge/demand/demand.base.schema'
 export * from './uge/demand/demand.read.schema'
 export * from './uge/demand/demand.insert.schema'
-export * from './uge/demand/demand.item.base.schema'
-export * from './uge/demand/demand.item.read.schema'
-export * from './uge/demand/demand.item.insert.schema'
+//export * from './uge/demand/demand.item.base.schema'
+//export * from './uge/demand/demand.item.read.schema'
+//export * from './uge/demand/demand.item.insert.schema'
 
 export * from './uge'

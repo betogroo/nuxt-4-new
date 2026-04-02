@@ -5,3 +5,5 @@ export * from './packaging-type.schema'
 export * from './expense-type.schema'
 export * from './product-class.schema'
 export * from './product.schema'
+
+export * from './demand-item.schema'

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
-  import { DemandItemReadRowsSchema } from '~/schemas'
+  import { z } from '~/schemas'
+  import { DemandItemReadSchema } from '~/schemas/uge'
   definePageMeta({
     layout: 'default',
     showBack: true,
@@ -41,7 +42,7 @@
       )
       .eq('demand_id', id.value)
     if (error.value) console.log(itemsError.value)
-    const parsed = DemandItemReadRowsSchema.safeParse(data)
+    const parsed = z.array(DemandItemReadSchema).safeParse(data)
     if (!parsed.success) {
       console.log(parsed.error)
       throw new AppError('Erro ao validar dados de demanda', parsed.error)

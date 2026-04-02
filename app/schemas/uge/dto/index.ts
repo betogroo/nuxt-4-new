@@ -12,3 +12,6 @@ export * from './product-class.read.dto'
 
 export * from './product.insert.dto'
 export * from './product.read.dto'
+
+export * from './demand-item.insert.dto'
+export * from './demand-item.read.dto'

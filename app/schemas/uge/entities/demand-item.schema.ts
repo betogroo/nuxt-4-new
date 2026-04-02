@@ -1,0 +1,16 @@
+import { z } from 'zod'
+import { BaseEntitySchema } from '~/schemas/uge/entities'
+import { positiveNumber, uuidRule } from '~/schemas/rules'
+
+export const DemandItemSchema = BaseEntitySchema.extend({
+  demand_id: uuidRule,
+  product_id: uuidRule,
+  packaging_type_id: uuidRule,
+  quantity: positiveNumber,
+
+  estimated_price: positiveNumber.nullable(),
+  offered_price: positiveNumber.nullable(),
+
+  item_order: positiveNumber,
+  status: z.string(),
+}).strict()
