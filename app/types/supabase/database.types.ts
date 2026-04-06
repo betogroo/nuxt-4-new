@@ -65,6 +65,13 @@ export type Database = {
             referencedRelation: 'products'
             referencedColumns: ['id']
           },
+          {
+            foreignKeyName: 'demand_items_product_packaging_fkey'
+            columns: ['product_id', 'packaging_type_id']
+            isOneToOne: false
+            referencedRelation: 'product_packaging_types'
+            referencedColumns: ['product_id', 'packaging_type_id']
+          },
         ]
       }
       demand_sequences: {
@@ -235,6 +242,45 @@ export type Database = {
         }
         Relationships: []
       }
+      product_packaging_types: {
+        Row: {
+          created_at: string
+          id: string
+          packaging_type_id: string
+          product_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          packaging_type_id: string
+          product_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          packaging_type_id?: string
+          product_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'product_packaging_types_packaging_type_id_fkey'
+            columns: ['packaging_type_id']
+            isOneToOne: false
+            referencedRelation: 'packaging_types'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'product_packaging_types_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
+            referencedRelation: 'products'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       products: {
         Row: {
           active: boolean | null
@@ -245,7 +291,6 @@ export type Database = {
           expense_type_id: string | null
           id: string
           name: string
-          nat_bec: number | null
           nat_gov: number | null
           pdm: number | null
           product_class_id: string | null
@@ -261,7 +306,6 @@ export type Database = {
           expense_type_id?: string | null
           id?: string
           name: string
-          nat_bec?: number | null
           nat_gov?: number | null
           pdm?: number | null
           product_class_id?: string | null
@@ -277,7 +321,6 @@ export type Database = {
           expense_type_id?: string | null
           id?: string
           name?: string
-          nat_bec?: number | null
           nat_gov?: number | null
           pdm?: number | null
           product_class_id?: string | null
