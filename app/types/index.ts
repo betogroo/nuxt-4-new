@@ -23,6 +23,7 @@ export * from './voting/election'
 export * from './uge/demand'
 export * from './uge/product'
 export * from './uge/product-class'
+export * from './uge/product-packaging-type'
 
 export * from './uge/object-type'
 export * from './uge/packaging-type'

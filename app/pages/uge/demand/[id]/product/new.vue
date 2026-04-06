@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { DemandItemFormSchema, DemandItemInsertSchema } from '~/schemas'
-  import type { DemandItemForm } from '~/types'
+  import type { DemandItemForm, PackagingTypeRead } from '~/types'
 
   const route = useRoute()
   const id = computed(() => route.params.id as string)
   const { select: productSelect } = useProduct()
-  const { select: packagingTypeSelect } = usePackagingType()
+  const { fetchByProductId } = usePackagingType()
   const { create } = useDemandItem()
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<DemandItemForm>(
@@ -32,6 +32,13 @@
   const onReset = () => {
     handleReset()
   }
+
+  const packagingTypeSelect = ref<PackagingTypeRead[]>([])
+  watch(values, async (item) => {
+    console.log(item.product_id)
+    const data = await fetchByProductId({ column: 'product_id', value: item.product_id })
+    packagingTypeSelect.value = data.map((i) => i.packaging_types)
+  })
 </script>
 
 <template>
@@ -51,13 +58,13 @@
         item-subtitle="name_bec"
         item-title="name"
         item-value="id"
-        :items="packagingTypeSelect.items.value"
+        :items="packagingTypeSelect"
         mode="autocomplete"
         name="packaging_type_id"
-        :status="packagingTypeSelect.status.value"
-        @focus="packagingTypeSelect.onOpen"
       />
       <ui-text-field name="quantity" type="number" />
     </ui-form>
+    <pre>{{ coiso }}</pre>
+    <pre>{{ values }}</pre>
   </ui-page>
 </template>
