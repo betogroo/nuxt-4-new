@@ -26,13 +26,12 @@ const useTableFetchMany = <T>({
   orderBy,
 }: UseTableFetchOptions<T>) => {
   const supabase = useSupabaseClient()
-  const baseQuery = supabase.from(table).select(select)
 
   const fetchMany = async (filter: Filter): Promise<T> => {
     if (import.meta.dev) {
       await delay(DELAY)
     }
-    let query = baseQuery
+    let query = supabase.from(table).select(select)
     if (orderBy?.length) {
       orderBy.forEach(({ column, ascending = true }) => {
         query = query.order(column, { ascending })
