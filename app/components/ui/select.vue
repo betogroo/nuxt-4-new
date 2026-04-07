@@ -27,6 +27,10 @@
     status = 'idle',
   } = defineProps<Props>()
 
+  const $emit = defineEmits<{
+    change: [value: string]
+  }>()
+
   const { value, errorMessage } = useField<T[typeof itemValue]>(name)
 
   const normalizedItems = computed(() =>
@@ -42,6 +46,10 @@
     if (status === 'error') return 'Erro ao carregar'
     return 'Nenhum dado disponível'
   })
+
+  const onUpdate = (value: T[typeof itemValue]) => {
+    $emit('change', value)
+  }
 </script>
 
 <template>
@@ -61,5 +69,6 @@
     :no-data-text="currentPlaceholder"
     :placeholder="placeholder"
     :variant="variant"
+    @update:model-value="onUpdate"
   />
 </template>
