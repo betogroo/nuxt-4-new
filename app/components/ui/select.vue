@@ -68,6 +68,7 @@
     :loading="status === 'pending'"
     :no-data-text="currentPlaceholder"
     :placeholder="placeholder"
+    :return-object="false"
     :variant="variant"
     @update:model-value="onUpdate"
   />
