@@ -1,11 +1,11 @@
 import { z } from '~/schemas'
-import { ProductClassSchema } from '~/schemas/uge/entities'
-import type { ProductClass } from '~/types'
+import { ProductClassReadSelectSchema } from '~/schemas/uge/'
+import type { ProductClassReadSelect } from '~/types'
 
 const useProductClass = () => {
-  const { fetchAll } = useTableFetch<ProductClass[]>({
+  const { fetchAll } = useTableFetch<ProductClassReadSelect[]>({
     table: 'product_class',
-    schema: z.array(ProductClassSchema),
+    schema: z.array(ProductClassReadSelectSchema),
     select: '(id, name, code)',
     orderBy: [{ column: 'code' }],
   })
