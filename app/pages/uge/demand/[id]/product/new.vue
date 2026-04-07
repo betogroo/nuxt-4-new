@@ -8,7 +8,7 @@
   const { fetchByProductId } = usePackagingType()
   const { create } = useDemandItem()
 
-  const { values, handleReset, handleSubmit, meta } = useZodForm<DemandItemForm>(
+  const { values, handleReset, handleSubmit, meta, setFieldValue } = useZodForm<DemandItemForm>(
     DemandItemFormSchema,
     {},
   )
@@ -34,24 +34,31 @@
   }
 
   const packagingTypeSelect = ref<PackagingTypeRead[]>([])
-  watch(values, async (item) => {
-    console.log(item.product_id)
-    const data = await fetchByProductId({ column: 'product_id', value: item.product_id })
+
+  const updatePackagingTypeSelect = async (productId: string) => {
+    console.log('productId:', productId)
+
+    if (!productId) {
+      packagingTypeSelect.value = []
+      return
+    }
+    setFieldValue('packaging_type_id', '')
+    const data = await fetchByProductId({ column: 'product_id', value: productId })
     packagingTypeSelect.value = data.map((i) => i.packaging_types)
-  })
+  }
 </script>
 
 <template>
   <ui-page show-back title="Adicionar produtos ao processo">
     <ui-form :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
       <ui-select
-        item-subtitle="specifications"
         item-title="description"
         item-value="id"
         :items="productSelect.items.value"
         mode="autocomplete"
         name="product_id"
         :status="productSelect.status.value"
+        @change="updatePackagingTypeSelect"
         @focus="productSelect.onOpen"
       />
       <ui-select
@@ -64,7 +71,7 @@
       />
       <ui-text-field name="quantity" type="number" />
     </ui-form>
-    <pre>{{ coiso }}</pre>
+
     <pre>{{ values }}</pre>
   </ui-page>
 </template>
