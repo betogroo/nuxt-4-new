@@ -13,7 +13,9 @@ const useProduct = () => {
      *,
       product_class (id, name, code),
       expense_types (id, expense_number, name),
-      product_packaging_types (id, product_id, packaging_type_id)
+      product_packaging_types (
+      packaging_types!inner (id, name,name_bec)
+      )
     `,
   })
 
