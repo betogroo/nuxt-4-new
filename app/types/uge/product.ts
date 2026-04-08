@@ -5,7 +5,6 @@ import type {
   ProductReadSchema,
   ProductSchema,
   ProductReadSelectSchema,
-  ProductPackagingTypeSchema,
   ProductSpecificationSchema,
   ProductSummarySchema,
 } from '~/schemas/uge'
@@ -21,7 +20,7 @@ export type ProductClassRows = z.infer<typeof ProductClassRowsSchema> */
 
 // a partir daqui novos
 export type ProductSpecification = z.infer<typeof ProductSpecificationSchema>
-export type ProductPackagingType = z.infer<typeof ProductPackagingTypeSchema>
+
 export type ProductRead = z.infer<typeof ProductReadSchema>
 export type ProductReadSelect = z.infer<typeof ProductReadSelectSchema>
 export type ProductInsert = z.infer<typeof ProductInsertSchema>
