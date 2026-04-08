@@ -6,7 +6,7 @@ export const ProductClassReadSchema = ProductClassSchema.omit({
   updated_at: true,
 })
 
-export const ProductClassReadSelectSchema = ProductClassSchema.omit({
+export const ProductClassReadSummarySchema = ProductClassSchema.omit({
   created_at: true,
   updated_at: true,
 })
