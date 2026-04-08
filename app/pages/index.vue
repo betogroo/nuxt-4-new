@@ -17,7 +17,7 @@
     table: 'products',
     schema: z.array(ProductSummarySchema),
     select: `
-      name, description,
+      id, name, description,
       class:product_class(name, code)
     `,
   })
@@ -27,6 +27,15 @@
   })
   const products = await fetchProducts()
   const classes = await fetchProductClasses()
+
+  //const supabase = useSupabaseClient()
+
+  const { fetchAll } = useTableFetch({
+    table: 'product_summary_view',
+    schema: z.array(ProductSummarySchema),
+  })
+
+  const testView = await fetchAll()
 </script>
 
 <template>
@@ -36,6 +45,9 @@
     </pre>
     <pre>
       {{ classes }}
+    </pre>
+    <pre>
+      {{ testView }}
     </pre>
   </ui-page>
 </template>

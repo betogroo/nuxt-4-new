@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { AppError } from '~/error/AppError'
+  import z from 'zod'
+  import { ProductClassReadSchema, ProductSummarySchema } from '~/schemas'
 
   definePageMeta({
     layout: 'default',
@@ -12,38 +13,41 @@
     },
   })
 
-  const testStore = useTestStore()
-  const errorMessage = ref<string | null>(null)
-
-  const { demands, isFetching, fetchAll } = useDemand()
-  onMounted(async () => {
-    try {
-      await fetchAll()
-    } catch (error) {
-      if (error instanceof AppError) {
-        errorMessage.value = error.message
-      } else {
-        errorMessage.value = 'Erro inesperado ao carregar demandas'
-      }
-    }
+  const { fetchAll: fetchProducts } = useTableFetch({
+    table: 'products',
+    schema: z.array(ProductSummarySchema),
+    select: `
+      id, name, description,
+      class:product_class(name, code)
+    `,
   })
+  const { fetchAll: fetchProductClasses } = useTableFetch({
+    table: 'product_class',
+    schema: z.array(ProductClassReadSchema),
+  })
+  const products = await fetchProducts()
+  const classes = await fetchProductClasses()
+
+  //const supabase = useSupabaseClient()
+
+  const { fetchAll } = useTableFetch({
+    table: 'product_summary_view',
+    schema: z.array(ProductSummarySchema),
+  })
+
+  const testView = await fetchAll()
 </script>
+
 <template>
-  <ui-page>
-    <template #title>
-      <ui-link-back />
-      <ui-heading :level="3"> {{ testStore.upperTitle }} - About </ui-heading>
-    </template>
+  <ui-page :title="`About Page`">
+    <pre>
+      {{ products }}
+    </pre>
+    <pre>
+      {{ classes }}
+    </pre>
+    <pre>
+      {{ testView }}
+    </pre>
   </ui-page>
-  <ui-page title="Testando erro ao tentar carregar dados sem estar logado">
-    <ui-card-grid v-if="isFetching"
-      ><ui-skeleton-loader :count="SKELETON_LOADER_COUNT.image" type="image" width="350"
-    /></ui-card-grid>
-    <ui-alert v-else-if="errorMessage" :title="errorMessage" type="error" />
-    <div v-else-if="!demands?.length">Ainda não tem demandas cadastradas</div>
-    <v-list v-else>
-      <v-list-item v-for="demand in demands" :key="demand.id">{{ demand.description }}</v-list-item>
-    </v-list>
-  </ui-page>
-  <div />
 </template>

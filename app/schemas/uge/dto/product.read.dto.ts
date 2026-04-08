@@ -5,6 +5,7 @@ import { z } from '~/schemas/'
 export const ProductReadSchema = ProductSchema
 
 export const ProductSummarySchema = ProductReadSchema.pick({
+  id: true,
   name: true,
   description: true,
 }).extend({
