@@ -16,4 +16,4 @@ export const ProductSchema = BaseEntitySchema.extend({
   specifications: ProductSpecificationSchema.nullable(),
 
   active: z.boolean(),
-}).strict()
+})
