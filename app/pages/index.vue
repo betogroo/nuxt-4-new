@@ -17,8 +17,9 @@
     table: 'products',
     schema: z.array(ProductReadDetailsSchema),
     select: `
-      id, name, description,
-      class:product_class(name, code)
+      id, name, description,cat_mat, cat_bec,nat_gov,pdm,specifications,active,
+      class:product_class(name, code),
+      expense_type:expense_types(name, expense_number)
     `,
   })
   const { fetchAll: fetchProductClasses } = useTableFetch({

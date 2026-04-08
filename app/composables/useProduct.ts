@@ -1,22 +1,24 @@
 import { z } from '~/schemas'
 import { ProductSchema } from '~/schemas/uge/entities'
-import { ProductInsertSchema, ProductReadSchema, ProductReadSummarySchema } from '~/schemas/uge/dto'
-import type { ProductReadSummary, Product, ProductInsert, ProductRead, TableName } from '~/types'
+import {
+  ProductInsertSchema,
+  ProductReadDetailsSchema,
+  ProductReadSummarySchema,
+} from '~/schemas/uge/dto'
+import type {
+  ProductReadSummary,
+  Product,
+  ProductInsert,
+  TableName,
+  ProductReadDetails,
+} from '~/types'
 
 const TABLE: TableName = 'products'
 
 const useProduct = () => {
-  const { fetchAll } = useTableFetch<ProductRead[]>({
-    table: 'products',
-    schema: z.array(ProductReadSchema),
-    select: `
-     *,
-      product_class (id, name, code),
-      expense_types (id, expense_number, name),
-      product_packaging_types (
-      packaging_types!inner (id, name,name_bec)
-      )
-    `,
+  const { fetchAll } = useTableFetch<ProductReadDetails[]>({
+    table: 'product_summary_view',
+    schema: z.array(ProductReadDetailsSchema),
   })
 
   const { fetchAll: fetchSelect } = useTableFetch<ProductReadSummary>({
