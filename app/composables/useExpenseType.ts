@@ -1,11 +1,11 @@
 import { z } from '~/schemas'
-import { ExpenseTypeReadSchema } from '~/schemas/uge/dto'
-import type { ExpenseTypeRead } from '~/types'
+import { ExpenseTypeReadSummarySchema } from '~/schemas/uge/dto'
+import type { ExpenseTypeReadSummary } from '~/types'
 
 const useExpensiveType = () => {
-  const { fetchAll } = useTableFetch<ExpenseTypeRead[]>({
+  const { fetchAll } = useTableFetch<ExpenseTypeReadSummary[]>({
     table: 'expense_types',
-    schema: z.array(ExpenseTypeReadSchema),
+    schema: z.array(ExpenseTypeReadSummarySchema),
     select: '(id, name, expense_number)',
     orderBy: [{ column: 'expense_number' }],
   })
