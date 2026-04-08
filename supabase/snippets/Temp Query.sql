@@ -1,7 +1,3 @@
-select
-  p.id,
-  p.name,
-  pc.name as product_class_name
-from products p
-left join product_class pc
-on pc.id = p.product_class_id;
+select grantee, privilege_type
+from information_schema.role_table_grants
+where table_name = 'product_summary_view';

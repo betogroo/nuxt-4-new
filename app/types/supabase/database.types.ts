@@ -62,6 +62,13 @@ export type Database = {
             foreignKeyName: 'demand_items_product_id_fkey'
             columns: ['product_id']
             isOneToOne: false
+            referencedRelation: 'product_summary_view'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
             referencedRelation: 'products'
             referencedColumns: ['id']
           },
@@ -276,6 +283,13 @@ export type Database = {
             foreignKeyName: 'product_packaging_types_product_id_fkey'
             columns: ['product_id']
             isOneToOne: false
+            referencedRelation: 'product_summary_view'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'product_packaging_types_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
             referencedRelation: 'products'
             referencedColumns: ['id']
           },
@@ -373,7 +387,15 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      product_summary_view: {
+        Row: {
+          class_code: number | null
+          class_name: string | null
+          id: string | null
+          name: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       can_read_demand: { Args: { owner_id: string }; Returns: boolean }
