@@ -1,6 +1,6 @@
 import { AppError } from '~/error/AppError'
 import type { ZodSchema } from 'zod'
-import type { TableName } from '~/types'
+import type { TableName, ViewName } from '~/types'
 
 type OrderBy = {
   column: string
@@ -8,7 +8,7 @@ type OrderBy = {
 }
 
 type UseTableFetchOptions<T> = {
-  table: TableName
+  table: TableName | ViewName
   schema: ZodSchema<T>
   select?: string
   orderBy?: OrderBy[]
@@ -21,7 +21,7 @@ const useTableFetch = <T>({ table, schema, select = '*', orderBy }: UseTableFetc
     if (import.meta.dev) {
       await delay(DELAY)
     }
-    let query = supabase.from(table).select(select)
+    let query = supabase.from(table as never).select(select)
     if (orderBy?.length) {
       orderBy.forEach(({ column, ascending = true }) => {
         query = query.order(column, { ascending })
