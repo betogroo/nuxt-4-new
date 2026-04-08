@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import z from 'zod'
-  import { ProductClassReadSchema, ProductSummarySchema } from '~/schemas'
+  import { ProductClassReadSchema, ProductReadDetailsSchema } from '~/schemas'
 
   definePageMeta({
     layout: 'default',
@@ -15,7 +15,7 @@
 
   const { fetchAll: fetchProducts } = useTableFetch({
     table: 'products',
-    schema: z.array(ProductSummarySchema),
+    schema: z.array(ProductReadDetailsSchema),
     select: `
       id, name, description,
       class:product_class(name, code)
@@ -32,7 +32,7 @@
 
   const { fetchAll } = useTableFetch({
     table: 'product_summary_view',
-    schema: z.array(ProductSummarySchema),
+    schema: z.array(ProductReadDetailsSchema),
   })
 
   const testView = await fetchAll()

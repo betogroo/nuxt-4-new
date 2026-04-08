@@ -1,7 +1,7 @@
 import { z } from '~/schemas'
 import { ProductSchema } from '~/schemas/uge/entities'
-import { ProductInsertSchema, ProductReadSchema, ProductReadSelectSchema } from '~/schemas/uge/dto'
-import type { ProductReadSelect, Product, ProductInsert, ProductRead, TableName } from '~/types'
+import { ProductInsertSchema, ProductReadSchema, ProductReadSummarySchema } from '~/schemas/uge/dto'
+import type { ProductReadSummary, Product, ProductInsert, ProductRead, TableName } from '~/types'
 
 const TABLE: TableName = 'products'
 
@@ -19,9 +19,9 @@ const useProduct = () => {
     `,
   })
 
-  const { fetchAll: fetchSelect } = useTableFetch<ProductReadSelect>({
+  const { fetchAll: fetchSelect } = useTableFetch<ProductReadSummary>({
     table: 'products',
-    schema: ProductReadSelectSchema,
+    schema: ProductReadSummarySchema,
     select: 'id, description, specifications',
   })
 

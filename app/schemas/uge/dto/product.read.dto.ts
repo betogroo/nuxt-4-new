@@ -4,7 +4,7 @@ import { z } from '~/schemas/'
 
 export const ProductReadSchema = ProductSchema
 
-export const ProductSummarySchema = ProductReadSchema.pick({
+export const ProductReadDetailsSchema = ProductReadSchema.pick({
   id: true,
   name: true,
   description: true,
@@ -18,7 +18,7 @@ export const ProductSummarySchema = ProductReadSchema.pick({
   product_packaging_types: z.array(ProductPackagingTypeWithPackagingSchema),
 }) */
 
-export const ProductReadSelectSchema = z.array(
+export const ProductReadSummarySchema = z.array(
   ProductSchema.pick({
     id: true,
     description: true,
