@@ -14,6 +14,4 @@ export const ProductSchema = BaseEntitySchema.extend({
   nat_gov: positiveNumber.nullable(),
   pdm: positiveNumber.nullable(),
   specifications: ProductSpecificationSchema.nullable(),
-
-  active: z.boolean(),
 })

@@ -36,7 +36,6 @@
       "import { nameRule } from '~/schemas/rules'",
       "\nexport const $1Schema = BaseEntitySchema.extend({",
       "  name: nameRule,",
-      "  active: z.boolean(),",
       "}).strict()",
       "",
     ],

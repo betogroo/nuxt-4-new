@@ -8,4 +8,5 @@ export const DemandInsertSchema = DemandSchema.omit({
   owner_id: true,
   status: true,
   year: true,
+  active: true,
 })

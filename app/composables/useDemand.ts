@@ -12,7 +12,7 @@ const useDemand = () => {
     select: `
     *,
         object_type:object_types(name, ptres),
-        owner:profiles(id, name, role, avatar_url)
+        owner:profiles(id, name, role, avatar_url, active)
     `,
     orderBy: [{ column: 'internal_process_number' }],
   })
