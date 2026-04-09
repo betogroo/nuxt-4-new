@@ -11,7 +11,8 @@ const useDemand = () => {
     schema: z.array(DemandReadDetailSchema),
     select: `
     *,
-        object_types (*), owner: profiles (id, name, role, avatar_url)
+        object_type:object_types(name, ptres),
+        owner:profiles(id, name, role, avatar_url)
     `,
     orderBy: [{ column: 'internal_process_number' }],
   })

@@ -1,9 +1,9 @@
-import { DemandSchema, ObjectTypeSchema } from '~/schemas/uge'
+import { DemandSchema, ObjectTypeReadSchema } from '~/schemas/uge'
 import { ProfileReadSchema } from '~/schemas/profile/dto/profile.read.dto'
 
 export const DemandReadSchema = DemandSchema
 
 export const DemandReadDetailSchema = DemandReadSchema.extend({
-  object_types: ObjectTypeSchema.nullable(),
-  owner: ProfileReadSchema.nullable(),
+  object_type: ObjectTypeReadSchema,
+  owner: ProfileReadSchema,
 })
