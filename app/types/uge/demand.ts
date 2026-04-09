@@ -6,7 +6,7 @@ import type {
   DemandItemReadSchema,
   DemandItemSchema,
   DemandSchema,
-  DemandReadSchema,
+  DemandReadDetailSchema,
   DemandInsertSchema,
   DemandFormSchema,
 } from '~/schemas/uge'
@@ -21,5 +21,5 @@ export type DemandItemInsert = z.infer<typeof DemandItemInsertSchema>
 export type DemandItemForm = z.infer<typeof DemandItemFormSchema>
 
 export type Demand = z.infer<typeof DemandSchema>
-export type DemandRead = z.infer<typeof DemandReadSchema>
+export type DemandReadDetail = z.infer<typeof DemandReadDetailSchema>
 export type DemandInsert = z.infer<typeof DemandInsertSchema>
