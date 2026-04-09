@@ -62,7 +62,7 @@ export type Database = {
             foreignKeyName: 'demand_items_product_id_fkey'
             columns: ['product_id']
             isOneToOne: false
-            referencedRelation: 'product_summary_view'
+            referencedRelation: 'product_detail'
             referencedColumns: ['id']
           },
           {
@@ -283,7 +283,7 @@ export type Database = {
             foreignKeyName: 'product_packaging_types_product_id_fkey'
             columns: ['product_id']
             isOneToOne: false
-            referencedRelation: 'product_summary_view'
+            referencedRelation: 'product_detail'
             referencedColumns: ['id']
           },
           {
@@ -387,12 +387,19 @@ export type Database = {
       }
     }
     Views: {
-      product_summary_view: {
+      product_detail: {
         Row: {
-          class_code: number | null
-          class_name: string | null
+          active: boolean | null
+          cat_bec: number | null
+          cat_mat: number | null
+          class: Json | null
+          description: string | null
+          expense_type: Json | null
           id: string | null
           name: string | null
+          nat_gov: number | null
+          pdm: number | null
+          specifications: Json | null
         }
         Relationships: []
       }

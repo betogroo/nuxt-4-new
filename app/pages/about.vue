@@ -31,7 +31,7 @@
   //const supabase = useSupabaseClient()
 
   const { fetchAll } = useTableFetch({
-    table: 'product_summary_view',
+    table: 'product_detail',
     schema: z.array(ProductReadDetailsSchema),
   })
 

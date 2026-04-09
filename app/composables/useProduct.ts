@@ -17,7 +17,7 @@ const TABLE: TableName = 'products'
 
 const useProduct = () => {
   const { fetchAll } = useTableFetch<ProductReadDetails[]>({
-    table: 'product_summary_view',
+    table: 'product_detail',
     schema: z.array(ProductReadDetailsSchema),
   })
 
