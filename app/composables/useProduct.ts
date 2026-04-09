@@ -33,9 +33,14 @@ const useProduct = () => {
     readSchema: ProductSchema,
   })
 
+  const { get } = useTableGet<ProductReadDetails>({
+    table: 'product_detail',
+    schema: ProductReadDetailsSchema,
+  })
+
   const select = useLazySelect('products_select', fetchSelect)
 
-  return { fetchAll, create, isCreating, select }
+  return { fetchAll, create, get, isCreating, select }
 }
 
 export default useProduct
