@@ -16,7 +16,7 @@ BEGIN
       )
   LOOP
     EXECUTE format(
-      'ALTER TABLE %I.%I ADD COLUMN active boolean DEFAULT true',
+      'ALTER TABLE %I.%I ADD COLUMN active boolean NOT NULL DEFAULT true',
       r.table_schema,
       r.table_name
     );

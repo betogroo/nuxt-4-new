@@ -5,6 +5,7 @@ export type Database = {
     Tables: {
       demand_items: {
         Row: {
+          active: boolean
           created_at: string
           demand_id: string
           estimated_price: number | null
@@ -18,6 +19,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          active?: boolean
           created_at?: string
           demand_id: string
           estimated_price?: number | null
@@ -31,6 +33,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          active?: boolean
           created_at?: string
           demand_id?: string
           estimated_price?: number | null
@@ -83,14 +86,17 @@ export type Database = {
       }
       demand_sequences: {
         Row: {
+          active: boolean
           current_number: number
           year: number
         }
         Insert: {
+          active?: boolean
           current_number: number
           year: number
         }
         Update: {
+          active?: boolean
           current_number?: number
           year?: number
         }
@@ -98,6 +104,7 @@ export type Database = {
       }
       demands: {
         Row: {
+          active: boolean
           created_at: string
           description: string
           dispute_date: string | null
@@ -111,6 +118,7 @@ export type Database = {
           year: number
         }
         Insert: {
+          active?: boolean
           created_at?: string
           description: string
           dispute_date?: string | null
@@ -124,6 +132,7 @@ export type Database = {
           year: number
         }
         Update: {
+          active?: boolean
           created_at?: string
           description?: string
           dispute_date?: string | null
@@ -155,6 +164,7 @@ export type Database = {
       }
       expense_types: {
         Row: {
+          active: boolean
           created_at: string
           expense_number: number
           id: string
@@ -162,6 +172,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          active?: boolean
           created_at?: string
           expense_number: number
           id?: string
@@ -169,6 +180,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          active?: boolean
           created_at?: string
           expense_number?: number
           id?: string
@@ -179,6 +191,7 @@ export type Database = {
       }
       object_types: {
         Row: {
+          active: boolean
           created_at: string | null
           id: number
           name: string
@@ -186,6 +199,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          active?: boolean
           created_at?: string | null
           id?: number
           name: string
@@ -193,6 +207,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          active?: boolean
           created_at?: string | null
           id?: number
           name?: string
@@ -203,6 +218,7 @@ export type Database = {
       }
       packaging_types: {
         Row: {
+          active: boolean
           created_at: string | null
           id: string
           name: string
@@ -210,6 +226,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          active?: boolean
           created_at?: string | null
           id?: string
           name: string
@@ -217,6 +234,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          active?: boolean
           created_at?: string | null
           id?: string
           name?: string
@@ -227,6 +245,7 @@ export type Database = {
       }
       product_class: {
         Row: {
+          active: boolean
           code: number
           created_at: string | null
           id: string
@@ -234,6 +253,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          active?: boolean
           code: number
           created_at?: string | null
           id?: string
@@ -241,6 +261,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          active?: boolean
           code?: number
           created_at?: string | null
           id?: string
@@ -251,6 +272,7 @@ export type Database = {
       }
       product_packaging_types: {
         Row: {
+          active: boolean
           created_at: string
           id: string
           packaging_type_id: string
@@ -258,6 +280,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          active?: boolean
           created_at?: string
           id?: string
           packaging_type_id: string
@@ -265,6 +288,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          active?: boolean
           created_at?: string
           id?: string
           packaging_type_id?: string
@@ -360,6 +384,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          active: boolean
           avatar_url: string | null
           created_at: string
           id: string
@@ -368,6 +393,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          active?: boolean
           avatar_url?: string | null
           created_at?: string
           id: string
@@ -376,6 +402,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          active?: boolean
           avatar_url?: string | null
           created_at?: string
           id?: string
