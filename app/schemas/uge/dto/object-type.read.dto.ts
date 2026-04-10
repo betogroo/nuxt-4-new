@@ -9,4 +9,5 @@ export const ObjectTypeReadSummarySchema = ObjectTypeSchema.omit({
   created_at: true,
   updated_at: true,
   active: true,
+  deleted_at: true,
 })

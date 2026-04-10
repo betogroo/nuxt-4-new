@@ -834,13 +834,14 @@ INSERT INTO
         "name",
         "description",
         "cat_mat",
+        "cat_bec",
         "nat_gov",
         "pdm",
         "active",
         "specifications",
         "product_class_id",
         "expense_type_id",
-        "cat_bec"
+        "deleted_at"
     )
 VALUES
     (
@@ -850,28 +851,30 @@ VALUES
         'Caneta Marca Texto',
         'Caneta para marcar texto, na cor amarela',
         '477113',
+        '5531462',
         null,
         '18075',
         'true',
         '{"Cor":"Fluorescente Amarela","Tipo":"Base Água","Material":"Plástico","Tipo Ponta":"Chanfrada","Características":"Secagem Rápida"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
-        '5531462'
+        null
     ),
     (
         '1539d5b9-2184-4f17-a6a0-7a8a7abc67a5',
         '2026-03-10 17:27:58.165718+00',
-        '2026-03-12 12:04:27.732837+00',
+        '2026-04-10 12:56:10.505999+00',
         'Fita Larga',
         'Fita para vedação de caixas.',
         '445375',
+        '5702674',
         '33903016',
         '18071',
         'true',
         '{"cor":"transparente"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
-        '5702674'
+        null
     ),
     (
         '23e86f48-b981-47b4-8210-62f05e509f2b',
@@ -880,11 +883,44 @@ VALUES
         'Caneta Azul',
         'Caneta esferográfica, com tinta na cor azul.',
         '317868',
+        '4855108',
         null,
         '99',
         'true',
         '{"material":"Poliestireno","cor_tinta":"Azul","tipo_escrita":"Média","material_ponta":"Latão com esfera de tungstênio","características":"Corpo sextavado e orifício lateral"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
-        '4855108'
+        null
+    ),
+    (
+        '48952319-31ea-4c8d-a639-55cf98bc357d',
+        '2026-04-10 12:55:38.265302+00',
+        '2026-04-10 12:56:18.992206+00',
+        'Produto excluído',
+        'Produto excluído para testes',
+        '202020',
+        '202020',
+        null,
+        null,
+        'false',
+        null,
+        '4fa6a448-67f4-4c81-a7d9-c3798f578629',
+        'bae6261b-f606-4961-a97f-7ab521349c9b',
+        null
+    ),
+    (
+        '582977f4-d1d2-4a2d-8c0e-b54696aabc0c',
+        '2026-04-10 12:55:00.154683+00',
+        '2026-04-10 12:56:30.208558+00',
+        'Produto desabilitado',
+        'Produto desabilitado para testes',
+        '101010',
+        '101010',
+        null,
+        null,
+        'false',
+        null,
+        '4fa6a448-67f4-4c81-a7d9-c3798f578629',
+        'bae6261b-f606-4961-a97f-7ab521349c9b',
+        '2026-04-10 12:56:30+00'
     );

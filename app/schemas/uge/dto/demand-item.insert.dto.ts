@@ -7,6 +7,8 @@ export const DemandItemInsertSchema = DemandItemSchema.omit({
   updated_at: true,
   item_order: true,
   status: true,
+  deleted_at: true,
+  active: true,
 }).extend({
   estimated_price: positiveNumber.optional(),
   offered_price: positiveNumber.optional(),
