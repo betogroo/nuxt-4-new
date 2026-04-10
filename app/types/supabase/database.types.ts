@@ -7,6 +7,7 @@ export type Database = {
         Row: {
           active: boolean
           created_at: string
+          deleted_at: string | null
           demand_id: string
           estimated_price: number | null
           id: string
@@ -21,6 +22,7 @@ export type Database = {
         Insert: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           demand_id: string
           estimated_price?: number | null
           id?: string
@@ -35,6 +37,7 @@ export type Database = {
         Update: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           demand_id?: string
           estimated_price?: number | null
           id?: string
@@ -88,16 +91,19 @@ export type Database = {
         Row: {
           active: boolean
           current_number: number
+          deleted_at: string | null
           year: number
         }
         Insert: {
           active?: boolean
           current_number: number
+          deleted_at?: string | null
           year: number
         }
         Update: {
           active?: boolean
           current_number?: number
+          deleted_at?: string | null
           year?: number
         }
         Relationships: []
@@ -106,6 +112,7 @@ export type Database = {
         Row: {
           active: boolean
           created_at: string
+          deleted_at: string | null
           description: string
           dispute_date: string | null
           electronic_process_number: string | null
@@ -120,6 +127,7 @@ export type Database = {
         Insert: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           description: string
           dispute_date?: string | null
           electronic_process_number?: string | null
@@ -134,6 +142,7 @@ export type Database = {
         Update: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           description?: string
           dispute_date?: string | null
           electronic_process_number?: string | null
@@ -166,6 +175,7 @@ export type Database = {
         Row: {
           active: boolean
           created_at: string
+          deleted_at: string | null
           expense_number: number
           id: string
           name: string
@@ -174,6 +184,7 @@ export type Database = {
         Insert: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           expense_number: number
           id?: string
           name: string
@@ -182,6 +193,7 @@ export type Database = {
         Update: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           expense_number?: number
           id?: string
           name?: string
@@ -193,6 +205,7 @@ export type Database = {
         Row: {
           active: boolean
           created_at: string | null
+          deleted_at: string | null
           id: number
           name: string
           ptres: number
@@ -201,6 +214,7 @@ export type Database = {
         Insert: {
           active?: boolean
           created_at?: string | null
+          deleted_at?: string | null
           id?: number
           name: string
           ptres: number
@@ -209,6 +223,7 @@ export type Database = {
         Update: {
           active?: boolean
           created_at?: string | null
+          deleted_at?: string | null
           id?: number
           name?: string
           ptres?: number
@@ -220,6 +235,7 @@ export type Database = {
         Row: {
           active: boolean
           created_at: string | null
+          deleted_at: string | null
           id: string
           name: string
           name_bec: string
@@ -228,6 +244,7 @@ export type Database = {
         Insert: {
           active?: boolean
           created_at?: string | null
+          deleted_at?: string | null
           id?: string
           name: string
           name_bec: string
@@ -236,6 +253,7 @@ export type Database = {
         Update: {
           active?: boolean
           created_at?: string | null
+          deleted_at?: string | null
           id?: string
           name?: string
           name_bec?: string
@@ -248,6 +266,7 @@ export type Database = {
           active: boolean
           code: number
           created_at: string | null
+          deleted_at: string | null
           id: string
           name: string
           updated_at: string | null
@@ -256,6 +275,7 @@ export type Database = {
           active?: boolean
           code: number
           created_at?: string | null
+          deleted_at?: string | null
           id?: string
           name: string
           updated_at?: string | null
@@ -264,6 +284,7 @@ export type Database = {
           active?: boolean
           code?: number
           created_at?: string | null
+          deleted_at?: string | null
           id?: string
           name?: string
           updated_at?: string | null
@@ -274,6 +295,7 @@ export type Database = {
         Row: {
           active: boolean
           created_at: string
+          deleted_at: string | null
           id: string
           packaging_type_id: string
           product_id: string
@@ -282,6 +304,7 @@ export type Database = {
         Insert: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           id?: string
           packaging_type_id: string
           product_id: string
@@ -290,6 +313,7 @@ export type Database = {
         Update: {
           active?: boolean
           created_at?: string
+          deleted_at?: string | null
           id?: string
           packaging_type_id?: string
           product_id?: string
@@ -325,6 +349,7 @@ export type Database = {
           cat_bec: number
           cat_mat: number
           created_at: string
+          deleted_at: string | null
           description: string
           expense_type_id: string | null
           id: string
@@ -340,6 +365,7 @@ export type Database = {
           cat_bec: number
           cat_mat: number
           created_at?: string
+          deleted_at?: string | null
           description: string
           expense_type_id?: string | null
           id?: string
@@ -355,6 +381,7 @@ export type Database = {
           cat_bec?: number
           cat_mat?: number
           created_at?: string
+          deleted_at?: string | null
           description?: string
           expense_type_id?: string | null
           id?: string
@@ -387,6 +414,7 @@ export type Database = {
           active: boolean
           avatar_url: string | null
           created_at: string
+          deleted_at: string | null
           id: string
           name: string | null
           role: Database['public']['Enums']['user_role']
@@ -396,6 +424,7 @@ export type Database = {
           active?: boolean
           avatar_url?: string | null
           created_at?: string
+          deleted_at?: string | null
           id: string
           name?: string | null
           role?: Database['public']['Enums']['user_role']
@@ -405,6 +434,7 @@ export type Database = {
           active?: boolean
           avatar_url?: string | null
           created_at?: string
+          deleted_at?: string | null
           id?: string
           name?: string | null
           role?: Database['public']['Enums']['user_role']
