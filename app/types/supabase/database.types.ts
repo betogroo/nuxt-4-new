@@ -68,7 +68,7 @@ export type Database = {
             foreignKeyName: 'demand_items_product_id_fkey'
             columns: ['product_id']
             isOneToOne: false
-            referencedRelation: 'product_detail'
+            referencedRelation: 'product_details_active'
             referencedColumns: ['id']
           },
           {
@@ -331,7 +331,7 @@ export type Database = {
             foreignKeyName: 'product_packaging_types_product_id_fkey'
             columns: ['product_id']
             isOneToOne: false
-            referencedRelation: 'product_detail'
+            referencedRelation: 'product_details_active'
             referencedColumns: ['id']
           },
           {
@@ -444,7 +444,7 @@ export type Database = {
       }
     }
     Views: {
-      product_detail: {
+      product_details_active: {
         Row: {
           active: boolean | null
           cat_bec: number | null
