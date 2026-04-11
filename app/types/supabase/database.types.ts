@@ -54,6 +54,13 @@ export type Database = {
             foreignKeyName: 'demand_items_demand_id_fkey'
             columns: ['demand_id']
             isOneToOne: false
+            referencedRelation: 'demand_details_active'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_demand_id_fkey'
+            columns: ['demand_id']
+            isOneToOne: false
             referencedRelation: 'demands'
             referencedColumns: ['id']
           },
@@ -444,6 +451,20 @@ export type Database = {
       }
     }
     Views: {
+      demand_details_active: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          dispute_date: string | null
+          electronic_process_number: string | null
+          id: string | null
+          internal_process_number: number | null
+          object_type: Json | null
+          owner: Json | null
+          status: string | null
+        }
+        Relationships: []
+      }
       product_details_active: {
         Row: {
           active: boolean | null

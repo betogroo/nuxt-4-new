@@ -1,23 +1,7 @@
-select
-    p.id,
-    p.name,
-    p.description,
-    p.cat_mat,
-    p.cat_bec,
-    p.nat_gov,
-    p.pdm,
-    p.specifications,
-    p.active,
-    jsonb_build_object ('name', pc.name, 'code', pc.code) as class,
-    jsonb_build_object (
-        'name',
-        et.name,
-        'expense_number',
-        et.expense_number
-    ) as expense_type
-from
-    products p
-    left join product_class pc on pc.id = p.product_class_id
-    left join expense_types et on et.id = p.expense_type_id
-where
-    p.active = true
+select d.id, d.description, d.electronic_process_number, d.internal_process_number, d.dispute_date, d.created_at, d.status,
+jsonb_build_object ('name', ot.name, 'ptres', ot.ptres) as object_type,
+jsonb_build_object ('name', p.name) as owner
+ from demands d
+left join object_types ot on d.object_types_id = ot.id
+left join profiles p on d.owner_id = p.id
+where d.active = true and d.deleted_at is null
