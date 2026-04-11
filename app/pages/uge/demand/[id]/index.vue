@@ -63,7 +63,8 @@
       <div>Data da Disputa: {{ dateBr(demand!.dispute_date) }}</div>
     </ui-card-grid>
 
-    <pre>{{ demandItems }}</pre>
-    <div>{{ demandItemsStatus }}</div>
+    <ui-list :items="demandItems" :status="demandItemsStatus">
+      <ui-list-item v-for="item in demandItems" :key="item.id">{{ item.id }}</ui-list-item>
+    </ui-list>
   </ui-page>
 </template>

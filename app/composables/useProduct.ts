@@ -22,7 +22,7 @@ const useProduct = () => {
   })
 
   const { fetchAll: fetchSelect } = useTableFetch<ProductReadSummary>({
-    table: 'products',
+    table: 'product_details_active',
     schema: ProductReadSummarySchema,
     select: 'id, description, specifications',
   })
