@@ -5,3 +5,7 @@ export const ProfileReadSchema = ProfileSchema.omit({
   updated_at: true,
   deleted_at: true,
 })
+
+export const ProfileReadSummarySchema = ProfileReadSchema.pick({
+  name: true,
+})

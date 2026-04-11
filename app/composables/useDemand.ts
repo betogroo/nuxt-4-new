@@ -1,38 +1,27 @@
 import { z } from '~/schemas'
-import type { DemandReadDetail, DemandInsert, Demand, TableName } from '~/types'
+import type { DemandReadDetail, DemandInsert, Demand } from '~/types'
 import { DemandInsertSchema, DemandReadDetailSchema, DemandSchema } from '~/schemas/uge'
 
-const TABLE: TableName = 'demands'
 const useDemand = () => {
   //const supabase = useSupabaseClient()
 
   const { fetchAll } = useTableFetch<DemandReadDetail[]>({
-    table: TABLE,
+    table: 'demand_details_active',
     schema: z.array(DemandReadDetailSchema),
-    select: `
-    *,
-        object_type:object_types(name, ptres),
-        owner:profiles(id, name, role, avatar_url, active)
-    `,
     orderBy: [{ column: 'internal_process_number' }],
   })
 
   const { create, isCreating } = useTableCreate<Demand, DemandInsert>({
-    table: TABLE,
+    table: 'demands',
     insertSchema: DemandInsertSchema,
     readSchema: DemandSchema,
   })
 
-  const { get } = useTableGet<Demand>({ table: TABLE, schema: DemandSchema })
+  const { get } = useTableGet<DemandReadDetail>({
+    table: 'demand_details_active',
+    schema: DemandReadDetailSchema,
+  })
 
-  /* const get = async (id: string) => {
-    if (import.meta.dev) {
-      await delay(500)
-    }
-    const { data, error } = await supabase.from('demands').select('*').eq('id', id).single()
-    if (error) throw error
-    return DemandSchema.parse(data)
-  } */
   return { fetchAll, create, isCreating, get }
 }
 
