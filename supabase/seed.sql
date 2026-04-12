@@ -924,3 +924,34 @@ VALUES
         'bae6261b-f606-4961-a97f-7ab521349c9b',
         '2026-04-10 12:56:30+00'
     );
+
+INSERT INTO
+    "public"."demand_status" (
+        "id",
+        "code",
+        "name",
+        "color",
+        "sort_order",
+        "is_initial",
+        "is_final",
+        "is_demand_active",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "active"
+    )
+VALUES
+    (
+        '5ba3852e-7e4e-412e-a5be-c564d030672f',
+        'open',
+        'Aberto',
+        'blue',
+        '1',
+        'true',
+        'false',
+        'true',
+        '2026-04-12 22:14:31.749472+00',
+        '2026-04-12 22:14:31.749472+00',
+        null,
+        'true'
+    );

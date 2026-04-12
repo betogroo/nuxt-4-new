@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import { BaseEntitySchema } from '~/schemas/uge/entities'
 import { positiveNumber, uuidRule } from '~/schemas/rules'
 
@@ -12,5 +11,5 @@ export const DemandItemSchema = BaseEntitySchema.extend({
   offered_price: positiveNumber.nullable(),
 
   item_order: positiveNumber,
-  status: z.string(),
+  demand_status_id: uuidRule,
 }).strict()

@@ -9,7 +9,6 @@ select
     d.internal_process_number,
     d.dispute_date,
     d.created_at,
-    d.status,
     jsonb_build_object ('name', ot.name, 'ptres', ot.ptres) as object_type,
     jsonb_build_object ('name', p.name) as owner
 from

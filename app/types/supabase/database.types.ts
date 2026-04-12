@@ -9,6 +9,7 @@ export type Database = {
           created_at: string
           deleted_at: string | null
           demand_id: string
+          demand_status_id: string
           estimated_price: number | null
           id: string
           item_order: number
@@ -16,7 +17,6 @@ export type Database = {
           packaging_type_id: string
           product_id: string
           quantity: number
-          status: string
           updated_at: string
         }
         Insert: {
@@ -24,6 +24,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           demand_id: string
+          demand_status_id: string
           estimated_price?: number | null
           id?: string
           item_order: number
@@ -31,7 +32,6 @@ export type Database = {
           packaging_type_id: string
           product_id: string
           quantity: number
-          status?: string
           updated_at?: string
         }
         Update: {
@@ -39,6 +39,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           demand_id?: string
+          demand_status_id?: string
           estimated_price?: number | null
           id?: string
           item_order?: number
@@ -46,7 +47,6 @@ export type Database = {
           packaging_type_id?: string
           product_id?: string
           quantity?: number
-          status?: string
           updated_at?: string
         }
         Relationships: [
@@ -62,6 +62,13 @@ export type Database = {
             columns: ['demand_id']
             isOneToOne: false
             referencedRelation: 'demands'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_demand_status_id_fkey'
+            columns: ['demand_status_id']
+            isOneToOne: false
+            referencedRelation: 'demand_status'
             referencedColumns: ['id']
           },
           {
@@ -115,6 +122,51 @@ export type Database = {
         }
         Relationships: []
       }
+      demand_status: {
+        Row: {
+          active: boolean
+          code: string
+          color: string | null
+          created_at: string | null
+          deleted_at: string | null
+          id: string
+          is_demand_active: boolean | null
+          is_final: boolean | null
+          is_initial: boolean | null
+          name: string
+          sort_order: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          active?: boolean
+          code: string
+          color?: string | null
+          created_at?: string | null
+          deleted_at?: string | null
+          id?: string
+          is_demand_active?: boolean | null
+          is_final?: boolean | null
+          is_initial?: boolean | null
+          name: string
+          sort_order?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          active?: boolean
+          code?: string
+          color?: string | null
+          created_at?: string | null
+          deleted_at?: string | null
+          id?: string
+          is_demand_active?: boolean | null
+          is_final?: boolean | null
+          is_initial?: boolean | null
+          name?: string
+          sort_order?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       demands: {
         Row: {
           active: boolean
@@ -127,7 +179,6 @@ export type Database = {
           internal_process_number: number
           object_types_id: number | null
           owner_id: string
-          status: string | null
           updated_at: string
           year: number
         }
@@ -142,7 +193,6 @@ export type Database = {
           internal_process_number: number
           object_types_id?: number | null
           owner_id?: string
-          status?: string | null
           updated_at?: string
           year: number
         }
@@ -157,7 +207,6 @@ export type Database = {
           internal_process_number?: number
           object_types_id?: number | null
           owner_id?: string
-          status?: string | null
           updated_at?: string
           year?: number
         }
@@ -461,7 +510,6 @@ export type Database = {
           internal_process_number: number | null
           object_type: Json | null
           owner: Json | null
-          status: string | null
         }
         Relationships: []
       }

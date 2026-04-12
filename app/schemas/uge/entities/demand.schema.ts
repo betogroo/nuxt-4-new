@@ -10,5 +10,4 @@ export const DemandSchema = BaseEntitySchema.extend({
   owner_id: uuidRule,
   dispute_date: dateRule.nullable(),
   object_types_id: positiveNumber,
-  status: z.string(),
 }).strict()
