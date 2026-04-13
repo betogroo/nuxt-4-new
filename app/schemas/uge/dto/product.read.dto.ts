@@ -1,6 +1,5 @@
 import { ProductSchema } from '~/schemas/uge/entities'
 import { ExpenseTypeReadSchema, ProductClassReadSchema } from '~/schemas/uge/dto'
-import { z } from '~/schemas/'
 
 export const ProductReadSchema = ProductSchema
 
@@ -19,10 +18,9 @@ export const ProductReadDetailsSchema = ProductReadSchema.pick({
   expense_type: ExpenseTypeReadSchema,
 })
 
-export const ProductReadSummarySchema = z.array(
-  ProductSchema.pick({
-    id: true,
-    description: true,
-    specifications: true,
-  }),
-)
+export const ProductReadSummarySchema = ProductSchema.pick({
+  id: true,
+  name: true,
+  description: true,
+  specifications: true,
+})

@@ -52,7 +52,8 @@
   <ui-page show-back title="Adicionar produtos ao processo">
     <ui-form :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
       <ui-select
-        item-title="description"
+        item-subtitle="description"
+        item-title="name"
         item-value="id"
         :items="productSelect.items.value"
         mode="autocomplete"

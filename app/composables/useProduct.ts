@@ -21,10 +21,10 @@ const useProduct = () => {
     schema: z.array(ProductReadDetailsSchema),
   })
 
-  const { fetchAll: fetchSelect } = useTableFetch<ProductReadSummary>({
+  const { fetchAll: fetchSelect } = useTableFetch<ProductReadSummary[]>({
     table: 'product_details_active',
-    schema: ProductReadSummarySchema,
-    select: 'id, description, specifications',
+    schema: z.array(ProductReadSummarySchema),
+    select: 'id, name, description, specifications',
   })
 
   const { create, isCreating } = useTableCreate<Product, ProductInsert>({
