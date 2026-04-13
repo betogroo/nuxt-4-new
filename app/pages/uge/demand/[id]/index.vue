@@ -37,13 +37,15 @@
       .from('demand_items')
       .select(
         `
-      id, created_at, updated_at, quantity, estimated_price, offered_price
+      id, created_at, updated_at, quantity, estimated_price, offered_price,
+       product: products (id, name, description, specifications)
       `,
       )
       .eq('demand_id', id.value)
     if (error.value) console.log(itemsError.value)
     const parsed = z.array(DemandItemReadSchema).safeParse(data)
     if (!parsed.success) {
+      console.dir(parsed.error.format(), { depth: null })
       console.log(parsed.error)
       throw new AppError('Erro ao validar dados de demanda', parsed.error)
     }
@@ -64,7 +66,9 @@
     </ui-card-grid>
 
     <ui-list :items="demandItems" :status="demandItemsStatus">
-      <ui-list-item v-for="item in demandItems" :key="item.id">{{ item.id }}</ui-list-item>
+      <ui-list-item v-for="item in demandItems" :key="item.id">{{
+        item.product.name
+      }}</ui-list-item>
     </ui-list>
     <pre>
       {{ demandItems }}
