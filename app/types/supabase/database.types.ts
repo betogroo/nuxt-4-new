@@ -167,6 +167,51 @@ export type Database = {
         }
         Relationships: []
       }
+      demand_status_transitions: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          deleted_at: string | null
+          from_status_id: string | null
+          id: string
+          to_status_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          deleted_at?: string | null
+          from_status_id?: string | null
+          id?: string
+          to_status_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          deleted_at?: string | null
+          from_status_id?: string | null
+          id?: string
+          to_status_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_status_transitions_from_status_id_fkey'
+            columns: ['from_status_id']
+            isOneToOne: false
+            referencedRelation: 'demand_status'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_status_transitions_to_status_id_fkey'
+            columns: ['to_status_id']
+            isOneToOne: false
+            referencedRelation: 'demand_status'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       demands: {
         Row: {
           active: boolean
