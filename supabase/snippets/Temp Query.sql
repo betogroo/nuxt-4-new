@@ -1,7 +1,5 @@
-select d.id, d.description, d.electronic_process_number, d.internal_process_number, d.dispute_date, d.created_at, d.status,
-jsonb_build_object ('name', ot.name, 'ptres', ot.ptres) as object_type,
-jsonb_build_object ('name', p.name) as owner
- from demands d
-left join object_types ot on d.object_types_id = ot.id
-left join profiles p on d.owner_id = p.id
-where d.active = true and d.deleted_at is null
+select di.id, di.created_at, di.updated_at, di.quantity, di.estimated_price, di.offered_price
+
+from demand_items di
+where di.active = true and di.deleted_at is null
+order by di.item_order
