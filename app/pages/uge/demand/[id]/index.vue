@@ -38,7 +38,8 @@
       .select(
         `
       id, created_at, updated_at, quantity, estimated_price, offered_price,
-       product: products (id, name, description, specifications)
+       product: products (id, name, description, specifications),
+       packaging: packaging_types (name)
       `,
       )
       .eq('demand_id', id.value)
