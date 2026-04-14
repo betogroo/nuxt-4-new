@@ -172,27 +172,27 @@ export type Database = {
           active: boolean | null
           created_at: string
           deleted_at: string | null
-          from_status_id: string | null
+          from_status_id: string
           id: string
-          to_status_id: string | null
+          to_status_id: string
           updated_at: string
         }
         Insert: {
           active?: boolean | null
           created_at?: string
           deleted_at?: string | null
-          from_status_id?: string | null
+          from_status_id: string
           id?: string
-          to_status_id?: string | null
+          to_status_id: string
           updated_at?: string
         }
         Update: {
           active?: boolean | null
           created_at?: string
           deleted_at?: string | null
-          from_status_id?: string | null
+          from_status_id?: string
           id?: string
-          to_status_id?: string | null
+          to_status_id?: string
           updated_at?: string
         }
         Relationships: [
