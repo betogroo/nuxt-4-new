@@ -67,9 +67,9 @@
     </ui-card-grid>
 
     <ui-list :items="demandItems" :status="demandItemsStatus">
-      <ui-list-item v-for="item in demandItems" :key="item.id">{{
-        item.product.name
-      }}</ui-list-item>
+      <ui-list-item v-for="item in demandItems" :key="item.id"
+        >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }}</ui-list-item
+      >
     </ui-list>
     <pre>
       {{ demandItems }}

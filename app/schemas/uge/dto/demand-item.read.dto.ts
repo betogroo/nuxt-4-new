@@ -1,4 +1,10 @@
-import { DemandItemSchema, PackagingTypeReadSchema, ProductReadSummarySchema } from '~/schemas/uge'
+import { DemandItemSchema, PackagingTypeSchema, ProductReadSummarySchema } from '~/schemas/uge'
+
+const packaging = PackagingTypeSchema.pick({
+  name: true,
+})
+
+const product = ProductReadSummarySchema
 
 export const DemandItemReadSchema = DemandItemSchema.omit({
   active: true,
@@ -9,8 +15,6 @@ export const DemandItemReadSchema = DemandItemSchema.omit({
   item_order: true,
   demand_status_id: true,
 }).extend({
-  product: ProductReadSummarySchema,
-  packaging: PackagingTypeReadSchema.pick({
-    name: true,
-  }),
+  product,
+  packaging,
 })
