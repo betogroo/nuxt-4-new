@@ -10,12 +10,17 @@ import type {
   DemandInsertSchema,
   DemandFormSchema,
   DemandReadSchema,
+  DemandStatusSchema,
+  DemandStatusReadSchema,
 } from '~/schemas/uge'
 
 export type DemandForm = z.infer<typeof DemandFormSchema>
 export type DemandUpdate = Updates<'demands'>
 
 //new
+export type DemandStatus = z.infer<typeof DemandStatusSchema>
+export type DemandStatusRead = z.infer<typeof DemandStatusReadSchema>
+
 export type DemandItem = z.infer<typeof DemandItemSchema>
 export type DemandItemRead = z.infer<typeof DemandItemReadSchema>
 export type DemandItemInsert = z.infer<typeof DemandItemInsertSchema>
