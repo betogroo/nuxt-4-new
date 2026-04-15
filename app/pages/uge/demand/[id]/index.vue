@@ -39,7 +39,8 @@
         `
       id, created_at, updated_at, quantity, estimated_price, offered_price,
        product: products (id, name, description, specifications),
-       packaging: packaging_types (name)
+       packaging: packaging_types (name),
+       status: demand_status(name, code, color)
       `,
       )
       .eq('demand_id', id.value)
@@ -67,7 +68,10 @@
     </ui-card-grid>
 
     <ui-list :items="demandItems" :status="demandItemsStatus">
-      <ui-list-item v-for="item in demandItems" :key="item.id"
+      <ui-list-item
+        v-for="item in demandItems"
+        :key="item.id"
+        :base-color="item.status.color || 'grey'"
         >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }}</ui-list-item
       >
     </ui-list>
