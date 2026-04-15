@@ -134,7 +134,7 @@ export type Database = {
           is_final: boolean | null
           is_initial: boolean | null
           name: string
-          sort_order: number | null
+          sort_order: number
           updated_at: string | null
         }
         Insert: {
@@ -148,7 +148,7 @@ export type Database = {
           is_final?: boolean | null
           is_initial?: boolean | null
           name: string
-          sort_order?: number | null
+          sort_order: number
           updated_at?: string | null
         }
         Update: {
@@ -162,7 +162,7 @@ export type Database = {
           is_final?: boolean | null
           is_initial?: boolean | null
           name?: string
-          sort_order?: number | null
+          sort_order?: number
           updated_at?: string | null
         }
         Relationships: []
