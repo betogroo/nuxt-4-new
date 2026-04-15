@@ -893,6 +893,22 @@ VALUES
         null
     ),
     (
+        '2b82eb1c-e1d3-4ab4-9400-6699f9a6bcc3',
+        '2026-04-15 16:52:02.790607+00',
+        '2026-04-15 16:52:02.790607+00',
+        'Desorizador de Ambientes',
+        'Desodorizador, tipo bom ar',
+        '234431',
+        '4792017',
+        null,
+        null,
+        'true',
+        null,
+        'f50c871d-568c-42a8-889b-40d95beb061f',
+        '34cb1d52-e696-4717-aea4-197e2d7687c4',
+        null
+    ),
+    (
         '48952319-31ea-4c8d-a639-55cf98bc357d',
         '2026-04-10 12:55:38.265302+00',
         '2026-04-10 12:56:18.992206+00',
@@ -1545,49 +1561,4 @@ VALUES
         'true',
         '11ef7c98-b24d-4867-ab60-518ac8d95da3',
         'd641410a-ec55-4567-9458-ce49f516ca98'
-    );
-
-INSERT INTO
-    "public"."demands" (
-        "id",
-        "created_at",
-        "updated_at",
-        "description",
-        "electronic_process_number",
-        "internal_process_number",
-        "year",
-        "object_types_id",
-        "owner_id",
-        "dispute_date",
-        "active",
-        "deleted_at"
-    )
-VALUES
-    (
-        '771b2d38-ab7a-4c17-8edc-ccc9061e131c',
-        '2026-04-15 13:14:19.105791+00',
-        '2026-04-15 13:14:19.105791+00',
-        'Gêneros Alimentícios',
-        '11111111/11',
-        '1',
-        '2026',
-        '1',
-        '0c5673ee-43cd-49b6-9606-e1d546484d00',
-        '2026-05-13',
-        'true',
-        null
-    ),
-    (
-        'b1764762-b890-4528-b2d5-60d16c39f428',
-        '2026-04-15 13:14:48.498076+00',
-        '2026-04-15 13:14:48.498076+00',
-        'Material de Escitório e Papelaria',
-        '22222222/22',
-        '2',
-        '2026',
-        '1',
-        '0c5673ee-43cd-49b6-9606-e1d546484d00',
-        '2026-06-11',
-        'true',
-        null
     );
