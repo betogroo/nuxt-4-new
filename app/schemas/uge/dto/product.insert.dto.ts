@@ -6,6 +6,7 @@ export const ProductInsertSchema = ProductSchema.omit({
   created_at: true,
   updated_at: true,
   active: true,
+  deleted_at: true,
 }).extend({
   specifications: ProductSpecificationSchema.optional(),
   nat_gov: positiveNumber.optional(),
