@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { DemandStatusReadSchema, z } from '~/schemas'
-  import type { DemandStatus } from '~/types'
+  import type { DemandStatusRead } from '~/types'
 
   definePageMeta({
     layout: 'default',
@@ -13,7 +13,7 @@
     },
   })
 
-  const { fetchAll } = useTableFetch<DemandStatus[]>({
+  const { fetchAll } = useTableFetch<DemandStatusRead[]>({
     table: 'demand_status',
     schema: z.array(DemandStatusReadSchema),
     orderBy: [{ column: 'sort_order' }],

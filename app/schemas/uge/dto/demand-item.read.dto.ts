@@ -11,6 +11,7 @@ const packaging = PackagingTypeSchema.pick({
 
 const product = ProductReadSummarySchema
 const status = DemandStatusSchema.pick({
+  id: true,
   name: true,
   code: true,
   color: true,
