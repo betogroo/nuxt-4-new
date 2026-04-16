@@ -940,3 +940,115 @@ VALUES
         'bae6261b-f606-4961-a97f-7ab521349c9b',
         '2026-04-10 12:56:30+00'
     );
+
+INSERT INTO
+    "public"."demand_status" (
+        "id",
+        "code",
+        "name",
+        "color",
+        "sort_order",
+        "is_initial",
+        "is_final",
+        "is_demand_active",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "active"
+    )
+VALUES
+    (
+        '13d4dab7-abb1-483e-b1f4-d59c9cef20c0',
+        'aguardando_verba',
+        'Aguardando Verba',
+        'info',
+        '2000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 19:57:56.352952+00',
+        '2026-04-16 19:57:56.352952+00',
+        null,
+        'true'
+    ),
+    (
+        '751e2ef2-8a03-408b-b25f-dddce25bff84',
+        'open',
+        'Aberto',
+        'primary',
+        '1000',
+        'true',
+        'false',
+        'true',
+        '2026-04-16 19:44:51.781406+00',
+        '2026-04-16 19:44:51.781406+00',
+        null,
+        'true'
+    ),
+    (
+        'dba214d6-422c-44ac-91fd-15993f235fa2',
+        'canceled',
+        'Cancelado',
+        'error',
+        '100000',
+        'false',
+        'true',
+        'true',
+        '2026-04-16 19:45:28.630663+00',
+        '2026-04-16 19:45:28.630663+00',
+        null,
+        'true'
+    );
+
+INSERT INTO
+    "public"."demand_status_transitions" (
+        "id",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "active",
+        "from_status_id",
+        "to_status_id",
+        "action_label"
+    )
+VALUES
+    (
+        '4bd1c342-c3bc-45a1-b73b-bf13532044fc',
+        '2026-04-16 19:46:10.657743+00',
+        '2026-04-16 19:46:10.657743+00',
+        null,
+        'true',
+        '751e2ef2-8a03-408b-b25f-dddce25bff84',
+        'dba214d6-422c-44ac-91fd-15993f235fa2',
+        'Cancelar'
+    ),
+    (
+        '609e18ae-8ea6-4d74-bbbb-0d6218a5da04',
+        '2026-04-16 19:59:08.506835+00',
+        '2026-04-16 19:59:08.506835+00',
+        null,
+        'true',
+        '751e2ef2-8a03-408b-b25f-dddce25bff84',
+        '13d4dab7-abb1-483e-b1f4-d59c9cef20c0',
+        'Solicitar Verba'
+    ),
+    (
+        'b59b944d-83b9-4a11-9879-6749e842b9f1',
+        '2026-04-16 19:59:32.840863+00',
+        '2026-04-16 19:59:32.840863+00',
+        null,
+        'true',
+        '13d4dab7-abb1-483e-b1f4-d59c9cef20c0',
+        'dba214d6-422c-44ac-91fd-15993f235fa2',
+        'Cancelar'
+    ),
+    (
+        'bedd81f6-32a1-4b82-ba31-620d1388874a',
+        '2026-04-16 19:49:18.093871+00',
+        '2026-04-16 19:49:18.093871+00',
+        null,
+        'true',
+        'dba214d6-422c-44ac-91fd-15993f235fa2',
+        '751e2ef2-8a03-408b-b25f-dddce25bff84',
+        'Reabrir'
+    );
