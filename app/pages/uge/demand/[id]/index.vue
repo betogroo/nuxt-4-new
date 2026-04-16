@@ -2,6 +2,7 @@
   import { AppError } from '~/error/AppError'
   import { z } from '~/schemas'
   import { DemandItemReadSchema } from '~/schemas/uge'
+  import type { DemandStatusRead } from '~/types'
   definePageMeta({
     layout: 'default',
     showBack: true,
@@ -40,7 +41,7 @@
       id, created_at, updated_at, quantity, estimated_price, offered_price,
        product: products (id, name, description, specifications),
        packaging: packaging_types (name),
-       status: demand_status(name, code, color)
+       status: demand_status(id, name, code, color)
       `,
       )
       .eq('demand_id', id.value)
@@ -53,6 +54,40 @@
     }
     return parsed.data
   })
+
+  const { data: transitions } = await supabase
+    .from('demand_status_transitions')
+    .select(
+      `
+    from_status_id,
+    to_status:demand_status!demand_status_transitions_to_status_id_fkey (
+      id,
+      code,
+      name,
+      action_label,
+      color,
+      sort_order
+    )
+  `,
+    )
+    .eq('active', true)
+
+  const transitionsMap = computed(() =>
+    (transitions ?? []).reduce<Record<string, DemandStatusRead[]>>((acc, t) => {
+      if (!t.to_status) return acc
+      ;(acc[t.from_status_id] ??= []).push(t.to_status)
+
+      return acc
+    }, {}),
+  )
+
+  const getNextStatuses = (statusId: string) => {
+    return transitionsMap.value[statusId] ?? []
+  }
+
+  const updateStatus = (name: string) => {
+    console.log('updateStatus: ', name)
+  }
 </script>
 
 <template>
@@ -72,11 +107,22 @@
         v-for="item in demandItems"
         :key="item.id"
         :base-color="item.status.color || 'grey'"
-        >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }}</ui-list-item
-      >
+        >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
+        {{ item.status.name }}
+        <ui-btn
+          v-for="next in getNextStatuses(item.status.id)"
+          :key="next.id"
+          :color="next.color"
+          @click="updateStatus(next.name)"
+          >{{ next.action_label }}</ui-btn
+        >
+      </ui-list-item>
     </ui-list>
     <pre>
-      {{ demandItems }}
+      {{ transitions }}
+    </pre>
+    <pre>
+      {{ transitionsMap }}
     </pre>
   </ui-page>
 </template>

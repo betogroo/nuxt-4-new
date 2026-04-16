@@ -124,6 +124,7 @@ export type Database = {
       }
       demand_status: {
         Row: {
+          action_label: string | null
           active: boolean
           code: string
           color: string | null
@@ -138,6 +139,7 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
+          action_label?: string | null
           active?: boolean
           code: string
           color?: string | null
@@ -152,6 +154,7 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
+          action_label?: string | null
           active?: boolean
           code?: string
           color?: string | null

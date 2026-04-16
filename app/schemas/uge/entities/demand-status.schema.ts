@@ -6,6 +6,7 @@ export const DemandStatusSchema = BaseEntitySchema.extend({
   code: nameRule,
   name: nameRule,
   color: nameRule.nullable(),
+  action_label: nameRule.nullable(),
   sort_order: positiveNumber,
   is_initial: z.boolean(),
   is_final: z.boolean(),
