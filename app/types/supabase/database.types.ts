@@ -124,7 +124,6 @@ export type Database = {
       }
       demand_status: {
         Row: {
-          action_label: string | null
           active: boolean
           code: string
           color: string | null
@@ -139,7 +138,6 @@ export type Database = {
           updated_at: string | null
         }
         Insert: {
-          action_label?: string | null
           active?: boolean
           code: string
           color?: string | null
@@ -154,7 +152,6 @@ export type Database = {
           updated_at?: string | null
         }
         Update: {
-          action_label?: string | null
           active?: boolean
           code?: string
           color?: string | null
@@ -172,6 +169,7 @@ export type Database = {
       }
       demand_status_transitions: {
         Row: {
+          action_label: string | null
           active: boolean | null
           created_at: string
           deleted_at: string | null
@@ -181,6 +179,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          action_label?: string | null
           active?: boolean | null
           created_at?: string
           deleted_at?: string | null
@@ -190,6 +189,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          action_label?: string | null
           active?: boolean | null
           created_at?: string
           deleted_at?: string | null

@@ -64,7 +64,6 @@
       id,
       code,
       name,
-      action_label,
       color,
       sort_order
     )
@@ -114,7 +113,7 @@
           :key="next.id"
           :color="next.color"
           @click="updateStatus(next.name)"
-          >{{ next.action_label }}</ui-btn
+          >{{ next.id }}</ui-btn
         >
       </ui-list-item>
     </ui-list>
