@@ -958,6 +958,20 @@ INSERT INTO
     )
 VALUES
     (
+        '0fb0c716-de16-46b4-9476-64cc152557d6',
+        'empenho_confirmado',
+        'Empenho Confirmado',
+        'info',
+        '8000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 23:04:23.009522+00',
+        '2026-04-16 23:04:23.009522+00',
+        null,
+        'true'
+    ),
+    (
         '13d4dab7-abb1-483e-b1f4-d59c9cef20c0',
         'aguardando_verba',
         'Aguardando Verba',
@@ -968,6 +982,48 @@ VALUES
         'true',
         '2026-04-16 19:57:56.352952+00',
         '2026-04-16 19:57:56.352952+00',
+        null,
+        'true'
+    ),
+    (
+        '2484ec6e-e06c-4edf-8f96-dbacdb56583a',
+        'aguardando_entrega',
+        'Aguardando Entrega',
+        'info',
+        '9000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 23:06:07.241917+00',
+        '2026-04-16 23:06:07.241917+00',
+        null,
+        'true'
+    ),
+    (
+        '52675e13-5b36-48b5-bc24-f7fea6ab3452',
+        'inabilitado',
+        'Inabilitado',
+        'error',
+        '4600',
+        'false',
+        'true',
+        'true',
+        '2026-04-16 21:44:43.217482+00',
+        '2026-04-16 21:48:28.250741+00',
+        null,
+        'true'
+    ),
+    (
+        '64145474-377d-42fa-aba4-a3981e90e693',
+        'empenho_enviado',
+        'Empenho Enviado',
+        'info',
+        '7000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 22:30:03.576491+00',
+        '2026-04-16 22:30:03.576491+00',
         null,
         'true'
     ),
@@ -986,6 +1042,48 @@ VALUES
         'true'
     ),
     (
+        '7bacff7d-a0d7-4dc0-9aa5-1d32dd1f3927',
+        'aguardando_julgamento',
+        'Aguardando Julgamento',
+        'info',
+        '3000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 21:32:22.036712+00',
+        '2026-04-16 21:32:22.036712+00',
+        null,
+        'true'
+    ),
+    (
+        'b2a6a8f2-61fb-43e1-88ef-5554d11b950a',
+        'empenhado',
+        'Empenhado',
+        'success',
+        '6000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 22:28:21.075065+00',
+        '2026-04-16 22:28:21.075065+00',
+        null,
+        'true'
+    ),
+    (
+        'b9da6671-80d1-49b6-b12a-78ea1cb0ed3c',
+        'aguardando_habilitacao',
+        'Aguardando Habilitação',
+        'primary',
+        '4000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 21:36:15.099982+00',
+        '2026-04-16 21:43:31.03243+00',
+        null,
+        'true'
+    ),
+    (
         'dba214d6-422c-44ac-91fd-15993f235fa2',
         'canceled',
         'Cancelado',
@@ -996,6 +1094,62 @@ VALUES
         'true',
         '2026-04-16 19:45:28.630663+00',
         '2026-04-16 19:45:28.630663+00',
+        null,
+        'true'
+    ),
+    (
+        'f07d6757-8f25-40c4-918d-a185a93a75b1',
+        'aguardando_homolocacao',
+        'Aguardando Homologação',
+        'primary',
+        '4700',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 21:50:36.402699+00',
+        '2026-04-16 21:50:36.402699+00',
+        null,
+        'true'
+    ),
+    (
+        'f1b2a826-12ce-4976-9061-9c3ec4265dbd',
+        'entregue',
+        'Entregue',
+        'success',
+        '10000',
+        'false',
+        'true',
+        'true',
+        '2026-04-16 23:07:10.06709+00',
+        '2026-04-16 23:07:10.06709+00',
+        null,
+        'true'
+    ),
+    (
+        'f882f14e-4314-456c-bbaa-a2cff09cab6f',
+        'aguardando_empenho',
+        'Aguardando Empenho',
+        'primary',
+        '5000',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 22:26:43.053367+00',
+        '2026-04-16 22:26:43.053367+00',
+        null,
+        'true'
+    ),
+    (
+        'fe1c4be4-6051-46da-925f-6b916378ad80',
+        'aguardando_adjudicacao',
+        'Aguardando Adjudicação',
+        'info',
+        '4500',
+        'false',
+        'false',
+        'true',
+        '2026-04-16 21:47:56.956994+00',
+        '2026-04-16 21:55:43.021032+00',
         null,
         'true'
     );
@@ -1013,14 +1167,24 @@ INSERT INTO
     )
 VALUES
     (
-        '4bd1c342-c3bc-45a1-b73b-bf13532044fc',
-        '2026-04-16 19:46:10.657743+00',
-        '2026-04-16 19:46:10.657743+00',
+        '244676d3-cc61-4985-8541-c6d3bd07541d',
+        '2026-04-16 22:27:27.85903+00',
+        '2026-04-16 22:27:27.85903+00',
         null,
         'true',
-        '751e2ef2-8a03-408b-b25f-dddce25bff84',
-        'dba214d6-422c-44ac-91fd-15993f235fa2',
-        'Cancelar'
+        'f07d6757-8f25-40c4-918d-a185a93a75b1',
+        'f882f14e-4314-456c-bbaa-a2cff09cab6f',
+        'Homologado'
+    ),
+    (
+        '3dbebc18-7cf3-4844-932e-b7bac98cd5bc',
+        '2026-04-16 23:03:23.662823+00',
+        '2026-04-16 23:03:23.662823+00',
+        null,
+        'true',
+        'b2a6a8f2-61fb-43e1-88ef-5554d11b950a',
+        '64145474-377d-42fa-aba4-a3981e90e693',
+        'Empenho Enviado'
     ),
     (
         '609e18ae-8ea6-4d74-bbbb-0d6218a5da04',
@@ -1033,14 +1197,84 @@ VALUES
         'Solicitar Verba'
     ),
     (
-        'b59b944d-83b9-4a11-9879-6749e842b9f1',
-        '2026-04-16 19:59:32.840863+00',
-        '2026-04-16 19:59:32.840863+00',
+        '6761e1e4-88e7-4110-985e-96576df895aa',
+        '2026-04-16 21:46:03.099756+00',
+        '2026-04-16 21:46:03.099756+00',
+        null,
+        'true',
+        'b9da6671-80d1-49b6-b12a-78ea1cb0ed3c',
+        '52675e13-5b36-48b5-bc24-f7fea6ab3452',
+        'Inabilitar'
+    ),
+    (
+        '75a42aaf-c780-497e-9f8f-e16238debffd',
+        '2026-04-16 21:33:15.895537+00',
+        '2026-04-16 21:33:15.895537+00',
         null,
         'true',
         '13d4dab7-abb1-483e-b1f4-d59c9cef20c0',
-        'dba214d6-422c-44ac-91fd-15993f235fa2',
-        'Cancelar'
+        '7bacff7d-a0d7-4dc0-9aa5-1d32dd1f3927',
+        'Verba Recebida'
+    ),
+    (
+        '835484eb-6e1a-4664-93f6-a6a3a3ec87ec',
+        '2026-04-16 21:37:06.678146+00',
+        '2026-04-16 21:37:06.678146+00',
+        null,
+        'true',
+        '7bacff7d-a0d7-4dc0-9aa5-1d32dd1f3927',
+        'b9da6671-80d1-49b6-b12a-78ea1cb0ed3c',
+        'Julgado'
+    ),
+    (
+        '8f7a6554-12df-42e6-b109-fc2da03e30d8',
+        '2026-04-16 21:51:22.24888+00',
+        '2026-04-16 21:51:22.24888+00',
+        null,
+        'true',
+        'fe1c4be4-6051-46da-925f-6b916378ad80',
+        'f07d6757-8f25-40c4-918d-a185a93a75b1',
+        'Adjudicar'
+    ),
+    (
+        '9a3056aa-732a-4521-b810-97a951104109',
+        '2026-04-16 23:05:03.152585+00',
+        '2026-04-16 23:05:03.152585+00',
+        null,
+        'true',
+        '64145474-377d-42fa-aba4-a3981e90e693',
+        '0fb0c716-de16-46b4-9476-64cc152557d6',
+        'Empenho Confirmado'
+    ),
+    (
+        'a92d0e23-9cf7-4ee0-a646-d2cc6d9b796d',
+        '2026-04-16 21:49:14.469696+00',
+        '2026-04-16 21:49:14.469696+00',
+        null,
+        'true',
+        'b9da6671-80d1-49b6-b12a-78ea1cb0ed3c',
+        'fe1c4be4-6051-46da-925f-6b916378ad80',
+        'Habilitar'
+    ),
+    (
+        'ab2490c4-53b3-45cf-9903-4fab080d8615',
+        '2026-04-16 22:28:58.302783+00',
+        '2026-04-16 22:28:58.302783+00',
+        null,
+        'true',
+        'f882f14e-4314-456c-bbaa-a2cff09cab6f',
+        'b2a6a8f2-61fb-43e1-88ef-5554d11b950a',
+        'Empenhado'
+    ),
+    (
+        'b8529c10-4097-4ac3-9a09-327bf58ec48d',
+        '2026-04-16 23:07:32.389467+00',
+        '2026-04-16 23:07:32.389467+00',
+        null,
+        'true',
+        '2484ec6e-e06c-4edf-8f96-dbacdb56583a',
+        'f1b2a826-12ce-4976-9061-9c3ec4265dbd',
+        'Entregue'
     ),
     (
         'bedd81f6-32a1-4b82-ba31-620d1388874a',
@@ -1051,4 +1285,14 @@ VALUES
         'dba214d6-422c-44ac-91fd-15993f235fa2',
         '751e2ef2-8a03-408b-b25f-dddce25bff84',
         'Reabrir'
+    ),
+    (
+        'd9498eee-2432-415d-bcf5-99d3f60efeb7',
+        '2026-04-16 23:06:32.386451+00',
+        '2026-04-16 23:06:32.386451+00',
+        null,
+        'true',
+        '0fb0c716-de16-46b4-9476-64cc152557d6',
+        '2484ec6e-e06c-4edf-8f96-dbacdb56583a',
+        'Aguardando Entrega'
     );

@@ -60,6 +60,7 @@
     .select(
       `
     from_status_id,
+    action_label,
     to_status:demand_status!demand_status_transitions_to_status_id_fkey (
       id,
       code,
