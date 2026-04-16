@@ -2,7 +2,6 @@
   import { AppError } from '~/error/AppError'
   import { z } from '~/schemas'
   import { DemandItemReadSchema } from '~/schemas/uge'
-  import type { DemandStatusRead } from '~/types'
   definePageMeta({
     layout: 'default',
     showBack: true,
@@ -72,17 +71,9 @@
     )
     .eq('active', true)
 
-  const transitionsMap = computed(() =>
-    (transitions ?? []).reduce<Record<string, DemandStatusRead[]>>((acc, t) => {
-      if (!t.to_status) return acc
-      ;(acc[t.from_status_id] ??= []).push(t.to_status)
-
-      return acc
-    }, {}),
-  )
-
   const getNextStatuses = (statusId: string) => {
-    return transitionsMap.value[statusId] ?? []
+    const data = transitions?.filter((item) => item.from_status_id === statusId)
+    return data
   }
 
   const updateStatus = (name: string) => {
@@ -111,18 +102,15 @@
         {{ item.status.name }}
         <ui-btn
           v-for="next in getNextStatuses(item.status.id)"
-          :key="next.id"
-          :color="next.color"
-          @click="updateStatus(next.name)"
-          >{{ next.id }}</ui-btn
+          :key="next.to_status.id"
+          :color="next.to_status.color"
+          @click="updateStatus(next.to_status.id)"
+          >{{ next.action_label }}</ui-btn
         >
       </ui-list-item>
     </ui-list>
     <pre>
       {{ transitions }}
-    </pre>
-    <pre>
-      {{ transitionsMap }}
     </pre>
   </ui-page>
 </template>
