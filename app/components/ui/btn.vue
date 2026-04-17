@@ -17,6 +17,7 @@
 
 <template>
   <v-btn
+    class="text-none"
     :disabled="disabled"
     :loading="loading"
     :prepend-icon="icon ? ICONS[icon] : undefined"
