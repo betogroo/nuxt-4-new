@@ -55,11 +55,11 @@
     return parsed.data
   })
 
-  const { getNextStatuses, fetchDemandStatusTransition } = useDemandStatusTransition()
+  const { getNextStatuses, fetchDemandStatusTransitions } = useDemandStatusTransition()
 
   const { data: transitions } = useAsyncData('demand_status_transitions', async () => {
     try {
-      return await fetchDemandStatusTransition()
+      return await fetchDemandStatusTransitions()
     } catch (error) {
       if (error instanceof AppError) {
         throw createError({ statusCode: 400, message: error.message })

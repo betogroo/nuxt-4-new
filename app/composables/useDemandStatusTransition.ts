@@ -5,7 +5,7 @@ import type { DemandStatusTransitionsRead } from '~/types'
 const useDemandStatusTransition = () => {
   console.log('leu aqui')
 
-  const { fetchAll: fetchDemandStatusTransition } = useTableFetch<DemandStatusTransitionsRead[]>({
+  const { fetchAll: fetchDemandStatusTransitions } = useTableFetch<DemandStatusTransitionsRead[]>({
     table: 'demand_status_transitions',
     schema: z.array(DemandStatusTransitionReadSchema),
     select: `
@@ -27,7 +27,7 @@ const useDemandStatusTransition = () => {
     return data
   }
 
-  return { fetchDemandStatusTransition, getNextStatuses }
+  return { fetchDemandStatusTransitions, getNextStatuses }
 }
 
 export default useDemandStatusTransition
