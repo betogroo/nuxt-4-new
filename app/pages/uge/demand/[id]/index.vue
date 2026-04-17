@@ -100,13 +100,15 @@
         :base-color="item.status.color || 'grey'"
         >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
         {{ item.status.name }}
-        <ui-btn
-          v-for="next in getNextStatuses(item.status.id)"
-          :key="next.to_status.id"
-          :color="next.to_status.color"
-          @click="updateStatus(next.to_status.id)"
-          >{{ next.action_label }}</ui-btn
-        >
+        <template #actions>
+          <ui-btn
+            v-for="next in getNextStatuses(item.status.id)"
+            :key="next.to_status.id"
+            :color="next.to_status.color"
+            @click="updateStatus(next.to_status.id)"
+            >{{ next.action_label }}</ui-btn
+          >
+        </template>
       </ui-list-item>
     </ui-list>
     <pre>
