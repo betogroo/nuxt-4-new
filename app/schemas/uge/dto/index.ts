@@ -16,6 +16,7 @@ export * from './product-class.read.dto'
 export * from './product.insert.dto'
 export * from './product.read.dto'
 
+export * from './demand-status-transition.read.dto'
 export * from './demand-status.read.dto'
 
 export * from './demand-item.insert.dto'

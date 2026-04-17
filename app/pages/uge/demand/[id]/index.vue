@@ -2,6 +2,7 @@
   import { AppError } from '~/error/AppError'
   import { z } from '~/schemas'
   import { DemandItemReadSchema } from '~/schemas/uge'
+
   definePageMeta({
     layout: 'default',
     showBack: true,
@@ -54,27 +55,21 @@
     return parsed.data
   })
 
-  const { data: transitions } = await supabase
-    .from('demand_status_transitions')
-    .select(
-      `
-    from_status_id,
-    action_label,
-    to_status:demand_status!demand_status_transitions_to_status_id_fkey (
-      id,
-      code,
-      name,
-      color,
-      sort_order
-    )
-  `,
-    )
-    .eq('active', true)
+  const { getNextStatuses, fetchDemandStatusTransition } = useDemandStatusTransition()
 
-  const getNextStatuses = (statusId: string) => {
-    const data = transitions?.filter((item) => item.from_status_id === statusId)
-    return data
-  }
+  const { data: transitions } = useAsyncData('demand_status_transitions', async () => {
+    try {
+      return await fetchDemandStatusTransition()
+    } catch (error) {
+      if (error instanceof AppError) {
+        throw createError({ statusCode: 400, message: error.message })
+      }
+      throw createError({
+        statusCode: 500,
+        message: 'Erro inesperado',
+      })
+    }
+  })
 
   const updateStatus = (name: string) => {
     console.log('updateStatus: ', name)
@@ -101,18 +96,19 @@
         >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
         {{ item.status.name }}
         <template #actions>
-          <ui-btn
-            v-for="next in getNextStatuses(item.status.id)"
+          <div
+            v-for="next in getNextStatuses(item.status.id, transitions)"
             :key="next.to_status.id"
-            :color="next.to_status.color"
-            @click="updateStatus(next.to_status.id)"
-            >{{ next.action_label }}</ui-btn
           >
+            <ui-btn :color="next.to_status.color" @click="updateStatus(next.to_status.id)">{{
+              next.action_label
+            }}</ui-btn>
+            <ui-btn v-if="next.to_status.allow_cancel" color="error" variant="outlined"
+              >Cancelar</ui-btn
+            >
+          </div>
         </template>
       </ui-list-item>
     </ui-list>
-    <pre>
-      {{ transitions }}
-    </pre>
   </ui-page>
 </template>
