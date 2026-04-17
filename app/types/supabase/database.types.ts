@@ -564,6 +564,22 @@ export type Database = {
         }
         Relationships: []
       }
+      demand_status_transitions_active: {
+        Row: {
+          action_label: string | null
+          from_status_id: string | null
+          to_status: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_status_transitions_from_status_id_fkey'
+            columns: ['from_status_id']
+            isOneToOne: false
+            referencedRelation: 'demand_status'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       product_details_active: {
         Row: {
           active: boolean | null

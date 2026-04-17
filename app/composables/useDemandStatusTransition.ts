@@ -6,20 +6,8 @@ const useDemandStatusTransition = () => {
   console.log('leu aqui')
 
   const { fetchAll: fetchDemandStatusTransitions } = useTableFetch<DemandStatusTransitionsRead[]>({
-    table: 'demand_status_transitions',
+    table: 'demand_status_transitions_active',
     schema: z.array(DemandStatusTransitionReadSchema),
-    select: `
-    from_status_id,
-    action_label,
-    to_status:demand_status!demand_status_transitions_to_status_id_fkey (
-      id,
-      code,
-      name,
-      color,
-      sort_order,
-      allow_cancel
-    )
-  `,
   })
 
   const getNextStatuses = (statusId: string, transitions: DemandStatusTransitionsRead[] = []) => {
