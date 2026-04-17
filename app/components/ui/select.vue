@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-  import type { TextFieldDensity, TextFieldVariant, SelectMode } from '~/types'
+  import type { UiDensity, TextFieldVariant, SelectMode } from '~/types'
   import { VSelect, VAutocomplete } from 'vuetify/components'
 
   interface Props {
@@ -9,7 +9,7 @@
     itemValue?: keyof T
     itemSubtitle?: keyof T
     variant?: TextFieldVariant
-    density?: TextFieldDensity
+    density?: UiDensity
     mode?: SelectMode
     placeholder?: string
     status?: 'idle' | 'pending' | 'success' | 'error'

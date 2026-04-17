@@ -2,6 +2,7 @@ export * from './app/breadcrumb'
 export * from './app/menu'
 export * from './app/content'
 
+export * from './ui/general'
 export * from './ui/btn'
 export * from './ui/btn-icon'
 export * from './ui/card'
