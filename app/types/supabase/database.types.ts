@@ -125,6 +125,7 @@ export type Database = {
       demand_status: {
         Row: {
           active: boolean
+          allow_cancel: boolean | null
           code: string
           color: string | null
           created_at: string | null
@@ -139,6 +140,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean
+          allow_cancel?: boolean | null
           code: string
           color?: string | null
           created_at?: string | null
@@ -153,6 +155,7 @@ export type Database = {
         }
         Update: {
           active?: boolean
+          allow_cancel?: boolean | null
           code?: string
           color?: string | null
           created_at?: string | null

@@ -6,4 +6,5 @@ export const DemandStatusReadSchema = DemandStatusSchema.pick({
   name: true,
   color: true,
   sort_order: true,
+  allow_cancel: true,
 })
