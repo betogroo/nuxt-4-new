@@ -1,45 +1,31 @@
 select
-  ds_to.id,
-  ds_to.code,
-  ds_to.name,
-  ds_to.color,
-  ds_to.sort_order
-from demand_status_transitions dst
-join demand_status ds_to
-  on ds_to.id = dst.to_status_id
-where dst.from_status_id = 'd641410a-ec55-4567-9458-ce49f516ca98'
-  and dst.active = true
-  and ds_to.active = true
-  
-order by ds_to.sort_order;
-  ;
+  di.id,
+  di.created_at,
+  di.updated_at,
+  di.quantity,
+  di.estimated_price,
+  di.offered_price,
+  di.demand_id,
+  jsonb_build_object(
+    'id',
+    p.id,
+    'name',
+    p.name,
+    'description',
+    p.description,
+    'specifications',
+    p.specifications
+  ) as product,
+  json_build_object('name', pt.name) as packaging,
+  json_build_object('id', ds.id, 'name', ds.name, 'code', ds.code, 'color', ds.color) as status
+from
+  public.demand_items di
+  join public.products p on p.id = di.product_id
+  join public.packaging_types pt on pt.id = di.packaging_type_id
+  join public.demand_status ds on ds.id = di.demand_status_id
+where
+  di.active = true and di.deleted_at is null;
 
-  select 
-  f.name as Status,
-  dst.action_label as "Botão",
-  t.name as "Próximos Status Disponíveis"
-from public.demand_status_transitions dst
-join demand_status f on f.id = dst.from_status_id
-join demand_status t on t.id = dst.to_status_id
-order by f.sort_order, t.sort_order;
-
-
--- modelo sem cadastrar o cancelar, já que é global
-select 
-  f.name as "Status",
-  coalesce(dst.action_label, 'Cancelar') as "Botão",
-  coalesce(t.name, 'Cancelado') as "Próximo Status"
-from demand_status f
-left join demand_status_transitions dst 
-  on dst.from_status_id = f.id
-left join demand_status t 
-  on t.id = dst.to_status_id
-
-union all
+  grant
 select
-  f.name,
-  'Cancelar',
-  'Cancelado'
-from demand_status f
-where f.code != 'canceled'
-  and f.is_final = false;
+    on public.demand_status_transitions_active to authenticated;

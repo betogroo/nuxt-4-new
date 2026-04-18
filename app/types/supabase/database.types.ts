@@ -564,6 +564,36 @@ export type Database = {
         }
         Relationships: []
       }
+      demand_items_active: {
+        Row: {
+          created_at: string | null
+          demand_id: string | null
+          estimated_price: number | null
+          id: string | null
+          offered_price: number | null
+          packaging: Json | null
+          product: Json | null
+          quantity: number | null
+          status: Json | null
+          updated_at: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'demand_items_demand_id_fkey'
+            columns: ['demand_id']
+            isOneToOne: false
+            referencedRelation: 'demand_details_active'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'demand_items_demand_id_fkey'
+            columns: ['demand_id']
+            isOneToOne: false
+            referencedRelation: 'demands'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       demand_status_transitions_active: {
         Row: {
           action_label: string | null
