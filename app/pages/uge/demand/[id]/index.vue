@@ -1,7 +1,5 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
-  import { z } from '~/schemas'
-  import { DemandItemReadSchema } from '~/schemas/uge'
 
   definePageMeta({
     layout: 'default',
@@ -14,6 +12,9 @@
   const route = useRoute()
   const id = computed(() => route.params.id as string)
   const { get } = useDemand()
+  const { fetchDemandItemsByDemands } = useDemandItem()
+  const { getNextStatuses, fetchDemandStatusTransitions } = useDemandStatusTransition()
+
   const {
     data: demand,
     pending,
@@ -28,34 +29,23 @@
       fatal: true,
     })
   }
-  const supabase = useSupabaseClient()
-  const {
-    data: demandItems,
-    error: itemsError,
-    status: demandItemsStatus,
-  } = useAsyncData('demand_items_', async () => {
-    const { data } = await supabase
-      .from('demand_items')
-      .select(
-        `
-      id, created_at, updated_at, quantity, estimated_price, offered_price,
-       product: products (id, name, description, specifications),
-       packaging: packaging_types (name),
-       status: demand_status(id, name, code, color)
-      `,
-      )
-      .eq('demand_id', id.value)
-    if (error.value) console.log(itemsError.value)
-    const parsed = z.array(DemandItemReadSchema).safeParse(data)
-    if (!parsed.success) {
-      console.dir(parsed.error.format(), { depth: null })
-      console.log(parsed.error)
-      throw new AppError('Erro ao validar dados de demanda', parsed.error)
-    }
-    return parsed.data
-  })
 
-  const { getNextStatuses, fetchDemandStatusTransitions } = useDemandStatusTransition()
+  const { data: demandItems, status: demandItemsStatus } = useAsyncData(
+    'demand_items_active',
+    async () => {
+      try {
+        return await fetchDemandItemsByDemands({ column: 'demand_id', value: id.value })
+      } catch (error) {
+        if (error instanceof AppError) {
+          throw createError({ statusCode: 400, message: error.message })
+        }
+        throw createError({
+          statusCode: 500,
+          message: 'Erro inesperado',
+        })
+      }
+    },
+  )
 
   const { data: transitions } = useAsyncData('demand_status_transitions', async () => {
     try {
@@ -72,7 +62,7 @@
   })
 
   const updateStatus = (name: string) => {
-    console.log('updateStatus: ', name)
+    console.log('updateStatus Test: ', name)
   }
 </script>
 
