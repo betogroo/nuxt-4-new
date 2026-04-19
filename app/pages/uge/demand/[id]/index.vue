@@ -11,10 +11,9 @@
   })
   const route = useRoute()
   const id = computed(() => route.params.id as string)
-  const { fetchDemandItemsByDemands } = useDemandItem()
   const { getNextStatuses, fetchDemandStatusTransitions } = useDemandStatusTransition()
 
-  const { demand, error, pending, refresh } = await useDemandPage(id.value)
+  const { demand, items, error, pending, status, refresh } = await useDemandPage(id.value)
   console.log('teste: ', demand)
 
   if (error.value) {
@@ -24,23 +23,6 @@
       fatal: true,
     })
   }
-
-  const { data: demandItems, status: demandItemsStatus } = useAsyncData(
-    'demand_items_active',
-    async () => {
-      try {
-        return await fetchDemandItemsByDemands({ column: 'demand_id', value: id.value })
-      } catch (error) {
-        if (error instanceof AppError) {
-          throw createError({ statusCode: 400, message: error.message })
-        }
-        throw createError({
-          statusCode: 500,
-          message: 'Erro inesperado',
-        })
-      }
-    },
-  )
 
   const { data: transitions } = useAsyncData('demand_status_transitions', async () => {
     try {
@@ -73,11 +55,8 @@
       <div>Data da Disputa: {{ dateBr(demand!.dispute_date) }}</div>
     </ui-card-grid>
 
-    <ui-list :items="demandItems" :status="demandItemsStatus">
-      <ui-list-item
-        v-for="item in demandItems"
-        :key="item.id"
-        :base-color="item.status.color || 'grey'"
+    <ui-list :items="items" :status="status">
+      <ui-list-item v-for="item in items" :key="item.id" :base-color="item.status.color || 'grey'"
         >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
         {{ item.status.name }}
         <template #actions>
