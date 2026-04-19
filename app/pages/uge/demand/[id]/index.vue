@@ -10,7 +10,7 @@
   const route = useRoute()
   const id = computed(() => route.params.id as string)
 
-  const { demand, items, error, pending, status, refresh } = await useDemandPage(id.value)
+  const { demand, items, error, pending, status, refresh } = useDemandPage(id.value)
   console.log('teste: ', demand)
 
   if (error.value) {
