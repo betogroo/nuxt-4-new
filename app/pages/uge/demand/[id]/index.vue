@@ -11,16 +11,11 @@
   })
   const route = useRoute()
   const id = computed(() => route.params.id as string)
-  const { get } = useDemand()
   const { fetchDemandItemsByDemands } = useDemandItem()
   const { getNextStatuses, fetchDemandStatusTransitions } = useDemandStatusTransition()
 
-  const {
-    data: demand,
-    pending,
-    error,
-    refresh,
-  } = await useAsyncData(`demand-${id.value}`, () => get(id.value))
+  const { demand, error, pending, refresh } = await useDemandPage(id.value)
+  console.log('teste: ', demand)
 
   if (error.value) {
     throw createError({
