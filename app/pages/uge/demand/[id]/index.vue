@@ -11,7 +11,6 @@
   const id = computed(() => route.params.id as string)
 
   const { demand, items, error, pending, status, refresh } = useDemandPage(id.value)
-  console.log('teste: ', demand)
 
   const updateStatus = (name: string) => {
     console.log('updateStatus Test: ', name)
