@@ -13,14 +13,6 @@
   const { demand, items, error, pending, status, refresh } = useDemandPage(id.value)
   console.log('teste: ', demand)
 
-  if (error.value) {
-    throw createError({
-      statusCode: error.value.statusCode ?? 500,
-      message: 'Demanda não encontrada',
-      fatal: true,
-    })
-  }
-
   const updateStatus = (name: string) => {
     console.log('updateStatus Test: ', name)
   }
