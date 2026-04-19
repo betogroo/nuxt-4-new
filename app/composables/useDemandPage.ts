@@ -3,14 +3,21 @@ import { AppError } from '~/error/AppError'
 const useDemandPage = (id: string) => {
   const { get } = useDemand()
   const { fetchDemandItemsByDemands } = useDemandItem()
+  const { fetchDemandStatusTransitions, getNextStatuses } = useDemandStatusTransition()
 
   const { data, status, error, pending, refresh } = useAsyncData(`demand${id}`, async () => {
     try {
-      const [demand, items] = await Promise.all([
+      const [demand, items, transitions] = await Promise.all([
         get(id),
         fetchDemandItemsByDemands({ column: 'demand_id', value: id }),
+        fetchDemandStatusTransitions(),
       ])
-      return { demand, items }
+
+      const itemsWithNext = items.map((item) => ({
+        ...item,
+        nextStatuses: getNextStatuses(item.status.id, transitions),
+      }))
+      return { demand, items: itemsWithNext, transitions }
     } catch (error) {
       if (error instanceof AppError) {
         throw createError({ statusCode: 400, message: error.message })

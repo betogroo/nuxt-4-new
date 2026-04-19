@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { AppError } from '~/error/AppError'
-
   definePageMeta({
     layout: 'default',
     showBack: true,
@@ -11,7 +9,6 @@
   })
   const route = useRoute()
   const id = computed(() => route.params.id as string)
-  const { getNextStatuses, fetchDemandStatusTransitions } = useDemandStatusTransition()
 
   const { demand, items, error, pending, status, refresh } = await useDemandPage(id.value)
   console.log('teste: ', demand)
@@ -23,20 +20,6 @@
       fatal: true,
     })
   }
-
-  const { data: transitions } = useAsyncData('demand_status_transitions', async () => {
-    try {
-      return await fetchDemandStatusTransitions()
-    } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, message: error.message })
-      }
-      throw createError({
-        statusCode: 500,
-        message: 'Erro inesperado',
-      })
-    }
-  })
 
   const updateStatus = (name: string) => {
     console.log('updateStatus Test: ', name)
@@ -60,10 +43,7 @@
         >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
         {{ item.status.name }}
         <template #actions>
-          <div
-            v-for="next in getNextStatuses(item.status.id, transitions)"
-            :key="next.to_status.id"
-          >
+          <div v-for="next in item.nextStatuses" :key="next.to_status.id">
             <ui-btn :color="next.to_status.color" @click="updateStatus(next.to_status.id)">{{
               next.action_label
             }}</ui-btn>
