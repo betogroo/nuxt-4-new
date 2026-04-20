@@ -1,5 +1,6 @@
-import { positiveNumber, uuidSelectOption } from '~/schemas/rules'
-import { DemandItemInsertSchema } from '~/schemas/uge'
+import { uuidSelectOption } from '~/schemas/rules/uuid.rules'
+import { DemandItemInsertSchema } from '../dto/demand-item.insert.dto'
+import { positiveNumber } from '~/schemas/rules/number.rules'
 
 export const DemandItemFormSchema = DemandItemInsertSchema.omit({
   demand_id: true,

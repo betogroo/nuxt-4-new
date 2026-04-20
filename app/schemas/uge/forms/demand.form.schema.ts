@@ -1,5 +1,8 @@
-import { futureDate, nameField, numberSelectOption } from '~/schemas/rules'
-import { DemandInsertSchema, DemandSchema } from '~/schemas/uge'
+import { nameField } from '~/schemas/rules/name.rules'
+import { DemandInsertSchema } from '../dto/demand.insert.dto'
+import { numberSelectOption } from '~/schemas/rules/number.rules'
+import { futureDate } from '~/schemas/rules/date.rules'
+import { DemandSchema } from '../entities/demand.schema'
 
 export const DemandFormSchema = DemandInsertSchema.extend({
   description: nameField(6),

@@ -1,6 +1,7 @@
 import z from 'zod'
-import { PackagingTypeSchema, ProductPackagingTypeSchema } from '../entities'
 import { PackagingTypeReadSchema } from './packaging-type.read.dto'
+import { ProductPackagingTypeSchema } from '../entities/product-packaging-type.schema'
+import { PackagingTypeSchema } from '../entities/packaging-type.schema'
 
 export const ProductPackagingTypeReadSchema = ProductPackagingTypeSchema.omit({
   id: true,

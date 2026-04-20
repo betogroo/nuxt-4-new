@@ -1,5 +1,7 @@
-import { ProductInsertSchema } from '~/schemas/uge/dto'
-import { nameField, positiveNumber, uuidSelectOption } from '~/schemas/rules'
+import { nameField } from '~/schemas/rules/name.rules'
+import { ProductInsertSchema } from '../dto/product.insert.dto'
+import { positiveNumber } from '~/schemas/rules/number.rules'
+import { uuidSelectOption } from '~/schemas/rules/uuid.rules'
 
 export const ProductFormSchema = ProductInsertSchema.extend({
   name: nameField(6),

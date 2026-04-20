@@ -1,9 +1,7 @@
-import {
-  DemandItemSchema,
-  DemandStatusSchema,
-  PackagingTypeSchema,
-  ProductReadSummarySchema,
-} from '~/schemas/uge'
+import { DemandItemSchema } from '../entities/demand-item.schema'
+import { DemandStatusSchema } from '../entities/demand-status.schema'
+import { PackagingTypeSchema } from '../entities/packaging-type.schema'
+import { ProductReadSummarySchema } from './product.read.dto'
 
 const packaging = PackagingTypeSchema.pick({
   name: true,

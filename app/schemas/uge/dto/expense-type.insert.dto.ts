@@ -1,4 +1,4 @@
-import { ExpenseTypeSchema } from '~/schemas/uge/entities'
+import { ExpenseTypeSchema } from '../entities/expense-type.schema'
 
 export const ExpenseTypeInsertSchema = ExpenseTypeSchema.omit({
   id: true,

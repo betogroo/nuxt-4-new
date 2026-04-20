@@ -1,4 +1,4 @@
-import { ObjectTypeSchema } from '~/schemas/uge'
+import { ObjectTypeSchema } from '../entities/object-type.schema'
 
 export const ObjectTypeReadSchema = ObjectTypeSchema.pick({
   name: true,

@@ -1,4 +1,4 @@
-import { ProductClassSchema } from '~/schemas/uge/entities'
+import { ProductClassSchema } from '../entities/product-class.schema'
 
 export const ProductClassReadSchema = ProductClassSchema.pick({
   name: true,

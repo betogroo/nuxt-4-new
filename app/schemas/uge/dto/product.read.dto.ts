@@ -1,5 +1,6 @@
-import { ProductSchema } from '~/schemas/uge/entities'
-import { ExpenseTypeReadSchema, ProductClassReadSchema } from '~/schemas/uge/dto'
+import { ProductSchema } from '../entities/product.schema'
+import { ExpenseTypeReadSchema } from './expense-type.read.dto'
+import { ProductClassReadSchema } from './product-class.read.dto'
 
 export const ProductReadSchema = ProductSchema
 

@@ -1,4 +1,4 @@
-import { DemandSchema } from '../entities'
+import { DemandSchema } from '../entities/demand.schema'
 
 export const DemandInsertSchema = DemandSchema.omit({
   id: true,

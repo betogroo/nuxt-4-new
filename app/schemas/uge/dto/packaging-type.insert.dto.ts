@@ -1,4 +1,4 @@
-import { PackagingTypeSchema } from '~/schemas/uge/entities'
+import { PackagingTypeSchema } from '../entities/packaging-type.schema'
 
 export const PackagingTypeInsertSchema = PackagingTypeSchema.omit({
   id: true,

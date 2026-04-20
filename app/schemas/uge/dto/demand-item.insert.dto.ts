@@ -1,5 +1,5 @@
 import { positiveNumber } from '~/schemas/rules'
-import { DemandItemSchema } from '~/schemas/uge'
+import { DemandItemSchema } from '~/schemas/uge/entities/demand-item.schema'
 
 export const DemandItemInsertSchema = DemandItemSchema.omit({
   id: true,
