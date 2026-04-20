@@ -8,7 +8,6 @@ export const DemandReadSchema = DemandSchema.pick({
   internal_process_number: true,
   dispute_date: true,
   created_at: true,
-  status: true,
 })
 
 export const DemandReadDetailSchema = DemandReadSchema.extend({
