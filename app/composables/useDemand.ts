@@ -1,6 +1,8 @@
 import { z } from '~/schemas'
+import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
+import { DemandReadDetailSchema } from '~/schemas/uge/dto/demand.read.dto'
+import { DemandSchema } from '~/schemas/uge/entities/demand.schema'
 import type { DemandReadDetail, DemandInsert, Demand } from '~/types'
-import { DemandInsertSchema, DemandReadDetailSchema, DemandSchema } from '~/schemas/uge'
 
 const useDemand = () => {
   //const supabase = useSupabaseClient()

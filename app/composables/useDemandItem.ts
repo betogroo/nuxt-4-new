@@ -1,4 +1,7 @@
-import { DemandItemInsertSchema, DemandItemReadSchema, DemandItemSchema, z } from '~/schemas'
+import z from 'zod'
+import { DemandItemInsertSchema } from '~/schemas/uge/dto/demand-item.insert.dto'
+import { DemandItemReadSchema } from '~/schemas/uge/dto/demand-item.read.dto'
+import { DemandItemSchema } from '~/schemas/uge/entities/demand-item.schema'
 import type { DemandItem, DemandItemInsert, DemandItemRead } from '~/types'
 
 const useDemandItem = () => {
