@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 import { DemandStatusTransitionReadSchema } from '~/schemas/uge/dto/demand-status-transition.read.dto'
 
 import type { DemandStatusTransitionsRead } from '~/types'

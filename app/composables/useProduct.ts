@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
 import {
   ProductReadDetailsSchema,

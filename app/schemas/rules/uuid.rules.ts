@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 
 export const uuidRule = z.string().uuid().trim()
 

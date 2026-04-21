@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 
 export const HeadingLevelSchema = z.union([
   z.literal(1),

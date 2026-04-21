@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 import { ExpenseTypeReadSummarySchema } from '~/schemas/uge/dto/expense-type.read.dto'
 import type { ExpenseTypeReadSummary } from '~/types'
 

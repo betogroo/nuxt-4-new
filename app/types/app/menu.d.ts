@@ -1,4 +1,4 @@
-import type { z, MenuSchema, MenuAreaSchema } from '~/schemas'
+import type { MenuSchema, MenuAreaSchema } from '~/schemas/app/menu.schema'
 
 export type Menu = z.infer<typeof MenuSchema>
 export type MenuArea = z.infer<typeof MenuAreaSchema>

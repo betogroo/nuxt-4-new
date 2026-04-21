@@ -2,7 +2,7 @@
   "Zod Import Types": {
     "scope": "javascript,typescript",
     "prefix": "zod-import-types",
-    "body": ["import { z } from '~/schemas'", "import type { $1 } from '~/types'"],
+    "body": ["import z from 'zod'", "import type { $1 } from '~/types'"],
     "description": "Import z and types from create schemas",
   },
   "Schema based on type": {
@@ -23,7 +23,7 @@
   "Import Z": {
     "scope": "javascript,typescript",
     "prefix": "zod-z",
-    "body": "import { z } from '~/schemas'",
+    "body": "import z from 'zod'",
     "description": "Basic Zod import",
   },
   "BaseSchema": {

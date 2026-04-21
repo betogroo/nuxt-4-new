@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
 import { DemandReadDetailSchema } from '~/schemas/uge/dto/demand.read.dto'
 import { DemandSchema } from '~/schemas/uge/entities/demand.schema'

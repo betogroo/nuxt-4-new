@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 import type { ElectionInsert } from '~/types'
 
 export const ElectionInsertSchema: z.ZodType<ElectionInsert> = z.object({

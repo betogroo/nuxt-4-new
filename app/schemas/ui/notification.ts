@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 
 export const NotificationTypeSchema = z.enum(['success', 'warning', 'error', 'info'])
 export const NotificationOptionsSchema = z.object({

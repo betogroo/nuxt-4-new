@@ -1,4 +1,4 @@
-import type { z } from '~/schemas'
+import type z from 'zod'
 import type { ProfileReadSchema } from '~/schemas/profile/dto/profile.read.dto'
 import type { ProfileSchema } from '~/schemas/profile/entities/profile.schema'
 

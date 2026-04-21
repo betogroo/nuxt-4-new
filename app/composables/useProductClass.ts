@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 import { ProductClassReadSummarySchema } from '~/schemas/uge/dto/product-class.read.dto'
 import type { ProductClassReadSummary } from '~/types'
 
