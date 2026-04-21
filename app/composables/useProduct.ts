@@ -1,10 +1,11 @@
 import { z } from '~/schemas'
-import { ProductSchema } from '~/schemas/uge/entities'
+import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
 import {
-  ProductInsertSchema,
   ProductReadDetailsSchema,
   ProductReadSummarySchema,
-} from '~/schemas/uge/dto'
+} from '~/schemas/uge/dto/product.read.dto'
+import { ProductSchema } from '~/schemas/uge/entities/product.schema'
+
 import type {
   ProductReadSummary,
   Product,

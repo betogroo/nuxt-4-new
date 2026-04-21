@@ -1,6 +1,6 @@
 import type { Election, ElectionInsert } from '~/types'
-import { ElectionRowsSchema, ElectionSchema } from '~/schemas'
 import { AppError } from '~/error/AppError'
+import { ElectionRowsSchema, ElectionSchema } from '~/schemas'
 const useElection = () => {
   const supabase = useSupabaseClient()
 

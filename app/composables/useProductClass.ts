@@ -1,5 +1,5 @@
 import { z } from '~/schemas'
-import { ProductClassReadSummarySchema } from '~/schemas/uge/'
+import { ProductClassReadSummarySchema } from '~/schemas/uge/dto/product-class.read.dto'
 import type { ProductClassReadSummary } from '~/types'
 
 const useProductClass = () => {

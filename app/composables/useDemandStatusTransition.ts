@@ -1,5 +1,6 @@
 import { z } from '~/schemas'
-import { DemandStatusTransitionReadSchema } from '~/schemas/uge'
+import { DemandStatusTransitionReadSchema } from '~/schemas/uge/dto/demand-status-transition.read.dto'
+
 import type { DemandStatusTransitionsRead } from '~/types'
 
 const useDemandStatusTransition = () => {

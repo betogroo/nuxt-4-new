@@ -1,5 +1,5 @@
 import { z } from '~/schemas'
-import { ExpenseTypeReadSummarySchema } from '~/schemas/uge/dto'
+import { ExpenseTypeReadSummarySchema } from '~/schemas/uge/dto/expense-type.read.dto'
 import type { ExpenseTypeReadSummary } from '~/types'
 
 const useExpensiveType = () => {

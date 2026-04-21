@@ -1,4 +1,5 @@
-import { ObjectTypeReadSummarySchema, z } from '~/schemas'
+import z from 'zod'
+import { ObjectTypeReadSummarySchema } from '~/schemas/uge/dto/object-type.read.dto'
 import type { ObjectTypeReadSummary } from '~/types'
 
 const useObjectType = () => {
