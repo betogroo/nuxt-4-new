@@ -3,7 +3,7 @@
   import { ProductFormSchema } from '~/schemas/uge/forms/product.form.schema'
   import type { ProductForm } from '~/types'
 
-  const { create, isCreating } = useProduct()
+  const { create } = useProduct()
   const { select: productClassSelect } = useProductClass()
   const { select: expenseTypeSelect } = useExpenseType()
 
@@ -11,14 +11,17 @@
     description: '',
   })
 
+  const { execute, status, error } = useAsyncAction(async () => {
+    const parsed = ProductInsertSchema.parse({
+      ...values,
+    })
+
+    return await create(parsed)
+  })
+
   const onSubmit = handleSubmit(async () => {
     try {
-      const parsed = ProductInsertSchema.parse({
-        ...values,
-      })
-      //const newData = await create(parsed)
-      console.log(parsed)
-      await create(parsed)
+      await execute()
     } catch (error) {
       handleAsyncError(error)
     }
@@ -31,7 +34,12 @@
 
 <template>
   <ui-page show-back title="Nova Produto">
-    <ui-form :is-loading="isCreating" :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
+    <ui-form
+      :is-loading="status === 'pending'"
+      :is-valid="!meta.valid"
+      @reset="onReset"
+      @submit="onSubmit"
+    >
       <ui-text-field label="Nome" name="name" type="text" />
       <ui-text-field label="Descrição" name="description" type="text" />
       <ui-text-field label="CAT MAT" name="cat_mat" type="number" />
@@ -60,5 +68,6 @@
         @focus="expenseTypeSelect.onOpen"
       />
     </ui-form>
+    {{ status }},{{ error }}
   </ui-page>
 </template>
