@@ -1,12 +1,19 @@
 <script setup lang="ts">
+  import type { Status } from '~/types/ui/general'
+
   interface Props {
     showReset?: boolean
     submitLabel?: string
     resetLabel?: string
     isValid?: boolean
-    isLoading?: boolean
+    status?: Status
   }
-  const { submitLabel = 'Enviar', resetLabel = 'Limpar', isLoading = false } = defineProps<Props>()
+  const {
+    submitLabel = 'Enviar',
+    resetLabel = 'Limpar',
+
+    status = 'idle',
+  } = defineProps<Props>()
 
   const $emit = defineEmits<{
     submit: []
@@ -35,7 +42,9 @@
     <template v-if="$slots.actions"><slot name="actions" /></template>
     <template v-else>
       <div class="d-flex justify-end ga-3">
-        <ui-btn :disabled="isValid" :loading="isLoading" type="submit">{{ submitLabel }}</ui-btn>
+        <ui-btn :disabled="isValid" :loading="status === 'pending'" type="submit">{{
+          submitLabel
+        }}</ui-btn>
         <ui-btn color="red" type="button" @click="reset">{{ resetLabel }}</ui-btn>
       </div>
     </template>
