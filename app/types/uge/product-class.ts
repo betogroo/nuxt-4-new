@@ -1,4 +1,4 @@
-import type { z } from '~/schemas'
+import type z from 'zod'
 import type { ProductClassSchema } from '~/schemas/uge/entities/product-class.schema'
 import type {
   ProductClassReadSchema,

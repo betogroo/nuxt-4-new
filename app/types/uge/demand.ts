@@ -1,19 +1,16 @@
+import type z from 'zod'
+import type { DemandItemInsertSchema } from '~/schemas/uge/dto/demand-item.insert.dto'
+import type { DemandItemReadSchema } from '~/schemas/uge/dto/demand-item.read.dto'
+import type { DemandStatusTransitionReadSchema } from '~/schemas/uge/dto/demand-status-transition.read.dto'
+import type { DemandStatusReadSchema } from '~/schemas/uge/dto/demand-status.read.dto'
+import type { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
+import type { DemandReadDetailSchema, DemandReadSchema } from '~/schemas/uge/dto/demand.read.dto'
+import type { DemandItemSchema } from '~/schemas/uge/entities/demand-item.schema'
+import type { DemandStatusSchema } from '~/schemas/uge/entities/demand-status.schema'
+import type { DemandSchema } from '~/schemas/uge/entities/demand.schema'
+import type { DemandItemFormSchema } from '~/schemas/uge/forms/demand-item.form.schema'
+import type { DemandFormSchema } from '~/schemas/uge/forms/demand.form.schema'
 import type { Updates } from '~/types'
-import type { z } from '~/schemas'
-import type {
-  DemandItemFormSchema,
-  DemandItemInsertSchema,
-  DemandItemReadSchema,
-  DemandItemSchema,
-  DemandSchema,
-  DemandReadDetailSchema,
-  DemandInsertSchema,
-  DemandFormSchema,
-  DemandReadSchema,
-  DemandStatusSchema,
-  DemandStatusReadSchema,
-  DemandStatusTransitionReadSchema,
-} from '~/schemas/uge'
 
 export type DemandForm = z.infer<typeof DemandFormSchema>
 export type DemandUpdate = Updates<'demands'>
