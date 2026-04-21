@@ -1,4 +1,4 @@
-import { AppError } from '~/error/AppError'
+import { handleAsyncError } from '~/utils/handleError'
 
 const useDemandPage = (id: string) => {
   const { get } = useDemand()
@@ -19,13 +19,7 @@ const useDemandPage = (id: string) => {
       }))
       return { demand, items: itemsWithNext, transitions }
     } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, message: error.message })
-      }
-      throw createError({
-        statusCode: 500,
-        message: 'Erro inesperado',
-      })
+      handleAsyncError(error)
     }
   })
 
