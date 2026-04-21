@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { AppError } from '~/error/AppError'
   import type { Icon } from '~/types'
 
   definePageMeta({
@@ -23,13 +22,7 @@
     try {
       return await fetchAll()
     } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, message: error.message })
-      }
-      throw createError({
-        statusCode: 500,
-        message: 'Erro inesperado ao carregar as demandas',
-      })
+      handleAsyncError(error)
     }
   })
   const iconList = ref<Icon[]>(['eye', 'settings', 'update'])

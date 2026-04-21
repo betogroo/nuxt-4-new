@@ -20,8 +20,7 @@
       console.log(parsed)
       await create(parsed)
     } catch (error) {
-      const err = error as Error
-      console.log(err)
+      handleAsyncError(error)
     }
   })
 

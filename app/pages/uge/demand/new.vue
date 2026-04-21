@@ -21,8 +21,7 @@
       const newData = await create(parsed)
       console.log(newData)
     } catch (error) {
-      const err = error as Error
-      console.log(err)
+      handleAsyncError(error)
     }
   })
 
