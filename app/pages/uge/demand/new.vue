@@ -37,12 +37,7 @@
 <template>
   <ui-page show-back title="Nova Demanda">
     <ui-alert v-if="error" :title="error.message" type="error" />
-    <ui-form
-      :is-loading="status === 'pending'"
-      :is-valid="!meta.valid"
-      @reset="onReset"
-      @submit="onSubmit"
-    >
+    <ui-form :is-valid="!meta.valid" :status="status" @reset="onReset" @submit="onSubmit">
       <ui-text-field label="Nome" name="description" type="text" />
       <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />

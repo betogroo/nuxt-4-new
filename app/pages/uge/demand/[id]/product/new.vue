@@ -14,19 +14,21 @@
     {},
   )
 
+  const { execute, status } = useAsyncAction(async () => {
+    const parsed = DemandItemInsertSchema.parse({
+      ...values,
+      demand_id: id.value,
+      //dispute_date: values.dispute_date ?? null,
+      //electronic_process_number: values.electronic_process_number ?? null,
+    })
+    return await create(parsed)
+  })
+
   const onSubmit = handleSubmit(async () => {
     try {
-      const parsed = DemandItemInsertSchema.parse({
-        ...values,
-        demand_id: id.value,
-        //dispute_date: values.dispute_date ?? null,
-        //electronic_process_number: values.electronic_process_number ?? null,
-      })
-      const newData = await create(parsed)
-      console.log(newData)
+      await execute()
     } catch (error) {
-      const err = error as Error
-      console.log(err)
+      handleAsyncError(error)
     }
   })
 
@@ -51,7 +53,7 @@
 
 <template>
   <ui-page show-back title="Adicionar produtos ao processo">
-    <ui-form :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
+    <ui-form :is-valid="!meta.valid" :status="status" @reset="onReset" @submit="onSubmit">
       <ui-select
         item-subtitle="description"
         item-title="name"

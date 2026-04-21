@@ -34,12 +34,7 @@
 
 <template>
   <ui-page show-back title="Nova Produto">
-    <ui-form
-      :is-loading="status === 'pending'"
-      :is-valid="!meta.valid"
-      @reset="onReset"
-      @submit="onSubmit"
-    >
+    <ui-form :is-valid="!meta.valid" :status="status" @reset="onReset" @submit="onSubmit">
       <ui-text-field label="Nome" name="name" type="text" />
       <ui-text-field label="Descrição" name="description" type="text" />
       <ui-text-field label="CAT MAT" name="cat_mat" type="number" />

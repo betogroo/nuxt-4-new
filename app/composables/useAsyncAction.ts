@@ -1,5 +1,7 @@
+import type { Status } from '~/types/ui/general'
+
 const useAsyncAction = <T>(fn: () => Promise<T>) => {
-  const status = ref<'idle' | 'pending' | 'success' | 'error'>('idle')
+  const status = ref<Status>('idle')
   const error = ref<Error | null>(null)
   const data = ref<T | null>(null)
 

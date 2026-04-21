@@ -1,6 +1,8 @@
 <script setup lang="ts">
+  import type { Status } from '~/types'
+
   interface Props<T> {
-    status: 'idle' | 'pending' | 'success' | 'error'
+    status: Status
     items?: T[]
   }
   defineProps<Props<unknown>>()
