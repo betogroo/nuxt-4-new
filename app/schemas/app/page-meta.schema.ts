@@ -1,4 +1,6 @@
-import { z, MenuSchema, BreadcrumbItemSchema } from '~/schemas'
+import z from 'zod'
+import { MenuSchema } from './menu.schema'
+import { BreadcrumbItemSchema } from './breadcrumb.schema'
 
 export const PageMetaSchema = z.object({
   showInNavBar: z.boolean().optional(),

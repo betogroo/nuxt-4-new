@@ -1,4 +1,4 @@
-import { PageMetaSchema } from '~/schemas'
+import { PageMetaSchema } from '~/schemas/app/page-meta.schema'
 import type { MenuArea } from '~/types'
 
 const useNavigation = () => {
