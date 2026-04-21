@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { DemandStatusReadSchema, z } from '~/schemas'
+  import z from 'zod'
+  import { DemandStatusReadSchema } from '~/schemas/uge/dto/demand-status.read.dto'
   import type { DemandStatusRead } from '~/types'
 
   definePageMeta({

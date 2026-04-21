@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { ProductFormSchema, ProductInsertSchema } from '~/schemas'
+  import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
+  import { ProductFormSchema } from '~/schemas/uge/forms/product.form.schema'
   import type { ProductForm } from '~/types'
 
   const { create, isCreating } = useProduct()

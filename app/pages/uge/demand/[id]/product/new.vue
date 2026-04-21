@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { DemandItemFormSchema, DemandItemInsertSchema } from '~/schemas'
+  import { DemandItemInsertSchema } from '~/schemas/uge/dto/demand-item.insert.dto'
+  import { DemandItemFormSchema } from '~/schemas/uge/forms/demand-item.form.schema'
   import type { DemandItemForm, PackagingTypeRead } from '~/types'
 
   const route = useRoute()

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
-  import { SignupFormSchema } from '~/schemas'
+  import { SignupFormSchema } from '~/schemas/auth/auth.schema'
   useGuestRedirect()
 
   definePageMeta({

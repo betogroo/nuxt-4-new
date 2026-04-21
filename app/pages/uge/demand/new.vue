@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { DemandFormSchema, DemandInsertSchema } from '~/schemas/uge'
+  import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
+  import { DemandFormSchema } from '~/schemas/uge/forms/demand.form.schema'
   import type { DemandForm } from '~/types'
 
   const { create, isCreating } = useDemand()

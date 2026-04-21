@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import { z } from 'zod'
 
 export const AuthActionSchema = z.enum(['login', 'signup'])
 
