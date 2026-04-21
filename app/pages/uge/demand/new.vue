@@ -3,7 +3,7 @@
   import { DemandFormSchema } from '~/schemas/uge/forms/demand.form.schema'
   import type { DemandForm } from '~/types'
 
-  const { create, isCreating } = useDemand()
+  const { create } = useDemand()
 
   const { select: objectTypeSelect } = useObjectType()
 
@@ -11,15 +11,19 @@
     description: '',
   })
 
+  const { execute, status, error } = useAsyncAction(async () => {
+    const parsed = DemandInsertSchema.parse({
+      ...values,
+      dispute_date: values.dispute_date ?? null,
+      electronic_process_number: values.electronic_process_number ?? null,
+    })
+    return await create(parsed)
+  })
+
   const onSubmit = handleSubmit(async () => {
     try {
-      const parsed = DemandInsertSchema.parse({
-        ...values,
-        dispute_date: values.dispute_date ?? null,
-        electronic_process_number: values.electronic_process_number ?? null,
-      })
-      const newData = await create(parsed)
-      console.log(newData)
+      const result = await execute()
+      console.log(result)
     } catch (error) {
       handleAsyncError(error)
     }
@@ -32,7 +36,13 @@
 
 <template>
   <ui-page show-back title="Nova Demanda">
-    <ui-form :is-loading="isCreating" :is-valid="!meta.valid" @reset="onReset" @submit="onSubmit">
+    <ui-alert v-if="error" :title="error.message" type="error" />
+    <ui-form
+      :is-loading="status === 'pending'"
+      :is-valid="!meta.valid"
+      @reset="onReset"
+      @submit="onSubmit"
+    >
       <ui-text-field label="Nome" name="description" type="text" />
       <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
       <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
@@ -47,5 +57,6 @@
         @focus="objectTypeSelect.onOpen"
       />
     </ui-form>
+    {{ status }}
   </ui-page>
 </template>
