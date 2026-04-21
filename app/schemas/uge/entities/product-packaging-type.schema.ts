@@ -1,4 +1,4 @@
-import { BaseEntitySchema } from '~/schemas/uge/entities'
+import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { uuidRule } from '~/schemas/rules'
 
 export const ProductPackagingTypeSchema = BaseEntitySchema.extend({

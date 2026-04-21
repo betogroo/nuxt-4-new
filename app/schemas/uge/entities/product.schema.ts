@@ -1,6 +1,7 @@
 import { z } from 'zod'
-import { BaseEntitySchema, ProductSpecificationSchema } from '~/schemas/uge/entities'
+import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { nameRule, positiveNumber, uuidRule } from '~/schemas/rules'
+import { ProductSpecificationSchema } from './product-specifications.schema'
 
 export const ProductSchema = BaseEntitySchema.extend({
   product_class_id: uuidRule,

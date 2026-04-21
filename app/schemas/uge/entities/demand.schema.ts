@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { BaseEntitySchema } from '~/schemas/uge/entities'
+import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { dateRule, nameRule, positiveNumber, uuidRule } from '~/schemas/rules'
 
 export const DemandSchema = BaseEntitySchema.extend({

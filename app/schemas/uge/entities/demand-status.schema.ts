@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import { z } from 'zod'
 import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { nameRule, positiveNumber } from '~/schemas/rules'
 
