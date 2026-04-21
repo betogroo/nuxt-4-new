@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import z from 'zod'
-  import { ProductClassReadSchema, ProductReadDetailsSchema } from '~/schemas'
+  import { ProductClassReadSchema } from '~/schemas/uge/dto/product-class.read.dto'
+  import { ProductReadDetailsSchema } from '~/schemas/uge/dto/product.read.dto'
 
   definePageMeta({
     layout: 'default',
