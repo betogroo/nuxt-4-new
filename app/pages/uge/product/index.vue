@@ -17,13 +17,9 @@
     data: products,
     error,
     status,
-  } = useAsyncData('products', async () => {
-    try {
-      return await fetchAllProducts()
-    } catch (error) {
-      handleAsyncError(error)
-    }
-  })
+  } = useAsyncData('products', async () => await fetchAllProducts())
+  if (error.value) handleAsyncError(error.value)
+  const productsSafe = computed(() => products.value || [])
 </script>
 
 <template>
@@ -32,8 +28,8 @@
       ><ui-btn color="primary" icon="plus" to="./product/new">Novo Produto</ui-btn>
     </template>
     <ui-alert v-if="error" :title="error.message" type="error" />
-    <ui-list v-else :items="products || []" lines="two" :status="status">
-      <ui-list-item v-for="product in products" :key="product.id">
+    <ui-list v-else :items="productsSafe" lines="two" :status="status">
+      <ui-list-item v-for="product in productsSafe" :key="product.id">
         <template #title> {{ product.name }}</template>
         <template #subtitle> {{ product.description }} </template>
         <template #prepend> <ui-btn-icon icon="eye" :to="`./product/${product.id}`" /></template>
@@ -41,6 +37,9 @@
     </ui-list>
     <pre
       >{{ products }}
+    </pre>
+    <pre
+      >{{ productsSafe }}
     </pre>
   </ui-page>
 </template>
