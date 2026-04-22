@@ -1,31 +1,51 @@
 select
-  di.id,
-  di.created_at,
-  di.updated_at,
-  di.quantity,
-  di.estimated_price,
-  di.offered_price,
-  di.demand_id,
-  jsonb_build_object(
-    'id',
-    p.id,
-    'name',
-    p.name,
-    'description',
-    p.description,
-    'specifications',
-    p.specifications
-  ) as product,
-  json_build_object('name', pt.name) as packaging,
-  json_build_object('id', ds.id, 'name', ds.name, 'code', ds.code, 'color', ds.color) as status
-from
-  public.demand_items di
-  join public.products p on p.id = di.product_id
-  join public.packaging_types pt on pt.id = di.packaging_type_id
-  join public.demand_status ds on ds.id = di.demand_status_id
-where
-  di.active = true and di.deleted_at is null;
+  p.id,
+  p.name,
+  p.description,
+  p.cat_mat,
+  p.cat_bec,
+  p.nat_gov,
+  p.pdm,
+  p.specifications,
+  p.active,
 
-  grant
-select
-    on public.demand_status_transitions_active to authenticated;
+  jsonb_build_object(
+    'name', pc.name,
+    'code', pc.code
+  ) as class,
+
+  jsonb_build_object(
+    'name', et.name,
+    'expense_number', et.expense_number
+  ) as expense_type,
+
+  coalesce(ppt_data.packaging_types, '[]') as packaging_types
+
+from products p
+
+left join product_class pc
+  on pc.id = p.product_class_id
+
+left join expense_types et
+  on et.id = p.expense_type_id
+
+left join lateral (
+  select
+    jsonb_agg(
+      jsonb_build_object(
+        'id', pt.id,
+        'name', pt.name,
+        'name_bec', pt.name_bec
+      )
+    ) as packaging_types
+  from product_packaging_types ppt
+  join packaging_types pt
+    on pt.id = ppt.packaging_type_id
+  where ppt.product_id = p.id
+    and ppt.deleted_at is null
+    and pt.deleted_at is null
+) ppt_data on true
+
+where
+  p.active = true
+  and p.deleted_at is null

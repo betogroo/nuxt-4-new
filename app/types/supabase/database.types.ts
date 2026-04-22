@@ -621,6 +621,7 @@ export type Database = {
           id: string | null
           name: string | null
           nat_gov: number | null
+          packaging_types: Json | null
           pdm: number | null
           specifications: Json | null
         }
