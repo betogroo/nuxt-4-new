@@ -6,22 +6,20 @@ const useDemandPage = (id: string) => {
   const { fetchDemandStatusTransitions, getNextStatuses } = useDemandStatusTransition()
 
   const { data, status, error, pending, refresh } = useAsyncData(`demand${id}`, async () => {
-    try {
-      const [demand, items, transitions] = await Promise.all([
-        get(id),
-        fetchDemandItemsByDemands({ column: 'demand_id', value: id }),
-        fetchDemandStatusTransitions(),
-      ])
+    const [demand, items, transitions] = await Promise.all([
+      get(id),
+      fetchDemandItemsByDemands({ column: 'demand_id', value: id }),
+      fetchDemandStatusTransitions(),
+    ])
 
-      const itemsWithNext = items.map((item) => ({
-        ...item,
-        nextStatuses: getNextStatuses(item.status.id, transitions),
-      }))
-      return { demand, items: itemsWithNext, transitions }
-    } catch (error) {
-      handleAsyncError(error)
-    }
+    const itemsWithNext = items.map((item) => ({
+      ...item,
+      nextStatuses: getNextStatuses(item.status.id, transitions),
+    }))
+
+    return { demand, items: itemsWithNext, transitions }
   })
+  if (error.value) handleAsyncError(error.value)
 
   return {
     demand: computed(() => data.value?.demand),

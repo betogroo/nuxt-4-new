@@ -13,20 +13,10 @@
   })
 
   const { fetchAll } = useDemand()
-
-  const {
-    data: demands,
-    error,
-    status,
-  } = useAsyncData('demands', async () => {
-    try {
-      return await fetchAll()
-    } catch (error) {
-      handleAsyncError(error)
-    }
-  })
+  const { data: demands, error, status } = useAsyncData('demands', async () => await fetchAll())
+  if (error.value) handleAsyncError(error.value)
+  const demandsSafe = computed(() => demands.value ?? [])
   const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
-  const formatted = computed(() => JSON.stringify(demands.value, null, 2))
 </script>
 
 <template>
@@ -36,8 +26,8 @@
     </template>
     <ui-alert v-if="error" :title="error.message" type="error" />
 
-    <ui-list v-else :items="demands || []" lines="two" :status="status">
-      <ui-list-item v-for="demand in demands" :key="demand.id">
+    <ui-list v-else :items="demandsSafe || []" lines="two" :status="status">
+      <ui-list-item v-for="demand in demandsSafe" :key="demand.id">
         <template #title> {{ demand.description }}</template>
         <template #subtitle>
           Processo número
@@ -49,6 +39,6 @@
         </template>
       </ui-list-item>
     </ui-list>
-    <pre>{{ formatted }}</pre>
+    {{ error }}
   </ui-page>
 </template>

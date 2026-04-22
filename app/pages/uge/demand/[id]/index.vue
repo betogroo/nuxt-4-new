@@ -23,7 +23,10 @@
       <ui-btn color="primary" icon="plus" :to="`./${id}/product/new`">Adicionar Produto</ui-btn>
     </template>
     <ui-card-grid v-if="pending">Carregando...</ui-card-grid>
-    <div v-else-if="error">Da um refresh <ui-btn @click="refresh()">Refresh</ui-btn></div>
+    <div v-else-if="error">
+      <ui-alert :title="`Erro: ${error.message}`" type="error" />
+      <ui-btn @click="refresh()">Refresh</ui-btn>
+    </div>
     <ui-card-grid v-else>
       <div>Data do cadastro: {{ dateBr(demand!.created_at) }}</div>
       <div>Data da Disputa: {{ dateBr(demand!.dispute_date) }}</div>
@@ -45,5 +48,6 @@
         </template>
       </ui-list-item>
     </ui-list>
+    {{ error?.message }}
   </ui-page>
 </template>
