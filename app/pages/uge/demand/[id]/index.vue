@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <ui-page :title="demand?.description">
+  <ui-page v-if="demand" :title="demand?.description">
     <template #header_action>
       <ui-btn color="primary" icon="plus" :to="`./${id}/product/new`">Adicionar Produto</ui-btn>
     </template>

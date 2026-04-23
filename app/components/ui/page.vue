@@ -5,6 +5,7 @@
   }
   const { title = '', showBack = false } = defineProps<Props>()
   const slots = useSlots()
+  const titleSafe = computed(() => title || '')
 
   const hasHeader = showBack || !!title || !!slots.title || !!slots.header_action
 </script>
@@ -22,8 +23,8 @@
         <v-row align="center">
           <!-- COLUNA ESQUERDA -->
           <v-col>
-            <ui-heading v-if="title" :level="3">
-              {{ title }}
+            <ui-heading v-if="titleSafe" :level="4">
+              {{ titleSafe }}
             </ui-heading>
 
             <slot v-else-if="$slots.title" name="title" />
