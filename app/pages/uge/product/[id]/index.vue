@@ -11,6 +11,7 @@
 
   const { params } = useRoute()
   const id = computed(() => params.id as string)
+  const { isAdmin } = usePermission()
   const { get } = useProduct()
   const { data: product } = await useAsyncData(`product-${id.value}`, () => get(id.value), {
     default: () => ({}) as ProductReadDetails,
@@ -20,7 +21,7 @@
 <template>
   <div v-if="product">
     <ui-page show-back>
-      <template #header_action><ui-btn>Editar</ui-btn></template>
+      <template #header_action><ui-btn v-if="isAdmin">Editar</ui-btn></template>
       <template #title>
         <div class="d-flex align-center">
           <ui-heading :level="5">{{ product.name }}</ui-heading
