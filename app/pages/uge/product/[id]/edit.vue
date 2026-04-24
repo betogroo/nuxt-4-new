@@ -4,5 +4,5 @@
 </script>
 
 <template>
-  <ui-page title="Edit">{{ id }}</ui-page>
+  <ui-page show-back title="Edit">{{ id }}</ui-page>
 </template>
