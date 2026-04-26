@@ -1,27 +1,45 @@
 <script setup lang="ts">
-  const $emit = defineEmits<{
-    'menu-click': []
+  export interface UiListItemProps {
+    title: string
+    subtitle?: string
+    value?: string | number
+    clickable?: boolean
+    hideDivider?: boolean
+  }
+  const props = defineProps<UiListItemProps>()
+  const emit = defineEmits<{
+    'menu-click': [value?: string | number]
+    click: [value?: string | number]
   }>()
 
-  const menuClick = () => {
-    $emit('menu-click')
+  const handleMenuClick = () => {
+    emit('menu-click', props.value)
+  }
+
+  const handleClick = () => {
+    if (props.clickable) {
+      emit('click', props.value)
+    }
   }
 </script>
 
 <template>
-  <v-list-item v-bind="$attrs">
+  <v-list-item density="compact" :ripple="clickable" v-bind="$attrs" @click="handleClick">
     <template #append>
-      <ui-btn-icon icon="menu-h" @click="menuClick" />
+      <ui-btn-icon icon="menu-h" @click.stop="handleMenuClick" />
     </template>
     <template #prepend>
       <div class="d-flex flex-column">
         <h1 class="text-subtitle-1 font-weight-bold">
-          <slot name="title" />
+          {{ title }}
         </h1>
-        <h2 class="text-body-2 font-weight-light">
-          <slot name="subtitle" />
-        </h2>
+        <slot name="subtitle">
+          <h2 v-if="subtitle" class="text-body-2 font-weight-light">
+            {{ subtitle }}
+          </h2>
+        </slot>
       </div>
     </template>
   </v-list-item>
+  <v-divider v-if="!hideDivider" />
 </template>

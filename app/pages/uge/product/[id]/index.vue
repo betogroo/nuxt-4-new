@@ -16,6 +16,10 @@
   const { data: product } = await useAsyncData(`product-${id.value}`, () => get(id.value), {
     default: () => ({}) as ProductReadDetails,
   })
+
+  const openMenu = (id: string | number) => {
+    alert(`Actions for id ${id}`)
+  }
 </script>
 
 <template>
@@ -54,10 +58,13 @@
           <ui-card title="Unidades de Medida">
             <template #actions> <ui-btn>Adicionar</ui-btn></template>
             <ui-list>
-              <ui-list-item v-for="item in product.packaging_types" :key="item.id">
-                <template #title>{{ item.name }}</template>
-                <template #subtitle>{{ item.name_bec }}</template>
-              </ui-list-item>
+              <ui-list-item
+                v-for="item in product.packaging_types"
+                :key="item.id"
+                :subtitle="item.name_bec"
+                :title="item.name"
+                @menu-click="openMenu(item.id)"
+              />
             </ui-list>
           </ui-card>
         </v-col>

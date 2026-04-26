@@ -11,6 +11,7 @@
   })
 
   //const { fetchAll } = useProduct()
+  const router = useRouter()
   const { fetchAll: fetchAllProducts } = useProduct()
 
   const {
@@ -21,7 +22,12 @@
   if (error.value) handleAsyncError(error.value)
   const productsSafe = computed(() => products.value || [])
   const menuAction = () => {
-    console.log('Menu Action')
+    alert('Open Menu')
+  }
+
+  const openProduct = (id: string | number) => {
+    router.push(`./product/${id}`)
+    console.log(id)
   }
 </script>
 
@@ -32,10 +38,15 @@
     </template>
     <ui-alert v-if="error" :title="error.message" type="error" />
     <ui-list v-else :items="productsSafe" lines="two" :status="status">
-      <ui-list-item v-for="product in productsSafe" :key="product.id" @menu-click="menuAction">
-        <template #title> {{ product.name }}</template>
-        <template #subtitle> {{ `${product.class.name}` }} </template>
-      </ui-list-item>
+      <ui-list-item
+        v-for="product in productsSafe"
+        :key="product.id"
+        clickable
+        :subtitle="product.class.name"
+        :title="product.name"
+        @click="openProduct(product.id)"
+        @menu-click="menuAction"
+      />
     </ui-list>
     <pre
       >{{ products }}

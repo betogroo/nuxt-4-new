@@ -28,8 +28,13 @@
     <ui-alert v-if="error" :title="error.message" type="error" />
 
     <ui-list v-else :items="demandsSafe || []" lines="two" :status="status">
-      <ui-list-item v-for="demand in demandsSafe" :key="demand.id" @menu-click="menuAction">
-        <template #title> {{ demand.description }}</template>
+      <ui-list-item
+        v-for="demand in demandsSafe"
+        :key="demand.id"
+        hide-divider
+        :title="demand.description"
+        @menu-click="menuAction"
+      >
         <template #subtitle>
           Processo número
           {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
