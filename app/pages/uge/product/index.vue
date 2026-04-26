@@ -20,6 +20,9 @@
   } = useAsyncData('products', async () => await fetchAllProducts())
   if (error.value) handleAsyncError(error.value)
   const productsSafe = computed(() => products.value || [])
+  const menuAction = () => {
+    console.log('Menu Action')
+  }
 </script>
 
 <template>
@@ -29,7 +32,7 @@
     </template>
     <ui-alert v-if="error" :title="error.message" type="error" />
     <ui-list v-else :items="productsSafe" lines="two" :status="status">
-      <ui-list-item v-for="product in productsSafe" :key="product.id">
+      <ui-list-item v-for="product in productsSafe" :key="product.id" @menu-click="menuAction">
         <template #title> {{ product.name }}</template>
         <template #subtitle> {{ `${product.class.name}` }} </template>
       </ui-list-item>

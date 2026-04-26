@@ -1,8 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const $emit = defineEmits<{
+    'menu-click': []
+  }>()
+
+  const menuClick = () => {
+    $emit('menu-click')
+  }
+</script>
 
 <template>
   <v-list-item v-bind="$attrs">
-    <template #append> <slot name="actions" /></template>
+    <template #append>
+      <ui-btn-icon icon="menu-h" @click="menuClick" />
+    </template>
     <template #prepend>
       <div class="d-flex flex-column">
         <h1 class="text-subtitle-1 font-weight-bold">
@@ -13,7 +23,5 @@
         </h2>
       </div>
     </template>
-
-    <slot />
   </v-list-item>
 </template>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import type { Icon } from '~/types'
-
   definePageMeta({
     layout: 'default',
     menu: {
@@ -16,7 +14,10 @@
   const { data: demands, error, status } = useAsyncData('demands', async () => await fetchAll())
   if (error.value) handleAsyncError(error.value)
   const demandsSafe = computed(() => demands.value ?? [])
-  const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
+
+  const menuAction = () => {
+    console.log('Menu Action')
+  }
 </script>
 
 <template>
@@ -27,16 +28,12 @@
     <ui-alert v-if="error" :title="error.message" type="error" />
 
     <ui-list v-else :items="demandsSafe || []" lines="two" :status="status">
-      <ui-list-item v-for="demand in demandsSafe" :key="demand.id">
+      <ui-list-item v-for="demand in demandsSafe" :key="demand.id" @menu-click="menuAction">
         <template #title> {{ demand.description }}</template>
         <template #subtitle>
           Processo número
           {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
         >
-
-        <template #actions
-          ><ui-btn-icon v-for="icon in iconList" :key="icon" compact :icon="icon" size="small" />
-        </template>
       </ui-list-item>
     </ui-list>
     {{ error }}
