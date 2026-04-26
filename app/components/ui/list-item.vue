@@ -30,7 +30,7 @@
     </template>
     <template #prepend>
       <div class="d-flex flex-column">
-        <h1 class="text-subtitle-1 font-weight-bold">
+        <h1 class="text-subtitle-2 font-weight-bold">
           {{ title }}
         </h1>
         <slot name="subtitle">
