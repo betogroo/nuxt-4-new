@@ -10,7 +10,11 @@ export default defineNuxtConfig({
         cookie: 'cookie-es',
       },
     },
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit', 'cookie'],
+    },
   },
+
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [
