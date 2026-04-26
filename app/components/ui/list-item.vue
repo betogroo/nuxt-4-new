@@ -30,13 +30,9 @@
     </template>
     <template #prepend>
       <div class="d-flex flex-column">
-        <h1 class="text-subtitle-2 font-weight-bold">
-          {{ title }}
-        </h1>
+        <ui-heading class="p-0" :level="5" weight="bold">{{ title }}</ui-heading>
         <slot name="subtitle">
-          <h2 v-if="subtitle" class="text-body-2 font-weight-light">
-            {{ subtitle }}
-          </h2>
+          <ui-heading v-if="subtitle" :level="6">{{ subtitle }}</ui-heading>
         </slot>
       </div>
     </template>
