@@ -31,8 +31,7 @@
     <ui-list v-else :items="productsSafe" lines="two" :status="status">
       <ui-list-item v-for="product in productsSafe" :key="product.id">
         <template #title> {{ product.name }}</template>
-        <template #subtitle> {{ product.description }} </template>
-        <template #prepend> <ui-btn-icon icon="eye" :to="`./product/${product.id}`" /></template>
+        <template #subtitle> {{ `${product.class.name}` }} </template>
       </ui-list-item>
     </ui-list>
     <pre

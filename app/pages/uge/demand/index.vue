@@ -33,7 +33,7 @@
           Processo número
           {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
         >
-        <template #prepend> <ui-btn-icon icon="eye" :to="`./demand/${demand.id}`" /></template>
+
         <template #actions
           ><ui-btn-icon v-for="icon in iconList" :key="icon" compact :icon="icon" size="small" />
         </template>
