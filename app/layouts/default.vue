@@ -1,8 +1,8 @@
 <template>
-  <v-app class="bg-grey-lighten-5">
+  <v-app>
     <app-nav-bar />
     <v-main>
-      <v-container class="bg-grey-lighten-5" max-width="1280">
+      <v-container max-width="1280">
         <slot />
       </v-container>
     </v-main>

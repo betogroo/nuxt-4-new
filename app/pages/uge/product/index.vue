@@ -48,11 +48,5 @@
         @menu-click="menuAction"
       />
     </ui-list>
-    <pre
-      >{{ products }}
-    </pre>
-    <pre
-      >{{ productsSafe }}
-    </pre>
   </ui-page>
 </template>

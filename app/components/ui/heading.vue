@@ -36,12 +36,11 @@
     levelClass[level.value],
     weightClass[weight.value],
     alignClass[align.value],
-    'my-2',
   ])
 </script>
 
 <template>
-  <div :aria-level="level" class="my-0 mb-0" :class="classes" role="heading">
+  <div :aria-level="level" :class="classes" role="heading">
     <slot />
   </div>
 </template>
