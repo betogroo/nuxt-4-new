@@ -5,47 +5,74 @@
     value?: string | number
     clickable?: boolean
     hideDivider?: boolean
+    hideMenu?: boolean
   }
-  const props = defineProps<UiListItemProps>()
+
+  const {
+    hideMenu = false,
+    subtitle = '',
+    value = '',
+    clickable = false,
+  } = defineProps<UiListItemProps>()
+
   const emit = defineEmits<{
-    'menu-click': [value?: string | number]
-    click: [value?: string | number]
+    'menu-click': [value: string | number]
+    click: [value: string | number]
   }>()
 
+  const slots = useSlots()
+  const hasMiddle1 = computed(() => !!slots.middle1)
+  const hasMiddle2 = computed(() => !!slots.middle2)
+
+  const middleCount = computed(() => {
+    return [hasMiddle1.value, hasMiddle2.value].filter(Boolean).length
+  })
+  const getMiddleCols = computed(() => {
+    if (middleCount.value === 0) return 0
+    if (middleCount.value === 1) return 6
+    return 3
+  })
+
   const handleMenuClick = () => {
-    emit('menu-click', props.value)
+    emit('menu-click', value)
   }
 
   const handleClick = () => {
-    if (props.clickable) {
-      emit('click', props.value)
+    if (clickable) {
+      emit('click', value)
     }
   }
 </script>
 
 <template>
   <v-row density="compact" @click="handleClick">
-    <v-col class="px-2" cols="12" sm="4">
-      <div>
-        <ui-heading :level="5" weight="bold">{{ title }}</ui-heading>
-        <slot name="subtitle">
-          <ui-heading v-if="subtitle" :level="6">{{ subtitle }}</ui-heading>
-        </slot>
-      </div>
-      <ui-divider class="mt-6 d-sm-none" />
-    </v-col>
-    <v-col class="px-2" cols="12" sm="3"
-      ><ui-heading :level="6" weight="regular">Alguima coisa</ui-heading>
-      <ui-divider class="mt-6 d-sm-none"
-    /></v-col>
-    <v-col class="px-2" cols="12" sm="3"
-      ><ui-heading :level="6" weight="medium">Something</ui-heading
-      ><ui-divider class="mt-6 d-sm-none"
-    /></v-col>
-    <v-col class="text-sm-end px-2" cols="12" sm="1"
-      ><ui-btn-icon icon="menu-h" size="x-small" @click.stop="handleMenuClick" /><ui-divider
-        class="mt-6 d-sm-none"
-    /></v-col>
+    <ui-list-item-column :sm="4">
+      <ui-heading :level="5" weight="bold">{{ title }}</ui-heading>
+      <slot name="subtitle">
+        <ui-heading v-if="subtitle" :level="6">{{ subtitle }}</ui-heading>
+      </slot>
+    </ui-list-item-column>
+
+    <ui-list-item-column
+      v-if="hasMiddle1"
+      class="d-flex flex-column justify-center px-2"
+      :sm="getMiddleCols"
+    >
+      <slot name="middle1" />
+    </ui-list-item-column>
+
+    <!-- 🔁 Middle 2 -->
+    <ui-list-item-column
+      v-if="hasMiddle2"
+      class="d-flex flex-column justify-center px-2"
+      :sm="getMiddleCols"
+    >
+      <slot name="middle2" />
+    </ui-list-item-column>
+
+    <ui-list-item-column v-if="!hideMenu" class="ms-sm-auto" sm="auto"
+      ><ui-btn-icon icon="menu-h" size="x-small" @click.stop="handleMenuClick"
+    /></ui-list-item-column>
     <ui-divider class="d-none d-sm-block" />
   </v-row>
 </template>

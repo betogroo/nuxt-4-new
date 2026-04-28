@@ -57,15 +57,15 @@
         <v-col cols="12" sm="4">
           <ui-card title="Unidades de Medida">
             <template #actions> <ui-btn>Adicionar</ui-btn></template>
-            <ui-list>
-              <ui-list-item
-                v-for="item in product.packaging_types"
-                :key="item.id"
-                :subtitle="item.name_bec"
-                :title="item.name"
-                @menu-click="openMenu(item.id)"
-              />
-            </ui-list>
+
+            <ui-list-item
+              v-for="item in product.packaging_types"
+              :key="item.id"
+              hide-menu
+              :subtitle="item.name_bec"
+              :title="item.name"
+              @menu-click="openMenu(item.id)"
+            />
           </ui-card>
         </v-col>
 

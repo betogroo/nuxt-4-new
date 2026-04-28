@@ -46,7 +46,20 @@
         :title="product.name"
         @click="openProduct(product.id)"
         @menu-click="menuAction"
-      />
+      >
+        <template #middle1>
+          <div>
+            <ui-heading :level="4">Middle 1</ui-heading>
+            <ui-heading :level="6">Middle 1</ui-heading>
+          </div></template
+        >
+        <template #middle2>
+          <div>
+            <ui-heading :level="4">Middle 2</ui-heading>
+            <ui-heading :level="6">Middle 2</ui-heading>
+          </div></template
+        >
+      </ui-list-item>
     </ui-list>
   </ui-page>
 </template>
