@@ -34,7 +34,7 @@
       </template>
 
       <v-row>
-        <v-col cols="12" sm="8">
+        <v-col cols="12" md="8">
           <div class="d-flex flex-column ga-2">
             <ui-card title="Descrição">
               <p>{{ product.description }}</p>
@@ -54,7 +54,7 @@
             </ui-card>
           </div></v-col
         >
-        <v-col cols="12" sm="4">
+        <v-col cols="12" md="4">
           <ui-card title="Unidades de Medida">
             <template #actions> <ui-btn>Adicionar</ui-btn></template>
 
@@ -72,23 +72,23 @@
         <v-col cols="12">
           <ui-card title="Informações">
             <div class="d-flex justify-space-around flex-wrap ga-3 my-2">
-              <ui-card height="75" width="200"
+              <ui-card height="100" width="200"
                 ><h4>Código Compras</h4>
                 {{ product.cat_mat }}</ui-card
               >
-              <ui-card height="75" width="200"
+              <ui-card height="100" width="200"
                 ><h4>Código BEC</h4>
                 {{ product.cat_bec }}</ui-card
               >
-              <ui-card height="75" width="200"
+              <ui-card height="100" width="200"
                 ><h4>PDM</h4>
                 {{ product.pdm }}</ui-card
               >
-              <ui-card height="75" width="200"
+              <ui-card height="100" width="200"
                 ><h4>Classe - {{ product.class.code }}</h4>
                 {{ product.class.name }}</ui-card
               >
-              <ui-card height="75" width="200"
+              <ui-card height="100" width="200"
                 ><h4>Natureza da Despesa</h4>
                 {{ product.expense_type.expense_number }}</ui-card
               >
@@ -96,7 +96,6 @@
           </ui-card>
         </v-col>
       </v-row>
-      {{ product }}
     </ui-page>
   </div>
 </template>
