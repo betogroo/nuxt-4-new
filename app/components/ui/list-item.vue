@@ -45,34 +45,39 @@
 </script>
 
 <template>
-  <v-row density="compact" @click="handleClick">
-    <ui-list-item-column :sm="4">
-      <ui-heading :level="5" weight="bold">{{ title }}</ui-heading>
-      <slot name="subtitle">
-        <ui-heading v-if="subtitle" :level="6">{{ subtitle }}</ui-heading>
-      </slot>
-    </ui-list-item-column>
-
-    <ui-list-item-column
-      v-if="hasMiddle1"
-      class="d-flex flex-column justify-center px-2"
-      :sm="getMiddleCols"
-    >
-      <slot name="middle1" />
-    </ui-list-item-column>
-
-    <!-- 🔁 Middle 2 -->
-    <ui-list-item-column
-      v-if="hasMiddle2"
-      class="d-flex flex-column justify-center px-2"
-      :sm="getMiddleCols"
-    >
-      <slot name="middle2" />
-    </ui-list-item-column>
-
-    <ui-list-item-column v-if="!hideMenu" class="ms-sm-auto" sm="auto"
-      ><ui-btn-icon icon="menu-h" size="x-small" @click.stop="handleMenuClick"
-    /></ui-list-item-column>
-    <ui-divider class="d-none d-sm-block" />
-  </v-row>
+  <v-list-item
+    density="compact"
+    :nav="clickable"
+    :ripple="false"
+    variant="flat"
+    @click="handleClick"
+  >
+    <v-row no-gutters>
+      <ui-list-item-column :sm="4">
+        <ui-heading :level="5" weight="bold">{{ title }}</ui-heading>
+        <slot name="subtitle">
+          <ui-heading v-if="subtitle" :level="6">{{ subtitle }}</ui-heading>
+        </slot>
+      </ui-list-item-column>
+      <ui-list-item-column
+        v-if="hasMiddle1"
+        class="d-flex flex-column justify-center px-2"
+        :sm="getMiddleCols"
+      >
+        <slot name="middle1" />
+      </ui-list-item-column>
+      <!-- 🔁 Middle 2 -->
+      <ui-list-item-column
+        v-if="hasMiddle2"
+        class="d-flex flex-column justify-center px-2"
+        :sm="getMiddleCols"
+      >
+        <slot name="middle2" />
+      </ui-list-item-column>
+      <ui-list-item-column v-if="!hideMenu" class="ms-sm-auto" sm="auto"
+        ><ui-btn-icon icon="menu-h" size="x-small" @click.stop="handleMenuClick"
+      /></ui-list-item-column>
+    </v-row>
+  </v-list-item>
+  <ui-divider class="d-none d-sm-block mb-2" />
 </template>

@@ -49,7 +49,7 @@
       >
         <template #middle1>
           <div>
-            <ui-heading :level="4">Middle 1</ui-heading>
+            <ui-heading :level="4" @click.stop="menuAction">Middle 1</ui-heading>
             <ui-heading :level="6">Middle 1</ui-heading>
           </div></template
         >
