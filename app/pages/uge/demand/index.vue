@@ -16,6 +16,7 @@
   const demandsSafe = computed(() => demands.value ?? [])
 
   const menuAction = () => {
+    alert('vaiparar')
     console.log('Menu Action')
   }
 </script>
@@ -33,6 +34,8 @@
         :key="demand.id"
         hide-divider
         :title="demand.description"
+        :to="`./demand/${demand.id}`"
+        @click="menuAction"
         @menu-click="menuAction"
       >
         <template #subtitle>

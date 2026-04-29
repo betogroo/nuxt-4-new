@@ -1,19 +1,32 @@
 <script setup lang="ts">
-  export interface UiListItemProps {
+  type ClickableProps = {
+    clickable: true
+    // eslint-disable-next-line vue/require-default-prop
+    to?: never
+  }
+  type LinkProps = {
+    to: string
+    // eslint-disable-next-line vue/require-default-prop
+    clickable?: never
+  }
+  type StaticProps = {
+    clickable?: false
+    to?: never
+  }
+  type BaseProps = {
     title: string
     subtitle?: string
     value?: string | number
-    clickable?: boolean
     hideDivider?: boolean
     hideMenu?: boolean
   }
+  export type UiListItemProps = BaseProps & (ClickableProps | LinkProps | StaticProps)
 
-  const {
-    hideMenu = false,
-    subtitle = '',
-    value = '',
-    clickable = false,
-  } = defineProps<UiListItemProps>()
+  const props = withDefaults(defineProps<UiListItemProps>(), {
+    hideMenu: false,
+    subtitle: '',
+    value: '',
+  })
 
   const emit = defineEmits<{
     'menu-click': [value: string | number]
@@ -34,12 +47,12 @@
   })
 
   const handleMenuClick = () => {
-    emit('menu-click', value)
+    emit('menu-click', props.value)
   }
 
   const handleClick = () => {
-    if (clickable) {
-      emit('click', value)
+    if (props.clickable) {
+      emit('click', props.value)
     }
   }
 </script>
@@ -49,6 +62,7 @@
     density="compact"
     :nav="clickable"
     :ripple="false"
+    :to="to"
     variant="flat"
     @click="handleClick"
   >

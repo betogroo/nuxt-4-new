@@ -11,7 +11,7 @@
   })
 
   //const { fetchAll } = useProduct()
-  const router = useRouter()
+
   const { fetchAll: fetchAllProducts } = useProduct()
 
   const {
@@ -23,11 +23,6 @@
   const productsSafe = computed(() => products.value || [])
   const menuAction = () => {
     alert('Open Menu')
-  }
-
-  const openProduct = (id: string | number) => {
-    router.push(`./product/${id}`)
-    console.log(id)
   }
 </script>
 
@@ -41,10 +36,9 @@
       <ui-list-item
         v-for="product in productsSafe"
         :key="product.id"
-        clickable
         :subtitle="product.class.name"
         :title="product.name"
-        @click="openProduct(product.id)"
+        :to="`./product/${product.id}`"
         @menu-click="menuAction"
       >
         <template #middle1>

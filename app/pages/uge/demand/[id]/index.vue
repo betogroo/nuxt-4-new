@@ -33,10 +33,13 @@
     </ui-card-grid>
 
     <ui-list :items="items" :status="status">
-      <ui-list-item v-for="item in items" :key="item.id" :base-color="item.status.color || 'grey'"
-        >{{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
-        {{ item.status.name }}
-        <template #actions>
+      <ui-list-item v-for="item in items" :key="item.id" hide-menu :title="item.product.name">
+        <template #middle1>
+          {{ item.product.name }} - {{ item.quantity }} - {{ item.packaging.name }} -
+          {{ item.status.name }}
+        </template>
+
+        <template #middle2>
           <div v-for="next in item.nextStatuses" :key="next.to_status.id">
             <ui-btn :color="next.to_status.color" @click="updateStatus(next.to_status.id)">{{
               next.action_label
