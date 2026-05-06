@@ -1296,3 +1296,29 @@ VALUES
         '2484ec6e-e06c-4edf-8f96-dbacdb56583a',
         'Aguardando Entrega'
     );
+
+INSERT INTO
+    specification_keys (name)
+VALUES
+    ('Tipo de Tinta'),
+    ('Base da Tinta'),
+    ('Tipo de Ponta'),
+    ('Espessura do Traço'),
+    ('Secagem'),
+    ('Lavável'),
+    ('Recarregável'),
+    ('Atóxico'),
+    ('Uso Recomendado'),
+    ('Memória RAM'),
+    ('Armazenamento'),
+    ('Processador'),
+    ('Sistema Operacional'),
+    ('Tamanho da Tela'),
+    ('Resolução'),
+    ('Conectividade'),
+    ('Bluetooth'),
+    ('Wi-Fi'),
+    ('Entradas'),
+    ('Bateria'),
+    ('Autonomia'),
+    ('Tempo de Carga');
