@@ -552,18 +552,21 @@ export type Database = {
       specification_keys: {
         Row: {
           created_at: string
+          deleted_at: string | null
           id: string
           name: string
           updated_at: string
         }
         Insert: {
           created_at?: string
+          deleted_at?: string | null
           id?: string
           name: string
           updated_at?: string
         }
         Update: {
           created_at?: string
+          deleted_at?: string | null
           id?: string
           name?: string
           updated_at?: string
