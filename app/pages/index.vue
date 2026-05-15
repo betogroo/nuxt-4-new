@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import z from 'zod'
-  import { DemandStatusReadSchema } from '~/schemas/uge/dto/demand-status.read.dto'
-  import type { DemandStatusRead } from '~/types'
+  import { SpecificationKeyReadSchema } from '~/schemas/uge/dto/specification-key.read.dto'
+  import type { SpecificationKeyRead } from '~/types/uge/specification'
 
   definePageMeta({
     layout: 'default',
@@ -14,10 +14,9 @@
     },
   })
 
-  const { fetchAll } = useTableFetch<DemandStatusRead[]>({
-    table: 'demand_status',
-    schema: z.array(DemandStatusReadSchema),
-    orderBy: [{ column: 'sort_order' }],
+  const { fetchAll } = useTableFetch<SpecificationKeyRead[]>({
+    table: 'specification_keys',
+    schema: z.array(SpecificationKeyReadSchema),
   })
   const demandStatus = await fetchAll()
 </script>
