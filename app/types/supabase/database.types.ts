@@ -576,6 +576,44 @@ export type Database = {
         }
         Relationships: []
       }
+      specification_values: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          deleted_at: string | null
+          id: string
+          key_id: string | null
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          key_id?: string | null
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          key_id?: string | null
+          updated_at?: string
+          value?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'specification_values_key_id_fkey'
+            columns: ['key_id']
+            isOneToOne: false
+            referencedRelation: 'specification_keys'
+            referencedColumns: ['id']
+          },
+        ]
+      }
     }
     Views: {
       demand_details_active: {
