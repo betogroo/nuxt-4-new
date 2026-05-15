@@ -4,6 +4,7 @@ create table
         created_at timestamptz not null default now (),
         updated_at timestamptz not null default now (),
         deleted_at timestamptz,
+        active boolean default true,
         name text unique not null
     );
 

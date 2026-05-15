@@ -551,6 +551,7 @@ export type Database = {
       }
       specification_keys: {
         Row: {
+          active: boolean | null
           created_at: string
           deleted_at: string | null
           id: string
@@ -558,6 +559,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          active?: boolean | null
           created_at?: string
           deleted_at?: string | null
           id?: string
@@ -565,6 +567,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          active?: boolean | null
           created_at?: string
           deleted_at?: string | null
           id?: string
