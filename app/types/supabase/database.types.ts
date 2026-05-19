@@ -450,6 +450,71 @@ export type Database = {
           },
         ]
       }
+      product_specifications: {
+        Row: {
+          active: boolean | null
+          created_at: string
+          deleted_at: string | null
+          id: string
+          key_id: string | null
+          product_id: string | null
+          updated_at: string
+          value: string | null
+          value_id: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          key_id?: string | null
+          product_id?: string | null
+          updated_at?: string
+          value?: string | null
+          value_id?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          key_id?: string | null
+          product_id?: string | null
+          updated_at?: string
+          value?: string | null
+          value_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'product_specifications_key_id_fkey'
+            columns: ['key_id']
+            isOneToOne: false
+            referencedRelation: 'specification_keys'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'product_specifications_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
+            referencedRelation: 'product_details_active'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'product_specifications_product_id_fkey'
+            columns: ['product_id']
+            isOneToOne: false
+            referencedRelation: 'products'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'product_specifications_value_id_fkey'
+            columns: ['value_id']
+            isOneToOne: false
+            referencedRelation: 'specification_values'
+            referencedColumns: ['id']
+          },
+        ]
+      }
       products: {
         Row: {
           active: boolean | null
