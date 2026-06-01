@@ -42,14 +42,7 @@
             <ui-card title="Especificações">
               <template #actions><ui-btn>Adicionar</ui-btn></template>
               <div class="d-flex justify-space-around flex-wrap">
-                <v-chip
-                  v-for="(value, key) in product.specifications"
-                  :key="key"
-                  class="ma-2"
-                  label
-                >
-                  {{ `${key}: ${value}` }}</v-chip
-                >
+                <v-chip class="ma-2" label> fazer o v-for aqui</v-chip>
               </div>
             </ui-card>
           </div></v-col
@@ -96,6 +89,7 @@
           </ui-card>
         </v-col>
       </v-row>
+      {{ product }}
     </ui-page>
   </div>
 </template>
