@@ -753,7 +753,6 @@ export type Database = {
           nat_gov: number | null
           packaging_types: Json | null
           pdm: number | null
-          specifications: Json | null
         }
         Relationships: []
       }

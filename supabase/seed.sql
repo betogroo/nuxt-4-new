@@ -838,7 +838,6 @@ INSERT INTO
         "nat_gov",
         "pdm",
         "active",
-        "specifications",
         "product_class_id",
         "expense_type_id",
         "deleted_at"
@@ -855,7 +854,6 @@ VALUES
         null,
         '18075',
         'true',
-        '{"Cor":"Fluorescente Amarela","Tipo":"Base Água","Material":"Plástico","Tipo Ponta":"Chanfrada","Características":"Secagem Rápida"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
         null
@@ -871,7 +869,6 @@ VALUES
         '33903016',
         '18071',
         'true',
-        '{"cor":"transparente"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
         null
@@ -887,7 +884,6 @@ VALUES
         null,
         '99',
         'true',
-        '{"material":"Poliestireno","cor_tinta":"Azul","tipo_escrita":"Média","material_ponta":"Latão com esfera de tungstênio","características":"Corpo sextavado e orifício lateral"}',
         '73bd9854-33e4-4ac9-82e6-83e02aa9f8f0',
         'dd704e4f-fcf2-4cfc-b978-45decc35e90c',
         null
@@ -903,7 +899,6 @@ VALUES
         null,
         null,
         'true',
-        null,
         'f50c871d-568c-42a8-889b-40d95beb061f',
         '34cb1d52-e696-4717-aea4-197e2d7687c4',
         null
@@ -919,7 +914,6 @@ VALUES
         null,
         null,
         'false',
-        null,
         '4fa6a448-67f4-4c81-a7d9-c3798f578629',
         'bae6261b-f606-4961-a97f-7ab521349c9b',
         null
@@ -935,7 +929,6 @@ VALUES
         null,
         null,
         'false',
-        null,
         '4fa6a448-67f4-4c81-a7d9-c3798f578629',
         'bae6261b-f606-4961-a97f-7ab521349c9b',
         '2026-04-10 12:56:30+00'
