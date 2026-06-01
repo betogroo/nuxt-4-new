@@ -14,7 +14,6 @@ export const ProductReadDetailsSchema = ProductReadSchema.pick({
   cat_bec: true,
   nat_gov: true,
   pdm: true,
-  specifications: true,
   active: true,
 }).extend({
   class: ProductClassReadSchema,
@@ -26,5 +25,4 @@ export const ProductReadSummarySchema = ProductSchema.pick({
   id: true,
   name: true,
   description: true,
-  specifications: true,
 })

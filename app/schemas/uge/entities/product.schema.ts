@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { nameRule, positiveNumber, uuidRule } from '~/schemas/rules'
-import { ProductSpecificationSchema } from './product-specifications.schema'
 
 export const ProductSchema = BaseEntitySchema.extend({
   product_class_id: uuidRule,
@@ -14,5 +13,4 @@ export const ProductSchema = BaseEntitySchema.extend({
 
   nat_gov: positiveNumber.nullable(),
   pdm: positiveNumber.nullable(),
-  specifications: ProductSpecificationSchema.nullable(),
 })
