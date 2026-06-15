@@ -21,7 +21,8 @@
 
   const onSubmit = handleSubmit(async () => {
     try {
-      await execute()
+      const result = await execute()
+      await navigateTo(`./${result.id}`)
     } catch (error) {
       handleAsyncError(error)
     }

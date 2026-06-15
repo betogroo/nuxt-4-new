@@ -27,6 +27,7 @@
   const onSubmit = handleSubmit(async () => {
     try {
       await execute()
+      await navigateTo(`/uge/demand/${id.value}`)
     } catch (error) {
       handleAsyncError(error)
     }
