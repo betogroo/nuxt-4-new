@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import type { DemandForm } from '~/types'
+
   definePageMeta({
     layout: 'default',
     menu: {
@@ -11,7 +13,9 @@
   })
 
   const { fetchAll } = useDemand()
-  const { data: demands, error, status } = useAsyncData('demands', async () => await fetchAll())
+  const { openDialog, isOpen } = useDialog()
+  //const { create } = useDemand()
+  const { data: demands, error } = useAsyncData('demands', async () => await fetchAll())
   if (error.value) handleAsyncError(error.value)
   const demandsSafe = computed(() => demands.value ?? [])
 
@@ -19,16 +23,22 @@
     alert('vaiparar')
     console.log('Menu Action')
   }
+  const createDemand = (data: DemandForm) => {
+    console.log(data)
+  }
 </script>
 
 <template>
   <ui-page>
+    <ui-dialog v-model="isOpen">
+      <uge-form-demand status="idle" @submit="createDemand" />
+    </ui-dialog>
     <template #header_action
-      ><ui-btn color="primary" icon="plus" to="./demand/new">Novo Processo</ui-btn>
+      ><ui-btn color="primary" icon="plus" @click="openDialog">Novo Processo</ui-btn>
     </template>
     <ui-alert v-if="error" :title="error.message" type="error" />
 
-    <ui-list v-else :items="demandsSafe || []" lines="two" :status="status">
+    <ui-list v-else :items="demandsSafe || []" lines="two" status="idle">
       <ui-list-item
         v-for="demand in demandsSafe"
         :key="demand.id"
