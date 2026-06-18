@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
   import type { DemandForm } from '~/types'
 
   definePageMeta({
@@ -12,33 +13,52 @@
     },
   })
 
-  const { fetchAll } = useDemand()
+  const { fetchAll, create } = useDemand()
   const { openDialog, isOpen } = useDialog()
-  //const { create } = useDemand()
-  const { data: demands, error } = useAsyncData('demands', async () => await fetchAll())
-  if (error.value) handleAsyncError(error.value)
+
+  const demandToCreate = ref<DemandForm | null>(null)
+
+  const {
+    data: demands,
+    error: fetchError,
+    status: fetchStatus,
+  } = useAsyncData('demands', async () => await fetchAll())
+  if (fetchError.value) handleAsyncError(fetchError.value)
   const demandsSafe = computed(() => demands.value ?? [])
 
   const menuAction = () => {
     alert('vaiparar')
     console.log('Menu Action')
   }
-  const createDemand = (data: DemandForm) => {
-    console.log(data)
+  const { execute, status: createStatus } = useAsyncAction(async () => {
+    if (!demandToCreate.value) {
+      throw new Error('Dados não informados')
+    }
+    const parsed = DemandInsertSchema.parse({
+      ...demandToCreate.value,
+      dispute_date: demandToCreate.value.dispute_date ?? null,
+      electronic_process_number: demandToCreate.value.electronic_process_number ?? null,
+    })
+    return await create(parsed)
+  })
+  const createDemand = async (data: DemandForm) => {
+    demandToCreate.value = data
+    const result = await execute()
+    await navigateTo(`/uge/demand/${result.id}`)
   }
 </script>
 
 <template>
   <ui-page>
     <ui-dialog v-model="isOpen">
-      <uge-form-demand status="idle" @submit="createDemand" />
+      <uge-form-demand :status="createStatus" @submit="createDemand" />
     </ui-dialog>
     <template #header_action
       ><ui-btn color="primary" icon="plus" @click="openDialog">Novo Processo</ui-btn>
     </template>
-    <ui-alert v-if="error" :title="error.message" type="error" />
+    <ui-alert v-if="fetchError" :title="fetchError.message" type="error" />
 
-    <ui-list v-else :items="demandsSafe || []" lines="two" status="idle">
+    <ui-list v-else :items="demandsSafe || []" lines="two" :status="fetchStatus">
       <ui-list-item
         v-for="demand in demandsSafe"
         :key="demand.id"
@@ -54,6 +74,5 @@
         >
       </ui-list-item>
     </ui-list>
-    {{ error }}
   </ui-page>
 </template>
