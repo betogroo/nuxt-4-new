@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
+  import type { ProductForm } from '~/types/uge/product'
+
   definePageMeta({
     layout: 'default',
     menu: {
@@ -10,9 +13,10 @@
     },
   })
 
-  //const { fetchAll } = useProduct()
+  const productToCreate = ref<ProductForm | null>()
 
-  const { fetchAll: fetchAllProducts } = useProduct()
+  const { fetchAll: fetchAllProducts, create } = useProduct()
+  const { isOpen, openDialog } = useDialog()
 
   const {
     data: products,
@@ -24,13 +28,32 @@
   const menuAction = () => {
     alert('Open Menu')
   }
+
+  const { execute, status: createStatus } = useAsyncAction(async () => {
+    if (!productToCreate.value) {
+      throw new Error('Dados não informados')
+    }
+    const parsed = ProductInsertSchema.parse({
+      ...productToCreate.value,
+    })
+    return await create(parsed)
+  })
+
+  const createProduct = async (data: ProductForm) => {
+    productToCreate.value = data
+    const result = await execute()
+    await navigateTo(`/uge/product/${result.id}`)
+  }
 </script>
 
 <template>
   <ui-page title="Produtos">
     <template #header_action
-      ><ui-btn color="primary" icon="plus" to="./product/new">Novo Produto</ui-btn>
+      ><ui-btn color="primary" icon="plus" @click="openDialog">Novo Produto</ui-btn>
     </template>
+    <ui-dialog v-model="isOpen">
+      <uge-form-product :status="createStatus" @submit="createProduct" />
+    </ui-dialog>
     <ui-alert v-if="error" :title="error.message" type="error" />
     <ui-list v-else :items="productsSafe" lines="two" :status="status">
       <ui-list-item

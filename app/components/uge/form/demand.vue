@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { DemandFormSchema } from '~/schemas/uge/forms/demand.form.schema'
-  import type { DemandForm, Status } from '~/types'
+  import type { DemandForm } from '~/types/uge/demand'
+  import type { Status } from '~/types/ui/general'
 
   interface Props {
     status?: Status
