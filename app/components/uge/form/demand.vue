@@ -1,12 +1,9 @@
 <script setup lang="ts">
   import { DemandFormSchema } from '~/schemas/uge/forms/demand.form.schema'
   import type { DemandForm } from '~/types/uge/demand'
-  import type { Status } from '~/types/ui/general'
+  import type { FormProps } from '~/types/ui/form'
 
-  interface Props {
-    status?: Status
-  }
-  defineProps<Props>()
+  defineProps<FormProps>()
 
   const $emit = defineEmits<{
     submit: [DemandForm]

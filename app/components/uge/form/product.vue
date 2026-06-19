@@ -1,11 +1,9 @@
 <script setup lang="ts">
   import { ProductFormSchema } from '~/schemas/uge/forms/product.form.schema'
   import type { ProductForm } from '~/types/uge/product'
-  import type { Status } from '~/types/ui/general'
-  interface Props {
-    status?: Status
-  }
-  defineProps<Props>()
+  import type { FormProps } from '~/types/ui/form'
+
+  defineProps<FormProps>()
   const $emit = defineEmits<{
     submit: [ProductForm]
   }>()
