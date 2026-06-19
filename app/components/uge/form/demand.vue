@@ -3,7 +3,7 @@
   import type { DemandForm, Status } from '~/types'
 
   interface Props {
-    status: Status
+    status?: Status
   }
   defineProps<Props>()
 
