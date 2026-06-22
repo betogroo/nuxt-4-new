@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  import { DemandItemInsertSchema } from '~/schemas/uge/dto/demand-item.insert.dto'
+  import type { DemandItemForm } from '~/types/uge/demand'
+
   definePageMeta({
     layout: 'default',
     showBack: true,
@@ -9,8 +12,32 @@
   })
   const route = useRoute()
   const id = computed(() => route.params.id as string)
+  const demandItemToAdd = ref<DemandItemForm | null>(null)
 
   const { demand, items, error, pending, status, refresh } = useDemandPage(id.value)
+  const { isOpen, openDialog, closeDialog } = useDialog()
+
+  const { create } = useDemandItem()
+
+  const { execute, status: addDemandItemStatus } = useAsyncAction(async () => {
+    if (!demandItemToAdd.value) {
+      throw new Error('Dados não informados')
+    }
+    const parsed = DemandItemInsertSchema.parse({
+      ...demandItemToAdd.value,
+      demand_id: id.value,
+    })
+    return await create(parsed)
+  })
+  const addDemandItem = async (data: DemandItemForm) => {
+    demandItemToAdd.value = data
+    const result = await execute()
+    if (result) {
+      closeDialog()
+      refresh()
+    }
+    console.log(result)
+  }
 
   const updateStatus = (name: string) => {
     console.log('updateStatus Test: ', name)
@@ -19,8 +46,11 @@
 
 <template>
   <ui-page v-if="demand" :title="demand?.description">
+    <ui-dialog v-model="isOpen"
+      ><uge-form-demand-product :status="addDemandItemStatus" @submit="addDemandItem"
+    /></ui-dialog>
     <template #header_action>
-      <ui-btn color="primary" icon="plus" :to="`./${id}/product/new`">Adicionar Produto</ui-btn>
+      <ui-btn color="primary" icon="plus" @click="openDialog">Adicionar Produto</ui-btn>
     </template>
     <ui-card-grid v-if="pending">Carregando...</ui-card-grid>
     <div v-else-if="error">
