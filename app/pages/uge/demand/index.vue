@@ -14,7 +14,7 @@
   })
 
   const { fetchAll, create } = useDemand()
-  const { openDialog, isOpen } = useDialog()
+  const { openDialog, isOpen, closeDialog } = useDialog()
 
   const demandToCreate = ref<DemandForm | null>(null)
 
@@ -22,6 +22,7 @@
     data: demands,
     error: fetchError,
     status: fetchStatus,
+    refresh,
   } = useAsyncData('demands', async () => await fetchAll())
   if (fetchError.value) handleAsyncError(fetchError.value)
   const demandsSafe = computed(() => demands.value ?? [])
@@ -44,7 +45,13 @@
   const createDemand = async (data: DemandForm) => {
     demandToCreate.value = data
     const result = await execute()
-    await navigateTo(`/uge/demand/${result.id}`)
+    // option 1 redirect
+    //await navigateTo(`/uge/demand/${result.id}`)
+    // option 2 refresh
+    if (result) {
+      closeDialog()
+      refresh()
+    }
   }
 </script>
 
