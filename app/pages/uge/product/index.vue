@@ -16,12 +16,13 @@
   const productToCreate = ref<ProductForm | null>()
 
   const { fetchAll: fetchAllProducts, create } = useProduct()
-  const { isOpen, openDialog } = useDialog()
+  const { isOpen, openDialog, closeDialog } = useDialog()
 
   const {
     data: products,
     error,
     status,
+    refresh,
   } = useAsyncData('products', async () => await fetchAllProducts())
   if (error.value) handleAsyncError(error.value)
   const productsSafe = computed(() => products.value || [])
@@ -42,7 +43,11 @@
   const createProduct = async (data: ProductForm) => {
     productToCreate.value = data
     const result = await execute()
-    await navigateTo(`/uge/product/${result.id}`)
+    //await navigateTo(`/uge/product/${result.id}`)
+    if (result) {
+      closeDialog()
+      refresh()
+    }
   }
 </script>
 
