@@ -1,69 +1,31 @@
 <script setup lang="ts">
   import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
-  import { ProductFormSchema } from '~/schemas/uge/forms/product.form.schema'
-  import type { ProductForm } from '~/types'
+  import type { ProductForm } from '~/types/uge/product'
 
   const { create } = useProduct()
-  const { select: productClassSelect } = useProductClass()
-  const { select: expenseTypeSelect } = useExpenseType()
-
-  const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
-    description: '',
-  })
+  const productToCreate = ref<ProductForm | null>(null)
 
   const { execute, status, error } = useAsyncAction(async () => {
+    if (!productToCreate.value) {
+      throw new Error('Dados não informados')
+    }
     const parsed = ProductInsertSchema.parse({
-      ...values,
+      ...productToCreate.value,
     })
 
     return await create(parsed)
   })
 
-  const onSubmit = handleSubmit(async () => {
-    try {
-      const result = await execute()
-      await navigateTo(`./${result.id}`)
-    } catch (error) {
-      handleAsyncError(error)
-    }
-  })
-
-  const onReset = () => {
-    handleReset()
+  const createProduct = async (data: ProductForm) => {
+    productToCreate.value = data
+    const result = await execute()
+    if (result) await navigateTo(`/uge/product/`)
   }
 </script>
 
 <template>
   <ui-page show-back title="Nova Produto">
-    <ui-form :is-valid="!meta.valid" :status="status" @reset="onReset" @submit="onSubmit">
-      <ui-text-field label="Nome" name="name" type="text" />
-      <ui-text-field label="Descrição" name="description" type="text" />
-      <ui-text-field label="CAT MAT" name="cat_mat" type="number" />
-      <ui-text-field label="CAT BEC" name="cat_bec" type="number" />
-
-      <ui-select
-        item-subtitle="code"
-        item-title="name"
-        item-value="id"
-        :items="productClassSelect.items.value || []"
-        mode="autocomplete"
-        name="product_class_id"
-        placeholder="Escolha a classe"
-        :status="productClassSelect.status.value"
-        @focus="productClassSelect.onOpen"
-      />
-      <ui-select
-        item-subtitle="name"
-        item-title="expense_number"
-        item-value="id"
-        :items="expenseTypeSelect.items.value || []"
-        mode="autocomplete"
-        name="expense_type_id"
-        placeholder="Escolha o Tipo"
-        :status="expenseTypeSelect.status.value"
-        @focus="expenseTypeSelect.onOpen"
-      />
-    </ui-form>
-    {{ status }},{{ error }}
+    <ui-alert v-if="error" title="Error" type="error">{{ error.message }}</ui-alert>
+    <uge-form-product :status="status" @submit="createProduct" />
   </ui-page>
 </template>
