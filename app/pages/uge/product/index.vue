@@ -66,7 +66,7 @@
         :key="product.id"
         :subtitle="product.class.name"
         :title="product.name"
-        :to="`./product/${product.id}`"
+        :to="`/uge/product/${product.id}`"
         @menu-click="menuAction"
       >
         <template #middle1>
