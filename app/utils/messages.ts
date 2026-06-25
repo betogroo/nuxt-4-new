@@ -6,3 +6,5 @@ export const INVALID_PAST_DATE = 'A data informada não pode ser passada' as con
 
 export const MIN_LENGTH = (n: number) =>
   n < 2 ? REQUIRED_FIELD : (`O campo deve conter pelo menos ${n} caracteres` as const)
+
+export const LOADING = 'Carregando...' as const

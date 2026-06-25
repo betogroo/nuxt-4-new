@@ -1,4 +1,4 @@
-import { CredentialsSchema } from '~/schemas'
+import { CredentialsSchema } from '~/schemas/auth/auth.schema'
 import type { AuthAction } from '~/types'
 import { AppError } from '~/error/AppError'
 

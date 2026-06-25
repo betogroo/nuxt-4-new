@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { TextFieldDensity, TextFieldType, TextFieldVariant } from '~/types'
+  import type { UiDensity, TextFieldType, TextFieldVariant } from '~/types'
 
   interface Props {
     name: string
@@ -10,7 +10,7 @@
     disabled?: boolean
     loading?: boolean
     clearable?: boolean
-    density?: TextFieldDensity
+    density?: UiDensity
   }
   const {
     name,

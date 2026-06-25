@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { AppError } from '~/error/AppError'
+  import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
+  import type { ProductForm } from '~/types/uge/product'
 
   definePageMeta({
     layout: 'default',
@@ -12,39 +13,75 @@
     },
   })
 
-  const { fetchAll } = useProduct()
+  const productToCreate = ref<ProductForm | null>()
+
+  const { fetchAll: fetchAllProducts, create } = useProduct()
+  const { isOpen, openDialog, closeDialog } = useDialog()
 
   const {
     data: products,
     error,
     status,
-  } = useAsyncData('products', async () => {
-    try {
-      return await fetchAll()
-    } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, statusMessage: error.message })
-      }
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Erro inesperado ao carregar os produtos',
-      })
+    refresh,
+  } = useAsyncData('products', async () => await fetchAllProducts())
+  if (error.value) handleAsyncError(error.value)
+  const productsSafe = computed(() => products.value || [])
+  const menuAction = () => {
+    alert('Open Menu')
+  }
+
+  const { execute, status: createStatus } = useAsyncAction(async () => {
+    if (!productToCreate.value) {
+      throw new Error('Dados não informados')
     }
+    const parsed = ProductInsertSchema.parse({
+      ...productToCreate.value,
+    })
+    return await create(parsed)
   })
+
+  const createProduct = async (data: ProductForm) => {
+    productToCreate.value = data
+    const result = await execute()
+    //await navigateTo(`/uge/product/${result.id}`)
+    if (result) {
+      closeDialog()
+      refresh()
+    }
+  }
 </script>
 
 <template>
   <ui-page title="Produtos">
-    <ui-alert v-if="error" :title="error.statusMessage" type="error" />
-    <ui-list v-else :items="products || []" lines="two" :status="status">
-      <ui-list-item v-for="product in products" :key="product.id">
-        <template #title> {{ product.name }}</template>
-        <template #subtitle> {{ product.description }} </template>
-        <template #prepend> <ui-btn-icon icon="eye" :to="`./product/${product.id}`" /></template>
+    <template #header_action
+      ><ui-btn color="primary" icon="plus" @click="openDialog">Novo Produto</ui-btn>
+    </template>
+    <ui-dialog v-model="isOpen">
+      <uge-form-product :status="createStatus" @submit="createProduct" />
+    </ui-dialog>
+    <ui-alert v-if="error" :title="error.message" type="error" />
+    <ui-list v-else :items="productsSafe" lines="two" :status="status">
+      <ui-list-item
+        v-for="product in productsSafe"
+        :key="product.id"
+        :subtitle="product.class.name"
+        :title="product.name"
+        :to="`./product/${product.id}`"
+        @menu-click="menuAction"
+      >
+        <template #middle1>
+          <div>
+            <ui-heading :level="4" @click.stop="menuAction">Middle 1</ui-heading>
+            <ui-heading :level="6">Middle 1</ui-heading>
+          </div></template
+        >
+        <template #middle2>
+          <div>
+            <ui-heading :level="4">Middle 2</ui-heading>
+            <ui-heading :level="6">Middle 2</ui-heading>
+          </div></template
+        >
       </ui-list-item>
     </ui-list>
-    <pre
-      >{{ products }}
-    </pre>
   </ui-page>
 </template>

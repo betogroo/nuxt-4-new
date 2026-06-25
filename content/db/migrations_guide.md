@@ -10,6 +10,16 @@ migrations usando Supabase em projetos com Nuxt e Zod.
 
 ---
 
+# Install
+
+### Powershell
+
+```bash
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+scoop install supabase
+```
+
 # 🎯 Filosofia
 
 Depois que você decide usar migrations:

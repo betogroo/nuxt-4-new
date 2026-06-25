@@ -1,56 +1,29 @@
-import type { Demand, DemandInsert, DemandRead } from '~/types'
-import { DemandSchema, DemandReadRowsSchema } from '~/schemas'
-import { AppError } from '~/error/AppError'
+import z from 'zod'
+import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
+import { DemandReadDetailSchema } from '~/schemas/uge/dto/demand.read.dto'
+import { DemandSchema } from '~/schemas/uge/entities/demand.schema'
+import type { DemandReadDetail, DemandInsert, Demand } from '~/types'
+
 const useDemand = () => {
-  const supabase = useSupabaseClient()
+  //const supabase = useSupabaseClient()
 
-  const isCreating = ref(false)
+  const { fetchAll } = useTableFetch<DemandReadDetail[]>({
+    table: 'demand_details_active',
+    schema: z.array(DemandReadDetailSchema),
+    orderBy: [{ column: 'internal_process_number' }],
+  })
 
-  const fetchAll = async (): Promise<DemandRead[]> => {
-    if (import.meta.dev) {
-      await delay(DELAY)
-    }
-    const { data, error } = await supabase.from('demand').select(`
-        *,
-        object_types (*), owner: profiles (*)
-        `)
+  const { create, isCreating } = useTableCreate<Demand, DemandInsert>({
+    table: 'demands',
+    insertSchema: DemandInsertSchema,
+    readSchema: DemandSchema,
+  })
 
-    if (error) throw new AppError('Erro ao buscar as demandas', error)
+  const { get } = useTableGet<DemandReadDetail>({
+    table: 'demand_details_active',
+    schema: DemandReadDetailSchema,
+  })
 
-    const parsed = DemandReadRowsSchema.safeParse(data)
-    if (!parsed.success) {
-      throw new AppError('Erro ao validar dados de demanda', parsed.error)
-    }
-    return parsed.data
-  }
-
-  const create = async (values: DemandInsert): Promise<Demand> => {
-    isCreating.value = true
-    if (import.meta.dev) {
-      await delay(DELAY)
-    }
-
-    try {
-      const { data: newData, error: dbError } = await supabase
-        .from('demand')
-        .insert(values as never)
-        .select()
-        .single()
-      if (dbError) throw dbError
-      return DemandSchema.parse(newData)
-    } finally {
-      isCreating.value = false
-    }
-  }
-
-  const get = async (id: string) => {
-    if (import.meta.dev) {
-      await delay(500)
-    }
-    const { data, error } = await supabase.from('demand').select('*').eq('id', id).single()
-    if (error) throw error
-    return DemandSchema.parse(data)
-  }
   return { fetchAll, create, isCreating, get }
 }
 

@@ -1,25 +1,47 @@
-import { AppError } from '~/error/AppError'
-import { ProductReadRowsSchema } from '~/schemas'
-import type { ProductRead } from '~/types'
+import z from 'zod'
+import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
+import {
+  ProductReadDetailsSchema,
+  ProductReadSummarySchema,
+} from '~/schemas/uge/dto/product.read.dto'
+import { ProductSchema } from '~/schemas/uge/entities/product.schema'
+
+import type {
+  ProductReadSummary,
+  Product,
+  ProductInsert,
+  TableName,
+  ProductReadDetails,
+} from '~/types'
+
+const TABLE: TableName = 'products'
 
 const useProduct = () => {
-  const supabase = useSupabaseClient()
+  const { fetchAll } = useTableFetch<ProductReadDetails[]>({
+    table: 'product_details_active',
+    schema: z.array(ProductReadDetailsSchema),
+  })
 
-  const fetchAll = async (): Promise<ProductRead[]> => {
-    if (import.meta.dev) {
-      await delay(DELAY)
-    }
-    const { data, error } = await supabase.from('products').select(`*`)
+  const { fetchAll: fetchSelect } = useTableFetch<ProductReadSummary[]>({
+    table: 'product_details_active',
+    schema: z.array(ProductReadSummarySchema),
+    select: 'id, name, description, specifications',
+  })
 
-    if (error) throw new AppError('Erro ao buscar produtos', error)
+  const { create, isCreating } = useTableCreate<Product, ProductInsert>({
+    table: TABLE,
+    insertSchema: ProductInsertSchema,
+    readSchema: ProductSchema,
+  })
 
-    const parsed = ProductReadRowsSchema.safeParse(data)
-    if (!parsed.success) {
-      throw new AppError('Erro ao validar dados do produto', parsed.error)
-    }
-    return parsed.data
-  }
-  return { fetchAll }
+  const { get } = useTableGet<ProductReadDetails>({
+    table: 'product_details_active',
+    schema: ProductReadDetailsSchema,
+  })
+
+  const select = useLazySelect('products_select', fetchSelect)
+
+  return { fetchAll, create, get, isCreating, select }
 }
 
 export default useProduct

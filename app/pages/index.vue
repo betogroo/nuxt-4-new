@@ -1,4 +1,8 @@
 <script setup lang="ts">
+  import z from 'zod'
+  import { DemandStatusReadSchema } from '~/schemas/uge/dto/demand-status.read.dto'
+  import type { DemandStatusRead } from '~/types'
+
   definePageMeta({
     layout: 'default',
     menu: {
@@ -10,18 +14,18 @@
     },
   })
 
-  const testStore = useTestStore()
-
-  const { title, upperTitle } = storeToRefs(testStore)
-  const tempTitle = ref(title.value)
-
-  watch(title, (v) => (tempTitle.value = v))
+  const { fetchAll } = useTableFetch<DemandStatusRead[]>({
+    table: 'demand_status',
+    schema: z.array(DemandStatusReadSchema),
+    orderBy: [{ column: 'sort_order' }],
+  })
+  const demandStatus = await fetchAll()
 </script>
 
 <template>
-  <ui-page :title="`${upperTitle} - Home page`">
-    <ui-text-field v-model="tempTitle" label="Teste" name="test" />
-    <ui-btn @click="testStore.setTitle(tempTitle)">Alterar</ui-btn>
-    <ui-btn color="red" variant="outlined" @click="testStore.$reset">Reset</ui-btn>
+  <ui-page :title="`Home page`">
+    <pre>
+      {{ demandStatus }}
+    </pre>
   </ui-page>
 </template>

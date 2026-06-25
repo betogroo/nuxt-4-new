@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { AppError } from '~/error/AppError'
-  import { SignupFormSchema } from '~/schemas'
+  import { SignupFormSchema } from '~/schemas/auth/auth.schema'
   useGuestRedirect()
 
   definePageMeta({
@@ -14,9 +14,9 @@
   const { notify } = useNotification()
 
   const { values, handleSubmit, meta, handleReset } = useZodForm(SignupFormSchema, {
-    email: '',
-    password: '',
-    passwordConfirm: '',
+    email: 'luizhumberto@gmail.com',
+    password: 'abc123def456',
+    passwordConfirm: 'abc123def456',
   })
 
   const onSubmit = handleSubmit(async () => {

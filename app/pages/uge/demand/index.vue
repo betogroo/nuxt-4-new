@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { AppError } from '~/error/AppError'
-  import type { Icon } from '~/types'
+  import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
+  import type { DemandForm } from '~/types'
 
   definePageMeta({
     layout: 'default',
@@ -13,50 +13,73 @@
     },
   })
 
-  const { fetchAll } = useDemand()
+  const { fetchAll, create } = useDemand()
+  const { openDialog, isOpen, closeDialog } = useDialog()
+
+  const demandToCreate = ref<DemandForm | null>(null)
 
   const {
     data: demands,
-    error,
-    status,
-  } = useAsyncData('demands', async () => {
-    try {
-      return await fetchAll()
-    } catch (error) {
-      if (error instanceof AppError) {
-        throw createError({ statusCode: 400, statusMessage: error.message })
-      }
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Erro inesperado ao carregar as demandas',
-      })
+    error: fetchError,
+    status: fetchStatus,
+    refresh,
+  } = useAsyncData('demands', async () => await fetchAll())
+  if (fetchError.value) handleAsyncError(fetchError.value)
+  const demandsSafe = computed(() => demands.value ?? [])
+
+  const menuAction = () => {
+    alert('vaiparar')
+    console.log('Menu Action')
+  }
+  const { execute, status: createStatus } = useAsyncAction(async () => {
+    if (!demandToCreate.value) {
+      throw new Error('Dados não informados')
     }
+    const parsed = DemandInsertSchema.parse({
+      ...demandToCreate.value,
+      dispute_date: demandToCreate.value.dispute_date ?? null,
+      electronic_process_number: demandToCreate.value.electronic_process_number ?? null,
+    })
+    return await create(parsed)
   })
-  const iconList = ref<Icon[]>(['eye', 'settings', 'update'])
-  const formatted = computed(() => JSON.stringify(demands.value, null, 2))
+  const createDemand = async (data: DemandForm) => {
+    demandToCreate.value = data
+    const result = await execute()
+    // option 1 redirect
+    //await navigateTo(`/uge/demand/${result.id}`)
+    // option 2 refresh
+    if (result) {
+      closeDialog()
+      refresh()
+    }
+  }
 </script>
 
 <template>
   <ui-page>
+    <ui-dialog v-model="isOpen">
+      <uge-form-demand :status="createStatus" @submit="createDemand" />
+    </ui-dialog>
     <template #header_action
-      ><ui-btn color="primary" icon="plus" to="./demand/new">Novo Processo</ui-btn>
+      ><ui-btn color="primary" icon="plus" @click="openDialog">Novo Processo</ui-btn>
     </template>
-    <ui-alert v-if="error" :title="error.statusMessage" type="error" />
+    <ui-alert v-if="fetchError" :title="fetchError.message" type="error" />
 
-    <ui-list v-else :items="demands || []" lines="two" :status="status">
-      <ui-list-item v-for="demand in demands" :key="demand.id">
-        <template #title> {{ demand.description }}</template>
+    <ui-list v-else :items="demandsSafe || []" lines="two" :status="fetchStatus">
+      <ui-list-item
+        v-for="demand in demandsSafe"
+        :key="demand.id"
+        hide-divider
+        :title="demand.description"
+        :to="`./demand/${demand.id}`"
+        @click="menuAction"
+        @menu-click="menuAction"
+      >
         <template #subtitle>
           Processo número
-          {{ format.demandNumber(demand.internal_process_number, demand.year) }} Criado por
-          {{ demand.owner?.name || demand.owner?.id }}</template
+          {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
         >
-        <template #prepend> <ui-btn-icon icon="eye" :to="`./demand/${demand.id}`" /></template>
-        <template #actions
-          ><ui-btn-icon v-for="icon in iconList" :key="icon" compact :icon="icon" size="small" />
-        </template>
       </ui-list-item>
     </ui-list>
-    <pre>{{ formatted }}</pre>
   </ui-page>
 </template>

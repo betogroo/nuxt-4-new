@@ -1,6 +1,8 @@
 <script setup lang="ts">
+  import type { Status } from '~/types'
+
   interface Props<T> {
-    status: 'idle' | 'pending' | 'success' | 'error'
+    status?: Status
     items?: T[]
   }
   defineProps<Props<unknown>>()
@@ -14,7 +16,7 @@
     <div v-else-if="status === 'success' && !items?.length">
       <ui-alert title="Não há dados cadastrados" type="warning" />
     </div>
-    <template v-else-if="status === 'success'">
+    <template v-else-if="status === 'success' || status === undefined">
       <slot />
     </template>
   </v-list>

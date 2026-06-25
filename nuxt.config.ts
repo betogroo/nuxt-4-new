@@ -1,12 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devServer: {
+    host: '127.0.0.1',
+    port: 3000,
+  },
   vite: {
     resolve: {
       alias: {
         cookie: 'cookie-es',
       },
     },
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit', 'cookie'],
+    },
   },
+
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [

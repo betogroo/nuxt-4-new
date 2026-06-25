@@ -12,12 +12,12 @@
   const align = computed(() => props.align ?? 'left')
 
   const levelClass: Record<HeadingLevel, string> = {
-    1: 'text-h1',
-    2: 'text-h2',
-    3: 'text-h3',
-    4: 'text-h4',
-    5: 'text-h5',
-    6: 'text-h6',
+    1: 'text-headline-large',
+    2: 'text-headline-medium',
+    3: 'text-headline-small',
+    4: 'text-title-large',
+    5: 'text-title-medium',
+    6: 'text-title-small',
   }
 
   const weightClass: Record<HeadingWeight, string> = {
@@ -36,7 +36,6 @@
     levelClass[level.value],
     weightClass[weight.value],
     alignClass[align.value],
-    'my-2',
   ])
 </script>
 

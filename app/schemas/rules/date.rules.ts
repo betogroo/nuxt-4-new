@@ -1,4 +1,4 @@
-import { z } from '~/schemas'
+import z from 'zod'
 
 export const dateRule = z.string().date()
 export const datetimeRule = z.string().datetime({ offset: true })

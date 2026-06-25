@@ -3,7 +3,10 @@ const useDialog = () => {
   const openDialog = () => {
     isOpen.value = true
   }
-  return { isOpen, openDialog }
+  const closeDialog = () => {
+    isOpen.value = false
+  }
+  return { isOpen, openDialog, closeDialog }
 }
 
 export default useDialog
