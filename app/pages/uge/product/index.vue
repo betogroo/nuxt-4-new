@@ -49,6 +49,9 @@
       refresh()
     }
   }
+  const deleteProduct = (id: string) => {
+    alert(`Vai deletar o ${id}`)
+  }
 </script>
 
 <template>
@@ -67,7 +70,6 @@
         :subtitle="product.class.name"
         :title="product.name"
         :to="`/uge/product/${product.id}`"
-        @menu-click="menuAction"
       >
         <template #middle1>
           <div>
@@ -81,6 +83,9 @@
             <ui-heading :level="6">Middle 2</ui-heading>
           </div></template
         >
+        <template #actions
+          ><ui-btn-icon icon="delete" @click.stop.prevent="deleteProduct(product.id)"
+        /></template>
       </ui-list-item>
     </ui-list>
   </ui-page>

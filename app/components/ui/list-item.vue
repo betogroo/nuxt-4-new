@@ -46,10 +46,6 @@
     return 3
   })
 
-  const handleMenuClick = () => {
-    emit('menu-click', props.value)
-  }
-
   const handleClick = () => {
     if (props.clickable) {
       emit('click', props.value)
@@ -88,9 +84,9 @@
       >
         <slot name="middle2" />
       </ui-list-item-column>
-      <ui-list-item-column v-if="!hideMenu" class="ms-sm-auto" sm="auto"
-        ><ui-btn-icon icon="menu-h" size="x-small" @click.stop="handleMenuClick"
-      /></ui-list-item-column>
+      <ui-list-item-column v-if="!hideMenu" class="ms-sm-auto" sm="auto">
+        <slot name="actions" />
+      </ui-list-item-column>
     </v-row>
   </v-list-item>
   <ui-divider class="d-none d-sm-block mb-2" />

@@ -27,8 +27,8 @@
   if (fetchError.value) handleAsyncError(fetchError.value)
   const demandsSafe = computed(() => demands.value ?? [])
 
-  const menuAction = () => {
-    alert('vaiparar')
+  const deleteDemand = (id: string) => {
+    alert(`Vai parar ${id}`)
     console.log('Menu Action')
   }
   const { execute, status: createStatus } = useAsyncAction(async () => {
@@ -72,13 +72,14 @@
         hide-divider
         :title="demand.description"
         :to="`./demand/${demand.id}`"
-        @click="menuAction"
-        @menu-click="menuAction"
       >
         <template #subtitle>
           Processo número
           {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
         >
+        <template #actions
+          ><ui-btn-icon icon="delete" @click.stop.prevent="deleteDemand(demand.id)"
+        /></template>
       </ui-list-item>
     </ui-list>
   </ui-page>
