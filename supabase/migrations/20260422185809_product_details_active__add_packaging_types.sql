@@ -1,7 +1,5 @@
-drop view public.product_details_active;
-
-create view
-    product_details_active
+create
+or replace view product_details_active
 with
     (security_invoker = on) as
 select
