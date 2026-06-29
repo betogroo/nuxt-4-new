@@ -15,13 +15,16 @@ create table
         unique (demand_id, "item_order")
     );
 
-alter table public.demand_items enable row level security;
-
-create policy "Enable read for authenticated users only" on public.demand_items to authenticated using (true);
-
 create index idx_demand_items_demand on public.demand_items (demand_id);
 
 create index idx_demand_items_product on public.demand_items (product_id);
+
+grant select, insert, update, delete on public.demand_items to authenticated;
+grant select on public.demand_items to anon;
+
+alter table public.demand_items enable row level security;
+
+create policy "Enable read for authenticated users only" on public.demand_items to authenticated using (true);
 
 create trigger set_demand_items_updated_at BEFORE
 update on demand_items for EACH row execute FUNCTION set_updated_at ();

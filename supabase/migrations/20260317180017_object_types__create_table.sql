@@ -6,6 +6,8 @@ create table
         ptres int not null,
         name text not null
     );
+grant select, insert, update, delete on public.object_types to authenticated;
+grant select on public.object_types to anon;
 
 alter table if exists public.object_types enable row level security;
 

@@ -7,6 +7,9 @@ create table
         name text not null
     );
 
+grant select, insert, update, delete on public.expense_types to authenticated;
+grant select on public.expense_types to anon;
+
 create trigger set_expense_types_updated_at before
 update on public.expense_types for each row execute function set_updated_at ();
 

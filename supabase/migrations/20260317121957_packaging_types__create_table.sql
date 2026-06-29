@@ -7,6 +7,9 @@ create table
         name_bec text not null
     );
 
+grant select, insert, update, delete on public.packaging_types to authenticated;
+grant select on public.packaging_types to anon;
+
 alter table if exists public.packaging_types enable row level security;
 
 create policy "Enable read for authenticated users only" on packaging_types for

@@ -9,6 +9,11 @@
     "streetsidesoftware.code-spell-checker-portuguese-brazilian",
     "esbenp.prettier-vscode",
     "sdras.vue-vscode-snippets",
-    "vitest.explorer"
+    "vitest.explorer",
+    "donjayamanne.githistory",
+    "pkief.material-icon-theme",
+    "vue.vscode-typescript-vue-plugin",
+    "lukas-tr.materialdesignicons-intellisense",
+    "shinotatwu-ds.file-tree-generator"
   ]
 }

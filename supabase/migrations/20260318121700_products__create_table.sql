@@ -16,6 +16,9 @@ create table
         expense_type_id uuid references expense_types (id)
     );
 
+grant select, insert, update, delete on public.products to authenticated;
+grant select on public.products to anon;
+
 create index if not exists idx_products_expense_type_id on public.products (expense_type_id);
 
 create index if not exists idx_products_product_class_id on public.products (product_class_id);

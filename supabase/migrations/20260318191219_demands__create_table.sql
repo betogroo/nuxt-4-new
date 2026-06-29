@@ -14,6 +14,9 @@ create table
         unique (year, internal_process_number)
     );
 
+grant select, insert, update, delete on public.demands to authenticated;
+grant select on public.demands to anon;
+
 alter table public.demands enable row level security;
 
 create or replace function public.can_read_demand(owner_id uuid)
