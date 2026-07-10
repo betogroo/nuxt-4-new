@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "@nuxt/eslint": "^1.15.2",
+    "@nuxt/eslint": "^1.16.0",
     "@pinia/nuxt": "^0.11.3",
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/zod": "^4.15.1",
@@ -43,19 +43,19 @@
   },
   "devDependencies": {
     "@cspell/dict-pt-br": "^2.4.2",
-    "@nuxt/content": "^3.13.0",
+    "@nuxt/content": "^3.15.0",
     "@nuxt/test-utils": "^3.21.0",
     "@nuxtjs/supabase": "^2.0.9",
     "@vite-pwa/nuxt": "^1.1.1",
-    "@vue/test-utils": "^2.4.8",
+    "@vue/test-utils": "^2.4.11",
     "cspell": "^9.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
-    "happy-dom": "^20.9.0",
+    "happy-dom": "^20.10.6",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "playwright-core": "^1.59.1",
-    "prettier": "^3.8.3",
+    "playwright-core": "^1.61.1",
+    "prettier": "^3.9.5",
     "vitest": "^3.2.4",
     "vuetify-nuxt-module": "^0.19.5"
   }
