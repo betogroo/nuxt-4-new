@@ -10,6 +10,9 @@ create table
         unique (from_status_id, to_status_id)
     );
 
+grant select, insert, update, delete on public.demand_status_transitions to authenticated;
+grant select on public.demand_status_transitions to anon;
+
 alter table public.demand_status_transitions enable row level security;
 
 create policy "Enable read to authenticated users only" on public.demand_status_transitions for

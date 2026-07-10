@@ -21,4 +21,5 @@ export const ICONS = {
   doc: 'mdi-file-document',
   db: 'mdi-database',
   product: 'mdi-car',
+  delete: 'mdi-delete',
 } as const

@@ -14,6 +14,9 @@ create table
         active boolean not null default true
     );
 
+grant select, insert, update, delete on public.demand_status to authenticated;
+grant select on public.demand_status to anon;
+
 alter table public.demand_status enable row level security;
 
 create policy "Enable read to authenticated users only" on public.demand_status for

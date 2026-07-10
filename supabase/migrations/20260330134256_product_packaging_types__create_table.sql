@@ -8,6 +8,9 @@ create table
         unique (product_id, packaging_type_id)
     );
 
+grant select, insert, update, delete on public.product_packaging_types to authenticated;
+grant select on public.product_packaging_types to anon;
+
 alter table public.product_packaging_types enable row level security;
 
 create policy "Enable read for authenticated users only" on public.product_packaging_types to authenticated using (true);

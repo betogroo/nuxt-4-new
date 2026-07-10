@@ -35,4 +35,6 @@ from
     public.demand_items di
     join public.products p on p.id = di.product_id
     join public.packaging_types pt on pt.id = di.packaging_type_id
-    join public.demand_status ds on ds.id = di.demand_status_id
+    join public.demand_status ds on ds.id = di.demand_status_id;
+
+    grant select on public.demand_items_active to authenticated;

@@ -9,4 +9,7 @@ create table
     role user_role not null default 'user'
   );
 
+grant select, insert, update, delete on public.profiles to authenticated;
+grant select on public.profiles to anon;
+
 alter table if exists public.profiles enable row level security;

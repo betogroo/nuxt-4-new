@@ -7,6 +7,9 @@ create table
         code int not null
     );
 
+grant select, insert, update, delete on public.product_class to authenticated;
+grant select on public.product_class to anon;
+
 alter table public.product_class enable row level security;
 
 create policy "Enable read for authenticated users only" on public.product_class for
