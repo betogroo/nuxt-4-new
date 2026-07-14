@@ -1,8 +1,4 @@
 <script setup lang="ts">
-  import z from 'zod'
-  import { DemandStatusReadSchema } from '~/schemas/uge/dto/demand-status.read.dto'
-  import type { DemandStatusRead } from '~/types'
-
   definePageMeta({
     layout: 'default',
     menu: {
@@ -14,18 +10,80 @@
     },
   })
 
-  const { fetchAll } = useTableFetch<DemandStatusRead[]>({
-    table: 'demand_status',
-    schema: z.array(DemandStatusReadSchema),
-    orderBy: [{ column: 'sort_order' }],
-  })
-  const demandStatus = await fetchAll()
+  const card = [
+    {
+      id: 'adadad',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'wewew',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'rtrtr',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'adauyuyudad',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'adadad',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'wewew',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'rtrtr',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'adauyuyudad',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'wewew',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'rtrtr',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+    {
+      id: 'adauyuyudad',
+      title: 'Aqui é o Título',
+      subtitle: 'Aqui é o subtítulo',
+      color: 'red',
+    },
+  ]
 </script>
 
 <template>
   <ui-page :title="`Home page`">
-    <pre>
-      {{ demandStatus }}
-    </pre>
+    <ui-card-grid>
+      <ui-card v-for="item in card" :key="item.id" variant="tonal" width="250" />
+    </ui-card-grid>
   </ui-page>
 </template>

@@ -58,5 +58,11 @@
     "prettier": "^3.9.5",
     "vitest": "^3.2.4",
     "vuetify-nuxt-module": "^0.19.5"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true,
+    "esbuild@0.27.7": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.1": true
   }
 }
