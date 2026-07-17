@@ -10,80 +10,31 @@
     },
   })
 
-  const card = [
-    {
-      id: 'adadad',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'wewew',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'rtrtr',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'adauyuyudad',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'adadad',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'wewew',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'rtrtr',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'adauyuyudad',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'wewew',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'rtrtr',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-    {
-      id: 'adauyuyudad',
-      title: 'Aqui é o Título',
-      subtitle: 'Aqui é o subtítulo',
-      color: 'red',
-    },
-  ]
+  const click = () => {
+    alert('Clicou')
+  }
 </script>
 
 <template>
   <ui-page :title="`Home page`">
-    <ui-card-grid>
-      <ui-card v-for="item in card" :key="item.id" variant="tonal" width="250" />
-    </ui-card-grid>
+    <ui-list width="220">
+      <v-list class="pa-1" density="compact" nav>
+        <ui-menu-item
+          append="Fim"
+          base-color="red"
+          icon="currency"
+          icon-color="black"
+          shape="pill"
+          @onclick="click"
+        />
+        <ui-menu-item
+          base-color="primary"
+          icon="currency"
+          shape="pill"
+          title="Fim"
+          @onclick="click"
+        />
+      </v-list>
+    </ui-list>
   </ui-page>
 </template>
