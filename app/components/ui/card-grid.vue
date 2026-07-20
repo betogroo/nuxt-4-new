@@ -3,16 +3,18 @@
 
   interface Props {
     direction?: GridDirection
+    width?: string | number
   }
 
-  const { direction = 'row' } = defineProps<Props>()
+  const { direction = 'row', width = undefined } = defineProps<Props>()
 </script>
 
 <template>
-  <div
+  <v-sheet
     class="d-flex flex-wrap justify-space-around my-2 ga-2"
     :class="direction === 'column' ? 'flex-column' : ''"
+    :width="width"
   >
     <slot />
-  </div>
+  </v-sheet>
 </template>
