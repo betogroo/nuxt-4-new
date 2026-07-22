@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { DemandItemInsertSchema } from '~/schemas/uge/dto/demand-item.insert.dto'
-  import type { DemandItemForm } from '~/types/uge/demand'
+  import type { DemandItemForm } from '~/schemas/uge/forms/demand-item.form.schema'
+  import { toDemandItemInsert } from '~/schemas/uge/mappers/demand-item.mapper'
 
   const route = useRoute()
   const id = computed(() => route.params.id as string)
@@ -12,10 +13,8 @@
     if (!demandItemToAdd.value) {
       throw new Error('Dados não informados')
     }
-    const parsed = DemandItemInsertSchema.parse({
-      ...demandItemToAdd.value,
-      demand_id: id.value,
-    })
+    const insertPayload = toDemandItemInsert(demandItemToAdd.value, { demandId: id.value })
+    const parsed = DemandItemInsertSchema.parse(insertPayload)
     return await create(parsed)
   })
 

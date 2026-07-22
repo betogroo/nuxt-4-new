@@ -1,8 +1,10 @@
 import z from 'zod'
-import { DemandItemInsertSchema } from '~/schemas/uge/dto/demand-item.insert.dto'
-import { DemandItemReadSchema } from '~/schemas/uge/dto/demand-item.read.dto'
-import { DemandItemSchema } from '~/schemas/uge/entities/demand-item.schema'
-import type { DemandItem, DemandItemInsert, DemandItemRead } from '~/types'
+import {
+  DemandItemInsertSchema,
+  type DemandItemInsert,
+} from '~/schemas/uge/dto/demand-item.insert.dto'
+import { DemandItemReadSchema, type DemandItemRead } from '~/schemas/uge/dto/demand-item.read.dto'
+import { DemandItemSchema, type DemandItem } from '~/schemas/uge/entities/demand-item.schema'
 
 const useDemandItem = () => {
   const { fetchMany: fetchDemandItemsByDemands } = useTableFetchMany<DemandItemRead[]>({

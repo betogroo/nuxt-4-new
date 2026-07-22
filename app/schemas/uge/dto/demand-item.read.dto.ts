@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { DemandItemSchema } from '../entities/demand-item.schema'
 import { DemandStatusSchema } from '../entities/demand-status.schema'
 import { PackagingTypeSchema } from '../entities/packaging-type.schema'
@@ -27,3 +28,5 @@ export const DemandItemReadSchema = DemandItemSchema.omit({
   packaging,
   status,
 })
+
+export type DemandItemRead = z.infer<typeof DemandItemReadSchema>

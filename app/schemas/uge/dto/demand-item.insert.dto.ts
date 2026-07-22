@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { positiveNumber } from '~/schemas/rules'
 import { DemandItemSchema } from '~/schemas/uge/entities/demand-item.schema'
 
@@ -13,3 +14,5 @@ export const DemandItemInsertSchema = DemandItemSchema.omit({
   estimated_price: positiveNumber.optional(),
   offered_price: positiveNumber.optional(),
 })
+
+export type DemandItemInsert = z.infer<typeof DemandItemInsertSchema>

@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { positiveNumber, uuidRule } from '~/schemas/rules'
 
@@ -13,3 +14,5 @@ export const DemandItemSchema = BaseEntitySchema.extend({
   item_order: positiveNumber,
   demand_status_id: uuidRule,
 }).strict()
+
+export type DemandItem = z.infer<typeof DemandItemSchema>

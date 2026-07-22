@@ -1,13 +1,12 @@
+import z from 'zod'
 import { uuidSelectOption } from '~/schemas/rules/uuid.rules'
-import { DemandItemInsertSchema } from '../dto/demand-item.insert.dto'
 import { positiveNumber } from '~/schemas/rules/number.rules'
 
-export const DemandItemFormSchema = DemandItemInsertSchema.omit({
-  demand_id: true,
-}).extend({
+export const DemandItemFormSchema = z.object({
   product_id: uuidSelectOption,
   packaging_type_id: uuidSelectOption,
   quantity: positiveNumber,
   estimated_price: positiveNumber.optional(),
   offered_price: positiveNumber.optional(),
 })
+export type DemandItemForm = z.infer<typeof DemandItemFormSchema>
