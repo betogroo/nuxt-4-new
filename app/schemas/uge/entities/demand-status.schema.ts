@@ -12,3 +12,5 @@ export const DemandStatusSchema = BaseEntitySchema.extend({
   allow_cancel: z.boolean(),
   is_demand_active: z.boolean(),
 })
+
+export type DemandStatus = z.infer<typeof DemandStatusSchema>

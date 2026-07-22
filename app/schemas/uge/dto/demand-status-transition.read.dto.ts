@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { DemandStatusTransitionSchema } from '../entities/demand-status-transition.schema'
 import { DemandStatusReadSchema } from './demand-status.read.dto'
 
@@ -7,3 +8,4 @@ export const DemandStatusTransitionReadSchema = DemandStatusTransitionSchema.pic
 }).extend({
   to_status: DemandStatusReadSchema,
 })
+export type DemandStatusTransitionsRead = z.infer<typeof DemandStatusTransitionReadSchema>

@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { DemandStatusSchema } from '../entities/demand-status.schema'
 
 export const DemandStatusReadSchema = DemandStatusSchema.pick({
@@ -8,3 +9,5 @@ export const DemandStatusReadSchema = DemandStatusSchema.pick({
   sort_order: true,
   allow_cancel: true,
 })
+
+export type DemandStatusRead = z.infer<typeof DemandStatusReadSchema>

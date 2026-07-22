@@ -1,7 +1,8 @@
 import z from 'zod'
-import { DemandStatusTransitionReadSchema } from '~/schemas/uge/dto/demand-status-transition.read.dto'
-
-import type { DemandStatusTransitionsRead } from '~/types'
+import {
+  DemandStatusTransitionReadSchema,
+  type DemandStatusTransitionsRead,
+} from '~/schemas/uge/dto/demand-status-transition.read.dto'
 
 const useDemandStatusTransition = () => {
   console.log('leu aqui')
