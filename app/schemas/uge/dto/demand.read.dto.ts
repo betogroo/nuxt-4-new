@@ -1,6 +1,7 @@
 import { ProfileReadSummarySchema } from '~/schemas/profile/dto/profile.read.dto'
 import { ObjectTypeReadSchema } from './object-type.read.dto'
 import { DemandSchema } from '../entities/demand.schema'
+import type z from 'zod'
 
 export const DemandReadSchema = DemandSchema.pick({
   id: true,
@@ -15,3 +16,6 @@ export const DemandReadDetailSchema = DemandReadSchema.extend({
   object_type: ObjectTypeReadSchema,
   owner: ProfileReadSummarySchema,
 })
+
+export type DemandRead = z.infer<typeof DemandReadSchema>
+export type DemandReadDetail = z.infer<typeof DemandReadDetailSchema>

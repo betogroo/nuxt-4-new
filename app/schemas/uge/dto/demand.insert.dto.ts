@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { DemandSchema } from '../entities/demand.schema'
 
 export const DemandInsertSchema = DemandSchema.omit({
@@ -7,7 +8,7 @@ export const DemandInsertSchema = DemandSchema.omit({
   deleted_at: true,
   internal_process_number: true,
   owner_id: true,
-  status: true,
   year: true,
   active: true,
 })
+export type DemandInsert = z.infer<typeof DemandInsertSchema>

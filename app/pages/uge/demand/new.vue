@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
-  import type { DemandForm } from '~/types'
+  import type { DemandForm } from '~/schemas/uge/forms/demand.form.schema'
+  import { toDemandInsert } from '~/schemas/uge/mappers/demand.mapper'
 
   const { create } = useDemand()
   const demandToCreate = ref<DemandForm | null>(null)
@@ -13,11 +14,9 @@
     if (!demandToCreate.value) {
       throw new Error('Dados não informados')
     }
-    const parsed = DemandInsertSchema.parse({
-      ...demandToCreate.value,
-      dispute_date: demandToCreate.value.dispute_date ?? null,
-      electronic_process_number: demandToCreate.value.electronic_process_number ?? null,
-    })
+
+    const insertPayload = toDemandInsert(demandToCreate.value)
+    const parsed = DemandInsertSchema.parse(insertPayload)
     return await create(parsed)
   })
 

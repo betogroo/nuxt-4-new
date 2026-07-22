@@ -8,6 +8,8 @@ export const DemandSchema = BaseEntitySchema.extend({
   internal_process_number: positiveNumber,
   year: positiveNumber,
   owner_id: uuidRule,
-  dispute_date: dateRule.nullable(),
   object_types_id: positiveNumber,
+  dispute_date: dateRule.nullable(),
 }).strict()
+
+export type Demand = z.infer<typeof DemandSchema>
