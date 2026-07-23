@@ -14,6 +14,8 @@
     },
   })
 
+  const router = useRouter()
+
   const { fetchAll, create } = useDemand()
   const { openDialog, isOpen, closeDialog } = useDialog()
 
@@ -28,10 +30,6 @@
   if (fetchError.value) handleAsyncError(fetchError.value)
   const demandsSafe = computed(() => demands.value ?? [])
 
-  const deleteDemand = (id: string) => {
-    alert(`Vai parar ${id}`)
-    console.log('Menu Action')
-  }
   const { execute, status: createStatus } = useAsyncAction(async () => {
     if (!demandToCreate.value) {
       throw new Error('Dados não informados')
@@ -51,6 +49,14 @@
       closeDialog()
       refresh()
     }
+  }
+
+  const deleteDemand = (id: string) => {
+    alert(`Vai parar ${id}`)
+    console.log('Menu Action')
+  }
+  const editDemand = (id: string) => {
+    router.push(`./demand/${id}/edit`)
   }
 </script>
 
@@ -76,9 +82,12 @@
           Processo número
           {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
         >
-        <template #actions
-          ><ui-btn-icon icon="delete" @click.stop.prevent="deleteDemand(demand.id)"
-        /></template>
+        <template #actions>
+          <ui-card-grid>
+            <ui-btn-icon icon="delete" @click.stop.prevent="deleteDemand(demand.id)" />
+            <ui-btn-icon icon="edit" @click.stop.prevent="editDemand(demand.id)" />
+          </ui-card-grid>
+        </template>
       </ui-list-item>
     </ui-list>
   </ui-page>
