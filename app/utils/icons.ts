@@ -22,4 +22,5 @@ export const ICONS = {
   db: 'mdi-database',
   product: 'mdi-car',
   delete: 'mdi-delete',
+  edit: 'mdi-pencil-outline',
 } as const
