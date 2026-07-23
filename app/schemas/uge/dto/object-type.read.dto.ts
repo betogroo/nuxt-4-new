@@ -1,6 +1,7 @@
 import { ObjectTypeSchema } from '../entities/object-type.schema'
 
 export const ObjectTypeReadSchema = ObjectTypeSchema.pick({
+  id: true,
   name: true,
   ptres: true,
 })
