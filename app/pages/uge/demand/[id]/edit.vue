@@ -29,6 +29,6 @@
     <code>{{ demand }}</code>
     <pre>{{ initialValues }}</pre>
 
-    <uge-form-demand :initial-values="initialValues" @submit="editDemand" />
+    <uge-form-demand v-if="demand" :initial-values="initialValues" @submit="editDemand" />
   </ui-page>
 </template>

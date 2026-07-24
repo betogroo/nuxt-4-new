@@ -9,10 +9,6 @@
     submit: [DemandForm]
   }>()
 
-  const isObjectTypeLoading = computed(
-    () => !!props.initialValues?.object_types_id && objectTypeSelect.status.value === 'pending',
-  )
-
   const { select: objectTypeSelect } = useObjectType()
   const { values, handleReset, handleSubmit, meta } = useZodForm<DemandForm>(DemandFormSchema, {
     description: '',
@@ -36,7 +32,6 @@
     <ui-text-field label="Nome" name="description" type="text" />
     <ui-text-field label="Processo Externo" name="electronic_process_number" type="text" />
     <ui-text-field label="Data da Disputa" name="dispute_date" type="date" />
-    <ui-skeleton-loader v-if="isObjectTypeLoading" />
     <ui-select
       item-subtitle="ptres"
       item-title="name"
