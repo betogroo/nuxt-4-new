@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { DemandInsertSchema } from '~/schemas/uge/dto/demand.insert.dto'
+  import type { DemandReadDetail } from '~/schemas/uge/dto/demand.read.dto'
   import type { DemandForm } from '~/schemas/uge/forms/demand.form.schema'
   import { toDemandInsert } from '~/schemas/uge/mappers/demand.mapper'
 
@@ -16,10 +17,17 @@
 
   const router = useRouter()
 
-  const { fetchAll, create } = useDemand()
+  const { fetchAll, create, remove, isDeleting } = useDemand()
+  const { notify } = useNotification()
   const { openDialog, isOpen, closeDialog } = useDialog()
+  const {
+    openDialog: openDeleteDialog,
+    isOpen: isDeleteDialogOpen,
+    closeDialog: closeDeleteDialog,
+  } = useDialog()
 
   const demandToCreate = ref<DemandForm | null>(null)
+  const selectedDemandToDelete = ref<DemandReadDetail | null>(null)
 
   const {
     data: demands,
@@ -39,22 +47,43 @@
     const parsed = DemandInsertSchema.parse(insertPayload)
     return await create(parsed)
   })
+
   const createDemand = async (data: DemandForm) => {
     demandToCreate.value = data
     const result = await execute()
-    // option 1 redirect
-    //await navigateTo(`/uge/demand/${result.id}`)
-    // option 2 refresh
     if (result) {
+      notify('Demanda criada com sucesso', 'success')
       closeDialog()
       refresh()
     }
   }
 
-  const deleteDemand = (id: string) => {
-    alert(`Vai parar ${id}`)
-    console.log('Menu Action')
+  const { execute: executeDelete, status: deleteStatus } = useAsyncAction(async () => {
+    if (!selectedDemandToDelete.value) {
+      throw new Error('Demanda não selecionada')
+    }
+    return await remove(selectedDemandToDelete.value.id)
+  })
+
+  const confirmDeleteDemand = (demand: DemandReadDetail) => {
+    selectedDemandToDelete.value = demand
+    openDeleteDialog()
   }
+
+  const handleDelete = async () => {
+    if (!selectedDemandToDelete.value) return
+    const deletedDemandName = selectedDemandToDelete.value.description
+    const result = await executeDelete()
+    if (result) {
+      notify(`Demanda "${deletedDemandName}" excluída com sucesso`, 'success')
+      closeDeleteDialog()
+      selectedDemandToDelete.value = null
+      refresh()
+    } else {
+      notify('Erro ao excluir a demanda', 'error')
+    }
+  }
+
   const editDemand = (id: string) => {
     router.push(`./demand/${id}/edit`)
   }
@@ -62,9 +91,27 @@
 
 <template>
   <ui-page>
+    <!-- Dialog de Criação -->
     <ui-dialog v-model="isOpen">
       <uge-form-demand :status="createStatus" @submit="createDemand" />
     </ui-dialog>
+
+    <!-- Dialog de Confirmação de Exclusão -->
+    <ui-dialog
+      v-model="isDeleteDialogOpen"
+      title="Confirmar Exclusão"
+      title-icon="delete"
+      size="small"
+    >
+      Tem certeza que deseja excluir a demanda
+      <strong>"{{ selectedDemandToDelete?.description }}"</strong>?
+      <template #actions>
+        <v-spacer />
+        <ui-btn variant="text" :disabled="isDeleting" @click="closeDeleteDialog">Cancelar</ui-btn>
+        <ui-btn color="error" :loading="isDeleting" @click="handleDelete">Excluir</ui-btn>
+      </template>
+    </ui-dialog>
+
     <template #header_action
       ><ui-btn color="primary" icon="plus" @click="openDialog">Novo Processo</ui-btn>
     </template>
@@ -84,7 +131,7 @@
         >
         <template #actions>
           <ui-card-grid>
-            <ui-btn-icon icon="delete" @click.stop.prevent="deleteDemand(demand.id)" />
+            <ui-btn-icon icon="delete" @click.stop.prevent="confirmDeleteDemand(demand)" />
             <ui-btn-icon icon="edit" @click.stop.prevent="editDemand(demand.id)" />
           </ui-card-grid>
         </template>
@@ -92,3 +139,4 @@
     </ui-list>
   </ui-page>
 </template>
+
