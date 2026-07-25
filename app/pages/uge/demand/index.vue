@@ -117,26 +117,47 @@
     </template>
     <ui-alert v-if="fetchError" :title="fetchError.message" type="error" />
 
-    <ui-list v-else :items="demandsSafe || []" lines="two" :status="fetchStatus">
+    <ui-list v-else :items="demandsSafe || []" :status="fetchStatus">
       <ui-list-item
         v-for="demand in demandsSafe"
         :key="demand.id"
-        hide-divider
         :title="demand.description"
         :to="`./demand/${demand.id}`"
       >
+        <template #prepend>
+          <v-avatar color="primary" variant="tonal" size="42" class="me-2 rounded-lg">
+            <v-icon icon="mdi-file-document-outline" size="24" />
+          </v-avatar>
+        </template>
+
         <template #subtitle>
-          Processo número
-          {{ demand.internal_process_number }} Criado por {{ demand.owner?.name || '' }}</template
-        >
+          <div class="d-flex flex-wrap align-center ga-2 mt-1">
+            <v-chip size="x-small" color="primary" variant="flat" class="font-weight-medium">
+              Proc. Nº {{ demand.internal_process_number }}
+            </v-chip>
+            <span v-if="demand.owner?.name" class="text-caption text-medium-emphasis">
+              <v-icon icon="mdi-account-outline" size="14" class="me-1" />
+              {{ demand.owner.name }}
+            </span>
+          </div>
+        </template>
+
+        <template #middle1>
+          <div v-if="demand.object_type?.name" class="d-flex align-center text-caption text-medium-emphasis">
+            <v-icon icon="mdi-shape-outline" size="16" class="me-1 color-primary" />
+            <span class="text-truncate">{{ demand.object_type.name }}</span>
+          </div>
+        </template>
+
         <template #actions>
-          <ui-card-grid>
-            <ui-btn-icon icon="delete" @click.stop.prevent="confirmDeleteDemand(demand)" />
-            <ui-btn-icon icon="edit" @click.stop.prevent="editDemand(demand.id)" />
-          </ui-card-grid>
+          <div class="d-flex align-center ga-1">
+            <ui-btn-icon icon="edit" title="Editar" @click.stop.prevent="editDemand(demand.id)" />
+            <ui-btn-icon icon="delete" title="Excluir" color="error" @click.stop.prevent="confirmDeleteDemand(demand)" />
+          </div>
         </template>
       </ui-list-item>
     </ui-list>
   </ui-page>
 </template>
+
 

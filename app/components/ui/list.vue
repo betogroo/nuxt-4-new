@@ -9,15 +9,26 @@
 </script>
 
 <template>
-  <v-list v-bind="$attrs">
+  <div class="ui-list-container" v-bind="$attrs">
     <template v-if="status === 'pending'">
-      <ui-skeleton-loader :count="4" type="list-item-two-line" />
+      <div class="d-flex flex-column ga-3">
+        <ui-skeleton-loader :count="4" type="list-item-two-line" />
+      </div>
     </template>
-    <div v-else-if="status === 'success' && !items?.length">
-      <ui-alert title="Não há dados cadastrados" type="warning" />
+    <div v-else-if="status === 'success' && !items?.length" class="ui-list-empty py-6 text-center">
+      <v-icon color="warning" icon="mdi-database-search-outline" size="48" class="mb-2" />
+      <ui-heading :level="5" align="center" weight="medium">Nenhum registro encontrado</ui-heading>
+      <p class="text-caption text-medium-emphasis mt-1">Não há dados cadastrados no momento.</p>
     </div>
-    <template v-else-if="status === 'success' || status === undefined">
+    <div v-else-if="status === 'success' || status === undefined" class="d-flex flex-column ga-3 ga-sm-4">
       <slot />
-    </template>
-  </v-list>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.ui-list-container {
+  width: 100%;
+}
+</style>
+

@@ -117,22 +117,47 @@
     </ui-dialog>
 
     <ui-alert v-if="error" :title="error.message" type="error" />
-    <ui-list v-else :items="productsSafe" lines="two" :status="status">
+    <ui-list v-else :items="productsSafe" :status="status">
       <ui-list-item
         v-for="product in productsSafe"
         :key="product.id"
-        :subtitle="product.class?.name || ''"
         :title="product.name"
         :to="`/uge/product/${product.id}`"
       >
+        <template #prepend>
+          <v-avatar color="secondary" variant="tonal" size="42" class="me-2 rounded-lg">
+            <v-icon icon="mdi-package-variant-closed" size="24" />
+          </v-avatar>
+        </template>
+
+        <template #subtitle>
+          <div class="d-flex flex-wrap align-center ga-2 mt-1">
+            <v-chip v-if="product.class?.name" size="x-small" color="secondary" variant="flat" class="font-weight-medium">
+              {{ product.class.name }}
+            </v-chip>
+            <span v-if="product.cat_mat" class="text-caption text-medium-emphasis">
+              <v-icon icon="mdi-barcode" size="14" class="me-1" />
+              CATMAT: {{ product.cat_mat }}
+            </span>
+          </div>
+        </template>
+
+        <template #middle1>
+          <div v-if="product.expense_type?.name" class="d-flex align-center text-caption text-medium-emphasis">
+            <v-icon icon="mdi-cash-multiple" size="16" class="me-1" />
+            <span class="text-truncate">{{ product.expense_type.name }}</span>
+          </div>
+        </template>
+
         <template #actions>
-          <ui-card-grid>
-            <ui-btn-icon icon="delete" @click.stop.prevent="confirmDeleteProduct(product)" />
-            <ui-btn-icon icon="edit" @click.stop.prevent="editProduct(product.id)" />
-          </ui-card-grid>
+          <div class="d-flex align-center ga-1">
+            <ui-btn-icon icon="edit" title="Editar" @click.stop.prevent="editProduct(product.id)" />
+            <ui-btn-icon icon="delete" title="Excluir" color="error" @click.stop.prevent="confirmDeleteProduct(product)" />
+          </div>
         </template>
       </ui-list-item>
     </ui-list>
   </ui-page>
 </template>
+
 

@@ -10,8 +10,8 @@
 </script>
 
 <template>
-  <v-col class="d-flex flex-column justify-center px-2" :cols="cols || 12" :sm="sm">
+  <v-col class="d-flex flex-column justify-center px-2 py-1 py-sm-2" :cols="cols || 12" :md="md" :sm="sm">
     <slot />
-    <ui-divider class="mt-6 d-sm-none" />
   </v-col>
 </template>
+
