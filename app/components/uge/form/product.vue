@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ProductFormSchema, type ProductForm } from '~/schemas/uge/forms/product.form.schema'
-  import type { FormProps } from '~/types/ui/form'
+  import type { FormProps } from '~/schemas/ui'
 
   defineProps<FormProps>()
   const $emit = defineEmits<{

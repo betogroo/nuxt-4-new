@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { DemandFormSchema, type DemandForm } from '~/schemas/uge/forms/demand.form.schema'
 
-  import type { FormProps } from '~/types/ui/form'
+  import type { FormProps } from '~/schemas/ui'
 
   const props = defineProps<FormProps<DemandForm>>()
 
