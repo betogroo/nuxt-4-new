@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { PackagingTypeSchema } from '../entities/packaging-type.schema'
 
 export const PackagingTypeReadSchema = PackagingTypeSchema.omit({
@@ -6,3 +7,6 @@ export const PackagingTypeReadSchema = PackagingTypeSchema.omit({
   active: true,
   deleted_at: true,
 })
+
+export type PackagingTypeRead = z.infer<typeof PackagingTypeReadSchema>
+

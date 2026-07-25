@@ -28,3 +28,8 @@ export const ProductReadSummarySchema = ProductSchema.pick({
   description: true,
   specifications: true,
 })
+
+export type ProductRead = z.infer<typeof ProductReadSchema>
+export type ProductReadDetails = z.infer<typeof ProductReadDetailsSchema>
+export type ProductReadSummary = z.infer<typeof ProductReadSummarySchema>
+

@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { nameField } from '~/schemas/rules/name.rules'
 import { ProductInsertSchema } from '../dto/product.insert.dto'
 import { positiveNumber } from '~/schemas/rules/number.rules'
@@ -10,3 +11,6 @@ export const ProductFormSchema = ProductInsertSchema.extend({
   product_class_id: uuidSelectOption,
   expense_type_id: uuidSelectOption,
 })
+
+export type ProductForm = z.infer<typeof ProductFormSchema>
+

@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { ObjectTypeSchema } from '../entities/object-type.schema'
 
 export const ObjectTypeReadSchema = ObjectTypeSchema.pick({
@@ -12,3 +13,7 @@ export const ObjectTypeReadSummarySchema = ObjectTypeSchema.omit({
   active: true,
   deleted_at: true,
 })
+
+export type ObjectTypeRead = z.infer<typeof ObjectTypeReadSchema>
+export type ObjectTypeReadSummary = z.infer<typeof ObjectTypeReadSummarySchema>
+

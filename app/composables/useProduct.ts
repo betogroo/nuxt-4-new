@@ -1,18 +1,14 @@
 import z from 'zod'
-import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
+import { ProductInsertSchema, type ProductInsert } from '~/schemas/uge/dto/product.insert.dto'
 import {
   ProductReadDetailsSchema,
   ProductReadSummarySchema,
+  type ProductReadDetails,
+  type ProductReadSummary,
 } from '~/schemas/uge/dto/product.read.dto'
-import { ProductSchema } from '~/schemas/uge/entities/product.schema'
+import { ProductSchema, type Product } from '~/schemas/uge/entities/product.schema'
 
-import type {
-  ProductReadSummary,
-  Product,
-  ProductInsert,
-  TableName,
-  ProductReadDetails,
-} from '~/types'
+import type { TableName } from '~/types'
 
 const TABLE: TableName = 'products'
 

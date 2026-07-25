@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { BtnVariant, Icon } from '~/types'
+  import type { BtnVariant, Icon } from '~/schemas/ui'
   interface Props {
     type?: 'button' | 'submit'
     disabled?: boolean

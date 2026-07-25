@@ -1,6 +1,6 @@
 import z from 'zod'
 import { ObjectTypeReadSummarySchema } from '~/schemas/uge/dto/object-type.read.dto'
-import type { ObjectTypeReadSummary } from '~/types'
+import type { ObjectTypeReadSummary } from '~/schemas/uge/dto/object-type.read.dto'
 
 const useObjectType = () => {
   const { fetchAll } = useTableFetch<ObjectTypeReadSummary[]>({

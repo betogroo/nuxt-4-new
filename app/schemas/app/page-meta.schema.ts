@@ -10,3 +10,6 @@ export const PageMetaSchema = z.object({
   menu: MenuSchema.optional(),
   breadcrumb: z.array(BreadcrumbItemSchema).optional(),
 })
+
+export type AppPageMeta = z.infer<typeof PageMetaSchema>
+

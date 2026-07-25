@@ -1,7 +1,6 @@
 <script setup lang="ts">
-  import { DemandItemFormSchema } from '~/schemas/uge/forms/demand-item.form.schema'
-  import type { DemandItemForm } from '~/types/uge/demand'
-  import type { PackagingTypeRead } from '~/types/uge/packaging-type'
+  import { DemandItemFormSchema, type DemandItemForm } from '~/schemas/uge/forms/demand-item.form.schema'
+  import type { PackagingTypeRead } from '~/schemas/uge/dto/packaging-type.read.dto'
   import type { FormProps } from '~/types/ui/form'
 
   defineProps<FormProps>()

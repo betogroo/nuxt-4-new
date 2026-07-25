@@ -1,4 +1,4 @@
-import type { NotificationOptions, NotificationType } from '~/types'
+import type { NotificationOptions, NotificationType } from '~/schemas/ui'
 
 const useNotification = () => {
   const notificationStore = useNotificationStore()

@@ -22,3 +22,9 @@ export const ProductPackagingTypeWithPackagingSchema = z.object({
     name_bec: true,
   }),
 })
+
+export type ProductPackagingTypeRead = z.infer<typeof ProductPackagingTypeReadSchema>
+export type ProductPackagingTypeWithPackaging = z.infer<
+  typeof ProductPackagingTypeWithPackagingSchema
+>
+

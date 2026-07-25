@@ -5,3 +5,6 @@ export const BreadcrumbItemSchema = z.object({
   href: z.string().optional(),
   disabled: z.boolean().default(false).optional(),
 })
+
+export type BreadcrumbItem = z.infer<typeof BreadcrumbItemSchema>
+

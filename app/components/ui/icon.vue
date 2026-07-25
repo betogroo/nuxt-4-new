@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { Icon } from '~/types/ui/icons'
+  import type { Icon } from '~/schemas/ui'
 
   interface Props {
     icon: Icon

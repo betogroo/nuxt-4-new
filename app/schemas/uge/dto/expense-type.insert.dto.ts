@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { ExpenseTypeSchema } from '../entities/expense-type.schema'
 
 export const ExpenseTypeInsertSchema = ExpenseTypeSchema.omit({
@@ -6,3 +7,6 @@ export const ExpenseTypeInsertSchema = ExpenseTypeSchema.omit({
   updated_at: true,
   deleted_at: true,
 })
+
+export type ExpenseTypeInsert = z.infer<typeof ExpenseTypeInsertSchema>
+

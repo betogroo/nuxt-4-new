@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { GridDirection } from '~/types/ui/grid'
+  import type { GridDirection } from '~/schemas/ui'
 
   interface Props {
     direction?: GridDirection

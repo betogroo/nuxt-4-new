@@ -7,3 +7,6 @@ export const ProfileSchema = BaseEntitySchema.extend({
   name: nameRule.nullable(),
   role: z.string(),
 }).strict()
+
+export type Profile = z.infer<typeof ProfileSchema>
+

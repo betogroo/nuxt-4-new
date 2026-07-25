@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ProductInsertSchema } from '~/schemas/uge/dto/product.insert.dto'
-  import type { ProductForm } from '~/types/uge/product'
+  import type { ProductForm } from '~/schemas/uge/forms/product.form.schema'
 
   definePageMeta({
     layout: 'default',

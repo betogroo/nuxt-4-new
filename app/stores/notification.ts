@@ -1,4 +1,4 @@
-import type { NotificationType } from '~/types'
+import type { NotificationType } from '~/schemas/ui'
 
 export const useNotificationStore = defineStore('notification', () => {
   const isOpen = ref(false)

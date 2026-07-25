@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { GridSize } from '~/types/ui/grid'
+  import type { GridSize } from '~/schemas/ui'
   defineProps<Props>()
 
   interface Props {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { DialogSize, DialogVariant, Icon } from '~/types'
+  import type { DialogSize, DialogVariant, Icon } from '~/schemas/ui'
 
   interface Props {
     titleIcon?: Icon

@@ -1,6 +1,6 @@
 import z from 'zod'
 import { ProductClassReadSummarySchema } from '~/schemas/uge/dto/product-class.read.dto'
-import type { ProductClassReadSummary } from '~/types'
+import type { ProductClassReadSummary } from '~/schemas/uge/dto/product-class.read.dto'
 
 const useProductClass = () => {
   const { fetchAll } = useTableFetch<ProductClassReadSummary[]>({

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { ProductReadDetails } from '~/types'
+  import type { ProductReadDetails } from '~/schemas/uge/dto/product.read.dto'
 
   definePageMeta({
     layout: 'default',

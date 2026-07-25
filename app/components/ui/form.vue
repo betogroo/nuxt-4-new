@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { Status } from '~/types/ui/general'
+  import type { Status } from '~/schemas/ui'
 
   interface Props {
     showReset?: boolean

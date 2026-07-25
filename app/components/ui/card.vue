@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { CardVariant } from '~/types'
+  import type { CardVariant } from '~/schemas/ui'
 
   interface Props {
     variant?: CardVariant

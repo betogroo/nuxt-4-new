@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { NotificationType } from '~/types'
+  import type { NotificationType } from '~/schemas/ui'
 
   const { notify } = useNotification()
   interface NotificationExample {

@@ -24,3 +24,8 @@ export const MenuSchema = z.object({
   hidden: z.boolean().default(true),
   icon: IconSchema.optional(),
 })
+
+export type MenuArea = z.infer<typeof MenuAreaSchema>
+export type Priority = z.infer<typeof PrioritySchema>
+export type Menu = z.infer<typeof MenuSchema>
+

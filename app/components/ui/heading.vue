@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { HeadingAlign, HeadingLevel, HeadingWeight } from '~/types'
+  import type { HeadingAlign, HeadingLevel, HeadingWeight } from '~/schemas/ui'
 
   const props = defineProps<{
     level?: HeadingLevel

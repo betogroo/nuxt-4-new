@@ -1,4 +1,4 @@
-import type { Status } from '~/types/ui/general'
+import type { Status } from '~/schemas/ui'
 
 const useAsyncAction = <T>(fn: () => Promise<T>) => {
   const status = ref<Status>('idle')

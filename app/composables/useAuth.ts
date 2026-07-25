@@ -1,5 +1,5 @@
 import { CredentialsSchema } from '~/schemas/auth/auth.schema'
-import type { AuthAction } from '~/types'
+import type { AuthAction } from '~/schemas/auth/auth.schema'
 import { AppError } from '~/error/AppError'
 
 const useAuth = () => {

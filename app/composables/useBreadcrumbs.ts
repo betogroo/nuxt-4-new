@@ -1,4 +1,4 @@
-import type { BreadcrumbItem } from '~/types'
+import type { BreadcrumbItem } from '~/schemas/app/breadcrumb.schema'
 
 const useBreadcrumbs = (dynamicTitle?: MaybeRef<string>) => {
   const route = useRoute()

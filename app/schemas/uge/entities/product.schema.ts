@@ -16,3 +16,6 @@ export const ProductSchema = BaseEntitySchema.extend({
   pdm: positiveNumber.nullable(),
   specifications: ProductSpecificationSchema.nullable(),
 })
+
+export type Product = z.infer<typeof ProductSchema>
+

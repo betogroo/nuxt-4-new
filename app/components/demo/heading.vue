@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { HeadingLevel } from '~/types'
+  import type { HeadingLevel } from '~/schemas/ui'
 
   const levels: HeadingLevel[] = [1, 2, 3, 4, 5, 6]
 </script>

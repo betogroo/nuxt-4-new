@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { UiDensity, TextFieldType, TextFieldVariant } from '~/types'
+  import type { UiDensity, TextFieldType, TextFieldVariant } from '~/schemas/ui'
 
   interface Props {
     name: string

@@ -16,3 +16,10 @@ export const SignupFormSchema = z
     message: 'As senhas devem ser idênticas',
     path: ['passwordConfirm'],
   })
+
+export type AuthAction = z.infer<typeof AuthActionSchema>
+export type Credentials = z.infer<typeof CredentialsSchema>
+export type Login = z.infer<typeof CredentialsSchema>
+export type Signup = z.infer<typeof CredentialsSchema>
+export type SignupForm = z.infer<typeof SignupFormSchema>
+

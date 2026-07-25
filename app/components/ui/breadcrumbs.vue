@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { BreadcrumbItem } from '~/types'
+  import type { BreadcrumbItem } from '~/schemas/app/breadcrumb.schema'
 
   interface Props {
     breadcrumbs: BreadcrumbItem[]

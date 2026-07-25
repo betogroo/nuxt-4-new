@@ -1,3 +1,4 @@
+import type z from 'zod'
 import { BaseEntitySchema } from '~/schemas/base/base.entity.schema'
 import { nameRule, uuidRule } from '~/schemas/rules'
 
@@ -6,3 +7,6 @@ export const DemandStatusTransitionSchema = BaseEntitySchema.extend({
   to_status_id: uuidRule,
   action_label: nameRule,
 })
+
+export type DemandStatusTransition = z.infer<typeof DemandStatusTransitionSchema>
+

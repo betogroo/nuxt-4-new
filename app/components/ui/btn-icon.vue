@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { RouteLocationAsPathGeneric, RouteLocationAsRelativeGeneric } from 'vue-router'
-  import type { BtnIconSize, BtnIconVariant, Icon } from '~/types'
+  import type { BtnIconSize, BtnIconVariant, Icon } from '~/schemas/ui'
 
   interface Props {
     icon?: Icon

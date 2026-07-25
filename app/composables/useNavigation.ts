@@ -1,5 +1,5 @@
 import { PageMetaSchema } from '~/schemas/app/page-meta.schema'
-import type { MenuArea } from '~/types'
+import type { MenuArea } from '~/schemas/app/menu.schema'
 
 const useNavigation = () => {
   const router = useRouter()

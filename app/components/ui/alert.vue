@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { NotificationType } from '~/types'
+  import type { NotificationType } from '~/schemas/ui'
 
   interface Props {
     title: string | undefined
