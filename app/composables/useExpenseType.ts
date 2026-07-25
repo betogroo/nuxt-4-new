@@ -2,7 +2,7 @@ import z from 'zod'
 import { ExpenseTypeReadSummarySchema } from '~/schemas/uge/dto/expense-type.read.dto'
 import type { ExpenseTypeReadSummary } from '~/schemas/uge/dto/expense-type.read.dto'
 
-const useExpensiveType = () => {
+const useExpenseType = () => {
   const { fetchAll } = useTableFetch<ExpenseTypeReadSummary[]>({
     table: 'expense_types',
     schema: z.array(ExpenseTypeReadSummarySchema),
@@ -14,4 +14,5 @@ const useExpensiveType = () => {
   return { fetchAll, select }
 }
 
-export default useExpensiveType
+export default useExpenseType
+

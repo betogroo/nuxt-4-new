@@ -5,8 +5,6 @@ import {
 } from '~/schemas/uge/dto/demand-status-transition.read.dto'
 
 const useDemandStatusTransition = () => {
-  console.log('leu aqui')
-
   const { fetchAll: fetchDemandStatusTransitions } = useTableFetch<DemandStatusTransitionsRead[]>({
     table: 'demand_status_transitions_active',
     schema: z.array(DemandStatusTransitionReadSchema),

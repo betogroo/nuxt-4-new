@@ -17,7 +17,19 @@ const useDemandItem = () => {
     insertSchema: DemandItemInsertSchema,
     readSchema: DemandItemSchema,
   })
-  return { create, fetchDemandItemsByDemands, isCreating }
+
+  const { update, isUpdating } = useTableUpdate<DemandItem, Partial<DemandItemInsert>>({
+    table: 'demand_items',
+    updateSchema: DemandItemInsertSchema.partial(),
+    readSchema: DemandItemSchema,
+  })
+
+  const { remove, isDeleting } = useTableDelete<DemandItem>({
+    table: 'demand_items',
+    readSchema: DemandItemSchema,
+  })
+
+  return { create, isCreating, update, isUpdating, remove, isDeleting, fetchDemandItemsByDemands }
 }
 
 export default useDemandItem

@@ -30,6 +30,17 @@ const useProduct = () => {
     readSchema: ProductSchema,
   })
 
+  const { update, isUpdating } = useTableUpdate<Product, Partial<ProductInsert>>({
+    table: TABLE,
+    updateSchema: ProductInsertSchema.partial(),
+    readSchema: ProductSchema,
+  })
+
+  const { remove, isDeleting } = useTableDelete<Product>({
+    table: TABLE,
+    readSchema: ProductSchema,
+  })
+
   const { get } = useTableGet<ProductReadDetails>({
     table: 'product_details_active',
     schema: ProductReadDetailsSchema,
@@ -37,7 +48,7 @@ const useProduct = () => {
 
   const select = useLazySelect('products_select', fetchSelect)
 
-  return { fetchAll, create, get, isCreating, select }
+  return { fetchAll, create, isCreating, update, isUpdating, remove, isDeleting, get, select }
 }
 
 export default useProduct

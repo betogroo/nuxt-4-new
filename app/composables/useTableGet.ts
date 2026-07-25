@@ -22,7 +22,6 @@ const useTableGet = <T>({ table, schema, select = '*' }: UseTableGetOptions<T>) 
     if (error) {
       throw new AppError(`Não foi possível carregar dados de "${table}"`, error)
     }
-    if (data) console.log('Passou por aqui')
     const parsed = schema.safeParse(data)
 
     if (!parsed.success) {
