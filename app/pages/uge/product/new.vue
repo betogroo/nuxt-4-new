@@ -3,6 +3,7 @@
   import type { ProductForm } from '~/schemas/uge/forms/product.form.schema'
 
   const { create } = useProduct()
+  const { notify } = useNotification()
   const productToCreate = ref<ProductForm | null>(null)
 
   const { execute, status, error } = useAsyncAction(async () => {
@@ -19,13 +20,19 @@
   const createProduct = async (data: ProductForm) => {
     productToCreate.value = data
     const result = await execute()
-    if (result) await navigateTo(`/uge/product/`)
+    if (result) {
+      notify('Produto criado com sucesso', 'success')
+      await navigateTo(`/uge/product/`)
+    } else {
+      notify('Erro ao criar produto', 'error')
+    }
   }
 </script>
 
 <template>
-  <ui-page show-back title="Nova Produto">
+  <ui-page show-back title="Novo Produto">
     <ui-alert v-if="error" title="Error" type="error">{{ error.message }}</ui-alert>
     <uge-form-product :status="status" @submit="createProduct" />
   </ui-page>
 </template>
+
