@@ -25,12 +25,17 @@ const useDemand = () => {
     readSchema: DemandSchema,
   })
 
+  const { remove, isDeleting } = useTableDelete<Demand>({
+    table: 'demands',
+    readSchema: DemandSchema,
+  })
+
   const { get } = useTableGet<DemandReadDetail>({
     table: 'demand_details_active',
     schema: DemandReadDetailSchema,
   })
 
-  return { fetchAll, create, isCreating, update, isUpdating, get }
+  return { fetchAll, create, isCreating, update, isUpdating, remove, isDeleting, get }
 }
 
 export default useDemand
