@@ -17,9 +17,9 @@ export const ProductReadDetailsSchema = ProductReadSchema.pick({
   specifications: true,
   active: true,
 }).extend({
-  class: ProductClassReadSchema,
-  expense_type: ExpenseTypeReadSchema,
-  packaging_types: z.array(PackagingTypeReadSchema),
+  class: ProductClassReadSchema.optional().nullable(),
+  expense_type: ExpenseTypeReadSchema.optional().nullable(),
+  packaging_types: z.array(PackagingTypeReadSchema).optional().nullable(),
 })
 
 export const ProductReadSummarySchema = ProductSchema.pick({

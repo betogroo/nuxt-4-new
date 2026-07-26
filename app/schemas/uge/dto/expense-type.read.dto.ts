@@ -1,11 +1,13 @@
-import type z from 'zod'
-import { ExpenseTypeSchema } from '../entities/expense-type.schema'
+import { uuidRule } from '~/schemas/rules'
 
 export const ExpenseTypeReadSchema = ExpenseTypeSchema.pick({
-  id: true,
   name: true,
   expense_number: true,
 })
+  .extend({
+    id: uuidRule.optional().nullable(),
+  })
+  .partial()
 
 export const ExpenseTypeReadSummarySchema = ExpenseTypeSchema.omit({
   created_at: true,

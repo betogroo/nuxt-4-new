@@ -1,11 +1,13 @@
-import type z from 'zod'
-import { ProductClassSchema } from '../entities/product-class.schema'
+import { uuidRule } from '~/schemas/rules'
 
 export const ProductClassReadSchema = ProductClassSchema.pick({
-  id: true,
   name: true,
   code: true,
 })
+  .extend({
+    id: uuidRule.optional().nullable(),
+  })
+  .partial()
 
 export const ProductClassReadSummarySchema = ProductClassSchema.omit({
   created_at: true,
