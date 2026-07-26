@@ -6,21 +6,22 @@ import { ProductClassReadSchema } from './product-class.read.dto'
 
 export const ProductReadSchema = ProductSchema
 
-export const ProductReadDetailsSchema = ProductReadSchema.pick({
-  id: true,
-  name: true,
-  description: true,
-  cat_mat: true,
-  cat_bec: true,
-  nat_gov: true,
-  pdm: true,
-  specifications: true,
-  active: true,
-}).extend({
-  class: ProductClassReadSchema.optional().nullable(),
-  expense_type: ExpenseTypeReadSchema.optional().nullable(),
-  packaging_types: z.array(PackagingTypeReadSchema).optional().nullable(),
-})
+export const ProductReadDetailsSchema = z
+  .object({
+    id: uuidRule,
+    name: z.string(),
+    description: z.string().optional().nullable(),
+    cat_mat: z.number().optional().nullable(),
+    cat_bec: z.number().optional().nullable(),
+    nat_gov: z.number().optional().nullable(),
+    pdm: z.number().optional().nullable(),
+    specifications: z.any().optional().nullable(),
+    active: z.boolean().optional().nullable(),
+    class: ProductClassReadSchema.optional().nullable(),
+    expense_type: ExpenseTypeReadSchema.optional().nullable(),
+    packaging_types: z.array(PackagingTypeReadSchema).optional().nullable(),
+  })
+  .passthrough()
 
 export const ProductReadSummarySchema = ProductSchema.pick({
   id: true,

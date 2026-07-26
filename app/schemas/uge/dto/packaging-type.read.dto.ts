@@ -1,12 +1,14 @@
-import type z from 'zod'
-import { PackagingTypeSchema } from '../entities/packaging-type.schema'
+import z from 'zod'
+import { uuidRule } from '~/schemas/rules'
 
-export const PackagingTypeReadSchema = PackagingTypeSchema.omit({
-  created_at: true,
-  updated_at: true,
-  active: true,
-  deleted_at: true,
-})
+export const PackagingTypeReadSchema = z
+  .object({
+    id: uuidRule.optional().nullable(),
+    name: z.string().optional().nullable(),
+    name_bec: z.string().optional().nullable(),
+  })
+  .passthrough()
 
 export type PackagingTypeRead = z.infer<typeof PackagingTypeReadSchema>
+
 
