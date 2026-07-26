@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { DemandFormSchema, type DemandForm } from '~/schemas/uge/forms/demand.form.schema'
-
   import type { FormProps } from '~/schemas/ui'
 
   const props = defineProps<FormProps<DemandForm>>()
@@ -15,18 +14,30 @@
     ...props.initialValues,
   })
 
-  // Se o form já nasce com um object_types_id (modo edição),
-  // carrega a lista antecipadamente pra exibir o título/subtítulo corretos.
+  // Em modo edição (com initialValues), carrega os dados do select imediatamente para exibir o item selecionado
+  const isEditMode = computed(() => !!props.initialValues)
+
   onMounted(() => {
-    if (props.initialValues?.object_types_id) {
-      objectTypeSelect.onOpen(true)
+    if (isEditMode.value) {
+      objectTypeSelect.fetch()
     }
   })
+
+  watch(
+    () => props.initialValues,
+    (newValues) => {
+      if (newValues?.object_types_id) {
+        objectTypeSelect.fetch()
+      }
+    },
+    { immediate: true, deep: true },
+  )
 
   const onSubmit = handleSubmit(() => {
     $emit('submit', { ...values })
   })
 </script>
+
 <template>
   <ui-form :is-valid="!meta.valid" :status="status" @reset="handleReset" @submit="onSubmit">
     <ui-text-field label="Nome" name="description" type="text" />

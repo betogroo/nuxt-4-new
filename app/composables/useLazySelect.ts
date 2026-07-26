@@ -1,17 +1,35 @@
-const useLazySelect = <T>(key: string, fetcher: () => Promise<T[]>) => {
-  const { data, error, status, execute } = useAsyncData(key, fetcher, { immediate: false })
+type UseLazySelectOptions = {
+  immediate?: boolean
+}
 
-  const onOpen = (isOpen: boolean) => {
-    if (!isOpen) return
-    if (status.value !== 'idle') return
+const useLazySelect = <T>(
+  key: string,
+  fetcher: () => Promise<T[]>,
+  options: UseLazySelectOptions = {},
+) => {
+  const { data, error, status, execute } = useAsyncData(key, fetcher, {
+    immediate: options.immediate ?? false,
+  })
 
-    execute()
+  const fetch = () => {
+    if (status.value === 'idle') {
+      return execute()
+    }
+    return Promise.resolve(data.value)
   }
+
+  const onOpen = (isOpen: boolean | unknown = true) => {
+    if (isOpen === false) return
+    fetch()
+  }
+
   return {
     items: data,
     status,
     error,
     onOpen,
+    fetch,
+    execute,
   }
 }
 

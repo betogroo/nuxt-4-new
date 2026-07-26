@@ -15,18 +15,22 @@
     ...props.initialValues,
   })
 
-  // Carrega as opções dos selects antecipadamente (tanto para criar quanto para editar)
+  // Em modo edição (com initialValues), busca os dados dos selects imediatamente
+  const isEditMode = computed(() => !!props.initialValues)
+
   onMounted(() => {
-    productClassSelect.onOpen(true)
-    expenseTypeSelect.onOpen(true)
+    if (isEditMode.value) {
+      productClassSelect.fetch()
+      expenseTypeSelect.fetch()
+    }
   })
 
   watch(
     () => props.initialValues,
     (newValues) => {
       if (newValues) {
-        productClassSelect.onOpen(true)
-        expenseTypeSelect.onOpen(true)
+        productClassSelect.fetch()
+        expenseTypeSelect.fetch()
       }
     },
     { immediate: true, deep: true },
@@ -53,7 +57,7 @@
       name="product_class_id"
       placeholder="Escolha a classe"
       :status="productClassSelect.status.value"
-      @focus="productClassSelect.onOpen(true)"
+      @focus="productClassSelect.onOpen"
     />
     <ui-select
       item-subtitle="name"
@@ -64,7 +68,7 @@
       name="expense_type_id"
       placeholder="Escolha o Tipo"
       :status="expenseTypeSelect.status.value"
-      @focus="expenseTypeSelect.onOpen(true)"
+      @focus="expenseTypeSelect.onOpen"
     />
   </ui-form>
 </template>
