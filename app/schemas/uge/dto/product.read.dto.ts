@@ -23,12 +23,14 @@ export const ProductReadDetailsSchema = z
   })
   .passthrough()
 
-export const ProductReadSummarySchema = ProductSchema.pick({
-  id: true,
-  name: true,
-  description: true,
-  specifications: true,
-})
+export const ProductReadSummarySchema = z
+  .object({
+    id: uuidRule,
+    name: z.string(),
+    description: z.string().optional().nullable(),
+    specifications: z.any().optional().nullable(),
+  })
+  .passthrough()
 
 export type ProductRead = z.infer<typeof ProductReadSchema>
 export type ProductReadDetails = z.infer<typeof ProductReadDetailsSchema>
