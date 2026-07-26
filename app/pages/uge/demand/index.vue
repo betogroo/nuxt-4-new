@@ -125,27 +125,19 @@
         :to="`./demand/${demand.id}`"
       >
         <template #prepend>
-          <v-avatar color="primary" variant="tonal" size="42" class="me-2 rounded-lg">
-            <v-icon icon="mdi-file-document-outline" size="24" />
+          <v-avatar color="primary" variant="tonal" size="38" class="me-1 rounded-lg">
+            <v-icon icon="mdi-file-document-outline" size="20" />
           </v-avatar>
         </template>
 
         <template #subtitle>
-          <div class="d-flex flex-wrap align-center ga-2 mt-1">
+          <div class="d-flex align-center ga-2 mt-1 flex-wrap">
             <v-chip size="x-small" color="primary" variant="flat" class="font-weight-medium">
-              Proc. Nº {{ demand.internal_process_number }}
+              Proc. {{ demand.internal_process_number }}
             </v-chip>
-            <span v-if="demand.owner?.name" class="text-caption text-medium-emphasis">
-              <v-icon icon="mdi-account-outline" size="14" class="me-1" />
+            <span v-if="demand.owner?.name" class="text-caption text-medium-emphasis text-truncate">
               {{ demand.owner.name }}
             </span>
-          </div>
-        </template>
-
-        <template #middle1>
-          <div v-if="demand.object_type?.name" class="d-flex align-center text-caption text-medium-emphasis">
-            <v-icon icon="mdi-shape-outline" size="16" class="me-1 color-primary" />
-            <span class="text-truncate">{{ demand.object_type.name }}</span>
           </div>
         </template>
 
@@ -159,5 +151,6 @@
     </ui-list>
   </ui-page>
 </template>
+
 
 

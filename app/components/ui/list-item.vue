@@ -61,49 +61,31 @@
     :ripple="clickable || !!to"
     @click="handleClick"
   >
-    <div class="ui-list-item-content pa-3 pa-sm-4">
-      <v-row align="center" no-gutters class="ga-2 ga-sm-0">
-        <!-- Title & Subtitle Column -->
-        <ui-list-item-column :cols="12" :sm="hasMiddle1 || hasMiddle2 ? 4 : 8" :md="hasMiddle1 || hasMiddle2 ? 5 : 9">
-          <div class="d-flex align-center ga-2 mb-1 mb-sm-0">
-            <slot name="prepend" />
-            <div>
-              <ui-heading :level="5" weight="bold" class="ui-list-item-title text-truncate">{{ title }}</ui-heading>
-              <slot name="subtitle">
-                <ui-heading v-if="subtitle" :level="6" class="text-medium-emphasis text-truncate mt-1">{{ subtitle }}</ui-heading>
-              </slot>
-            </div>
-          </div>
-        </ui-list-item-column>
+    <div class="ui-list-item-content pa-3 pa-sm-4 d-flex align-center justify-space-between ga-2 ga-sm-4">
+      <!-- Main Content Container (Icon + Title + Subtitle) -->
+      <div class="d-flex align-center ga-3 min-width-0 flex-grow-1">
+        <slot name="prepend" />
+        <div class="min-width-0 flex-grow-1">
+          <ui-heading :level="5" weight="bold" class="ui-list-item-title text-truncate">{{ title }}</ui-heading>
+          <slot name="subtitle">
+            <ui-heading v-if="subtitle" :level="6" class="text-medium-emphasis text-truncate mt-1">{{ subtitle }}</ui-heading>
+          </slot>
+        </div>
+      </div>
 
-        <!-- Middle 1 Slot -->
-        <ui-list-item-column
-          v-if="hasMiddle1"
-          :cols="12"
-          :sm="getMiddleCols"
-          class="d-flex flex-column justify-center"
-        >
-          <slot name="middle1" />
-        </ui-list-item-column>
+      <!-- Essential Middle Info (visible on medium+ screens if provided) -->
+      <div v-if="hasMiddle1" class="d-none d-md-flex align-center flex-shrink-0 text-truncate px-2">
+        <slot name="middle1" />
+      </div>
 
-        <!-- Middle 2 Slot -->
-        <ui-list-item-column
-          v-if="hasMiddle2"
-          :cols="12"
-          :sm="getMiddleCols"
-          class="d-flex flex-column justify-center"
-        >
-          <slot name="middle2" />
-        </ui-list-item-column>
-
-        <!-- Actions Slot -->
-        <ui-list-item-column v-if="!hideMenu" :cols="12" sm="auto" class="ms-auto pt-2 pt-sm-0 d-flex justify-end align-center">
-          <slot name="actions" />
-        </ui-list-item-column>
-      </v-row>
+      <!-- Action Buttons Container (Always pinned to the right on the SAME line) -->
+      <div v-if="!hideMenu" class="ui-list-item-actions d-flex align-center flex-shrink-0 ga-1 ms-2">
+        <slot name="actions" />
+      </div>
     </div>
   </v-card>
 </template>
+
 
 <style scoped>
 .ui-list-item-card {

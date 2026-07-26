@@ -125,27 +125,19 @@
         :to="`/uge/product/${product.id}`"
       >
         <template #prepend>
-          <v-avatar color="secondary" variant="tonal" size="42" class="me-2 rounded-lg">
-            <v-icon icon="mdi-package-variant-closed" size="24" />
+          <v-avatar color="secondary" variant="tonal" size="38" class="me-1 rounded-lg">
+            <v-icon icon="mdi-package-variant-closed" size="20" />
           </v-avatar>
         </template>
 
         <template #subtitle>
-          <div class="d-flex flex-wrap align-center ga-2 mt-1">
+          <div class="d-flex align-center ga-2 mt-1 flex-wrap">
             <v-chip v-if="product.class?.name" size="x-small" color="secondary" variant="flat" class="font-weight-medium">
               {{ product.class.name }}
             </v-chip>
-            <span v-if="product.cat_mat" class="text-caption text-medium-emphasis">
-              <v-icon icon="mdi-barcode" size="14" class="me-1" />
+            <span v-if="product.cat_mat" class="text-caption text-medium-emphasis text-truncate">
               CATMAT: {{ product.cat_mat }}
             </span>
-          </div>
-        </template>
-
-        <template #middle1>
-          <div v-if="product.expense_type?.name" class="d-flex align-center text-caption text-medium-emphasis">
-            <v-icon icon="mdi-cash-multiple" size="16" class="me-1" />
-            <span class="text-truncate">{{ product.expense_type.name }}</span>
           </div>
         </template>
 
@@ -159,5 +151,6 @@
     </ui-list>
   </ui-page>
 </template>
+
 
 
