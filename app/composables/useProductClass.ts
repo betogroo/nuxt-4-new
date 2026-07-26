@@ -6,7 +6,7 @@ const useProductClass = () => {
   const { fetchAll } = useTableFetch<ProductClassReadSummary[]>({
     table: 'product_class',
     schema: z.array(ProductClassReadSummarySchema),
-    select: '(id, name, code)',
+    select: 'id, name, code',
     orderBy: [{ column: 'code' }],
   })
 

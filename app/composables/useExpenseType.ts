@@ -6,7 +6,7 @@ const useExpenseType = () => {
   const { fetchAll } = useTableFetch<ExpenseTypeReadSummary[]>({
     table: 'expense_types',
     schema: z.array(ExpenseTypeReadSummarySchema),
-    select: '(id, name, expense_number)',
+    select: 'id, name, expense_number',
     orderBy: [{ column: 'expense_number' }],
   })
 

@@ -2,6 +2,7 @@ import type z from 'zod'
 import { ProductClassSchema } from '../entities/product-class.schema'
 
 export const ProductClassReadSchema = ProductClassSchema.pick({
+  id: true,
   name: true,
   code: true,
 })
