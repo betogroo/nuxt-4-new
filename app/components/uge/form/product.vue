@@ -18,36 +18,35 @@
     },
   )
 
-  // Em modo edição, busca os itens dos selects e, após o carregamento,
-  // redefine explicitamente os campos do formulário para garantir a correspondência
   const isEditMode = computed(() => !!props.initialValues?.product_class_id)
 
-  const applyInitialSelects = () => {
-    if (!isEditMode.value) return
-    const classId = props.initialValues?.product_class_id
-    const expenseId = props.initialValues?.expense_type_id
-    if (classId) setFieldValue('product_class_id', classId)
-    if (expenseId) setFieldValue('expense_type_id', expenseId)
-  }
+  // Sempre inicia a busca dos selects (tanto criação quanto edição)
+  onMounted(() => {
+    productClassSelect.fetch()
+    expenseTypeSelect.fetch()
+  })
 
-  onMounted(async () => {
-    if (isEditMode.value) {
-      await Promise.all([productClassSelect.fetch(), expenseTypeSelect.fetch()])
-      // Após os itens chegarem, reforça os valores para que o VSelect faça a correspondência correta
-      nextTick(() => applyInitialSelects())
+  // Quando os itens do select de classe chegarem E estivermos em modo edição,
+  // reaplica o valor salvo para forçar o VSelect a exibir o item correto
+  watch(productClassSelect.items, (items) => {
+    if (isEditMode.value && items && items.length > 0) {
+      const savedId = props.initialValues?.product_class_id
+      if (savedId) {
+        const match = items.find((i) => i.id === savedId)
+        if (match) setFieldValue('product_class_id', savedId)
+      }
     }
   })
 
-  watch(
-    () => props.initialValues,
-    async (newValues) => {
-      if (newValues?.product_class_id) {
-        await Promise.all([productClassSelect.fetch(), expenseTypeSelect.fetch()])
-        nextTick(() => applyInitialSelects())
+  watch(expenseTypeSelect.items, (items) => {
+    if (isEditMode.value && items && items.length > 0) {
+      const savedId = props.initialValues?.expense_type_id
+      if (savedId) {
+        const match = items.find((i) => i.id === savedId)
+        if (match) setFieldValue('expense_type_id', savedId)
       }
-    },
-    { immediate: false, deep: true },
-  )
+    }
+  })
 
   const onSubmit = handleSubmit(() => {
     $emit('submit', { ...values })
