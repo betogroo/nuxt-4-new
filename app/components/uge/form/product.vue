@@ -10,30 +10,43 @@
   const { select: productClassSelect } = useProductClass()
   const { select: expenseTypeSelect } = useExpenseType()
 
-  const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
-    description: '',
-    ...props.initialValues,
-  })
+  const { values, handleReset, handleSubmit, meta, setFieldValue } = useZodForm<ProductForm>(
+    ProductFormSchema,
+    {
+      description: '',
+      ...props.initialValues,
+    },
+  )
 
-  // Em modo edição (com initialValues), busca os dados dos selects imediatamente
-  const isEditMode = computed(() => !!props.initialValues)
+  // Em modo edição, busca os itens dos selects e, após o carregamento,
+  // redefine explicitamente os campos do formulário para garantir a correspondência
+  const isEditMode = computed(() => !!props.initialValues?.product_class_id)
 
-  onMounted(() => {
+  const applyInitialSelects = () => {
+    if (!isEditMode.value) return
+    const classId = props.initialValues?.product_class_id
+    const expenseId = props.initialValues?.expense_type_id
+    if (classId) setFieldValue('product_class_id', classId)
+    if (expenseId) setFieldValue('expense_type_id', expenseId)
+  }
+
+  onMounted(async () => {
     if (isEditMode.value) {
-      productClassSelect.fetch()
-      expenseTypeSelect.fetch()
+      await Promise.all([productClassSelect.fetch(), expenseTypeSelect.fetch()])
+      // Após os itens chegarem, reforça os valores para que o VSelect faça a correspondência correta
+      nextTick(() => applyInitialSelects())
     }
   })
 
   watch(
     () => props.initialValues,
-    (newValues) => {
-      if (newValues) {
-        productClassSelect.fetch()
-        expenseTypeSelect.fetch()
+    async (newValues) => {
+      if (newValues?.product_class_id) {
+        await Promise.all([productClassSelect.fetch(), expenseTypeSelect.fetch()])
+        nextTick(() => applyInitialSelects())
       }
     },
-    { immediate: true, deep: true },
+    { immediate: false, deep: true },
   )
 
   const onSubmit = handleSubmit(() => {
