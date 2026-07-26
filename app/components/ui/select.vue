@@ -34,11 +34,16 @@
   const { value, errorMessage } = useField<T[typeof itemValue]>(name)
 
   const normalizedItems = computed(() =>
-    (items ?? []).map((item) => ({
-      title: item[itemTitle],
-      value: item[itemValue],
-      subtitle: itemSubtitle ? item[itemSubtitle] : undefined,
-    })),
+    (items ?? []).map((item) => {
+      const rawTitle = item[itemTitle]
+      const rawValue = item[itemValue]
+      const rawSubtitle = itemSubtitle ? item[itemSubtitle] : undefined
+      return {
+        title: rawTitle !== undefined && rawTitle !== null ? String(rawTitle) : '',
+        value: rawValue,
+        subtitle: rawSubtitle !== undefined && rawSubtitle !== null ? String(rawSubtitle) : undefined,
+      }
+    }),
   )
 
   const currentPlaceholder = computed(() => {
