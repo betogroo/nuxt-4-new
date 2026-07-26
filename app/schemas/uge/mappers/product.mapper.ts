@@ -26,10 +26,11 @@ export function toProductForm(product: ProductReadDetails): ProductForm {
     description: product.description,
     cat_mat: product.cat_mat,
     cat_bec: product.cat_bec,
-    product_class_id: '',
-    expense_type_id: '',
+    product_class_id: product.class?.id || '',
+    expense_type_id: product.expense_type?.id || '',
     nat_gov: product.nat_gov ?? undefined,
     pdm: product.pdm ?? undefined,
     specifications: product.specifications ?? undefined,
   }
 }
+

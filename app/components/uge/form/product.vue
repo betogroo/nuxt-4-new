@@ -2,7 +2,7 @@
   import { ProductFormSchema, type ProductForm } from '~/schemas/uge/forms/product.form.schema'
   import type { FormProps } from '~/schemas/ui'
 
-  defineProps<FormProps>()
+  const props = defineProps<FormProps<ProductForm>>()
   const $emit = defineEmits<{
     submit: [ProductForm]
   }>()
@@ -12,6 +12,16 @@
 
   const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
     description: '',
+    ...props.initialValues,
+  })
+
+  onMounted(() => {
+    if (props.initialValues?.product_class_id) {
+      productClassSelect.onOpen(true)
+    }
+    if (props.initialValues?.expense_type_id) {
+      expenseTypeSelect.onOpen(true)
+    }
   })
 
   const onSubmit = handleSubmit(() => {
