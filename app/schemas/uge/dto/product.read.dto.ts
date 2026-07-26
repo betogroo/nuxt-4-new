@@ -1,4 +1,5 @@
 import z from 'zod'
+import { uuidRule } from '~/schemas/rules'
 import { ProductSchema } from '../entities/product.schema'
 import { ExpenseTypeReadSchema } from './expense-type.read.dto'
 import { PackagingTypeReadSchema } from './packaging-type.read.dto'
