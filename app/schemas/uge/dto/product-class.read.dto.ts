@@ -1,4 +1,6 @@
+import z from 'zod'
 import { uuidRule } from '~/schemas/rules'
+import { ProductClassSchema } from '../entities/product-class.schema'
 
 export const ProductClassReadSchema = ProductClassSchema.pick({
   name: true,
@@ -16,4 +18,3 @@ export const ProductClassReadSummarySchema = ProductClassSchema.omit({
 
 export type ProductClassRead = z.infer<typeof ProductClassReadSchema>
 export type ProductClassReadSummary = z.infer<typeof ProductClassReadSummarySchema>
-

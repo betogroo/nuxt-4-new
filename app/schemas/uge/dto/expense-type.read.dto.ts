@@ -1,4 +1,6 @@
+import z from 'zod'
 import { uuidRule } from '~/schemas/rules'
+import { ExpenseTypeSchema } from '../entities/expense-type.schema'
 
 export const ExpenseTypeReadSchema = ExpenseTypeSchema.pick({
   name: true,
@@ -16,4 +18,3 @@ export const ExpenseTypeReadSummarySchema = ExpenseTypeSchema.omit({
 
 export type ExpenseTypeRead = z.infer<typeof ExpenseTypeReadSchema>
 export type ExpenseTypeReadSummary = z.infer<typeof ExpenseTypeReadSummarySchema>
-
