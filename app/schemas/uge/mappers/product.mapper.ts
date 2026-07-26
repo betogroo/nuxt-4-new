@@ -20,17 +20,16 @@ export function toProductUpdate(form: ProductForm): Partial<ProductInsert> {
   return toProductInsert(form)
 }
 
-export function toProductForm(product: ProductReadDetails): ProductForm {
+export function toProductForm(product: ProductReadDetails & { product_class_id?: string; expense_type_id?: string }): ProductForm {
   return {
     name: product.name,
-    description: product.description,
-    cat_mat: product.cat_mat,
-    cat_bec: product.cat_bec,
-    product_class_id: product.class?.id || '',
-    expense_type_id: product.expense_type?.id || '',
+    description: product.description ?? '',
+    cat_mat: product.cat_mat ?? 0,
+    cat_bec: product.cat_bec ?? 0,
+    product_class_id: product.class?.id || product.product_class_id || '',
+    expense_type_id: product.expense_type?.id || product.expense_type_id || '',
     nat_gov: product.nat_gov ?? undefined,
     pdm: product.pdm ?? undefined,
     specifications: product.specifications ?? undefined,
   }
 }
-

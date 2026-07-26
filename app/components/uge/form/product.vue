@@ -15,14 +15,22 @@
     ...props.initialValues,
   })
 
+  // Carrega as opções dos selects antecipadamente (tanto para criar quanto para editar)
   onMounted(() => {
-    if (props.initialValues?.product_class_id) {
-      productClassSelect.onOpen(true)
-    }
-    if (props.initialValues?.expense_type_id) {
-      expenseTypeSelect.onOpen(true)
-    }
+    productClassSelect.onOpen(true)
+    expenseTypeSelect.onOpen(true)
   })
+
+  watch(
+    () => props.initialValues,
+    (newValues) => {
+      if (newValues) {
+        productClassSelect.onOpen(true)
+        expenseTypeSelect.onOpen(true)
+      }
+    },
+    { immediate: true, deep: true },
+  )
 
   const onSubmit = handleSubmit(() => {
     $emit('submit', { ...values })
@@ -45,7 +53,7 @@
       name="product_class_id"
       placeholder="Escolha a classe"
       :status="productClassSelect.status.value"
-      @focus="productClassSelect.onOpen"
+      @focus="productClassSelect.onOpen(true)"
     />
     <ui-select
       item-subtitle="name"
@@ -56,7 +64,7 @@
       name="expense_type_id"
       placeholder="Escolha o Tipo"
       :status="expenseTypeSelect.status.value"
-      @focus="expenseTypeSelect.onOpen"
+      @focus="expenseTypeSelect.onOpen(true)"
     />
   </ui-form>
 </template>

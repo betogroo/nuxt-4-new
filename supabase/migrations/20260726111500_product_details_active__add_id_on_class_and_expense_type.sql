@@ -12,6 +12,8 @@ select
     p.pdm,
     p.specifications,
     p.active,
+    p.product_class_id,
+    p.expense_type_id,
     jsonb_build_object ('id', pc.id, 'name', pc.name, 'code', pc.code) as class,
     jsonb_build_object (
         'id',

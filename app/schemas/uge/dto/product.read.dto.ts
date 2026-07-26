@@ -18,6 +18,8 @@ export const ProductReadDetailsSchema = z
     pdm: z.number().optional().nullable(),
     specifications: z.any().optional().nullable(),
     active: z.boolean().optional().nullable(),
+    product_class_id: uuidRule.optional().nullable(),
+    expense_type_id: uuidRule.optional().nullable(),
     class: ProductClassReadSchema.optional().nullable(),
     expense_type: ExpenseTypeReadSchema.optional().nullable(),
     packaging_types: z.array(PackagingTypeReadSchema).optional().nullable(),
@@ -36,4 +38,3 @@ export const ProductReadSummarySchema = z
 export type ProductRead = z.infer<typeof ProductReadSchema>
 export type ProductReadDetails = z.infer<typeof ProductReadDetailsSchema>
 export type ProductReadSummary = z.infer<typeof ProductReadSummarySchema>
-
