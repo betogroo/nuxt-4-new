@@ -15,12 +15,12 @@
   })
 
   // Em modo edição (com initialValues), carrega os dados do select imediatamente para exibir o item selecionado
-  const isEditMode = computed(() => !!props.initialValues)
+  //const isEditMode = computed(() => !!props.initialValues)
 
   onMounted(() => {
-    if (isEditMode.value) {
-      objectTypeSelect.fetch()
-    }
+    //if (isEditMode.value) {
+    objectTypeSelect.fetch()
+    //}
   })
 
   watch(
@@ -36,6 +36,8 @@
   const onSubmit = handleSubmit(() => {
     $emit('submit', { ...values })
   })
+
+  console.log(props.initialValues)
 </script>
 
 <template>

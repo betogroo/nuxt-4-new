@@ -1,4 +1,4 @@
-import z from 'zod'
+import type z from 'zod'
 import { ExpenseTypeSchema } from '../entities/expense-type.schema'
 
 export const ExpenseTypeReadSchema = ExpenseTypeSchema.pick({

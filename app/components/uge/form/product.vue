@@ -10,47 +10,45 @@
   const { select: productClassSelect } = useProductClass()
   const { select: expenseTypeSelect } = useExpenseType()
 
-  const { values, handleReset, handleSubmit, meta, setFieldValue } = useZodForm<ProductForm>(
-    ProductFormSchema,
-    {
-      description: '',
-      ...props.initialValues,
-    },
-  )
+  const { values, handleReset, handleSubmit, meta } = useZodForm<ProductForm>(ProductFormSchema, {
+    description: '',
+    ...props.initialValues,
+  })
 
-  const isEditMode = computed(() => !!props.initialValues?.product_class_id)
+  //const isEditMode = computed(() => !!props.initialValues)
 
   // Sempre inicia a busca dos selects (tanto criação quanto edição)
   onMounted(() => {
+    //if (isEditMode.value) {
     productClassSelect.fetch()
     expenseTypeSelect.fetch()
+    //}
   })
 
-  // Quando os itens do select de classe chegarem E estivermos em modo edição,
-  // reaplica o valor salvo para forçar o VSelect a exibir o item correto
-  watch(productClassSelect.items, (items) => {
-    if (isEditMode.value && items && items.length > 0) {
-      const savedId = props.initialValues?.product_class_id
-      if (savedId) {
-        const match = items.find((i) => i.id === savedId)
-        if (match) setFieldValue('product_class_id', savedId)
+  watch(
+    () => props.initialValues,
+    (newValues) => {
+      if (newValues?.product_class_id) {
+        productClassSelect.fetch()
       }
-    }
-  })
-
-  watch(expenseTypeSelect.items, (items) => {
-    if (isEditMode.value && items && items.length > 0) {
-      const savedId = props.initialValues?.expense_type_id
-      if (savedId) {
-        const match = items.find((i) => i.id === savedId)
-        if (match) setFieldValue('expense_type_id', savedId)
+    },
+    { immediate: true, deep: true },
+  )
+  watch(
+    () => props.initialValues,
+    (newValues) => {
+      if (newValues?.expense_type_id) {
+        expenseTypeSelect.fetch()
       }
-    }
-  })
+    },
+    { immediate: true, deep: true },
+  )
 
   const onSubmit = handleSubmit(() => {
     $emit('submit', { ...values })
   })
+
+  console.log(props.initialValues)
 </script>
 
 <template>
