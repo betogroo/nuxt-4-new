@@ -41,7 +41,8 @@
       return {
         title: rawTitle !== undefined && rawTitle !== null ? String(rawTitle) : '',
         value: rawValue,
-        subtitle: rawSubtitle !== undefined && rawSubtitle !== null ? String(rawSubtitle) : undefined,
+        subtitle:
+          rawSubtitle !== undefined && rawSubtitle !== null ? String(rawSubtitle) : undefined,
       }
     }),
   )

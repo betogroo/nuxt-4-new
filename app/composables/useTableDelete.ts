@@ -13,10 +13,7 @@ const softDeleteSchema = z.object({
 
 type SoftDeletePayload = z.infer<typeof softDeleteSchema>
 
-const useTableDelete = <TRow>({
-  table,
-  readSchema,
-}: UseTableDeleteOptions<TRow>) => {
+const useTableDelete = <TRow>({ table, readSchema }: UseTableDeleteOptions<TRow>) => {
   const { update, isUpdating } = useTableUpdate<TRow, SoftDeletePayload>({
     table,
     updateSchema: softDeleteSchema,

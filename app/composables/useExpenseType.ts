@@ -15,4 +15,3 @@ const useExpenseType = () => {
 }
 
 export default useExpenseType
-

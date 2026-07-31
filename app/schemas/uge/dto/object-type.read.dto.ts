@@ -16,4 +16,3 @@ export const ObjectTypeReadSummarySchema = ObjectTypeSchema.omit({
 
 export type ObjectTypeRead = z.infer<typeof ObjectTypeReadSchema>
 export type ObjectTypeReadSummary = z.infer<typeof ObjectTypeReadSummarySchema>
-

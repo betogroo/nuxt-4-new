@@ -8,4 +8,3 @@ export const PackagingTypeSchema = BaseEntitySchema.extend({
 }).strict()
 
 export type PackagingType = z.infer<typeof PackagingTypeSchema>
-

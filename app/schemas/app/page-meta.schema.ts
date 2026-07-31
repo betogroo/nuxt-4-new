@@ -12,4 +12,3 @@ export const PageMetaSchema = z.object({
 })
 
 export type AppPageMeta = z.infer<typeof PageMetaSchema>
-

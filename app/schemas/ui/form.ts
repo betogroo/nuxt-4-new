@@ -10,4 +10,3 @@ export type FormProps<T = Record<string, unknown>> = {
   status?: z.infer<typeof StatusSchema>
   initialValues?: Partial<T>
 }
-

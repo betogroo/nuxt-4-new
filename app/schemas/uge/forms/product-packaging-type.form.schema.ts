@@ -4,4 +4,3 @@ import { ProductPackagingTypeInsertSchema } from '../dto/product-packaging-type.
 export const ProductPackagingTypeFormSchema = ProductPackagingTypeInsertSchema
 
 export type ProductPackagingTypeForm = z.infer<typeof ProductPackagingTypeFormSchema>
-

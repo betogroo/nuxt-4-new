@@ -9,4 +9,3 @@ export const PackagingTypeInsertSchema = PackagingTypeSchema.omit({
 })
 
 export type PackagingTypeInsert = z.infer<typeof PackagingTypeInsertSchema>
-

@@ -10,5 +10,3 @@ export const PackagingTypeReadSchema = z
   .passthrough()
 
 export type PackagingTypeRead = z.infer<typeof PackagingTypeReadSchema>
-
-

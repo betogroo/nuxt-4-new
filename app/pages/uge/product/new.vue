@@ -35,4 +35,3 @@
     <uge-form-product :status="status" @submit="createProduct" />
   </ui-page>
 </template>
-

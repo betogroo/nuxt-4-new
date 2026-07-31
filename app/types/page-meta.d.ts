@@ -10,4 +10,3 @@ declare module '#app' {
 }
 
 export {}
-

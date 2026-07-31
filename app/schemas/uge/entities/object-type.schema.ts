@@ -9,4 +9,3 @@ export const ObjectTypeSchema = BaseEntitySchema.extend({
 }).strict()
 
 export type ObjectType = z.infer<typeof ObjectTypeSchema>
-

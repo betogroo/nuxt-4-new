@@ -53,10 +53,9 @@
     <ui-alert v-if="error" :title="error.message" type="error" />
     <uge-form-product
       v-if="product"
-      :status="updateStatus"
       :initial-values="initialValues"
+      :status="updateStatus"
       @submit="editProduct"
     />
   </ui-page>
 </template>
-

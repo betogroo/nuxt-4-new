@@ -5,4 +5,3 @@ export const GridDirectionSchema = z.union([z.literal('row'), z.literal('column'
 
 export type GridSize = z.infer<typeof GridSizeSchema>
 export type GridDirection = z.infer<typeof GridDirectionSchema>
-

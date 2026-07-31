@@ -5,4 +5,3 @@ export const BtnIconSizeSchema = z.enum(['x-small', 'small', 'default', 'large',
 
 export type BtnIconVariant = z.infer<typeof BtnIconVariantSchema>
 export type BtnIconSize = z.infer<typeof BtnIconSizeSchema>
-

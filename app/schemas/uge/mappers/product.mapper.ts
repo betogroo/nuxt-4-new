@@ -20,7 +20,9 @@ export function toProductUpdate(form: ProductForm): Partial<ProductInsert> {
   return toProductInsert(form)
 }
 
-export function toProductForm(product: ProductReadDetails & { product_class_id?: string; expense_type_id?: string }): ProductForm {
+export function toProductForm(
+  product: ProductReadDetails & { product_class_id?: string; expense_type_id?: string },
+): ProductForm {
   return {
     name: product.name,
     description: product.description ?? '',

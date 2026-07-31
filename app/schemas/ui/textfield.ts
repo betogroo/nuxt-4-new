@@ -5,4 +5,3 @@ export const TextFieldVariantSchema = z.enum(['outlined', 'solo'])
 
 export type TextFieldType = z.infer<typeof TextFieldTypeSchema>
 export type TextFieldVariant = z.infer<typeof TextFieldVariantSchema>
-

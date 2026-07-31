@@ -37,7 +37,9 @@ const useTableFetch = <T>({ table, schema, select = '*', orderBy }: UseTableFetc
     const parsed = schema.safeParse(data)
 
     if (!parsed.success) {
-      const details = parsed.error.issues.map((i) => `${i.path.join('.') || 'root'}: ${i.message}`).join('; ')
+      const details = parsed.error.issues
+        .map((i) => `${i.path.join('.') || 'root'}: ${i.message}`)
+        .join('; ')
       throw new AppError(`Erro ao validar dados de "${table}" (${details})`, parsed.error)
     }
 

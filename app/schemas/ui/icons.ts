@@ -5,4 +5,3 @@ export const IconSchema = z.enum(
 )
 
 export type Icon = z.infer<typeof IconSchema>
-

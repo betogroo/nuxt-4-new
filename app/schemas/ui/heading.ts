@@ -23,4 +23,3 @@ export const HeadingAlignSchema = z.union([
 export type HeadingLevel = z.infer<typeof HeadingLevelSchema>
 export type HeadingWeight = z.infer<typeof HeadingWeightSchema>
 export type HeadingAlign = z.infer<typeof HeadingAlignSchema>
-

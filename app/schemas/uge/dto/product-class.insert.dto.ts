@@ -9,4 +9,3 @@ export const ProductClassInsertSchema = ProductClassSchema.omit({
 })
 
 export type ProductClassInsert = z.infer<typeof ProductClassInsertSchema>
-

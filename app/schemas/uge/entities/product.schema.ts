@@ -18,4 +18,3 @@ export const ProductSchema = BaseEntitySchema.extend({
 })
 
 export type Product = z.infer<typeof ProductSchema>
-

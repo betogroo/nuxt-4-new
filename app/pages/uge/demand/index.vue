@@ -58,7 +58,7 @@
     }
   }
 
-  const { execute: executeDelete, status: deleteStatus } = useAsyncAction(async () => {
+  const { execute: executeDelete } = useAsyncAction(async () => {
     if (!selectedDemandToDelete.value) {
       throw new Error('Demanda não selecionada')
     }
@@ -99,15 +99,15 @@
     <!-- Dialog de Confirmação de Exclusão -->
     <ui-dialog
       v-model="isDeleteDialogOpen"
+      size="small"
       title="Confirmar Exclusão"
       title-icon="delete"
-      size="small"
     >
       Tem certeza que deseja excluir a demanda
       <strong>"{{ selectedDemandToDelete?.description }}"</strong>?
       <template #actions>
         <v-spacer />
-        <ui-btn variant="text" :disabled="isDeleting" @click="closeDeleteDialog">Cancelar</ui-btn>
+        <ui-btn :disabled="isDeleting" variant="text" @click="closeDeleteDialog">Cancelar</ui-btn>
         <ui-btn color="error" :loading="isDeleting" @click="handleDelete">Excluir</ui-btn>
       </template>
     </ui-dialog>
@@ -125,14 +125,14 @@
         :to="`./demand/${demand.id}`"
       >
         <template #prepend>
-          <v-avatar color="primary" variant="tonal" size="38" class="me-1 rounded-lg">
+          <v-avatar class="me-1 rounded-lg" color="primary" size="38" variant="tonal">
             <v-icon icon="mdi-file-document-outline" size="20" />
           </v-avatar>
         </template>
 
         <template #subtitle>
           <div class="d-flex align-center ga-2 mt-1 flex-wrap">
-            <v-chip size="x-small" color="primary" variant="flat" class="font-weight-medium">
+            <v-chip class="font-weight-medium" color="primary" size="x-small" variant="flat">
               Proc. {{ demand.internal_process_number }}
             </v-chip>
             <span v-if="demand.owner?.name" class="text-caption text-medium-emphasis text-truncate">
@@ -144,13 +144,15 @@
         <template #actions>
           <div class="d-flex align-center ga-1">
             <ui-btn-icon icon="edit" title="Editar" @click.stop.prevent="editDemand(demand.id)" />
-            <ui-btn-icon icon="delete" title="Excluir" color="error" @click.stop.prevent="confirmDeleteDemand(demand)" />
+            <ui-btn-icon
+              color="error"
+              icon="delete"
+              title="Excluir"
+              @click.stop.prevent="confirmDeleteDemand(demand)"
+            />
           </div>
         </template>
       </ui-list-item>
     </ui-list>
   </ui-page>
 </template>
-
-
-

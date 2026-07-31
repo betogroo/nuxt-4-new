@@ -47,7 +47,11 @@
 <template>
   <ui-page show-back title="Editar Demanda">
     <ui-alert v-if="error" :title="error.message" type="error" />
-    <uge-form-demand v-if="demand" :status="updateStatus" :initial-values="initialValues" @submit="editDemand" />
+    <uge-form-demand
+      v-if="demand"
+      :initial-values="initialValues"
+      :status="updateStatus"
+      @submit="editDemand"
+    />
   </ui-page>
 </template>
-

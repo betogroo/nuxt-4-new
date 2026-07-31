@@ -9,4 +9,3 @@ export const ExpenseTypeInsertSchema = ExpenseTypeSchema.omit({
 })
 
 export type ExpenseTypeInsert = z.infer<typeof ExpenseTypeInsertSchema>
-

@@ -9,4 +9,3 @@ export const DemandStatusTransitionSchema = BaseEntitySchema.extend({
 })
 
 export type DemandStatusTransition = z.infer<typeof DemandStatusTransitionSchema>
-

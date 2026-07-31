@@ -8,4 +8,3 @@ export const ProductPackagingTypeInsertSchema = ProductPackagingTypeSchema.omit(
 })
 
 export type ProductPackagingTypeInsert = z.infer<typeof ProductPackagingTypeInsertSchema>
-

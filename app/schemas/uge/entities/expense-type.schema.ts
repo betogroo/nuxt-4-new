@@ -8,4 +8,3 @@ export const ExpenseTypeSchema = BaseEntitySchema.extend({
 })
 
 export type ExpenseType = z.infer<typeof ExpenseTypeSchema>
-

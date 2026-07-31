@@ -27,4 +27,3 @@ export type ProductPackagingTypeRead = z.infer<typeof ProductPackagingTypeReadSc
 export type ProductPackagingTypeWithPackaging = z.infer<
   typeof ProductPackagingTypeWithPackagingSchema
 >
-

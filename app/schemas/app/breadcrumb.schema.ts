@@ -7,4 +7,3 @@ export const BreadcrumbItemSchema = z.object({
 })
 
 export type BreadcrumbItem = z.infer<typeof BreadcrumbItemSchema>
-

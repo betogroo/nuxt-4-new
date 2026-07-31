@@ -4,4 +4,3 @@ import { ObjectTypeSchema } from '../entities/object-type.schema'
 export const ObjectTypeInsertSchema = ObjectTypeSchema
 
 export type ObjectTypeInsert = z.infer<typeof ObjectTypeInsertSchema>
-

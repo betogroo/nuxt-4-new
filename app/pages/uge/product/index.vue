@@ -103,15 +103,15 @@
     <!-- Dialog de Confirmação de Exclusão -->
     <ui-dialog
       v-model="isDeleteDialogOpen"
+      size="small"
       title="Confirmar Exclusão"
       title-icon="delete"
-      size="small"
     >
       Tem certeza que deseja excluir o produto
       <strong>"{{ selectedProductToDelete?.name }}"</strong>?
       <template #actions>
         <v-spacer />
-        <ui-btn variant="text" :disabled="isDeleting" @click="closeDeleteDialog">Cancelar</ui-btn>
+        <ui-btn :disabled="isDeleting" variant="text" @click="closeDeleteDialog">Cancelar</ui-btn>
         <ui-btn color="error" :loading="isDeleting" @click="handleDeleteProduct">Excluir</ui-btn>
       </template>
     </ui-dialog>
@@ -125,14 +125,20 @@
         :to="`/uge/product/${product.id}`"
       >
         <template #prepend>
-          <v-avatar color="secondary" variant="tonal" size="38" class="me-1 rounded-lg">
+          <v-avatar class="me-1 rounded-lg" color="secondary" size="38" variant="tonal">
             <v-icon icon="mdi-package-variant-closed" size="20" />
           </v-avatar>
         </template>
 
         <template #subtitle>
           <div class="d-flex align-center ga-2 mt-1 flex-wrap">
-            <v-chip v-if="product.class?.name" size="x-small" color="secondary" variant="flat" class="font-weight-medium">
+            <v-chip
+              v-if="product.class?.name"
+              class="font-weight-medium"
+              color="secondary"
+              size="x-small"
+              variant="flat"
+            >
               {{ product.class.name }}
             </v-chip>
             <span v-if="product.cat_mat" class="text-caption text-medium-emphasis text-truncate">
@@ -144,13 +150,15 @@
         <template #actions>
           <div class="d-flex align-center ga-1">
             <ui-btn-icon icon="edit" title="Editar" @click.stop.prevent="editProduct(product.id)" />
-            <ui-btn-icon icon="delete" title="Excluir" color="error" @click.stop.prevent="confirmDeleteProduct(product)" />
+            <ui-btn-icon
+              color="error"
+              icon="delete"
+              title="Excluir"
+              @click.stop.prevent="confirmDeleteProduct(product)"
+            />
           </div>
         </template>
       </ui-list-item>
     </ui-list>
   </ui-page>
 </template>
-
-
-

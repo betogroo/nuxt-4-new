@@ -13,4 +13,3 @@ export const ProfileReadSummarySchema = ProfileReadSchema.pick({
 
 export type ProfileRead = z.infer<typeof ProfileReadSchema>
 export type ProfileReadSummary = z.infer<typeof ProfileReadSummarySchema>
-

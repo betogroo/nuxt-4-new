@@ -9,4 +9,3 @@ export const ProfileSchema = BaseEntitySchema.extend({
 }).strict()
 
 export type Profile = z.infer<typeof ProfileSchema>
-

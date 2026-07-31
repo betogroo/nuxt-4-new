@@ -13,4 +13,3 @@ export const ProductFormSchema = ProductInsertSchema.extend({
 })
 
 export type ProductForm = z.infer<typeof ProductFormSchema>
-
