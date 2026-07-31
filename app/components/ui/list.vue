@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import type { Status } from '~/schemas/ui'
+  import type { UiStatus } from '~/schemas/ui/general'
 
   interface Props<T> {
-    status?: Status
+    status?: UiStatus
     items?: T[]
   }
   defineProps<Props<unknown>>()

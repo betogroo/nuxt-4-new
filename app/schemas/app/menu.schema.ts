@@ -1,5 +1,5 @@
 import z from 'zod'
-import { IconSchema } from '../ui'
+import { IconSchema } from '../ui/icons'
 
 export const MenuAreaSchema = z.enum(Object.keys(MENU_ORDER) as [keyof typeof MENU_ORDER])
 
