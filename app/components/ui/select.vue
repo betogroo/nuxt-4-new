@@ -1,6 +1,8 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-  import type { UiDensity, TextFieldVariant, SelectMode } from '~/schemas/ui'
   import { VSelect, VAutocomplete } from 'vuetify/components'
+  import type { UiDensity } from '~/schemas/ui/general'
+  import type { SelectMode } from '~/schemas/ui/select'
+  import type { TextFieldVariant } from '~/schemas/ui/textfield'
 
   interface Props {
     items?: T[]

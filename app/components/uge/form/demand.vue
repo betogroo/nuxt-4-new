@@ -49,6 +49,7 @@
       item-subtitle="ptres"
       item-title="name"
       :items="objectTypeSelect.items.value || []"
+      mode="autocomplete"
       name="object_types_id"
       placeholder="Escolha a natureza"
       :status="objectTypeSelect.status.value"

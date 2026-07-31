@@ -11,6 +11,7 @@
   }
   type StaticProps = {
     clickable?: false
+    // eslint-disable-next-line vue/require-default-prop
     to?: never
   }
   type BaseProps = {
